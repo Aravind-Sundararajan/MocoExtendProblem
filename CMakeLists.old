@@ -21,10 +21,9 @@ add_library(osimMocoZMPGoal SHARED
         ./MocoZMPGoal/RegisterTypes_osimMocoZMPGoal.h
         ./MocoZMPGoal/RegisterTypes_osimMocoZMPGoal.cpp
         )
-target_link_libraries(osimMocoActivationSquaredGoal
+target_link_libraries(osimMocoActivationSquaredGoal osimMocoZMPGoal
         osimTools osimExampleComponents osimMoco)
-target_link_libraries(osimMocoZMPGoal
-        osimTools osimExampleComponents osimMoco)
+
 
 set_target_properties(osimMocoActivationSquaredGoal PROPERTIES VERSION ${PROJECT_VERSION})
 set_target_properties(osimMocoActivationSquaredGoal PROPERTIES SOVERSION 1)
@@ -47,17 +46,16 @@ set_target_properties(osimMocoZMPGoal PROPERTIES
 install(TARGETS osimMocoActivationSquaredGoal
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
-	
+
 install(TARGETS osimMocoZMPGoal
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
-	
+
 # For Windows: make sure DLLs for dependencies are available.
 OpenSimCopyDependencyDLLsForWin(DEP_NAME OpenSim
         DEP_BIN_DIR "${OpenSim_BIN_DIR}")
 if(WIN32)
-    add_dependencies(osimMocoZMPGoal Copy_OpenSim_DLLs)
-	add_dependencies(osimMocoActivationSquaredGoal Copy_OpenSim_DLLs)
+    add_dependencies(osimMocoActivationSquaredGoal osimMocoZMPGoal Copy_OpenSim_DLLs)
 endif()
 
 file(COPY  DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")

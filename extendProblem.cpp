@@ -1,11 +1,10 @@
 //to build:
 //make sure mex is building with VS
-//check the paths for included libs
-//mex -I"C:\libs" -I"C:\opensim_install\sdk\spdlog\include" -I"C:\opensim_install\sdk\Simbody\include" -I"C:\opensim_install\sdk\include" -I"C:\opensim_install\sdk\include\OpenSim" -L"C:\opensim_install\sdk\Simbody\lib" -L"C:\Users\oneill_lab\Desktop\MocoExtendProblem\build\RelWithDebInfo" -lSimTKcommon -lSimTKsimbody -lSimTKmath -L"C:\opensim_install\sdk\lib" -losimActuators -losimExampleComponents -losimSimulation -losimAnalyses -losimJavaJNI -losimTools -losimMoco -losimMocoActivationSquaredGoal -losimCommon -losimLepton -losimTools extendProblem.cpp
+//mex -I"C:\libs" -I"C:\Users\asundar4\Desktop\MocoCustomGoal\MocoZMPGoal" -I"C:\opensim_install\sdk\spdlog\include" -I"C:\opensim_install\sdk\Simbody\include" -I"C:\opensim_install\sdk\include" -I"C:\opensim_install\sdk\include\OpenSim" -L"C:\opensim_install\sdk\Simbody\lib" -L"C:\Users\asundar4\Desktop\MocoCustomGoal\build\RelWithDebInfo" -lSimTKcommon -lSimTKsimbody -lSimTKmath -L"C:\opensim_install\sdk\lib" -losimActuators -losimExampleComponents -losimSimulation -losimAnalyses -losimJavaJNI -losimTools -losimMoco -losimMocoZMPGoal -losimCommon -losimLepton -losimTools extendProblem.cpp
 #include <Simbody.h>
 #include <OpenSim/OpenSim.h>
 #include <OpenSim/Moco/osimMoco.h>
-#include "MocoActivationSquaredGoal.h"
+#include "MocoZMPGoal.h"
 #include "mexplus.h"
 #include <vector>
 #include <string>
@@ -29,7 +28,7 @@ public:
     void addCustomGoal(double weight)
     {
         mexPrintf("ADDING A CUSTOM GOAL\n");
-        auto* goal = m_p->addGoal<MocoActivationSquaredGoal>("ActivationCost", weight);
+        auto* goal = m_p->addGoal<MocoZMPGoal>("ZMP", weight);
         goal->setDivideByDisplacement(true);
     }
     
