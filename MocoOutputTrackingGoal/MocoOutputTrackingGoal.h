@@ -1,7 +1,7 @@
-#ifndef OPENSIM_MOCOZMPGOAL_H
-#define OPENSIM_MOCOZMPGOAL_H
+#ifndef OPENSIM_MOCOOutputTrackingGOAL_H
+#define OPENSIM_MOCOOutputTrackingGOAL_H
 /* -------------------------------------------------------------------------- *
- * OpenSim: MocoZMPGoal.h                                       *
+ * OpenSim: MocoOutputTrackingGoal.h                                       *
  * -------------------------------------------------------------------------- *
  *                                                                            *
  * Author(s): Aravind Sundararajan                                            *
@@ -9,19 +9,19 @@
 
 
 #include <OpenSim/Moco/osimMoco.h>
-#include "osimMocoZMPGoalDLL.h"
+#include "osimMocoOutputTrackingGoalDLL.h"
 
 namespace OpenSim {
 
-class OSIMMOCOZMPGOAL_API MocoZMPGoal : public MocoGoal {
-    OpenSim_DECLARE_CONCRETE_OBJECT(MocoZMPGoal, MocoGoal);
+class OSIMMOCOOutputTrackingGOAL_API MocoOutputTrackingGoal : public MocoGoal {
+    OpenSim_DECLARE_CONCRETE_OBJECT(MocoOutputTrackingGoal, MocoGoal);
 
 public:
-    MocoZMPGoal() { constructProperties();}
-    MocoZMPGoal(std::string name) : MocoGoal(std::move(name)) {
+    MocoOutputTrackingGoal() { constructProperties();}
+    MocoOutputTrackingGoal(std::string name) : MocoGoal(std::move(name)) {
         constructProperties();
     }
-    MocoZMPGoal(std::string name, double weight)
+    MocoOutputTrackingGoal(std::string name, double weight)
             : MocoGoal(std::move(name), weight) {
         constructProperties();
     }
@@ -53,4 +53,4 @@ protected:
 
 } // namespace OpenSim
 
-#endif // OPENSIM_MOCOZMPGOAL_H
+#endif // OPENSIM_MOCOOutputTrackingGOAL_H

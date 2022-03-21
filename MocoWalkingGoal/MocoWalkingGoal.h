@@ -1,7 +1,7 @@
-#ifndef OPENSIM_MOCOZMPGOAL_H
-#define OPENSIM_MOCOZMPGOAL_H
+#ifndef OPENSIM_MOCOWALKINGGOAL_H
+#define OPENSIM_MOCOWALKINGGOAL_H
 /* -------------------------------------------------------------------------- *
- * OpenSim: MocoZMPGoal.h                                       *
+ * OpenSim: MocoWalkingGoal.h                                       *
  * -------------------------------------------------------------------------- *
  *                                                                            *
  * Author(s): Aravind Sundararajan                                            *
@@ -9,19 +9,19 @@
 
 
 #include <OpenSim/Moco/osimMoco.h>
-#include "osimMocoZMPGoalDLL.h"
+#include "osimMocoWalkingGoalDLL.h"
 
 namespace OpenSim {
 
-class OSIMMOCOZMPGOAL_API MocoZMPGoal : public MocoGoal {
-    OpenSim_DECLARE_CONCRETE_OBJECT(MocoZMPGoal, MocoGoal);
+class OSIMMOCOWALKINGGOAL_API MocoWalkingGoal : public MocoGoal {
+    OpenSim_DECLARE_CONCRETE_OBJECT(MocoWalkingGoal, MocoGoal);
 
 public:
-    MocoZMPGoal() { constructProperties();}
-    MocoZMPGoal(std::string name) : MocoGoal(std::move(name)) {
+    MocoWalkingGoal() { constructProperties();}
+    MocoWalkingGoal(std::string name) : MocoGoal(std::move(name)) {
         constructProperties();
     }
-    MocoZMPGoal(std::string name, double weight)
+    MocoWalkingGoal(std::string name, double weight)
             : MocoGoal(std::move(name), weight) {
         constructProperties();
     }
@@ -42,15 +42,12 @@ protected:
             const GoalInput& input, SimTK::Vector& cost) const override;
 
  private:
-    mutable SimTK::State _stateCopy;
-    mutable Model m_model;
     OpenSim_DECLARE_PROPERTY(divide_by_displacement, bool,
         "Divide by the model's displacement over the phase (default: "
         "false)");
-    
     void constructProperties();
 };
 
 } // namespace OpenSim
 
-#endif // OPENSIM_MOCOZMPGOAL_H
+#endif // OPENSIM_MOCOWALKINGGOAL_H
