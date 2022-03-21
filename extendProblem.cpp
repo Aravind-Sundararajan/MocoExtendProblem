@@ -1,6 +1,6 @@
 //to build:
 //make sure mex is building with VS
-//mex -I"C:\libs" -I"C:\Users\asundar4\Desktop\MocoCustomGoal\MocoZMPGoal" -I"C:\opensim_install\sdk\spdlog\include" -I"C:\opensim_install\sdk\Simbody\include" -I"C:\opensim_install\sdk\include" -I"C:\opensim_install\sdk\include\OpenSim" -L"C:\opensim_install\sdk\Simbody\lib" -L"C:\Users\asundar4\Desktop\MocoCustomGoal\build\RelWithDebInfo" -lSimTKcommon -lSimTKsimbody -lSimTKmath -L"C:\opensim_install\sdk\lib" -losimActuators -losimExampleComponents -losimSimulation -losimAnalyses -losimJavaJNI -losimTools -losimMoco -losimMocoZMPGoal -losimCommon -losimLepton -losimTools extendProblem.cpp
+//mex -I"C:\libs" -I"C:\Users\oneill_lab\Desktop\MocoExtendProblem\MocoZMPGoal" -I"C:\opensim_install\sdk\spdlog\include" -I"C:\opensim_install\sdk\Simbody\include" -I"C:\opensim_install\sdk\include" -I"C:\opensim_install\sdk\include\OpenSim" -L"C:\opensim_install\sdk\Simbody\lib" -L"C:\Users\oneill_lab\Desktop\MocoExtendProblem\build\RelWithDebInfo" -lSimTKcommon -lSimTKsimbody -lSimTKmath -L"C:\opensim_install\sdk\lib" -losimActuators -losimExampleComponents -losimSimulation -losimAnalyses -losimJavaJNI -losimTools -losimMoco -losimMocoZMPGoal -losimCommon -losimLepton -losimTools extendProblem.cpp
 #include <Simbody.h>
 #include <OpenSim/OpenSim.h>
 #include <OpenSim/Moco/osimMoco.h>

@@ -1,20 +1,20 @@
 /* -------------------------------------------------------------------------- *
- * OpenSim Moco: MocoZMPGoal.cpp                                              *
+ * OpenSim Moco: MocoOutputTrackingGoal.cpp                                   *
  * -------------------------------------------------------------------------- *
  *                                                                            *
  * Author(s): Aravind Sundararajan                                            *
  *                                                                            *
  * -------------------------------------------------------------------------- */
 
-#include "MocoZMPGoal.h"
+#include "MocoOutputTrackingGoal.h"
 #include <OpenSim/Actuators/ModelOperators.h>
 using namespace OpenSim;
 
-void MocoZMPGoal::constructProperties() {
+void MocoOutputTrackingGoal::constructProperties() {
     constructProperty_divide_by_displacement(false);
 }
 
-void MocoZMPGoal::initializeOnModelImpl(const Model& model) const {
+void MocoOutputTrackingGoal::initializeOnModelImpl(const Model& model) const {
     setRequirements(1, 1);
      ModelProcessor m_p(model);
      m_p.append(ModOpRemoveMuscles());
@@ -27,16 +27,16 @@ void MocoZMPGoal::initializeOnModelImpl(const Model& model) const {
      _stateCopy = m_model.initSystem();
 }
 
-void MocoZMPGoal::calcIntegrandImpl(
+void MocoOutputTrackingGoal::calcIntegrandImpl(
         const IntegrandInput& input, double& integrand) const {
  	SimTK::Vec3 PelvisInGround(0.0, 0.0, 0.0);
     SimTK::Vec3 COMinGround(0.0, 0.0, 0.0);
 	SimTK::Vec3 pelvis_moment(0.0, 0.0, 0.0);
 	SimTK::Vec3 pelvis_force(0.0, 0.0, 0.0);
     SimTK::Vec3 PelvisCoM(0.0, 0.0, 0.0);
-	SimTK::Vec3 zmp_moment(0.0, 0.0, 0.0);
-    SimTK::Vec3 zmp_force(0.0, 0.0, 0.0);
-    SimTK::Vec3 zmpout(0.0, 0.0, 0.0);
+	SimTK::Vec3 OutputTracking_moment(0.0, 0.0, 0.0);
+    SimTK::Vec3 OutputTracking_force(0.0, 0.0, 0.0);
+    SimTK::Vec3 OutputTrackingout(0.0, 0.0, 0.0);
     SimTK::Vector residualMobilityForces;
     SimTK::Vector knownUdot;
     SimTK::State& state = _stateCopy;
@@ -49,7 +49,7 @@ void MocoZMPGoal::calcIntegrandImpl(
 	COMinGround =m_model.calcMassCenterPosition(state);
 	COMinGround[1] = 0.0;
     //std::cout << "project COM to Ground: " << COMinGround << std::endl;
-	// Calculate ZMP
+	// Calculate OutputTracking
 		
  	SimTK::Vector_<SimTK::SpatialVec> appliedBodyForces = m_model.getMultibodySystem().getRigidBodyForces(state, SimTK::Stage::Dynamics);
 	//appliedBodyForces.dump("All Applied Body Forces");
@@ -80,21 +80,21 @@ void MocoZMPGoal::calcIntegrandImpl(
 	PelvisInGround = m_model.getBodySet().get(0).findStationLocationInGround(state, PelvisCoM);
 	//std::cout << "pelvis in ground: " << PelvisInGround << std::endl;
 
- 	zmp_moment = pelvis_moment + PelvisInGround % pelvis_force;
+ 	OutputTracking_moment = pelvis_moment + PelvisInGround % pelvis_force;
 	
-	zmp_force[0] = pelvis_force[0];
-	zmp_force[1] = pelvis_force[1];
-	zmp_force[2] = pelvis_force[2];
+	OutputTracking_force[0] = pelvis_force[0];
+	OutputTracking_force[1] = pelvis_force[1];
+	OutputTracking_force[2] = pelvis_force[2];
 	
-	zmpout[0] = zmp_moment[2]/zmp_force[1];
-	zmpout[1] = 0.0;
-	zmpout[2] = -1.0 * (zmp_moment[0]/zmp_force[1]);
+	OutputTrackingout[0] = OutputTracking_moment[2]/OutputTracking_force[1];
+	OutputTrackingout[1] = 0.0;
+	OutputTrackingout[2] = -1.0 * (OutputTracking_moment[0]/OutputTracking_force[1]);
 	
     integrand = 0.0;
-    integrand += (SimTK::square((zmpout - COMinGround).norm()));  
+    integrand += (SimTK::square((OutputTrackingout - COMinGround).norm()));  
 }
 
-void MocoZMPGoal::calcGoalImpl(
+void MocoOutputTrackingGoal::calcGoalImpl(
         const GoalInput& input, SimTK::Vector& cost) const {
     cost[0] = input.integral;
     if (get_divide_by_displacement()) {
