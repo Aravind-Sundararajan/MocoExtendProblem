@@ -3,7 +3,7 @@
  * -------------------------------------------------------------------------- *
  *                                                                            *
  * Author(s): Aravind Sundararajan                                            *
- *                                                                            *
+ * This goal minimizes coordinate accelerations for explicit multibody dynamic*
  * -------------------------------------------------------------------------- */
 
 #include "MocoCoordinateAccelerationGoal.h"
