@@ -3,7 +3,8 @@
  * -------------------------------------------------------------------------- *
  *                                                                            *
  * Author(s): Aravind Sundararajan                                            *
- *                                                                            *
+ * this uses the LSE                                                          *
+ * (a smooth approx. of the maximum function that is C2 continuous)           *
  * -------------------------------------------------------------------------- */
 
 #include "MocoMaxCoordinateGoal.h"
