@@ -1,34 +1,34 @@
 /* -------------------------------------------------------------------------- *
- * OpenSim Moco: MocoWalkingGoal.cpp                                              *
+ * OpenSim Moco: MocoMaxCoordinateGoal.cpp                                              *
  * -------------------------------------------------------------------------- *
  *                                                                            *
  * Author(s): Aravind Sundararajan                                            *
  *                                                                            *
  * -------------------------------------------------------------------------- */
 
-#include "MocoWalkingGoal.h"
+#include "MocoMaxCoordinateGoal.h"
 
 using namespace OpenSim;
 
-void MocoWalkingGoal::constructProperties() {
+void MocoMaxCoordinateGoal::constructProperties() {
     constructProperty_divide_by_displacement(false);
 }
 
-void MocoWalkingGoal::initializeOnModelImpl(const Model& model) const {
+void MocoMaxCoordinateGoal::initializeOnModelImpl(const Model& model) const {
     setRequirements(1, 1);
 }
 
-void MocoWalkingGoal::calcIntegrandImpl(
+void MocoMaxCoordinateGoal::calcIntegrandImpl(
         const IntegrandInput& input, double& integrand) const {
-    getModel().realizeDynamics(input.state);
+    getModel().realizeAcceleration(input.state);
     const auto& state = input.state;
-	const auto& m_model = getModel();
-
-    integrand = 0.0;
-    integrand += 1.0;  
+    auto udots = state.getUDot();
+	for (int i = 0; i < udots.size(); i++) {
+		integrand += SimTK::square(udots.get(i));
+	} 
 }
 
-void MocoWalkingGoal::calcGoalImpl(
+void MocoMaxCoordinateGoal::calcGoalImpl(
         const GoalInput& input, SimTK::Vector& cost) const {
     cost[0] = input.integral;
     if (get_divide_by_displacement()) {

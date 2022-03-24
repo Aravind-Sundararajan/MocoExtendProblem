@@ -14,7 +14,6 @@ addpath([opensimroot 'bin'], [opensimroot 'sdk\lib']); %add the opensim path to 
 javaaddpath([opensimroot 'bin'], [opensimroot 'sdk\lib']); %add opensimroot bin and the java path to MATLAB's dynamic path path
 setenv('PATH', [[opensimroot 'bin'] ';' [opensimroot 'sdk\lib'] ';' getenv('PATH')]);% Set Windows System path to include OpenSim libraries
 import org.opensim.modeling.* %import opensim api library
-opensimCommon.LoadOpenSimLibraryExact('C:\Users\oneill_lab\Desktop\MocoExtendProblem\build\RelWithDebInfo\osimMocoZMPGoal.dll');
 
 % Define the optimal control problem
 % ==================================
@@ -32,35 +31,39 @@ tableProcessor = TableProcessor('./input/torque/humanWalk_AvgIK.sto');
 tableProcessor.append(TabOpLowPassFilter(6));
 
 modelProcessor = ModelProcessor('./models/model_31d84m_modified_contacts.osim');
-modelProcessor.append(ModOpUseImplicitTendonComplianceDynamicsDGF())
+
+%modelProcessor.append(ModOpUseImplicitTendonComplianceDynamicsDGF())
 %modelProcessor.append(ModOpReplaceMusclesWithDeGrooteFregly2016());
 %modelProcessor.append(ModOpIgnoreTendonCompliance());
 
 %weld some of the joints
 jointsToWeld = StdVectorString();
 % Weld shoulder and elbow joints for initial torque-driven sim. 
-jointsToWeld.add('shoulder_r');
-jointsToWeld.add('shoulder_l');
-jointsToWeld.add('elbow_r');
-jointsToWeld.add('elbow_l');
-%Weld arm, hand and foot
-jointsToWeld.add('radioulnar_r');
-jointsToWeld.add('radioulnar_l');
-jointsToWeld.add('wrist_r');
-jointsToWeld.add('wrist_l');
+% jointsToWeld.add('shoulder_r');
+% jointsToWeld.add('shoulder_l');
+% jointsToWeld.add('elbow_r');
+% jointsToWeld.add('elbow_l');
+% %Weld arm, hand and foot
+% jointsToWeld.add('radioulnar_r');
+% jointsToWeld.add('radioulnar_l');
+% jointsToWeld.add('wrist_r');
+% jointsToWeld.add('wrist_l');
 jointsToWeld.add('mtp_r');
 jointsToWeld.add('mtp_l');
 jointsToWeld.add('subtalar_r');
 jointsToWeld.add('subtalar_l');
 modelProcessor.append(ModOpReplaceJointsWithWelds(jointsToWeld));
 
+modelProcessor.append(ModOpRemoveMuscles())
+modelProcessor.append(ModOpAddReserves(250))
+
 track.setModel(modelProcessor);
 
 track.setStatesReference(tableProcessor);
 track.set_states_global_tracking_weight(StateTrackWeight);
 track.set_allow_unused_references(true);
-%track.set_track_reference_position_derivatives(true);
-%track.set_apply_tracked_states_to_guess(true);
+track.set_track_reference_position_derivatives(true);
+track.set_apply_tracked_states_to_guess(true);
 track.set_initial_time(0.0);
 track.set_final_time(1.16);
 
@@ -200,9 +203,9 @@ if GRFTrackWeight ~= 0
     problem.addGoal(contactTracking);
 end
 
-cptr = uint64(problem.getCPtr(problem));
-ep = extend_problem(cptr);
-ep.addCustomGoal(1);
+%cptr = uint64(problem.getCPtr(problem));
+%ep = extend_problem(cptr);
+%ep.addAccelerationGoal(0.0001/model.getCoordinateSet().getSize());
 
 % Prevent body segment penetration (will be useful for predictive sims)
 % distanceConstraint = MocoFrameDistanceConstraint();
@@ -257,23 +260,23 @@ problem.setControlInfoPattern('/forceset/reserve_.*', [-1.0, 1.0], [], []);
 solver = MocoCasADiSolver.safeDownCast(study.updSolver());
 solver.set_optim_max_iterations(max_iterations);
 solver.set_num_mesh_intervals(mesh_interval); % With Hermite-Simpson leads to 2n+1 grid points
-solver.set_parallel(9);  % Set to # of actual cores on laptop
+solver.set_parallel(36);  % Set to # of actual cores on laptop
 solver.set_optim_constraint_tolerance(1e-4);
 solver.set_optim_convergence_tolerance(1e-2);
-%solver.set_multibody_dynamics_mode('implicit');
-%solver.set_minimize_implicit_multibody_accelerations(true);
-
+solver.set_multibody_dynamics_mode('implicit');
+solver.set_minimize_implicit_multibody_accelerations(true);
+solver.set_implicit_multibody_accelerations_weight(0.001/model.getCoordinateSet().getSize())
 %solver.set_minimize_implicit_auxiliary_derivatives(true);
 %solver.set_implicit_auxiliary_derivatives_weight(0.001/model.getMuscles().getSize());
 
 % Insert the solution from a lower order model into the current guess
 solver.resetProblem(problem);
 guess = solver.createGuess();
-lowerOrderSolution = MocoTrajectory('./output/investigations/tendon_compliance_5/1_00.sto');
-lowerOrderStatesTable = lowerOrderSolution.exportToStatesTable();
-lowerOrderControlsTable = lowerOrderSolution.exportToControlsTable();
-guess.insertStatesTrajectory(lowerOrderStatesTable, true);
-guess.insertControlsTrajectory(lowerOrderControlsTable, true);
+% lowerOrderSolution = MocoTrajectory('./output/investigations/tendon_compliance_5/1_00.sto');
+% lowerOrderStatesTable = lowerOrderSolution.exportToStatesTable();
+% lowerOrderControlsTable = lowerOrderSolution.exportToControlsTable();
+% guess.insertStatesTrajectory(lowerOrderStatesTable, true);
+% guess.insertControlsTrajectory(lowerOrderControlsTable, true);
 
 % Set the unknown activations all to a low value
 % numRows = guess.getNumTimes();
@@ -363,4 +366,4 @@ org.opensim.modeling.STOFileAdapter.write(externalForcesTableFlat,grf_path);
 
 diary off
 
-ep.delete();
+%ep.delete();

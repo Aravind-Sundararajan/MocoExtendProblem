@@ -1,33 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Users\oneill_lab\Desktop\MocoExtendProblem\MocoZMPGoal\MocoZMPGoal.cpp">
+    <ClCompile Include="C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\MocoZMPGoal\MocoZMPGoal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\oneill_lab\Desktop\MocoExtendProblem\MocoZMPGoal\RegisterTypes_osimMocoZMPGoal.cpp">
+    <ClCompile Include="C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\MocoZMPGoal\RegisterTypes_osimMocoZMPGoal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\oneill_lab\Desktop\MocoExtendProblem\MocoZMPGoal\MocoZMPGoal.h">
+    <ClInclude Include="C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\MocoZMPGoal\MocoZMPGoal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\oneill_lab\Desktop\MocoExtendProblem\MocoZMPGoal\osimMocoZMPGoalDLL.h">
+    <ClInclude Include="C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\MocoZMPGoal\osimMocoZMPGoalDLL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\oneill_lab\Desktop\MocoExtendProblem\MocoZMPGoal\RegisterTypes_osimMocoZMPGoal.h">
+    <ClInclude Include="C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\MocoZMPGoal\RegisterTypes_osimMocoZMPGoal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\oneill_lab\Desktop\MocoExtendProblem\CMakeLists.txt" />
+    <CustomBuild Include="C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{82DDE252-E36B-309D-AACD-3087F857A47E}</UniqueIdentifier>
+      <UniqueIdentifier>{AA83BCE1-96CC-30C5-B273-A74D046A2711}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{D5339355-2F34-3F5F-B63F-1C62C03DAA8A}</UniqueIdentifier>
+      <UniqueIdentifier>{60D867C9-10AE-3696-9560-E5046266AA11}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

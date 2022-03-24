@@ -1,7 +1,7 @@
-#ifndef OPENSIM_MOCOWALKINGGOAL_H
-#define OPENSIM_MOCOWALKINGGOAL_H
+#ifndef OPENSIM_MOCOCOORDINATEACCELERATIONGOAL_H
+#define OPENSIM_MOCOCOORDINATEACCELERATIONGOAL_H
 /* -------------------------------------------------------------------------- *
- * OpenSim: MocoWalkingGoal.h                                       *
+ * OpenSim: MocoCoordinateAccelerationGoal.h                                       *
  * -------------------------------------------------------------------------- *
  *                                                                            *
  * Author(s): Aravind Sundararajan                                            *
@@ -9,19 +9,19 @@
 
 
 #include <OpenSim/Moco/osimMoco.h>
-#include "osimMocoWalkingGoalDLL.h"
+#include "osimMocoCoordinateAccelerationGoalDLL.h"
 
 namespace OpenSim {
 
-class OSIMMOCOWALKINGGOAL_API MocoWalkingGoal : public MocoGoal {
-    OpenSim_DECLARE_CONCRETE_OBJECT(MocoWalkingGoal, MocoGoal);
+class OSIMMOCOCOORDINATEACCELERATIONGOAL_API MocoCoordinateAccelerationGoal : public MocoGoal {
+    OpenSim_DECLARE_CONCRETE_OBJECT(MocoCoordinateAccelerationGoal, MocoGoal);
 
 public:
-    MocoWalkingGoal() { constructProperties();}
-    MocoWalkingGoal(std::string name) : MocoGoal(std::move(name)) {
+    MocoCoordinateAccelerationGoal() { constructProperties();}
+    MocoCoordinateAccelerationGoal(std::string name) : MocoGoal(std::move(name)) {
         constructProperties();
     }
-    MocoWalkingGoal(std::string name, double weight)
+    MocoCoordinateAccelerationGoal(std::string name, double weight)
             : MocoGoal(std::move(name), weight) {
         constructProperties();
     }
@@ -50,4 +50,4 @@ protected:
 
 } // namespace OpenSim
 
-#endif // OPENSIM_MOCOWALKINGGOAL_H
+#endif // OPENSIM_MOCOCOORDINATEACCELERATIONGOAL_H

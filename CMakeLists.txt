@@ -22,19 +22,19 @@ add_library(osimMocoZMPGoal SHARED
         ./MocoZMPGoal/RegisterTypes_osimMocoZMPGoal.cpp
         )
 		
-add_library(osimMocoWalkingGoal SHARED
-        ./MocoWalkingGoal/MocoWalkingGoal.h
-        ./MocoWalkingGoal/MocoWalkingGoal.cpp
-        ./MocoWalkingGoal/osimMocoWalkingGoalDLL.h
-        ./MocoWalkingGoal/RegisterTypes_osimMocoWalkingGoal.h
-        ./MocoWalkingGoal/RegisterTypes_osimMocoWalkingGoal.cpp
+add_library(osimMocoCoordinateAccelerationGoal SHARED
+        ./MocoCoordinateAccelerationGoal/MocoCoordinateAccelerationGoal.h
+        ./MocoCoordinateAccelerationGoal/MocoCoordinateAccelerationGoal.cpp
+        ./MocoCoordinateAccelerationGoal/osimMocoCoordinateAccelerationGoalDLL.h
+        ./MocoCoordinateAccelerationGoal/RegisterTypes_osimMocoCoordinateAccelerationGoal.h
+        ./MocoCoordinateAccelerationGoal/RegisterTypes_osimMocoCoordinateAccelerationGoal.cpp
         )	
 		
 target_link_libraries(osimMocoActivationSquaredGoal
         osimTools osimExampleComponents osimMoco)
 target_link_libraries(osimMocoZMPGoal
         osimTools osimExampleComponents osimMoco)
-target_link_libraries(osimMocoWalkingGoal
+target_link_libraries(osimMocoCoordinateAccelerationGoal
         osimTools osimExampleComponents osimMoco)
 		
 set_target_properties(osimMocoActivationSquaredGoal PROPERTIES VERSION ${PROJECT_VERSION})
@@ -55,12 +55,12 @@ set_target_properties(osimMocoZMPGoal PROPERTIES
         DEFINE_SYMBOL OSIM${zmp_name_upper}_EXPORTS
         )
 
-set_target_properties(osimMocoWalkingGoal PROPERTIES VERSION ${PROJECT_VERSION})
-set_target_properties(osimMocoWalkingGoal PROPERTIES SOVERSION 1)
-set_target_properties(osimMocoWalkingGoal PROPERTIES PUBLIC_HEADER osimMocoWalkingGoal.h)
+set_target_properties(osimMocoCoordinateAccelerationGoal PROPERTIES VERSION ${PROJECT_VERSION})
+set_target_properties(osimMocoCoordinateAccelerationGoal PROPERTIES SOVERSION 1)
+set_target_properties(osimMocoCoordinateAccelerationGoal PROPERTIES PUBLIC_HEADER osimMocoCoordinateAccelerationGoal.h)
 
-string(TOUPPER MocoWalkingGoal walk_name_upper)
-set_target_properties(osimMocoWalkingGoal PROPERTIES
+string(TOUPPER MocoCoordinateAccelerationGoal walk_name_upper)
+set_target_properties(osimMocoCoordinateAccelerationGoal PROPERTIES
         DEFINE_SYMBOL OSIM${walk_name_upper}_EXPORTS
         )
 
@@ -72,14 +72,14 @@ install(TARGETS osimMocoZMPGoal
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 	
-install(TARGETS osimMocoWalkingGoal
+install(TARGETS osimMocoCoordinateAccelerationGoal
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
-foreach(exe PrototypeCustomGoal)
+foreach(exe testCustomGoal)
     add_executable(${exe} ${exe}.cpp)
     target_link_libraries(${exe}
-            osimTools osimExampleComponents osimMoco)
+            osimMocoCoordinateAccelerationGoal)
 
     # For Windows: make sure DLLs for dependencies are available.
     OpenSimCopyDependencyDLLsForWin(DEP_NAME OpenSim
@@ -91,7 +91,7 @@ endforeach()
 	
 if(WIN32)
     add_dependencies(osimMocoZMPGoal Copy_OpenSim_DLLs)
-	add_dependencies(osimMocoWalkingGoal Copy_OpenSim_DLLs)
+	add_dependencies(osimMocoCoordinateAccelerationGoal Copy_OpenSim_DLLs)
 	add_dependencies(osimMocoActivationSquaredGoal Copy_OpenSim_DLLs)
 endif()
 

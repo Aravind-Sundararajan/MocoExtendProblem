@@ -22,11 +22,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{11C1A740-2BC9-36BA-8C00-6224471DD8F7}</ProjectGuid>
+    <ProjectGuid>{BC4242DB-897E-30B1-9555-513E12E508C1}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
-    <ProjectName>osimMocoActivationSquaredGoal</ProjectName>
+    <ProjectName>osimMocoCoordinateAccelerationGoal</ProjectName>
     <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -60,26 +60,26 @@
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\build\Debug\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">osimMocoActivationSquaredGoal.dir\Debug\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">osimMocoActivationSquaredGoal</TargetName>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">osimMocoCoordinateAccelerationGoal.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">osimMocoCoordinateAccelerationGoal</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.dll</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\build\Release\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">osimMocoActivationSquaredGoal.dir\Release\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">osimMocoActivationSquaredGoal</TargetName>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">osimMocoCoordinateAccelerationGoal.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">osimMocoCoordinateAccelerationGoal</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.dll</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\build\MinSizeRel\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">osimMocoActivationSquaredGoal.dir\MinSizeRel\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">osimMocoActivationSquaredGoal</TargetName>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">osimMocoCoordinateAccelerationGoal.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">osimMocoCoordinateAccelerationGoal</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.dll</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\build\RelWithDebInfo\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">osimMocoActivationSquaredGoal.dir\RelWithDebInfo\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">osimMocoActivationSquaredGoal</TargetName>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">osimMocoCoordinateAccelerationGoal.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">osimMocoCoordinateAccelerationGoal</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.dll</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
@@ -98,11 +98,11 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;SPDLOG_COMPILED_LIB;OPENSIM_WITH_CASADI;OPENSIM_WITH_TROPTER;CMAKE_INTDIR="Debug";OSIMMOCOACTIVATIONSQUAREDGOAL_EXPORTS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;SPDLOG_COMPILED_LIB;OPENSIM_WITH_CASADI;OPENSIM_WITH_TROPTER;CMAKE_INTDIR="Debug";OSIMMOCOCOORDINATEACCELERATIONGOAL_EXPORTS</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;SPDLOG_COMPILED_LIB;OPENSIM_WITH_CASADI;OPENSIM_WITH_TROPTER;CMAKE_INTDIR=\"Debug\";OSIMMOCOACTIVATIONSQUAREDGOAL_EXPORTS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;SPDLOG_COMPILED_LIB;OPENSIM_WITH_CASADI;OPENSIM_WITH_TROPTER;CMAKE_INTDIR=\"Debug\";OSIMMOCOCOORDINATEACCELERATIONGOAL_EXPORTS</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\OpenSim 4.3\sdk\include;C:\OpenSim 4.3\sdk\include\OpenSim;C:\OpenSim 4.3\sdk\Simbody\include;C:\OpenSim 4.3\sdk\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -119,8 +119,8 @@
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/oneill_lab/Desktop/MOCOPROJECTS/MocoExtendProblem/build/Debug/osimMocoActivationSquaredGoal.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/oneill_lab/Desktop/MOCOPROJECTS/MocoExtendProblem/build/Debug/osimMocoActivationSquaredGoal.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/oneill_lab/Desktop/MOCOPROJECTS/MocoExtendProblem/build/Debug/osimMocoCoordinateAccelerationGoal.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/oneill_lab/Desktop/MOCOPROJECTS/MocoExtendProblem/build/Debug/osimMocoCoordinateAccelerationGoal.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -139,13 +139,13 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;SPDLOG_COMPILED_LIB;OPENSIM_WITH_CASADI;OPENSIM_WITH_TROPTER;CMAKE_INTDIR="Release";OSIMMOCOACTIVATIONSQUAREDGOAL_EXPORTS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;SPDLOG_COMPILED_LIB;OPENSIM_WITH_CASADI;OPENSIM_WITH_TROPTER;CMAKE_INTDIR="Release";OSIMMOCOCOORDINATEACCELERATIONGOAL_EXPORTS</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;SPDLOG_COMPILED_LIB;OPENSIM_WITH_CASADI;OPENSIM_WITH_TROPTER;CMAKE_INTDIR=\"Release\";OSIMMOCOACTIVATIONSQUAREDGOAL_EXPORTS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;SPDLOG_COMPILED_LIB;OPENSIM_WITH_CASADI;OPENSIM_WITH_TROPTER;CMAKE_INTDIR=\"Release\";OSIMMOCOCOORDINATEACCELERATIONGOAL_EXPORTS</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\OpenSim 4.3\sdk\include;C:\OpenSim 4.3\sdk\include\OpenSim;C:\OpenSim 4.3\sdk\Simbody\include;C:\OpenSim 4.3\sdk\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -162,8 +162,8 @@
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/oneill_lab/Desktop/MOCOPROJECTS/MocoExtendProblem/build/Release/osimMocoActivationSquaredGoal.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/oneill_lab/Desktop/MOCOPROJECTS/MocoExtendProblem/build/Release/osimMocoActivationSquaredGoal.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/oneill_lab/Desktop/MOCOPROJECTS/MocoExtendProblem/build/Release/osimMocoCoordinateAccelerationGoal.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/oneill_lab/Desktop/MOCOPROJECTS/MocoExtendProblem/build/Release/osimMocoCoordinateAccelerationGoal.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -182,13 +182,13 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;SPDLOG_COMPILED_LIB;OPENSIM_WITH_CASADI;OPENSIM_WITH_TROPTER;CMAKE_INTDIR="MinSizeRel";OSIMMOCOACTIVATIONSQUAREDGOAL_EXPORTS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;SPDLOG_COMPILED_LIB;OPENSIM_WITH_CASADI;OPENSIM_WITH_TROPTER;CMAKE_INTDIR="MinSizeRel";OSIMMOCOCOORDINATEACCELERATIONGOAL_EXPORTS</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;SPDLOG_COMPILED_LIB;OPENSIM_WITH_CASADI;OPENSIM_WITH_TROPTER;CMAKE_INTDIR=\"MinSizeRel\";OSIMMOCOACTIVATIONSQUAREDGOAL_EXPORTS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;SPDLOG_COMPILED_LIB;OPENSIM_WITH_CASADI;OPENSIM_WITH_TROPTER;CMAKE_INTDIR=\"MinSizeRel\";OSIMMOCOCOORDINATEACCELERATIONGOAL_EXPORTS</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\OpenSim 4.3\sdk\include;C:\OpenSim 4.3\sdk\include\OpenSim;C:\OpenSim 4.3\sdk\Simbody\include;C:\OpenSim 4.3\sdk\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -205,8 +205,8 @@
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/oneill_lab/Desktop/MOCOPROJECTS/MocoExtendProblem/build/MinSizeRel/osimMocoActivationSquaredGoal.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/oneill_lab/Desktop/MOCOPROJECTS/MocoExtendProblem/build/MinSizeRel/osimMocoActivationSquaredGoal.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/oneill_lab/Desktop/MOCOPROJECTS/MocoExtendProblem/build/MinSizeRel/osimMocoCoordinateAccelerationGoal.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/oneill_lab/Desktop/MOCOPROJECTS/MocoExtendProblem/build/MinSizeRel/osimMocoCoordinateAccelerationGoal.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -226,11 +226,11 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;SPDLOG_COMPILED_LIB;OPENSIM_WITH_CASADI;OPENSIM_WITH_TROPTER;CMAKE_INTDIR="RelWithDebInfo";OSIMMOCOACTIVATIONSQUAREDGOAL_EXPORTS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;SPDLOG_COMPILED_LIB;OPENSIM_WITH_CASADI;OPENSIM_WITH_TROPTER;CMAKE_INTDIR="RelWithDebInfo";OSIMMOCOCOORDINATEACCELERATIONGOAL_EXPORTS</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;SPDLOG_COMPILED_LIB;OPENSIM_WITH_CASADI;OPENSIM_WITH_TROPTER;CMAKE_INTDIR=\"RelWithDebInfo\";OSIMMOCOACTIVATIONSQUAREDGOAL_EXPORTS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;SPDLOG_COMPILED_LIB;OPENSIM_WITH_CASADI;OPENSIM_WITH_TROPTER;CMAKE_INTDIR=\"RelWithDebInfo\";OSIMMOCOCOORDINATEACCELERATIONGOAL_EXPORTS</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\OpenSim 4.3\sdk\include;C:\OpenSim 4.3\sdk\include\OpenSim;C:\OpenSim 4.3\sdk\Simbody\include;C:\OpenSim 4.3\sdk\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -247,8 +247,8 @@
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/oneill_lab/Desktop/MOCOPROJECTS/MocoExtendProblem/build/RelWithDebInfo/osimMocoActivationSquaredGoal.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/oneill_lab/Desktop/MOCOPROJECTS/MocoExtendProblem/build/RelWithDebInfo/osimMocoActivationSquaredGoal.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/oneill_lab/Desktop/MOCOPROJECTS/MocoExtendProblem/build/RelWithDebInfo/osimMocoCoordinateAccelerationGoal.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/oneill_lab/Desktop/MOCOPROJECTS/MocoExtendProblem/build/RelWithDebInfo/osimMocoCoordinateAccelerationGoal.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -313,11 +313,11 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\MocoActivationSquaredGoal\MocoActivationSquaredGoal.h" />
-    <ClCompile Include="C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\MocoActivationSquaredGoal\MocoActivationSquaredGoal.cpp" />
-    <ClInclude Include="C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\MocoActivationSquaredGoal\osimMocoActivationSquaredGoalDLL.h" />
-    <ClInclude Include="C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\MocoActivationSquaredGoal\RegisterTypes_osimMocoActivationSquaredGoal.h" />
-    <ClCompile Include="C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\MocoActivationSquaredGoal\RegisterTypes_osimMocoActivationSquaredGoal.cpp" />
+    <ClInclude Include="C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\MocoCoordinateAccelerationGoal\MocoCoordinateAccelerationGoal.h" />
+    <ClCompile Include="C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\MocoCoordinateAccelerationGoal\MocoCoordinateAccelerationGoal.cpp" />
+    <ClInclude Include="C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\MocoCoordinateAccelerationGoal\osimMocoCoordinateAccelerationGoalDLL.h" />
+    <ClInclude Include="C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\MocoCoordinateAccelerationGoal\RegisterTypes_osimMocoCoordinateAccelerationGoal.h" />
+    <ClCompile Include="C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\MocoCoordinateAccelerationGoal\RegisterTypes_osimMocoCoordinateAccelerationGoal.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\build\ZERO_CHECK.vcxproj">

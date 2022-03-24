@@ -4,17 +4,42 @@
 using namespace OpenSim;
 using SimTK::Pi;
 
-typedef double (*integrand_func)(const Model&, const SimTK::State&);
+typedef double (*integrand_func)(const Model&, const SimTK::State&, const double);
 typedef double (*goal_func)(const Model&, const SimTK::State&, const SimTK::State&, const double&);
 integrand_func integrandFunc;
 goal_func goalFunc;
 
+std::unique_ptr<Model> createSlidingMassModel() {
+	auto model = make_unique<Model>();
+	model->setName("sliding_mass");
+	model->set_gravity(SimTK::Vec3(0, 0, 0));
+	auto* body = new Body("body", 10.0, SimTK::Vec3(0), SimTK::Inertia(0));
+	model->addComponent(body);
+
+	// Allows translation along x.
+	auto* joint = new SliderJoint("slider", model->getGround(), *body);
+	auto& coord = joint->updCoordinate(SliderJoint::Coord::TranslationX);
+	coord.setName("position");
+	model->addComponent(joint);
+
+	auto* actu = new CoordinateActuator();
+	actu->setCoordinate(&coord);
+	actu->setName("actuator");
+	actu->setOptimalForce(1);
+	model->addComponent(actu);
+
+	body->attachGeometry(new Sphere(0.05));
+
+	model->finalizeConnections();
+
+	return model;
+}
+
 double trapz(SimTK::Vector& integrand) {
-	std::cout << integrand << std::endl;
 	int N = integrand.size() - 1;
 	double step = (N) / (2.0 * ((double)N));
 	SimTK::Vector v(integrand);
-	for (size_t i = 1; i < N; i++) {
+	for (int i = 1; i < N; i++) {
 		v[i] *= 2.0;
 	}
 	double integral = v.sum();
@@ -23,25 +48,32 @@ double trapz(SimTK::Vector& integrand) {
 }
 
 
-double CustomGoalIntegrand(const Model& model, const SimTK::State& state) {
-	return 0.0;
+double CustomGoalIntegrand(const Model& model, const SimTK::State& state, double w) {
+	model.realizeAcceleration(state);
+	double integrand = 0;
+	auto udots = state.getUDot();
+	for (int i = 0; i < udots.size(); i++) {
+		integrand += w * pow(udots.get(i),2);
+	}
+	return integrand;
 }
 
 double CustomGoalValue(const Model& model, const SimTK::State& initial_state, const SimTK::State& final_state, const double& integral) {
-	return 0.0;
+	double value = integral / (final_state.getTime() - initial_state.getTime());
+	return value;
 }
 
-double evaluateCustomGoal(const MocoProblem& problem, const MocoTrajectory& mocoTraj, integrand_func integrandFunc, goal_func goalFunc) {
+double evaluateCustomGoal(const MocoProblem& problem, const MocoTrajectory& mocoTraj, integrand_func integrandFunc, goal_func goalFunc, const double w) {
 	//     // Test a custom goal, defined by integrand and goal functions, on the
 	//     // provided problem and MocoTrajectory.
 	auto& model = problem.getPhase(0).getModelProcessor().process();
 	prescribeControlsToModel(mocoTraj, model);
 	auto& statesTraj = mocoTraj.exportToStatesTrajectory(problem);
 	model.initSystem();
-	int N = statesTraj.getSize();
+	int N = (int)statesTraj.getSize();
 	SimTK::Vector integrand(N);
-	for (size_t i = 0; i < N; i++) {
-		integrand[i] = integrandFunc(model, statesTraj.get(i));
+	for (int i = 0; i < N; i++) {
+		integrand[i] = integrandFunc(model, statesTraj.get(i), w);
 	}
 
 	const double& integral = trapz(integrand);
@@ -55,132 +87,43 @@ int main()
 	double stateTrackingWeight = 1;
 	double GRFTrackingWeight = 1;
 
-	MocoTrack track;
-	track.setName("gaitTracking");
-
-	ModelProcessor modelprocessor("C:/Users/oneill_lab/Desktop/MocoExtendProblem/models/2D_gait.osim");
-	track.setModel(modelprocessor);
-	track.setStatesReference(
-		TableProcessor("C:/Users/oneill_lab/Desktop/MocoExtendProblem/input/referenceCoordinates.sto") | TabOpLowPassFilter(6));
-	track.set_states_global_tracking_weight(stateTrackingWeight);
-	track.set_allow_unused_references(true);
-	track.set_track_reference_position_derivatives(true);
-	track.set_apply_tracked_states_to_guess(true);
-	track.set_initial_time(0.0);
-	track.set_final_time(0.47008941);
-	MocoStudy study = track.initialize();
+	MocoStudy study;
 	MocoProblem& problem = study.updProblem();
 
-	//// Goals.
-	//// =====
-	//// Symmetry.
-	//auto* symmetryGoal = problem.addGoal<MocoPeriodicityGoal>("symmetryGoal");
-	//Model model = modelprocessor.process();
-	//model.initSystem();
-	//// Symmetric coordinate values (except for pelvis_tx) and speeds.
-	//for (const auto& coord : model.getComponentList<Coordinate>()) {
-	//	if (IO::EndsWith(coord.getName(), "_r")) {
-	//		symmetryGoal->addStatePair({ coord.getStateVariableNames()[0],
-	//				std::regex_replace(coord.getStateVariableNames()[0],
-	//						std::regex("_r"), "_l") });
-	//		symmetryGoal->addStatePair({ coord.getStateVariableNames()[1],
-	//				std::regex_replace(coord.getStateVariableNames()[1],
-	//						std::regex("_r"), "_l") });
-	//	}
-	//	if (IO::EndsWith(coord.getName(), "_l")) {
-	//		symmetryGoal->addStatePair({ coord.getStateVariableNames()[0],
-	//				std::regex_replace(coord.getStateVariableNames()[0],
-	//						std::regex("_l"), "_r") });
-	//		symmetryGoal->addStatePair({ coord.getStateVariableNames()[1],
-	//				std::regex_replace(coord.getStateVariableNames()[1],
-	//						std::regex("_l"), "_r") });
-	//	}
-	//	if (!IO::EndsWith(coord.getName(), "_l") &&
-	//		!IO::EndsWith(coord.getName(), "_r") &&
-	//		!IO::EndsWith(coord.getName(), "_tx")) {
-	//		symmetryGoal->addStatePair({ coord.getStateVariableNames()[0],
-	//				coord.getStateVariableNames()[0] });
-	//		symmetryGoal->addStatePair({ coord.getStateVariableNames()[1],
-	//				coord.getStateVariableNames()[1] });
-	//	}
-	//}
-	//symmetryGoal->addStatePair({ "/jointset/groundPelvis/pelvis_tx/speed" });
-	//// Symmetric coordinate actuator controls.
-	//symmetryGoal->addControlPair({ "/lumbarAct" });
-	//// Symmetric muscle activations.
-	//for (const auto& muscle : model.getComponentList<Muscle>()) {
-	//	if (IO::EndsWith(muscle.getName(), "_r")) {
-	//		symmetryGoal->addStatePair({ muscle.getStateVariableNames()[0],
-	//				std::regex_replace(muscle.getStateVariableNames()[0],
-	//						std::regex("_r"), "_l") });
-	//	}
-	//	if (IO::EndsWith(muscle.getName(), "_l")) {
-	//		symmetryGoal->addStatePair({ muscle.getStateVariableNames()[0],
-	//				std::regex_replace(muscle.getStateVariableNames()[0],
-	//						std::regex("_l"), "_r") });
-	//	}
-	//}
-	//// Effort. Get a reference to the MocoControlGoal that is added to every
-	//// MocoTrack problem by default.
-	//MocoControlGoal& effort =
-	//	dynamic_cast<MocoControlGoal&>(problem.updGoal("control_effort"));
-	//effort.setWeight(controlEffortWeight);
+	problem.setModel(createSlidingMassModel());
+	// Bounds.
+	// -------
+	// Initial time must be 0, final time can be within [0, 1].
+	problem.setTimeBounds(MocoInitialBounds(0.), MocoFinalBounds(1));
 
-	//// Optionally, add a contact tracking goal.
-	//if (GRFTrackingWeight != 0) {
-	//	// Track the right and left vertical and fore-aft ground reaction forces.
-	//	auto* contactTracking = problem.addGoal<MocoContactTrackingGoal>(
-	//		"contact", GRFTrackingWeight);
-	//	contactTracking->setExternalLoadsFile("C:/Users/oneill_lab/Desktop/MocoExtendProblem/input/referenceGRF.xml");
-	//	contactTracking->addContactGroup(
-	//		{ "contactHeel_r", "contactFront_r" }, "Right_GRF");
-	//	contactTracking->addContactGroup(
-	//		{ "contactHeel_l", "contactFront_l" }, "Left_GRF");
-	//	// Project the error onto the plane perpendicular to the +Z vector.
-	//	contactTracking->setProjection("plane");
-	//	contactTracking->setProjectionVector(SimTK::Vec3(0, 0, 1));
-	//}
+	// Position must be within [-5, 5] throughout the motion.
+	// Initial position must be 0, final position must be 1.
 
-	//// Bounds.
-	//// =======
-	//problem.setStateInfo("/jointset/groundPelvis/pelvis_tilt/value",
-	//	{ -20 * Pi / 180, -10 * Pi / 180 });
-	//problem.setStateInfo("/jointset/groundPelvis/pelvis_tx/value", { 0, 1 });
-	//problem.setStateInfo(
-	//	"/jointset/groundPelvis/pelvis_ty/value", { 0.75, 1.25 });
-	//problem.setStateInfo("/jointset/hip_l/hip_flexion_l/value",
-	//	{ -10 * Pi / 180, 60 * Pi / 180 });
-	//problem.setStateInfo("/jointset/hip_r/hip_flexion_r/value",
-	//	{ -10 * Pi / 180, 60 * Pi / 180 });
-	//problem.setStateInfo(
-	//	"/jointset/knee_l/knee_angle_l/value", { -50 * Pi / 180, 0 });
-	//problem.setStateInfo(
-	//	"/jointset/knee_r/knee_angle_r/value", { -50 * Pi / 180, 0 });
-	//problem.setStateInfo("/jointset/ankle_l/ankle_angle_l/value",
-	//	{ -15 * Pi / 180, 25 * Pi / 180 });
-	//problem.setStateInfo("/jointset/ankle_r/ankle_angle_r/value",
-	//	{ -15 * Pi / 180, 25 * Pi / 180 });
-	//problem.setStateInfo("/jointset/lumbar/lumbar/value", { 0, 20 * Pi / 180 });
+	// Position must be within [-5, 5] throughout the motion.
+	// Initial position must be 0, final position must be 1.
+	problem.setStateInfo("/slider/position/value", MocoBounds(-1, 1), MocoInitialBounds(0), MocoFinalBounds(1));
+	// Speed must be within [-50, 50] throughout the motion.
+	// Initial and final speed must be 0. Use compact syntax.
+	problem.setStateInfo("/slider/position/speed", 1, 1, 1);
 
-	//// Configure the solver.
-	//// =====================
-	//MocoCasADiSolver& solver = study.updSolver<MocoCasADiSolver>();
-	//solver.set_num_mesh_intervals(50);
-	//solver.set_verbosity(2);
-	//solver.set_optim_solver("ipopt");
-	//solver.set_optim_convergence_tolerance(1e-4);
-	//solver.set_optim_constraint_tolerance(1e-4);
-	//solver.set_optim_max_iterations(1000);
+	// Applied force must be between -50 and 50.
+	problem.setControlInfo("/actuator", MocoBounds(-50, 50));
 
-	// Solve problem.
-	// ==============
+	// Solve the problem.
+	// -----
+	MocoCasADiSolver& solver = study.initCasADiSolver();
+	solver.set_num_mesh_intervals(50);
 	MocoSolution solution = study.solve();
-	auto full = createPeriodicTrajectory(solution);
-	full.write("gaitTracking_solution_fullcycle.sto");
+	//solution.write("point_mass_solution.sto");
 
-	//integrandFunc = CustomGoalIntegrand;
-	//goalFunc = CustomGoalValue;
-	//double myIntegral = evaluateCustomGoal(problem, full, integrandFunc, goalFunc);
-	//std::cout << "custom goal value: " << myIntegral << std::endl;
+	solver = study.initCasADiSolver();
+	solver.resetProblem(problem);
+
+	integrandFunc = CustomGoalIntegrand;
+	goalFunc = CustomGoalValue;
+	std::cout << "Running custom goal on solution: " << std::endl;
+	double w = 1.0;
+	double myIntegral = evaluateCustomGoal(problem, solution, integrandFunc, goalFunc,w);
+	std::cout << "custom goal value: " << myIntegral << std::endl;
 	return EXIT_SUCCESS;
 }

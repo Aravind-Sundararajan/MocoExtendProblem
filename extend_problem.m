@@ -7,6 +7,7 @@ classdef extend_problem < handle
     methods
         function this = extend_problem(Cptr)
             %extendProblem Create a new
+            disp(Cptr)
             assert(isinteger(Cptr));
             this.id_ = extendProblem('new',Cptr);
         end
@@ -16,10 +17,17 @@ classdef extend_problem < handle
             extendProblem('delete', this.id_);
         end
         
-        function addCustomGoal(this,weight)
+        function addActivationGoal(this,weight)
             assert(isscalar(weight));
-            extendProblem('addCustomGoal', this.id_,weight)
+            extendProblem('addActivationGoal', this.id_,weight)
         end
-        
+        function addAccelerationGoal(this,weight)
+            assert(isscalar(weight));
+            extendProblem('addAccelerationGoal', this.id_,weight)
+        end
+        function addZMPGoal(this,weight)
+            assert(isscalar(weight));
+            extendProblem('addZMPGoal', this.id_,weight)
+        end
     end
 end

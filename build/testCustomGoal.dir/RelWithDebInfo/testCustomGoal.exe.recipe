@@ -8,7 +8,10 @@
       <FullPath>C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\build\x64\RelWithDebInfo\Copy OpenSim DLLs</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\build\RelWithDebInfo\osimMocoZMPGoal.dll</FullPath>
+      <FullPath>C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\build\RelWithDebInfo\osimMocoCoordinateAccelerationGoal.dll</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\build\RelWithDebInfo\testCustomGoal.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
