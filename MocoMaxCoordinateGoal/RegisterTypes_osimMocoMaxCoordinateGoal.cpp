@@ -1,31 +1,31 @@
 /* -------------------------------------------------------------------------- *
- * OpenSim Moco: RegisterTypes_osimMocoWalkingGoal.cpp              *
+ * OpenSim Moco: RegisterTypes_osimMocoMaxCoordinateGoal.cpp              *
  * -------------------------------------------------------------------------- *
  *                                                                            *
  * Author(s): Aravind Sundararajan                                            *
  *                                                                            *
  * -------------------------------------------------------------------------- */
-#include "MocoWalkingGoal.h"
-#include "RegisterTypes_osimMocoWalkingGoal.h"
+#include "MocoMaxCoordinateGoal.h"
+#include "RegisterTypes_osimMocoMaxCoordinateGoal.h"
 
 using namespace OpenSim;
 
-static osimMocoWalkingGoalInstantiator instantiator;
+static osimMocoMaxCoordinateGoalInstantiator instantiator;
 
-OSIMMOCOWALKINGGOAL_API void RegisterTypes_osimMocoWalkingGoal() {
+OSIMMOCOMAXCOORDINATEGOAL_API void RegisterTypes_osimMocoMaxCoordinateGoal() {
     try {
-        Object::registerType(MocoWalkingGoal());
+        Object::registerType(MocoMaxCoordinateGoal());
     } catch (const std::exception& e) {
-        std::cerr << "ERROR during osimMocoWalkingGoal "
+        std::cerr << "ERROR during osimMocoMaxCoordinateGoal "
                      "Object registration:\n"
                   << e.what() << std::endl;
     }
 }
 
-osimMocoWalkingGoalInstantiator::osimMocoWalkingGoalInstantiator() {
+osimMocoMaxCoordinateGoalInstantiator::osimMocoMaxCoordinateGoalInstantiator() {
     registerDllClasses();
 }
 
-void osimMocoWalkingGoalInstantiator::registerDllClasses() {
-    RegisterTypes_osimMocoWalkingGoal();
+void osimMocoMaxCoordinateGoalInstantiator::registerDllClasses() {
+    RegisterTypes_osimMocoMaxCoordinateGoal();
 }
