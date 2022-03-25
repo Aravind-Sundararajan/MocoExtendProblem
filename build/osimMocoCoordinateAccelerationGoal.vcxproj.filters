@@ -1,33 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\MocoCoordinateAccelerationGoal\MocoCoordinateAccelerationGoal.cpp">
+    <ClCompile Include="C:\Users\varunjos\Documents\GitHub\MocoExtendProblem\MocoCoordinateAccelerationGoal\MocoCoordinateAccelerationGoal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\MocoCoordinateAccelerationGoal\RegisterTypes_osimMocoCoordinateAccelerationGoal.cpp">
+    <ClCompile Include="C:\Users\varunjos\Documents\GitHub\MocoExtendProblem\MocoCoordinateAccelerationGoal\RegisterTypes_osimMocoCoordinateAccelerationGoal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\MocoCoordinateAccelerationGoal\MocoCoordinateAccelerationGoal.h">
+    <ClInclude Include="C:\Users\varunjos\Documents\GitHub\MocoExtendProblem\MocoCoordinateAccelerationGoal\MocoCoordinateAccelerationGoal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\MocoCoordinateAccelerationGoal\osimMocoCoordinateAccelerationGoalDLL.h">
+    <ClInclude Include="C:\Users\varunjos\Documents\GitHub\MocoExtendProblem\MocoCoordinateAccelerationGoal\osimMocoCoordinateAccelerationGoalDLL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\MocoCoordinateAccelerationGoal\RegisterTypes_osimMocoCoordinateAccelerationGoal.h">
+    <ClInclude Include="C:\Users\varunjos\Documents\GitHub\MocoExtendProblem\MocoCoordinateAccelerationGoal\RegisterTypes_osimMocoCoordinateAccelerationGoal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\CMakeLists.txt" />
+    <CustomBuild Include="C:\Users\varunjos\Documents\GitHub\MocoExtendProblem\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{AA83BCE1-96CC-30C5-B273-A74D046A2711}</UniqueIdentifier>
+      <UniqueIdentifier>{8B7D019B-BEC7-33C1-9AEE-9AE0A7011165}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{60D867C9-10AE-3696-9560-E5046266AA11}</UniqueIdentifier>
+      <UniqueIdentifier>{DB83370D-B3C5-3342-9B64-2F38CE956D10}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
