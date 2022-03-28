@@ -1,4 +1,4 @@
-#ifndef OPENSIM_REGISTERTYPES_OSIMMOCOMARKERACCELERATION_H
+#ifndef OPENSIM_REGISTERTYPES_OSIMMOCOMARKERACCELERATIONGOAL_H
 #define OPENSIM_REGISTERTYPES_OSIMMOCOMARKERACCELERATIONGOAL_H
 /* -------------------------------------------------------------------------- *
  * OpenSim: RegisterTypes_osimMocoMarkerAccelerationGoal.h                     *

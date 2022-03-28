@@ -8,25 +8,20 @@
 using namespace OpenSim;
 using SimTK::Vec3;
 
+
+void MocoMarkerAccelerationGoal::constructProperties() {
+    constructProperty_marker_name("");
+}
+
 void MocoMarkerAccelerationGoal::initializeOnModelImpl(
         const Model& model) const {
-    const auto& marker_name = getMarkerName();
-    const auto& markerSet = model.getMarkerSet();
-    int iset = -1;
-    for (int i = 0; i < (int)markRefNames.size(); ++i) {
-        if (model.hasComponent<Marker>(marker_name)) {
-            m_model_marker = model.getComponent<Marker>(markRefNames[i]);
-        } else {
-            OPENSIM_THROW_FRMOBJ(Exception,
-                    "Marker '{}' unrecognized by the specified model.",
-                    marker_name);
-            }
-        }
+    // Get the marker
+    m_model_marker.reset(&model.getComponent<Point>(get_marker_name()));
     setRequirements(1, 1);
 }
 
 void MocoMarkerAccelerationGoal::calcIntegrandImpl(
-        const IntegrandInput& input, double& integrand) const {
+        const IntegrandInput& input, SimTK::Real& integrand) const {
     // Set the integrand value
     integrand = 0;
 
@@ -42,7 +37,7 @@ void MocoMarkerAccelerationGoal::calcIntegrandImpl(
 
     // Compute marker acceleration
     const auto& markerAcceleration =
-                 m_model_markers->getLinearAccelerationInGround(input.state);
+                 m_model_marker->getAccelerationInGround(state);
 
     // Find the error magnitudes
     for (int i = 0; i < 3; ++i){
@@ -51,10 +46,6 @@ void MocoMarkerAccelerationGoal::calcIntegrandImpl(
 }
 
 void MocoMarkerAccelerationGoal::calcGoalImpl(
-            const GoalInput& input, SimTK::Vector& cost) const override {
+            const GoalInput& input, SimTK::Vector& cost) const {
         cost[0] = input.integral;
-}
-
-void MocoMarkerAccelerationGoal::printDescriptionImpl() const {
-    log_cout("Minimizing accelerations for marker name: {}", get_marker_name());
 }
