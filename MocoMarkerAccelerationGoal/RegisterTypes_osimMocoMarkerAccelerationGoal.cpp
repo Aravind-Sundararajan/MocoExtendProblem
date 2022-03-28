@@ -12,7 +12,7 @@ using namespace OpenSim;
 
 static osimMocoMarkerAccelerationGoalInstantiator instantiator;
 
-OSIMMOCOMAXCOORDINATEGOAL_API void RegisterTypes_osimMocoMarkerAccelerationGoal() {
+OSIMMOCOMARKERACCELERATIONGOAL_API void RegisterTypes_osimMocoMarkerAccelerationGoal() {
     try {
         Object::registerType(MocoMarkerAccelerationGoal());
     } catch (const std::exception& e) {
