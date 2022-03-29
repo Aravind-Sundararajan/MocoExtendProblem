@@ -33,8 +33,13 @@ public:
         constructProperties();
     }
 
+    // Public member to set the name of the marker
     void setMarkerName(std::string name) { set_marker_name(std::move(name)); }
     //std::string getMarkerName() const { return get_marker_name(); }
+
+    // Public members to change the divide by displacement property
+    void setDivideByDisplacement(bool tf) { set_divide_by_displacement(tf); }
+    bool getDivideByDisplacement() const { return get_divide_by_displacement(); }
 
 protected:
     Mode getDefaultModeImpl() const override { return Mode::Cost; }
@@ -47,6 +52,9 @@ protected:
 private:
     // PROPERTIES
     OpenSim_DECLARE_PROPERTY(marker_name, std::string, "The name of the marker for this goal");
+    OpenSim_DECLARE_PROPERTY(divide_by_displacement, bool,
+        "Divide by the model's displacement over the phase (default: "
+        "false)");
     void constructProperties();
 
     mutable SimTK::ReferencePtr<const Point> m_model_marker;
