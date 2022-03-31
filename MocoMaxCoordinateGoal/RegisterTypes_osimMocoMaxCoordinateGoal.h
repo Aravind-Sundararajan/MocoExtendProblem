@@ -1,26 +1,26 @@
-#ifndef OPENSIM_REGISTERTYPES_OSIMMOCOCOORDINATEACCELERATION_H
-#define OPENSIM_REGISTERTYPES_OSIMMOCOCOORDINATEACCELERATIONGOAL_H
+#ifndef OPENSIM_REGISTERTYPES_OSIMMOCOMAXCOORDINATE_H
+#define OPENSIM_REGISTERTYPES_OSIMMOCOMAXCOORDINATEGOAL_H
 /* -------------------------------------------------------------------------- *
- * OpenSim: RegisterTypes_osimMocoCoordinateAccelerationGoal.h                     *
+ * OpenSim: RegisterTypes_osimMocoMaxCoordinateGoal.h                     *
  * -------------------------------------------------------------------------- *
  *                                                                            *
  * Author(s): Varun Joshi                                                     *
  *                                                                            *
  * -------------------------------------------------------------------------- */
 
-#include "osimMocoCoordinateAccelerationGoalDLL.h"
+#include "osimMocoMaxCoordinateGoalDLL.h"
 
 extern "C" {
 
-OSIMMOCOCOORDINATEACCELERATIONGOAL_API void RegisterTypes_osimMocoCoordinateAccelerationGoal();
+OSIMMOCOMAXCOORDINATEGOAL_API void RegisterTypes_osimMocoMaxCoordinateGoal();
 
 }
 
-class osimMocoCoordinateAccelerationGoalInstantiator {
+class osimMocoMaxCoordinateGoalInstantiator {
 public:
-    osimMocoCoordinateAccelerationGoalInstantiator();
+    osimMocoMaxCoordinateGoalInstantiator();
 private:
     void registerDllClasses();
 };
 
-#endif // OPENSIM_REGISTERTYPES_OSIMMOCOCOORDINATEACCELERATIONGOAL_H
+#endif // OPENSIM_REGISTERTYPES_OSIMMOCOMAXCOORDINATEGOAL_H

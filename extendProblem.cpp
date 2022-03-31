@@ -1,11 +1,12 @@
 //to build:
 //make sure mex is building with VS
-//mex -I"C:\libs" -I"C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\MocoCoordinateAccelerationGoal" -I"C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\MocoActivationSquaredGoal" -I"C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\MocoZMPGoal" -I"C:\opensim_install\sdk\spdlog\include" -I"C:\opensim_install\sdk\Simbody\include" -I"C:\opensim_install\sdk\include" -I"C:\opensim_install\sdk\include\OpenSim" -L"C:\opensim_install\sdk\Simbody\lib" -L"C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\build\RelWithDebInfo" -lSimTKcommon -lSimTKsimbody -lSimTKmath -L"C:\opensim_install\sdk\lib" -losimActuators -losimExampleComponents -losimSimulation -losimAnalyses -losimJavaJNI -losimTools -losimMocoActivationSquaredGoal -losimMocoZMPGoal -losimMocoCoordinateAccelerationGoal -losimMoco -losimCommon -losimLepton -losimTools extendProblem.cpp
+//mex -I"C:\libs" -I"C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\MocoCoordinateAccelerationGoal"  -I"C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\MocoMaxCoordinateGoal" -I"C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\MocoActivationSquaredGoal" -I"C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\MocoZMPGoal" -I"C:\opensim_install\sdk\spdlog\include" -I"C:\opensim_install\sdk\Simbody\include" -I"C:\opensim_install\sdk\include" -I"C:\opensim_install\sdk\include\OpenSim" -L"C:\opensim_install\sdk\Simbody\lib" -L"C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\build\RelWithDebInfo" -lSimTKcommon -lSimTKsimbody -lSimTKmath -L"C:\opensim_install\sdk\lib" -losimActuators -losimExampleComponents -losimSimulation -losimAnalyses -losimJavaJNI -losimTools -losimMocoActivationSquaredGoal -losimMocoZMPGoal -losimMocoCoordinateAccelerationGoal -losimMocoMaxCoordinateGoal -losimMoco -losimCommon -losimLepton -losimTools extendProblem.cpp
 // 
 #include <Simbody.h>
 #include <OpenSim/OpenSim.h>
 #include <OpenSim/Moco/osimMoco.h>
 #include "MocoCoordinateAccelerationGoal.h"
+#include "MocoMaxCoordinateGoal.h"
 #include "MocoActivationSquaredGoal.h"
 #include "MocoZMPGoal.h"
 #include "mexplus.h"
@@ -46,6 +47,12 @@ public:
     {
         mexPrintf("ADDING ZMP GOAL\n");
         auto* goal = m_p->addGoal<MocoCoordinateAccelerationGoal>("ZMP", weight);
+        //goal->setDivideByDisplacement(true);
+    }
+    void addMaxCoordinateGoal(double weight)
+    {
+        mexPrintf("ADDING MAX COORDINATE GOAL\n");
+        auto* goal = m_p->addGoal<MocoMaxCoordinateGoal>("maximize", weight);
         //goal->setDivideByDisplacement(true);
     }
 private:
@@ -90,6 +97,13 @@ namespace
         OutputArguments output(nlhs, plhs, 0);
         extendProblem* engine = Session<extendProblem>::get(input.get(0));
         engine->addZMPGoal(input.get<double>(1));
+    }
+    MEX_DEFINE(addMaxCoordinateGoal) (int nlhs, mxArray* plhs[], int nrhs, const mxArray* prhs[])
+    {
+        InputArguments input(nrhs, prhs, 2);
+        OutputArguments output(nlhs, plhs, 0);
+        extendProblem* engine = Session<extendProblem>::get(input.get(0));
+        engine->addMaxCoordinateGoal(input.get<double>(1));
     }
     
 } //namespace

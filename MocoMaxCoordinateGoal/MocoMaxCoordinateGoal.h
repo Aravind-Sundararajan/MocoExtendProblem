@@ -1,7 +1,7 @@
-#ifndef OPENSIM_MOCOCOORDINATEACCELERATIONGOAL_H
-#define OPENSIM_MOCOCOORDINATEACCELERATIONGOAL_H
+#ifndef OPENSIM_MOCOMAXCOORDINATEGOAL_H
+#define OPENSIM_MOCOMAXCOORDINATEGOAL_H
 /* -------------------------------------------------------------------------- *
- * OpenSim: MocoCoordinateAccelerationGoal.h                                       *
+ * OpenSim: MocoMaxCoordinateGoal.h                                       *
  * -------------------------------------------------------------------------- *
  *                                                                            *
  * Author(s): Aravind Sundararajan                                            *
@@ -9,29 +9,30 @@
 
 
 #include <OpenSim/Moco/osimMoco.h>
-#include "osimMocoCoordinateAccelerationGoalDLL.h"
+#include "osimMocoMaxCoordinateGoalDLL.h"
 
 namespace OpenSim {
 
-class OSIMMOCOCOORDINATEACCELERATIONGOAL_API MocoCoordinateAccelerationGoal : public MocoGoal {
-    OpenSim_DECLARE_CONCRETE_OBJECT(MocoCoordinateAccelerationGoal, MocoGoal);
+class OSIMMOCOMAXCOORDINATEGOAL_API MocoMaxCoordinateGoal : public MocoGoal {
+    OpenSim_DECLARE_CONCRETE_OBJECT(MocoMaxCoordinateGoal, MocoGoal);
 
 public:
-    MocoCoordinateAccelerationGoal() { constructProperties();}
-    MocoCoordinateAccelerationGoal(std::string name) : MocoGoal(std::move(name)) {
+    MocoMaxCoordinateGoal() { constructProperties();}
+    MocoMaxCoordinateGoal(std::string name) : MocoGoal(std::move(name)) {
         constructProperties();
     }
-    MocoCoordinateAccelerationGoal(std::string name, double weight)
+    MocoMaxCoordinateGoal(std::string name, double weight)
             : MocoGoal(std::move(name), weight) {
         constructProperties();
     }
+
 
     // Public members to change the divide by displacement property
     void setDivideByDisplacement(bool tf) { set_divide_by_displacement(tf); }
     bool getDivideByDisplacement() const {
         return get_divide_by_displacement();
     }
-
+    
 protected:
     Mode getDefaultModeImpl() const override { return Mode::Cost; }
     bool getSupportsEndpointConstraintImpl() const override { return false;}
@@ -46,8 +47,10 @@ protected:
         "Divide by the model's displacement over the phase (default: "
         "false)");
     void constructProperties();
+    mutable StatesTrajectory st;
+    mutable std::vector<double> inte;
 };
 
 } // namespace OpenSim
 
-#endif // OPENSIM_MOCOCOORDINATEACCELERATIONGOAL_H
+#endif // OPENSIM_MOCOMAXCOORDINATEGOAL_H

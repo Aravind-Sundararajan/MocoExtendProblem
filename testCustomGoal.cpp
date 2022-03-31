@@ -2,7 +2,7 @@
 
 #include <OpenSim/Simulation/SimbodyEngine/SliderJoint.h>
 #include <OpenSim/Actuators/CoordinateActuator.h>
-#include "./MocoCoordinateAccelerationGoal/MocoCoordinateAccelerationGoal.h"
+#include "./MocoMaxCoordinateGoal/MocoMaxCoordinateGoal.h"
 #include <OpenSim/Common/STOFileAdapter.h>
 #include <OpenSim/Moco/osimMoco.h>
 #include <OpenSim/Moco/MocoGoal/MocoOutputGoal.h>
@@ -45,23 +45,23 @@ int main()
 	// Bounds.
 	// -------
 	// Initial time must be 0, final time can be within [0, 1].
-	problem.setTimeBounds(MocoInitialBounds(0.), MocoFinalBounds(1));
+	problem.setTimeBounds(MocoInitialBounds(0.), MocoFinalBounds(1.));
 
 	// Position must be within [-5, 5] throughout the motion.
 	// Initial position must be 0, final position must be 1.
 
 	// Position must be within [-5, 5] throughout the motion.
 	// Initial position must be 0, final position must be 1.
-	problem.setStateInfo("/slider/position/value", MocoBounds(-1, 1), MocoInitialBounds(0), MocoFinalBounds(1));
+	problem.setStateInfo("/slider/position/value", MocoBounds(-1., 1.), MocoInitialBounds(0.), MocoFinalBounds(1.));
 	// Speed must be within [-50, 50] throughout the motion.
 	// Initial and final speed must be 0. Use compact syntax.
-	problem.setStateInfo("/slider/position/speed", MocoBounds(-50, 50), {}, {});
+	problem.setStateInfo("/slider/position/speed", MocoBounds(-50, 50), MocoInitialBounds(0.), MocoFinalBounds(0.));
 
 	// Applied force must be between -50 and 50.
 	problem.setControlInfo("/actuator", MocoBounds(-50, 50));
 	
 	//activation squared goal
-	problem.addGoal<MocoCoordinateAccelerationGoal>("acceleration",1.0);
+	problem.addGoal<MocoMaxCoordinateGoal>("Max",1000.0);
 	
 	// Solve the problem.
 	// -----
@@ -69,6 +69,7 @@ int main()
 	solver.set_num_mesh_intervals(50);
 	MocoSolution solution = study.solve();
 	solution.write("point_mass_solution.sto");
+	std::cout << "wrote to point_mass_solution.sto" << std::endl;
 
 	solver = study.initCasADiSolver();
 	solver.resetProblem(problem);

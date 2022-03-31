@@ -13,6 +13,8 @@ using namespace OpenSim;
 
 void MocoMaxCoordinateGoal::constructProperties() {
     constructProperty_divide_by_displacement(false);
+    StatesTrajectory st = StatesTrajectory();
+    std::vector<double> inte;
 }
 
 void MocoMaxCoordinateGoal::initializeOnModelImpl(const Model& model) const {
@@ -21,19 +23,26 @@ void MocoMaxCoordinateGoal::initializeOnModelImpl(const Model& model) const {
 
 void MocoMaxCoordinateGoal::calcIntegrandImpl(
         const IntegrandInput& input, double& integrand) const {
-    getModel().realizeAcceleration(input.state);
     const auto& state = input.state;
-    auto udots = state.getUDot();
-	for (int i = 0; i < udots.size(); i++) {
-		integrand += SimTK::square(udots.get(i));
-	} 
+    getModel().realizeDynamics(input.state);
+    inte.push_back(getWeight()*double(state.getU().get(0)));
+    integrand = state.getU().get(0);
+    //st.append(state);
 }
 
 void MocoMaxCoordinateGoal::calcGoalImpl(
         const GoalInput& input, SimTK::Vector& cost) const {
-    cost[0] = input.integral;
-    if (get_divide_by_displacement()) {
-        cost[0] /=
-            calcSystemDisplacement(input.initial_state, input.final_state);
+    double integral = 0;
+    double se = 0;
+    double lse = 0;
+    
+    //for (auto& state : st){
+    //    inte.push_back(double(state.getQ().get(0)));
+    //}
+    double m = *max_element(std::begin(inte), std::end(inte));
+    for (int i =0; i < inte.size(); i++){
+        se += exp(inte[i] - m);
     }
+    lse = log(se) + m;
+    cost[0] = lse;
 }
