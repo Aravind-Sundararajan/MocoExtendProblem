@@ -1,104 +1,119 @@
-/* -------------------------------------------------------------------------- *
- * OpenSim Moco: MocoOutputTrackingGoal.cpp                                   *
- * -------------------------------------------------------------------------- *
- *                                                                            *
- * Author(s): Aravind Sundararajan                                            *
- *                                                                            *
- * -------------------------------------------------------------------------- */
-
 #include "MocoOutputTrackingGoal.h"
-#include <OpenSim/Actuators/ModelOperators.h>
+
 using namespace OpenSim;
 
 void MocoOutputTrackingGoal::constructProperties() {
+    constructProperty_output_path("");
     constructProperty_divide_by_displacement(false);
+    constructProperty_divide_by_mass(false);
+    constructProperty_exponent(1);
+    constructProperty_output_index(-1);
 }
 
-void MocoOutputTrackingGoal::initializeOnModelImpl(const Model& model) const {
-    setRequirements(1, 1);
-     ModelProcessor m_p(model);
-     m_p.append(ModOpRemoveMuscles());
-     m_model = m_p.process();
-     for (int f =0;f<m_model.updForceSet().getSize();f++) {
-        m_model.updForceSet().remove(f);
-     };
-     m_model.finalizeFromProperties();
-     m_model.finalizeConnections();
-     _stateCopy = m_model.initSystem();
+void MocoOutputTrackingGoal::initializeOnModelImpl(const Model& output) const {
+    OPENSIM_THROW_IF_FRMOBJ(get_output_path().empty(), Exception,
+            "No output_path provided.");
+    std::string componentPath;
+    std::string outputName;
+    std::string channelName;
+    std::string alias;
+    AbstractInput::parseConnecteePath(
+            get_output_path(), componentPath, outputName, channelName, alias);
+    const auto& component = getModel().getComponent(componentPath);
+    const auto* abstractOutput = &component.getOutput(outputName);
+
+    OPENSIM_THROW_IF_FRMOBJ(get_output_index() < -1, Exception,
+            "Invalid Output index provided.");
+    m_minimizeVectorNorm = (get_output_index() == -1);
+
+    if (dynamic_cast<const Output<double>*>(abstractOutput)) {
+        m_data_type = Type_double;
+        OPENSIM_THROW_IF_FRMOBJ(get_output_index() != -1, Exception,
+                "An Output index was provided, but the Output is of type 'double'.")
+
+    } else if (dynamic_cast<const Output<SimTK::Vec3>*>(abstractOutput)) {
+        m_data_type = Type_Vec3;
+        OPENSIM_THROW_IF_FRMOBJ(get_output_index() > 2, Exception,
+                "The Output is of type 'SimTK::Vec3', but an Output index greater "
+                "than 2 was provided.");
+        m_index1 = get_output_index();
+
+    } else if (dynamic_cast<const Output<SimTK::SpatialVec>*>(abstractOutput)) {
+        m_data_type = Type_SpatialVec;
+        OPENSIM_THROW_IF_FRMOBJ(get_output_index() > 5, Exception,
+                "The Output is of type 'SimTK::SpatialVec', but an Output index "
+                "greater than 5 was provided.");
+        if (get_output_index() < 3) {
+            m_index1 = 0;
+            m_index2 = get_output_index();
+        } else {
+            m_index1 = 1;
+            m_index2 = get_output_index() - 3;
+        }
+
+    } else {
+        OPENSIM_THROW_FRMOBJ(Exception,
+                "Data type of specified model output not supported.");
+    }
+    m_output.reset(abstractOutput);
+
+    OPENSIM_THROW_IF_FRMOBJ(get_exponent() < 1, Exception,
+            "Exponent must be 1 or greater.");
+    int exponent = get_exponent();
+
+    // The pow() function gives slightly different results than x * x. On Mac,
+    // using x * x requires fewer solver iterations.
+    if (exponent == 1) {
+        m_power_function = [](const double& x) { return x; };
+    } else if (exponent == 2) {
+        m_power_function = [](const double& x) { return x * x; };
+    } else {
+        m_power_function = [exponent](const double& x) {
+            return pow(std::abs(x), exponent);
+        };
+    }
+
+    setRequirements(1, 1, m_output->getDependsOnStage());
 }
 
 void MocoOutputTrackingGoal::calcIntegrandImpl(
         const IntegrandInput& input, double& integrand) const {
- 	SimTK::Vec3 PelvisInGround(0.0, 0.0, 0.0);
-    SimTK::Vec3 COMinGround(0.0, 0.0, 0.0);
-	SimTK::Vec3 pelvis_moment(0.0, 0.0, 0.0);
-	SimTK::Vec3 pelvis_force(0.0, 0.0, 0.0);
-    SimTK::Vec3 PelvisCoM(0.0, 0.0, 0.0);
-	SimTK::Vec3 OutputTracking_moment(0.0, 0.0, 0.0);
-    SimTK::Vec3 OutputTracking_force(0.0, 0.0, 0.0);
-    SimTK::Vec3 OutputTrackingout(0.0, 0.0, 0.0);
-    SimTK::Vector residualMobilityForces;
-    SimTK::Vector knownUdot;
-    SimTK::State& state = _stateCopy;
-    state.updQ() = input.state.getQ();
-    state.updU() = input.state.getU();
-    state.updUDot() = input.state.getUDot();
-    m_model.realizeDynamics(state);
+    getModel().getSystem().realize(input.state, m_output->getDependsOnStage());
+    double value = 0;
+    if (m_data_type == Type_double) {
+        value = static_cast<const Output<double>*>(m_output.get())
+                        ->getValue(input.state);
 
+    } else if (m_data_type == Type_Vec3) {
+        if (m_minimizeVectorNorm) {
+            value = static_cast<const Output<SimTK::Vec3>*>(m_output.get())
+                        ->getValue(input.state).norm();
+        } else {
+            value = static_cast<const Output<SimTK::Vec3>*>(m_output.get())
+                        ->getValue(input.state)[m_index1];
+        }
 
-	COMinGround =m_model.calcMassCenterPosition(state);
-	COMinGround[1] = 0.0;
-    //std::cout << "project COM to Ground: " << COMinGround << std::endl;
-	// Calculate OutputTracking
-		
- 	SimTK::Vector_<SimTK::SpatialVec> appliedBodyForces = m_model.getMultibodySystem().getRigidBodyForces(state, SimTK::Stage::Dynamics);
-	//appliedBodyForces.dump("All Applied Body Forces");
-    
-    SimTK::Vector appliedMobilityForces(state.getU().size());
-	// Removing mobility forces
-    appliedMobilityForces *=0;
-    //std::cout << "instantiate applied mobility forces: " << appliedMobilityForces << std::endl;
-	
-	// Results of the inverse dynamics for the generalized forces to satisfy accelerations
-	
-	knownUdot = state.getUDot();
-    //std::cout << "known UDot: " << knownUdot << std::endl;
- 
-	// Perform inverse dynamics
-	m_model.getMultibodySystem().getMatterSubsystem().calcResidualForceIgnoringConstraints(state, appliedMobilityForces, appliedBodyForces, knownUdot, residualMobilityForces);
-	
-	/* Get model free floating joint (Pelvis Joint or the first joint conncted to the ground)*/
-	SimTK::SpatialVec equivalentBodyForcesAtPelvis = m_model.getJointSet()[0].calcEquivalentSpatialForce(state, residualMobilityForces);
-	
-	for(int n=0;n<3;n++){ 
-	pelvis_moment[n] = equivalentBodyForcesAtPelvis[0][n];
-	pelvis_force[n] = equivalentBodyForcesAtPelvis[1][n];
-	}
-	
-	
-	PelvisCoM = m_model.getBodySet().get(0).getMassCenter();
-	PelvisInGround = m_model.getBodySet().get(0).findStationLocationInGround(state, PelvisCoM);
-	//std::cout << "pelvis in ground: " << PelvisInGround << std::endl;
+    } else if (m_data_type == Type_SpatialVec) {
+        if (m_minimizeVectorNorm) {
+            value = static_cast<const Output<SimTK::SpatialVec>*>(m_output.get())
+                        ->getValue(input.state).norm();
+        } else {
+            value = static_cast<const Output<SimTK::SpatialVec>*>(m_output.get())
+                        ->getValue(input.state)[m_index1][m_index2];
+        }
+    }
 
- 	OutputTracking_moment = pelvis_moment + PelvisInGround % pelvis_force;
-	
-	OutputTracking_force[0] = pelvis_force[0];
-	OutputTracking_force[1] = pelvis_force[1];
-	OutputTracking_force[2] = pelvis_force[2];
-	
-	OutputTrackingout[0] = OutputTracking_moment[2]/OutputTracking_force[1];
-	OutputTrackingout[1] = 0.0;
-	OutputTrackingout[2] = -1.0 * (OutputTracking_moment[0]/OutputTracking_force[1]);
-	
-    integrand = 0.0;
-    integrand += (SimTK::square((OutputTrackingout - COMinGround).norm()));  
+    integrand = m_power_function(value);
 }
 
 void MocoOutputTrackingGoal::calcGoalImpl(
-        const GoalInput& input, SimTK::Vector& cost) const {
-    cost[0] = input.integral;
+        const MocoGoal::GoalInput& input, SimTK::Vector& cost) const {
+    cost[0] = (input.integral - get_reference_output()).normSqr();
     if (get_divide_by_displacement()) {
         cost[0] /=
-            calcSystemDisplacement(input.initial_state, input.final_state);
+                calcSystemDisplacement(input.initial_state, input.final_state);
+    }
+    if (get_divide_by_mass()) {
+        cost[0] /= getModel().getTotalMass(input.initial_state);
     }
 }
