@@ -43,7 +43,7 @@ problem.setControlInfo('/actuator', MocoBounds(-50, 50));
 
 cptr = uint64(problem.getCPtr(problem));
 ep = extend_problem(cptr);
-ep.addAccelerationGoal(1.0);
+ep.addMaxCoordinateGoal(1.0);
 
 solver = study.initCasADiSolver();
 solver.set_num_mesh_intervals(50);

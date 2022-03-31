@@ -29,14 +29,24 @@ add_library(osimMocoCoordinateAccelerationGoal SHARED
         ./MocoCoordinateAccelerationGoal/RegisterTypes_osimMocoCoordinateAccelerationGoal.h
         ./MocoCoordinateAccelerationGoal/RegisterTypes_osimMocoCoordinateAccelerationGoal.cpp
         )	
-		
+
+add_library(osimMocoMaxCoordinateGoal SHARED
+        ./MocoMaxCoordinateGoal/MocoMaxCoordinateGoal.h
+        ./MocoMaxCoordinateGoal/MocoMaxCoordinateGoal.cpp
+        ./MocoMaxCoordinateGoal/osimMocoMaxCoordinateGoalDLL.h
+        ./MocoMaxCoordinateGoal/RegisterTypes_osimMocoMaxCoordinateGoal.h
+        ./MocoMaxCoordinateGoal/RegisterTypes_osimMocoMaxCoordinateGoal.cpp
+        )
+
 target_link_libraries(osimMocoActivationSquaredGoal
         osimTools osimExampleComponents osimMoco)
 target_link_libraries(osimMocoZMPGoal
         osimTools osimExampleComponents osimMoco)
 target_link_libraries(osimMocoCoordinateAccelerationGoal
         osimTools osimExampleComponents osimMoco)
-		
+target_link_libraries(osimMocoMaxCoordinateGoal
+        osimTools osimExampleComponents osimMoco)
+
 set_target_properties(osimMocoActivationSquaredGoal PROPERTIES VERSION ${PROJECT_VERSION})
 set_target_properties(osimMocoActivationSquaredGoal PROPERTIES SOVERSION 1)
 set_target_properties(osimMocoActivationSquaredGoal PROPERTIES PUBLIC_HEADER osimMocoActivationSquaredGoal.h)
@@ -64,6 +74,15 @@ set_target_properties(osimMocoCoordinateAccelerationGoal PROPERTIES
         DEFINE_SYMBOL OSIM${walk_name_upper}_EXPORTS
         )
 
+set_target_properties(osimMocoMaxCoordinateGoal PROPERTIES VERSION ${PROJECT_VERSION})
+set_target_properties(osimMocoMaxCoordinateGoal PROPERTIES SOVERSION 1)
+set_target_properties(osimMocoMaxCoordinateGoal PROPERTIES PUBLIC_HEADER osimMocoMaxCoordinateGoal.h)
+
+string(TOUPPER MocoMaxCoordinateGoal max_name_upper)
+set_target_properties(osimMocoMaxCoordinateGoal PROPERTIES
+        DEFINE_SYMBOL OSIM${max_name_upper}_EXPORTS
+        )
+
 install(TARGETS osimMocoActivationSquaredGoal
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
@@ -76,10 +95,14 @@ install(TARGETS osimMocoCoordinateAccelerationGoal
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
+install(TARGETS osimMocoMaxCoordinateGoal
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+
 foreach(exe testCustomGoal)
     add_executable(${exe} ${exe}.cpp)
     target_link_libraries(${exe}
-            osimMocoCoordinateAccelerationGoal)
+            osimMocoMaxCoordinateGoal)
 
     # For Windows: make sure DLLs for dependencies are available.
     OpenSimCopyDependencyDLLsForWin(DEP_NAME OpenSim
@@ -90,9 +113,10 @@ foreach(exe testCustomGoal)
 endforeach()
 	
 if(WIN32)
-    add_dependencies(osimMocoZMPGoal Copy_OpenSim_DLLs)
-	add_dependencies(osimMocoCoordinateAccelerationGoal Copy_OpenSim_DLLs)
+        add_dependencies(osimMocoZMPGoal Copy_OpenSim_DLLs)
+        add_dependencies(osimMocoCoordinateAccelerationGoal Copy_OpenSim_DLLs)
 	add_dependencies(osimMocoActivationSquaredGoal Copy_OpenSim_DLLs)
+        add_dependencies(osimMocoMaxCoordinateGoal Copy_OpenSim_DLLs)
 endif()
 
 file(COPY  DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")

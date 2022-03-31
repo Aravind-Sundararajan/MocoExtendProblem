@@ -29,5 +29,9 @@ classdef extend_problem < handle
             assert(isscalar(weight));
             extendProblem('addZMPGoal', this.id_,weight)
         end
+        function addMaxCoordinateGoal(this,weight)
+            assert(isscalar(weight));
+            extendProblem('addMaxCoordinateGoal', this.id_,weight)
+        end
     end
 end

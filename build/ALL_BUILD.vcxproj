@@ -187,6 +187,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{BC4242DB-897E-30B1-9555-513E12E508C1}</Project>
       <Name>osimMocoCoordinateAccelerationGoal</Name>
     </ProjectReference>
+    <ProjectReference Include="C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\build\osimMocoMaxCoordinateGoal.vcxproj">
+      <Project>{585D7B42-1E9C-3174-90D1-7B7D14CDE3F3}</Project>
+      <Name>osimMocoMaxCoordinateGoal</Name>
+    </ProjectReference>
     <ProjectReference Include="C:\Users\oneill_lab\Desktop\MOCOPROJECTS\MocoExtendProblem\build\osimMocoZMPGoal.vcxproj">
       <Project>{3C03D106-812A-3791-AC5C-A5B89EF3850E}</Project>
       <Name>osimMocoZMPGoal</Name>

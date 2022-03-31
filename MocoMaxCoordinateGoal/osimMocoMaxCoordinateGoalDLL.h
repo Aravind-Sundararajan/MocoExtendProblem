@@ -1,20 +1,20 @@
-#ifndef OPENSIM_OSIMMOCOCOORDINATEACCELERATIONGOALDLL_H
-#define OPENSIM_OSIMMOCOCOORDINATEACCELERATIONGOALDLL_H
+#ifndef OPENSIM_OSIMMOCOMAXCOORDINATEGOALDLL_H
+#define OPENSIM_OSIMMOCOMAXCOORDINATEGOALDLL_H
 /* -------------------------------------------------------------------------- *
- * OpenSim: osimMocoCoordinateAccelerationGoalDLL.h                                *
+ * OpenSim: osimMocoMaxCoordinateGoalDLL.h                                *
  * -------------------------------------------------------------------------- *
  *                                                                            *
  * Author(s): Aravind Sundararajan                                            *
  * -------------------------------------------------------------------------- */
 
 #ifndef _WIN32
-    #define OSIMMOCOCOORDINATEACCELERATIONGOAL_API
+    #define OSIMMOCOMAXCOORDINATEGOAL_API
 #else
-    #ifdef OSIMMOCOCOORDINATEACCELERATIONGOAL_EXPORTS
-        #define OSIMMOCOCOORDINATEACCELERATIONGOAL_API __declspec(dllexport)
+    #ifdef OSIMMOCOMAXCOORDINATEGOAL_EXPORTS
+        #define OSIMMOCOMAXCOORDINATEGOAL_API __declspec(dllexport)
     #else
-        #define OSIMMOCOCOORDINATEACCELERATIONGOAL_API __declspec(dllimport)
+        #define OSIMMOCOMAXCOORDINATEGOAL_API __declspec(dllimport)
     #endif
 #endif
 
-#endif // OPENSIM_OSIMMOCOCOORDINATEACCELERATIONGOALDLL_H
+#endif // OPENSIM_OSIMMOCOMAXCOORDINATEGOALDLL_H
