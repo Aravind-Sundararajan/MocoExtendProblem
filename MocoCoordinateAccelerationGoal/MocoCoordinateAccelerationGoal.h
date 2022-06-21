@@ -35,10 +35,13 @@ public:
         return get_divide_by_displacement();
     }
 
-    void setStateNames(TableProcessor ref) { set_reference(std::move(ref)); }
-
+    // Set the state names for coordinate acc minimization
+    void setStateNames(const std::vector<std::string> refCoordNames) {
+        std::cout << "Setting coordinate names from string " << std::endl;
+        m_state_names = refCoordNames;
+    }
     void setStateNames(const TimeSeriesTableVec3& ref) {
-        m_acceleration_table = ref;
+        m_state_names = ref.getColumnLabels();
     }
 protected:
     Mode getDefaultModeImpl() const override { return Mode::Cost; }
@@ -53,15 +56,13 @@ protected:
     OpenSim_DECLARE_PROPERTY(divide_by_displacement, bool,
         "Divide by the model's displacement over the phase (default: "
         "false)");
-    OpenSim_DECLARE_PROPERTY(reference, TableProcessor,
-        "State for which we want to minimize acceleration. Column labels "
-        "should be state variable paths, e.g., '/jointset/knee_r/knee_angle_r'");
     void constructProperties();
 
     mutable std::vector<int> m_sysYIndices;
     mutable std::vector<int> m_state_indices;
+    // State for which we want to minimize acceleration. Column labels 
+    // should be state variable paths, e.g., '/jointset/knee_r/knee_angle_r'
     mutable std::vector<std::string> m_state_names;
-    TimeSeriesTableVec3 m_acceleration_table;
 };
 
 } // namespace OpenSim

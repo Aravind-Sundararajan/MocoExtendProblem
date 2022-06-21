@@ -1,9 +1,10 @@
-% Load the Moco libraries
+%% Load the Moco libraries
 % mex -I"C:\libs"...
 % -I"C:\Users\varunjos\AppData\Roaming\MathWorks\MATLAB Add-Ons\Collections\kyamagu_mexplus\include"...
 % -I"C:\Users\varunjos\Documents\GitHub\MocoExtendProblem\MocoCoordinateAccelerationGoal"...
 % -I"C:\Users\varunjos\Documents\GitHub\MocoExtendProblem\MocoActivationSquaredGoal"...
 % -I"C:\Users\varunjos\Documents\GitHub\MocoExtendProblem\MocoZMPGoal"...
+% -I"C:\Users\varunjos\Documents\GitHub\MocoExtendProblem\MocoMarkerAccelerationGoal"...
 % -I"C:\OpenSim 4.3\sdk\spdlog\include"...
 % -I"C:\OpenSim 4.3\sdk\Simbody\include"...
 % -I"C:\OpenSim 4.3\sdk\include"...
@@ -11,7 +12,11 @@
 % -L"C:\OpenSim 4.3\sdk\Simbody\lib"...
 % -L"C:\Users\varunjos\Documents\GitHub\MocoExtendProblem\build\RelWithDebInfo"...
 % -L"C:\OpenSim 4.3\sdk\lib"...
-% -losimActuators -losimExampleComponents -losimSimulation -losimAnalyses -losimJavaJNI -losimTools -losimMocoActivationSquaredGoal -losimMocoZMPGoal -losimMocoCoordinateAccelerationGoal -losimMoco -losimCommon -losimLepton -losimTools extendProblem.cpp
+% -losimMoco -losimCommon -losimLepton -losimTools...
+% -losimActuators -losimExampleComponents -losimSimulation -losimAnalyses -losimJavaJNI...
+% -losimMocoActivationSquaredGoal -losimMocoZMPGoal -losimMocoCoordinateAccelerationGoal -losimMocoMarkerAccelerationGoal extendProblem.cpp
+
+%%
 opensimroot = 'C:\OpenSim 4.3\'; %create a char array that has the opensim path toplevel directory
 addpath([opensimroot 'bin'], [opensimroot 'sdk\lib']); %add the opensim path to the
 javaaddpath([opensimroot 'bin'], [opensimroot 'sdk\lib']); %add opensimroot bin and the java path to MATLAB's dynamic path path
@@ -25,11 +30,26 @@ outputDir = './output/';
 
 model = Model('pointmass.osim');
 
+%% Place a marker on the model
+bodies = model.getBodySet();
+currBody = bodies.get('body1');
+testMarker = Marker("testMarker",currBody,Vec3(0,0,0));
+model.addMarker(testMarker);
+model.finalizeConnections();
+
+% C++ equivalent code for walksim models
+% const BodySet& bodySet = model.get_BodySet();
+% const PhysicalFrame& torsoBody = bodySet.get(11);
+% auto* marker1 = new Marker("headmarker",torsoBody, SimTK::Vec3(0,0.65,0));
+% model.addMarker(marker1);
+% model.finalizeConnections();
+
 % Create MocoStudy.
 % ================
 study = MocoStudy();
 study.setName('sliding_mass');
 
+%%
 % Define the optimal control problem.
 % ===================================
 problem = study.updProblem();
@@ -54,9 +74,15 @@ problem.setStateInfo('/slider/position/speed', [-50, 50],[] , []);
 % Applied force must be between -50 and 50.
 problem.setControlInfo('/actuator', MocoBounds(-50, 50));
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% Adding the marker goal - Matt look here %%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 cptr = uint64(problem.getCPtr(problem));
 ep = extend_problem(cptr);
-ep.addAccelerationGoal(1.0);
+ep.addMarkerGoal(1.0,'/markerset/testMarker',true);
+ep.addAccelerationGoal(1.0,{'/slider/position'},true);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 solver = study.initCasADiSolver();
 solver.set_num_mesh_intervals(50);

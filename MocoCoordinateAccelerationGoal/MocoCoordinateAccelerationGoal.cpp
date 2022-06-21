@@ -3,7 +3,7 @@
  * -------------------------------------------------------------------------- *
  *                                                                            *
  * Author(s): Aravind Sundararajan                                            *
- *                                                                            *
+ * This goal minimizes coordinate accelerations for explicit multibody dynamic*
  * -------------------------------------------------------------------------- */
 
 #include "MocoCoordinateAccelerationGoal.h"
@@ -12,16 +12,11 @@ using namespace OpenSim;
 
 void MocoCoordinateAccelerationGoal::constructProperties() {
     constructProperty_divide_by_displacement(false);
-    constructProperty_reference(TableProcessor());
 }
 
 void MocoCoordinateAccelerationGoal::initializeOnModelImpl(const Model& model) const {
     setRequirements(1, 1);
-
-    TimeSeriesTableVec3 tableToUse = m_acceleration_table;
     auto allSysYIndices = createSystemYIndexMap(model);
-
-    m_state_names = tableToUse.getColumnLabels();
 
     for (int i = 0; i < (int)m_state_names.size(); ++i) {
         auto& refName = m_state_names[i];           // Get current state variable name

@@ -21,13 +21,20 @@ classdef extend_problem < handle
             assert(isscalar(weight));
             extendProblem('addActivationGoal', this.id_,weight)
         end
-        function addAccelerationGoal(this,weight)
+        function addAccelerationGoal(this,weight,coordNames, displacementDiv)
             assert(isscalar(weight));
-            extendProblem('addAccelerationGoal', this.id_,weight)
+%             assert(isboolean(displacementDiv));
+            extendProblem('addAccelerationGoal', this.id_,weight, coordNames, displacementDiv)
         end
         function addZMPGoal(this,weight)
             assert(isscalar(weight));
             extendProblem('addZMPGoal', this.id_,weight)
         end
+        function addMarkerGoal(this,weight,markerName,displacementDiv)
+            assert(isscalar(weight));
+%             assert(isboolean(displacementDiv));
+            extendProblem('addMarkerGoal', this.id_,weight,markerName,displacementDiv)
+        end
+
     end
 end
