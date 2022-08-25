@@ -37,7 +37,13 @@ add_library(osimMocoMaxCoordinateGoal SHARED
         ./MocoMaxCoordinateGoal/RegisterTypes_osimMocoMaxCoordinateGoal.h
         ./MocoMaxCoordinateGoal/RegisterTypes_osimMocoMaxCoordinateGoal.cpp
         )
-
+add_library(osimMocoMarkerAccelerationGoal SHARED
+        ./MocoMarkerAccelerationGoal/MocoMarkerAccelerationGoal.h
+        ./MocoMarkerAccelerationGoal/MocoMarkerAccelerationGoal.cpp
+        ./MocoMarkerAccelerationGoal/osimMocoMarkerAccelerationGoalDLL.h
+        ./MocoMarkerAccelerationGoal/RegisterTypes_osimMocoMarkerAccelerationGoal.h
+        ./MocoMarkerAccelerationGoal/RegisterTypes_osimMocoMarkerAccelerationGoal.cpp
+        )
 target_link_libraries(osimMocoActivationSquaredGoal
         osimTools osimExampleComponents osimMoco)
 target_link_libraries(osimMocoZMPGoal
@@ -45,6 +51,8 @@ target_link_libraries(osimMocoZMPGoal
 target_link_libraries(osimMocoCoordinateAccelerationGoal
         osimTools osimExampleComponents osimMoco)
 target_link_libraries(osimMocoMaxCoordinateGoal
+        osimTools osimExampleComponents osimMoco)
+target_link_libraries(osimMocoMarkerAccelerationGoal
         osimTools osimExampleComponents osimMoco)
 
 set_target_properties(osimMocoActivationSquaredGoal PROPERTIES VERSION ${PROJECT_VERSION})
@@ -83,6 +91,15 @@ set_target_properties(osimMocoMaxCoordinateGoal PROPERTIES
         DEFINE_SYMBOL OSIM${max_name_upper}_EXPORTS
         )
 
+set_target_properties(osimMocoMarkerAccelerationGoal PROPERTIES VERSION ${PROJECT_VERSION})
+set_target_properties(osimMocoMarkerAccelerationGoal PROPERTIES SOVERSION 1)
+set_target_properties(osimMocoMarkerAccelerationGoal PROPERTIES PUBLIC_HEADER osimMocoCoordinateAccelerationGoal.h)
+
+string(TOUPPER MocoMarkerAccelerationGoal walk_name_upper)
+set_target_properties(osimMocoMarkerAccelerationGoal PROPERTIES
+        DEFINE_SYMBOL OSIM${walk_name_upper}_EXPORTS
+        )
+
 install(TARGETS osimMocoActivationSquaredGoal
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
@@ -96,6 +113,10 @@ install(TARGETS osimMocoCoordinateAccelerationGoal
     PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
 install(TARGETS osimMocoMaxCoordinateGoal
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+
+install(TARGETS osimMocoMarkerAccelerationGoal
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
