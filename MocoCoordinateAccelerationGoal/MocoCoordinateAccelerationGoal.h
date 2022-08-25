@@ -9,7 +9,10 @@
 
 
 #include <OpenSim/Moco/osimMoco.h>
+#include <OpenSim/Simulation/Model/Model.h>
 #include "osimMocoCoordinateAccelerationGoalDLL.h"
+
+#include <OpenSim/Common/TimeSeriesTable.h>
 
 namespace OpenSim {
 
@@ -32,6 +35,14 @@ public:
         return get_divide_by_displacement();
     }
 
+    // Set the state names for coordinate acc minimization
+    void setStateNames(const std::vector<std::string> refCoordNames) {
+        std::cout << "Setting coordinate names from string " << std::endl;
+        m_state_names = refCoordNames;
+    }
+    void setStateNames(const TimeSeriesTableVec3& ref) {
+        m_state_names = ref.getColumnLabels();
+    }
 protected:
     Mode getDefaultModeImpl() const override { return Mode::Cost; }
     bool getSupportsEndpointConstraintImpl() const override { return false;}
@@ -46,6 +57,12 @@ protected:
         "Divide by the model's displacement over the phase (default: "
         "false)");
     void constructProperties();
+
+    mutable std::vector<int> m_sysYIndices;
+    mutable std::vector<int> m_state_indices;
+    // State for which we want to minimize acceleration. Column labels 
+    // should be state variable paths, e.g., '/jointset/knee_r/knee_angle_r'
+    mutable std::vector<std::string> m_state_names;
 };
 
 } // namespace OpenSim
