@@ -2,7 +2,7 @@
 
 #include <OpenSim/Simulation/SimbodyEngine/SliderJoint.h>
 #include <OpenSim/Actuators/CoordinateActuator.h>
-#include "./MocoMaxCoordinateGoal/MocoMaxCoordinateGoal.h"
+#include "./custom_goals/MocoMaxCoordinateGoal/MocoMaxCoordinateGoal.h"
 #include <OpenSim/Common/STOFileAdapter.h>
 #include <OpenSim/Moco/osimMoco.h>
 #include <OpenSim/Moco/MocoGoal/MocoOutputGoal.h>
