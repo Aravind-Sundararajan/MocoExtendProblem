@@ -40,9 +40,6 @@ public:
         std::cout << "Setting coordinate names from string " << std::endl;
         m_state_names = refCoordNames;
     }
-    void setStateNames(const TimeSeriesTableVec3& ref) {
-        m_state_names = ref.getColumnLabels();
-    }
 protected:
     Mode getDefaultModeImpl() const override { return Mode::Cost; }
     bool getSupportsEndpointConstraintImpl() const override { return false;}

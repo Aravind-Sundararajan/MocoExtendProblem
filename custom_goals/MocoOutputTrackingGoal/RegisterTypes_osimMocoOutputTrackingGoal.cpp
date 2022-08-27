@@ -12,20 +12,26 @@ using namespace OpenSim;
 
 static osimMocoOutputTrackingGoalInstantiator instantiator;
 
-OSIMMOCOOutputTrackingGOAL_API void RegisterTypes_osimMocoOutputTrackingGoal() {
-    try {
+OSIMMOCOOUTPUTTRACKINGGOAL_API void RegisterTypes_osimMocoOutputTrackingGoal()
+{
+    try
+    {
         Object::registerType(MocoOutputTrackingGoal());
-    } catch (const std::exception& e) {
+    }
+    catch (const std::exception &e)
+    {
         std::cerr << "ERROR during osimMocoOutputTrackingGoal "
                      "Object registration:\n"
                   << e.what() << std::endl;
     }
 }
 
-osimMocoOutputTrackingGoalInstantiator::osimMocoOutputTrackingGoalInstantiator() {
+osimMocoOutputTrackingGoalInstantiator::osimMocoOutputTrackingGoalInstantiator()
+{
     registerDllClasses();
 }
 
-void osimMocoOutputTrackingGoalInstantiator::registerDllClasses() {
+void osimMocoOutputTrackingGoalInstantiator::registerDllClasses()
+{
     RegisterTypes_osimMocoOutputTrackingGoal();
 }
