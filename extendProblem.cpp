@@ -6,14 +6,16 @@
 #include <OpenSim/OpenSim.h>
 #include <OpenSim/Moco/osimMoco.h>
 #include <OpenSim/Common/TimeSeriesTable.h>
+#include "mexplus.h"
+#include <vector>
+#include <string>
+
 #include "MocoCoordinateAccelerationGoal.h"
 #include "MocoMaxCoordinateGoal.h"
 #include "MocoMarkerAccelerationGoal.h"
 #include "MocoActivationSquaredGoal.h"
 #include "MocoZMPGoal.h"
-#include "mexplus.h"
-#include <vector>
-#include <string>
+
 
 using namespace std;
 using namespace mexplus;
@@ -30,7 +32,6 @@ public:
     }
     ~extendProblem(){
         mexPrintf("goodbye MocoProblem!\n");
-        //free(m_p); //we don't have to free since MATLAB is instantiating the problem through the API
     }
     
     void addAccelerationGoal(double weight, vector<string> coordNames, bool displacementDiv)

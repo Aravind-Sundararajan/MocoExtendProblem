@@ -1,5 +1,5 @@
-#ifndef OPENSIM_REGISTERTYPES_OSIMMOCOOutputTracking_H
-#define OPENSIM_REGISTERTYPES_OSIMMOCOOutputTrackingGOAL_H
+#ifndef OPENSIM_REGISTERTYPES_OSIMMOCOOUTPUTTRACKING_H
+#define OPENSIM_REGISTERTYPES_OSIMMOCOOUTPUTTRACKINGGOAL_H
 /* -------------------------------------------------------------------------- *
  * OpenSim: RegisterTypes_osimMocoOutputTrackingGoal.h                     *
  * -------------------------------------------------------------------------- *
@@ -10,17 +10,19 @@
 
 #include "osimMocoOutputTrackingGoalDLL.h"
 
-extern "C" {
+extern "C"
+{
 
-OSIMMOCOOutputTrackingGOAL_API void RegisterTypes_osimMocoOutputTrackingGoal();
-
+    OSIMMOCOOUTPUTTRACKINGGOAL_API void RegisterTypes_osimMocoOutputTrackingGoal();
 }
 
-class osimMocoOutputTrackingGoalInstantiator {
+class osimMocoOutputTrackingGoalInstantiator
+{
 public:
     osimMocoOutputTrackingGoalInstantiator();
+
 private:
     void registerDllClasses();
 };
 
-#endif // OPENSIM_REGISTERTYPES_OSIMMOCOOutputTrackingGOAL_H
+#endif // OPENSIM_REGISTERTYPES_OSIMMOCOOUTPUTTRACKINGGOAL_H

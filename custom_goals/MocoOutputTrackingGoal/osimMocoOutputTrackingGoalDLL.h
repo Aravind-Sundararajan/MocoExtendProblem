@@ -8,13 +8,13 @@
  * -------------------------------------------------------------------------- */
 
 #ifndef _WIN32
-    #define OSIMMOCOOUTPUTTRACKINGGOAL_API
+#define OSIMMOCOOUTPUTTRACKINGGOAL_API
 #else
-    #ifdef OSIMMOCOOUTPUTTRACKINGGOAL_EXPORTS
-        #define OSIMMOCOOUTPUTTRACKINGGOAL_API __declspec(dllexport)
-    #else
-        #define OSIMMOCOOUTPUTTRACKINGGOAL_API __declspec(dllimport)
-    #endif
+#ifdef OSIMMOCOOUTPUTTRACKINGGOAL_EXPORTS
+#define OSIMMOCOOUTPUTTRACKINGGOAL_API __declspec(dllexport)
+#else
+#define OSIMMOCOOUTPUTTRACKINGGOAL_API __declspec(dllimport)
+#endif
 #endif
 
 #endif // OPENSIM_OSIMMOCOOUTPUTTRACKINGGOALDLL_H
