@@ -11,8 +11,8 @@ end
 builddir = pwd+"/build/";
 %mkdir(builddir);
 %% CMAKE
-system("cmake CmakeLists.txt -S . -B "+builddir);
-
+system("cmake --clean-first CmakeLists.txt -S . -B "+builddir);
+system("msbuild "+builddir+"/customGoals.sln /p:configuration=RelWithDebInfo");
 %% construct extendProblem.cpp
 delete('extend.cpp');
 fid= fopen('extend.cpp','w');
