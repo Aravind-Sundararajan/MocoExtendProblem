@@ -1,3 +1,4 @@
+function name = createPointMass(name)
 opensimroot = 'C:\opensim 4.3\'; %create a char array that has the opensim path toplevel directory
 addpath([opensimroot 'bin'], [opensimroot 'sdk\lib']); %add the opensim path to the
 javaaddpath([opensimroot 'bin'], [opensimroot 'sdk\lib']); %add opensimroot bin and the java path to MATLAB's dynamic path path
@@ -5,7 +6,7 @@ setenv('PATH', [[opensimroot 'bin'] ';' [opensimroot 'sdk\lib'] ';' getenv('PATH
 import org.opensim.modeling.* %import opensim api library
 
 model = Model();
-model.setName('compass_gait');
+model.setName('');
 
 model.setGravity(Vec3(0, -9.80665, 0));
 
@@ -30,5 +31,6 @@ model.addComponent(actu);
 
 
 model.finalizeConnections();
-model.print('pointmass.osim');
-display(['pointmass.osim printed!']);
+model.print(name);
+display(name +" printed!");
+end

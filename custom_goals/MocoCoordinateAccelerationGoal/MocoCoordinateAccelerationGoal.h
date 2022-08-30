@@ -40,6 +40,7 @@ public:
         std::cout << "Setting coordinate names from string " << std::endl;
         m_state_names = refCoordNames;
     }
+
 protected:
     Mode getDefaultModeImpl() const override { return Mode::Cost; }
     bool getSupportsEndpointConstraintImpl() const override { return false;}

@@ -2,14 +2,23 @@ opensimroot = 'C:\OpenSim 4.3\'; %create a char array that has the opensim path 
 addpath([opensimroot 'bin'], [opensimroot 'sdk\lib']); %add the opensim path to the
 javaaddpath([opensimroot 'bin'], [opensimroot 'sdk\lib']); %add opensimroot bin and the java path to MATLAB's dynamic path path
 setenv('PATH', [[opensimroot 'bin'] ';' [opensimroot 'sdk\lib'] ';' getenv('PATH')]);% Set Windows System path to include OpenSim libraries
-import org.opensim.modeling.* %import opensim api library
+import org.opensim.modeling.* %import opensim api library'
+%% loading dlls
+% goals = get_goal_names('custom_goals');
+% goals = pwd+"bin/RelWithDebInfo/osim" + goals + ".dll";
+% for g = goals
+%     opensimCommon.LoadOpenSimLibraryExact(g);
+% end
+%adding extendProblem class path
+addpath(genpath(fullfile(pwd,'bin/RelWithDebInfo'))); %add dlls to path
 
+%setup
 w = 1.0;
 mesh_interval = 50;
 max_iterations = 15000;
 outputDir = './output/';
-
-model = Model('pointmass.osim');
+p = createPointMass('./models/pointmass.osim');
+model = Model(p);
 
 %% Place a marker on the model
 bodies = model.getBodySet();
@@ -17,7 +26,6 @@ currBody = bodies.get('body1');
 testMarker = Marker("testMarker",currBody,Vec3(0,0,0));
 model.addMarker(testMarker);
 model.finalizeConnections();
-
 % C++ equivalent code for walksim models
 % const BodySet& bodySet = model.get_BodySet();
 % const PhysicalFrame& torsoBody = bodySet.get(11);
@@ -61,14 +69,14 @@ problem.setControlInfo('/actuator', MocoBounds(-50, 50));
 cptr = uint64(problem.getCPtr(problem));
 ep = extend_problem(cptr);
 
-ep.addMarkerGoal(1.0,'/markerset/testMarker',true);
-ep.addAccelerationGoal(1.0,{'/slider/position'},true);
+%ep.addMocoMarkerAccelerationGoal('marker acceleration goal',1.0,'/markerset/testMarker',true);
+ep.addMocoCoordinateAccelerationGoal('coordinate acceleration goal',1.0,true,{'/slider/position'});
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 solver = study.initCasADiSolver();
-solver.set_num_mesh_intervals(50);
+solver.set_num_mesh_intervals(3);
 
 % Solve the problem.
 % ==================
