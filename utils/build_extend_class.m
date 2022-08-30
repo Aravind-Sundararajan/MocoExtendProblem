@@ -22,7 +22,7 @@ fclose(fid);
 s = "";
 s = wrap_start();
 s = s + w + newline;
-s = wrap_end();
+s = s + wrap_end();
 fid= fopen(wrapName,'w');
 fprintf(fid,'%s\n',s);
 fclose(fid);
