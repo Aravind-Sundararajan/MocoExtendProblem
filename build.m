@@ -21,10 +21,10 @@ system("msbuild "+builddir+"customGoals.sln /p:configuration="+config); %
 %automatically generates an extendProblem class.                          % 
 %this also procedurally constructs the mex before MEX_DISPATCH            % 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-build_extend_class(cppName,wrapName);
+build_extend_class(pwd+"/bin/"+config+"/"+cppName,pwd+"/bin/"+config+"/"+wrapName);
 %% BUILD MEX
 goal_names = get_goal_names('custom_goals');
-goal_includes = "-I"""+pwd+goal_names+"""  ";
+goal_includes = "-I"""+pwd+"\custom_goals\"+goal_names+"""  ";
 goal_libs = "-losim"+goal_names+" ";
 custom_goal_lib_l = string([goal_libs{:}]);
 mex_call = "mex -I""C:\libs"" ";
@@ -36,11 +36,10 @@ mex_call = mex_call + "-I"""+opensim_install+"\sdk\Simbody\include"" ";
 mex_call = mex_call + "-I"""+opensim_install+"\sdk\include"" ";
 mex_call = mex_call + "-I"""+opensim_install+"\sdk\include\OpenSim"" ";
 mex_call = mex_call + "-L"""+opensim_install+"\sdk\Simbody\lib"" ";
-mex_call = mex_call + "-L"""+ pwd +"\lib\"+config+""" ";
 mex_call = mex_call + "-L"""+ pwd +"\bin\"+config+""" ";
 mex_call = mex_call + "-lSimTKcommon -lSimTKsimbody -lSimTKmath ";
 mex_call = mex_call + "-L"""+opensim_install+"\sdk\lib"" ";
 mex_call = mex_call + "-losimActuators -losimExampleComponents -losimSimulation -losimAnalyses -losimJavaJNI -losimTools ";
 mex_call = mex_call + custom_goal_lib_l;
-mex_call = mex_call + "-losimMoco -losimCommon -losimLepton -losimTools extendProblem.cpp";
+mex_call = mex_call + "-losimMoco -losimCommon -losimLepton -losimTools "+ pwd+"/bin/"+config+"/"+cppName + " -outdir " + pwd+"/bin/"+config;
 eval(mex_call);

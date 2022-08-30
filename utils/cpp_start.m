@@ -13,7 +13,7 @@ header = [...
         out = out + line + newline;
     end
     for goal = goals
-        line = "#include """+pwd+"/custom_goals/"+goal+ "/" +goal+ ".h""";
+        line = "#include """+goal+".h""";
         out = out + line + newline;
     end
     %% CLASS DEF START

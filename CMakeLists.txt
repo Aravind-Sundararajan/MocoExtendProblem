@@ -13,8 +13,8 @@ set( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BINDIR} )
 
 file(MAKE_DIRECTORY ${BUILDDIR})
 file(MAKE_DIRECTORY ${BINDIR})
-file(MAKE_DIRECTORY ${LIBDIR})
-file(MAKE_DIRECTORY ${INCLUDEDIR})
+#file(MAKE_DIRECTORY ${LIBDIR})
+#file(MAKE_DIRECTORY ${INCLUDEDIR})
 
 find_package(OpenSim 4.3)
 include("${OpenSim_USE_FILE}")
@@ -55,17 +55,17 @@ FOREACH(subdir ${SUBDIRS})
    set_target_properties(osim${subdir} PROPERTIES VERSION ${PROJECT_VERSION})
    set_target_properties(osim${subdir} PROPERTIES SOVERSION 1)
    #set_target_properties(osim${subdir} PROPERTIES PUBLIC_HEADER osim${subdir}.h)
-   set_target_properties(osim${subdir} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${LIBDIR})
-   set_target_properties(osim${subdir} PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${LIBDIR})
-   set_target_properties(osim${subdir} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${INCLUDEDIR})
+   set_target_properties(osim${subdir} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${BINDIR})
+   set_target_properties(osim${subdir} PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${BINDIR})
+   set_target_properties(osim${subdir} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${BINDIR})
    string(TOUPPER ${subdir} name_upper)
    set_target_properties(osim${subdir} PROPERTIES
         DEFINE_SYMBOL OSIM${name_upper}_EXPORTS
         )
    install(TARGETS osim${subdir}
-           LIBRARY DESTINATION ${LIBDIR} #CMAKE_INSTALL_LIBDIR
-           PUBLIC_HEADER DESTINATION ${INCLUDEDIR} #CMAKE_INSTALL_INCLUDEDIR
-           ARCHIVE DESTINATION ${LIBDIR}
+           LIBRARY DESTINATION ${BINDIR} #CMAKE_INSTALL_LIBDIR
+           PUBLIC_HEADER DESTINATION ${BINDIR} #CMAKE_INSTALL_INCLUDEDIR
+           ARCHIVE DESTINATION ${BINDIR}
    )
    IF(WIN32)
         add_dependencies(osim${subdir} Copy_OpenSim_DLLs)
@@ -81,8 +81,8 @@ FOREACH(exe ${TESTS})
       target_include_directories(${exe} PUBLIC ${SRCDIR}${subdir})
       set_target_properties( ${exe}
       PROPERTIES
-      ARCHIVE_OUTPUT_DIRECTORY ${LIBDIR}
-      LIBRARY_OUTPUT_DIRECTORY ${LIBDIR}
+      ARCHIVE_OUTPUT_DIRECTORY ${BINDIR}
+      LIBRARY_OUTPUT_DIRECTORY ${BINDIR}
       RUNTIME_OUTPUT_DIRECTORY ${BINDIR}
       )
   ENDFOREACH()
