@@ -45,6 +45,7 @@ int main()
 	// Bounds.
 	// -------
 	// Initial time must be 0, final time can be within [0, 1].
+    std::string test = "hello";
 	problem.setTimeBounds(MocoInitialBounds(0.), MocoFinalBounds(1.));
 
 	// Position must be within [-5, 5] throughout the motion.
@@ -61,8 +62,9 @@ int main()
 	problem.setControlInfo("/actuator", MocoBounds(-50, 50));
 	
 	//activation squared goal
-	problem.addGoal<MocoMaxCoordinateGoal>("Max",1000.0);
-	
+	auto* g = problem.addGoal<MocoMaxCoordinateGoal>(test,1.0);
+	g->setDivideByDisplacement(true);
+    
 	// Solve the problem.
 	// -----
 	MocoCasADiSolver& solver = study.initCasADiSolver();

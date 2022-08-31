@@ -54,7 +54,7 @@ problem.setTimeBounds(MocoInitialBounds(0.0), MocoFinalBounds(1.0));
 
 % Position must be within [-5, 5] throughout the motion.
 % Initial position must be 0, final position must be 1.
-problem.setStateInfo('/slider/position/value', MocoBounds(0, 1), MocoInitialBounds(0), MocoFinalBounds(1));
+problem.setStateInfo('/slider/position/value', MocoBounds(-1, 1), MocoInitialBounds(0), MocoFinalBounds(1));
 
 % Speed must be within [-50, 50] throughout the motion.
 % Initial and final speed must be 0. Use compact syntax.
@@ -69,19 +69,21 @@ problem.setControlInfo('/actuator', MocoBounds(-50, 50));
 cptr = uint64(problem.getCPtr(problem));
 ep = extend_problem(cptr);
 
-%ep.addMocoMarkerAccelerationGoal('marker acceleration goal',1.0,'/markerset/testMarker',true);
-ep.addMocoCoordinateAccelerationGoal('coordinate acceleration goal',1.0,true,{'/slider/position'});
+ep.addMocoMarkerAccelerationGoal('marker_acceleration_goal',1.0,'/markerset/testMarker',true);
+ep.addMocoCoordinateAccelerationGoal('coordinate_acceleration_goal',1.0,true,{'/slider/position'});
+%ep.addMocoMaxCoordinateGoal('MaxCoordinateGoal',1.0, false);
+%ep.addMocoActivationSquaredGoal('act_square',1.0, true, 0.)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 solver = study.initCasADiSolver();
-solver.set_num_mesh_intervals(3);
+solver.set_num_mesh_intervals(50);
 
 % Solve the problem.
 % ==================
 solution = study.solve();
-solution.write('sliding_mass_solution.sto');
+solution.write('./output/sliding_mass_solution.sto');
 dur = seconds(solution.getSolverDuration());
 [h,m,s] = hms(dur);
 disp('   ')
