@@ -35,7 +35,12 @@ namespace OpenSim
         {
             return get_divide_by_displacement();
         }
-
+        // Set the state names for coordinate acc minimization
+        void setStateName(const std::string refCoordName) {
+            std::cout << "Setting coordinate names from string " << std::endl;
+            m_state_name = refCoordName;
+        }
+        
     protected:
         Mode getDefaultModeImpl() const override { return Mode::Cost; }
         bool getSupportsEndpointConstraintImpl() const override { return false; }
@@ -52,6 +57,12 @@ namespace OpenSim
         void constructProperties();
         mutable StatesTrajectory st;
         mutable std::vector<double> inte;
+        mutable double coord_max;
+        mutable double v;
+        mutable int m_state_index;
+        // State for which we want to minimize acceleration. Column labels 
+        // should be state variable paths, e.g., '/jointset/knee_r/knee_angle_r'
+        mutable std::string m_state_name;
     };
 
 } // namespace OpenSim

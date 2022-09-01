@@ -12,7 +12,7 @@ model.setGravity(Vec3(0, -9.80665, 0));
 
 body1 = Body();
 body1.setName("body1");
-body1.setMass(10);
+body1.setMass(1);
 body1.setInertia(Inertia(0));
 body1.attachGeometry(Sphere(.05));
 model.addBody(body1);
@@ -21,6 +21,7 @@ model.addBody(body1);
 joint = SliderJoint('slider', model.getGround(), body1);
 coord = joint.updCoordinate();
 coord.setName('position');
+coord.setRange([0 10]);
 model.addComponent(joint);
 
 actu = CoordinateActuator();
