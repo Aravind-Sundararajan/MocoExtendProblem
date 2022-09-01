@@ -11,7 +11,8 @@
 				<!--List containing the generalized coordinates (q's) that parameterize this joint.-->
 				<coordinates>
 					<Coordinate name="position">
-						<!--All properties of this object have their default values.-->
+						<!--The minimum and maximum values that the coordinate can range between. Rotational coordinate range in radians and Translational in meters.-->
+						<range>0 10</range>
 					</Coordinate>
 				</coordinates>
 			</SliderJoint>
@@ -55,7 +56,7 @@
 						</Sphere>
 					</attached_geometry>
 					<!--The mass of the body (kg)-->
-					<mass>10</mass>
+					<mass>1</mass>
 					<!--The elements of the inertia tensor (Vec6) as [Ixx Iyy Izz Ixy Ixz Iyz] measured about the mass_center and not the body origin.-->
 					<inertia>0 0 0 0 0 0</inertia>
 				</Body>
