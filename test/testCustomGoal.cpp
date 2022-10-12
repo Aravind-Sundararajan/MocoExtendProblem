@@ -2,7 +2,7 @@
 
 #include <OpenSim/Simulation/SimbodyEngine/SliderJoint.h>
 #include <OpenSim/Actuators/CoordinateActuator.h>
-#include "MocoMaxCoordinateGoal.h"
+#include "MocoActivationGoal.h"
 #include <OpenSim/Common/STOFileAdapter.h>
 #include <OpenSim/Moco/osimMoco.h>
 #include <OpenSim/Moco/MocoGoal/MocoOutputGoal.h>
@@ -62,7 +62,7 @@ int main()
 	problem.setControlInfo("/actuator", MocoBounds(-50, 50));
 	
 	//activation squared goal
-	auto* g = problem.addGoal<MocoMaxCoordinateGoal>(test,1.0);
+	auto* g = problem.addGoal<MocoActivationGoal>(test,1.0);
 	g->setDivideByDisplacement(true);
     
 	// Solve the problem.
