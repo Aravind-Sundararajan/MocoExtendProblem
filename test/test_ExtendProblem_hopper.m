@@ -17,12 +17,13 @@ w = 1.0;
 mesh_interval = 50;
 max_iterations = 15000;
 outputDir = './output/';
-p = createPointMass('./models/pointmass.osim');
-model = Model(p);
-
+createHopper("printModel",true);
+mp = ModelProcessor('./models/hopper.osim');
+mp.append(ModOpReplaceMusclesWithDeGrooteFregly2016())
+model = mp.process();
 %% Place a marker on the model
 bodies = model.getBodySet();
-currBody = bodies.get('body1');
+currBody = bodies.get('pelvis');
 testMarker = Marker("testMarker",currBody,Vec3(0,0,0));
 model.addMarker(testMarker);
 model.finalizeConnections();
@@ -36,7 +37,7 @@ model.finalizeConnections();
 % Create MocoStudy.
 % ================
 study = MocoStudy();
-study.setName('sliding_mass');
+study.setName('maximize jump height');
 
 %%
 % Define the optimal control problem.
@@ -50,39 +51,42 @@ problem.setModel(model);
 % Bounds.
 % -------
 % Initial time must be 0, final time can be within [0, 5].
-problem.setTimeBounds(MocoInitialBounds(0.0), MocoFinalBounds(1.0));
+problem.setTimeBounds(MocoInitialBounds(0.0), MocoFinalBounds(5.0));
 
-% Position must be within [-5, 5] throughout the motion.
-% Initial position must be 0, final position must be 1.
-problem.setStateInfo('/slider/position/value', MocoBounds(0, 10), MocoInitialBounds(0), MocoFinalBounds(0));
-
+% yCoord must be within [-5, 5] throughout the motion.
+% Initial yCoord must be 0, final yCoord must be 0.
+problem.setStateInfo('/jointset/slider/yCoord/value', MocoBounds(0, 10), MocoInitialBounds(0,1), MocoFinalBounds(0,1));
+%problem.setStateInfo('/jointset/hip/hipFlexion/value', MocoBounds(-pi/2,pi/2), MocoInitialBounds(-pi/2,pi/2), MocoFinalBounds(-pi/2,pi/2));
+%problem.setStateInfo('/jointset/knee/kneeFlexion/value', MocoBounds(-pi/2,pi/2), MocoInitialBounds(-pi/2,pi/2), MocoFinalBounds(-pi/2,pi/2));
 % Speed must be within [-50, 50] throughout the motion.
 % Initial and final speed must be 0. Use compact syntax.
-problem.setStateInfo('/slider/position/speed', [-50, 50],0 , 0);
+%problem.setStateInfo('/jointset/slider/yCoord/speed', [-5000, 5000],0 , 0);
+%problem.setStateInfo('/jointset/hip/hipFlexion/speed', MocoBounds(-50, 50), MocoInitialBounds(-50, 50), MocoFinalBounds(-50, 50));
+%problem.setStateInfo('/jointset/knee/kneeFlexion/speed', MocoBounds(-50, 50), MocoInitialBounds(-50, 50), MocoFinalBounds(-50, 50));
 
 % Applied force must be between -50 and 50.
-problem.setControlInfo('/actuator', MocoBounds(-250, 250));
+%problem.setControlInfo('/vastus', MocoBounds(-250, 250));
 
 cptr = uint64(problem.getCPtr(problem));
 ep = extend_problem(cptr);
 
 %ep.addMocoMarkerAccelerationGoal('marker_acceleration_goal',1.0,'/markerset/testMarker',true);
-%ep.addMocoCoordinateAccelerationGoal('coordinate_acceleration_goal',1.0,true,{'/slider/position'});
+%ep.addMocoCoordinateAccelerationGoal('coordinate_acceleration_goal',1.0,true,{'/slider/yCoord'});
 %ep.addMocoActivationSquaredGoal('act_square',1.0, true, 0.)
-ep.addMocoMaxCoordinateGoal('max_coordinate_goal',1.0, false, 'position');
+%ep.addMocoMaxCoordinateGoal('max_coordinate_goal',1.0, false, 'yCoord');
 solver = study.initCasADiSolver();
-guess = solver.createGuess();
-numRows = guess.getNumTimes();
-guess.setState('/slider/position/value', linspace(0,0,numRows));
-guess.setState('/slider/position/speed', linspace(0,0,numRows));
-solver.setGuess(guess);
+guess = MocoTrajectory('./input/hopper_initial_guess.sto');
+%numRows = guess.getNumTimes();
+%guess.setState('/slider/yCoord/value', linspace(0,0,numRows));
+%guess.setState('/slider/yCoord/speed', linspace(0,0,numRows));
+%solver.setGuess(guess);
 solver.set_num_mesh_intervals(50);
 %solver.set_optim_constraint_tolerance(1e-10);
 %solver.set_optim_convergence_tolerance(1e-10);
 % Solve the problem.
 % ==================
 solution = study.solve();
-solution.write('./output/sliding_mass_solution.sto');
+solution.write('./output/hopper_max_height_solution.sto');
 dur = seconds(solution.getSolverDuration());
 [h,m,s] = hms(dur);
 disp('   ')
@@ -105,7 +109,10 @@ end
 
 ep.delete();
 
-d = ReadOpenSimData('./output/sliding_mass_solution.sto');
+d = ReadOpenSimData('./output/hopper_max_height_solution.sto');
 plot(d.data(:,1),d.data(:,2));
-xlim([0 1]);
+xlim([0 10]);
 ylim([-10 10]);
+
+
+
