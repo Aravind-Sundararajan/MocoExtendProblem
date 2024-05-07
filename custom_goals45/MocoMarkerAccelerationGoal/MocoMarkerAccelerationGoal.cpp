@@ -11,7 +11,6 @@ using SimTK::Vec3;
 
 void MocoMarkerAccelerationGoal::constructProperties() {
     constructProperty_marker_name("/markerSet/testMarker");
-    constructProperty_divide_by_displacement(false);
 }
 
 void MocoMarkerAccelerationGoal::initializeOnModelImpl(
@@ -49,9 +48,4 @@ void MocoMarkerAccelerationGoal::calcIntegrandImpl(
 void MocoMarkerAccelerationGoal::calcGoalImpl(
             const GoalInput& input, SimTK::Vector& cost) const {
         cost[0] = input.integral;
-
-        // Divide the cost by displacement
-        if (get_divide_by_displacement()) {
-            cost[0] /= calcSystemDisplacement(input.initial_state, input.final_state);
-        }
 }
