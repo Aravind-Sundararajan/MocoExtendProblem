@@ -42,7 +42,7 @@ void MocoMarkerAccelerationGoal::calcIntegrandImpl(
 
     // Find the error magnitudes
     for (int i = 0; i < 3; ++i){
-        integrand += sqrt(SimTK::square(markerAcceleration[i]) + eps);
+        integrand += SimTK::square(markerAcceleration[i]);
     }
 }
 
