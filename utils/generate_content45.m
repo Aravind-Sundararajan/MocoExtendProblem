@@ -1,10 +1,11 @@
-function [cpp_out,mex_out,wrap_out] = generate_content(goal_tree) 
+function [cpp_out,mex_out,wrap_out] = generate_content45(goal_tree) 
 %% create mex functions
+disp("detected using opensim 4.5.");
 mex_out = "";
 cpp_out = "";
 wrap_out = "";
     for goal = string(fields(goal_tree))'
-        libPath = pwd+"/custom_goals/"+goal+"/"+goal+".h";
+        libPath = pwd+"/custom_goals45/"+goal+"/"+goal+".h";
         setters = get_setter_functions(libPath);
         %each goal has a name and weight, though things like path constraints don't have a weight.
         goalfun = "    void add"+ goal +"(const std::string& goalName, double weight,"+...

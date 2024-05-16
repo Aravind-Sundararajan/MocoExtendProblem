@@ -2,7 +2,7 @@
  * OpenSim Moco: RegisterTypes_osimMocoCoordinateAccelerationGoal.cpp              *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Aravind Sundararajan                                            *
+ * Author(s): Aravind Sundararajan, Varun Joshi                                            *
  *                                                                            *
  * -------------------------------------------------------------------------- */
 #include "MocoCoordinateAccelerationGoal.h"

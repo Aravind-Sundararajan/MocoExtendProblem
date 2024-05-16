@@ -4,7 +4,8 @@
  * OpenSim: osimMocoMaxCoordinateGoalDLL.h                                *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Aravind Sundararajan                                            *
+ * Author(s): Aravind Sundararajan, Varun Joshi                                            *
+ *                                                                            *
  * -------------------------------------------------------------------------- */
 
 #ifndef _WIN32

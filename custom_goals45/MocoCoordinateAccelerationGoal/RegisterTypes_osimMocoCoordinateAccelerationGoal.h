@@ -1,10 +1,10 @@
 #ifndef OPENSIM_REGISTERTYPES_OSIMMOCOCOORDINATEACCELERATION_H
 #define OPENSIM_REGISTERTYPES_OSIMMOCOCOORDINATEACCELERATIONGOAL_H
 /* -------------------------------------------------------------------------- *
- * OpenSim: RegisterTypes_osimMocoCoordinateAccelerationGoal.h                     *
+ * OpenSim: RegisterTypes_osimMocoCoordinateAccelerationGoal.h                *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Varun Joshi                                                     *
+ * Author(s): Aravind Sundararajan, Varun Joshi                                            *
  *                                                                            *
  * -------------------------------------------------------------------------- */
 

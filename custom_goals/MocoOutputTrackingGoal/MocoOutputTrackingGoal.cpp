@@ -1,8 +1,8 @@
 /* -------------------------------------------------------------------------- *
- * OpenSim Moco: MocoOutputTrackingGoal.cpp                                *
+ * OpenSim Moco: MocoOutputTrackingGoal.cpp                                   *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Varun Joshi                                                     *
+ * Author(s): Aravind Sundararajan, Varun Joshi                               *
  *                                                                            *
  * -------------------------------------------------------------------------- */
 

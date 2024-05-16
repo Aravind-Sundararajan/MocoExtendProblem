@@ -1,10 +1,10 @@
 #ifndef OPENSIM_REGISTERTYPES_OSIMMOCOZMP_H
 #define OPENSIM_REGISTERTYPES_OSIMMOCOZMPGOAL_H
 /* -------------------------------------------------------------------------- *
- * OpenSim: RegisterTypes_osimMocoZMPGoal.h                     *
+ * OpenSim: RegisterTypes_osimMocoZMPGoal.h                                   *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Varun Joshi                                                     *
+ * Author(s): Aravind Sundararajan, Varun Joshi                                            *
  *                                                                            *
  * -------------------------------------------------------------------------- */
 
