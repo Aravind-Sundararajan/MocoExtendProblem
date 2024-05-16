@@ -1,8 +1,8 @@
 /* -------------------------------------------------------------------------- *
- * OpenSim Moco: MocoActivationGoal.cpp                                *
+ * OpenSim Moco: MocoActivationGoal.cpp                                       *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Varun Joshi                                                     *
+ * Author(s): Aravind Sundararajan, Varun Joshi                                            *
  *                                                                            *
  * -------------------------------------------------------------------------- */
 

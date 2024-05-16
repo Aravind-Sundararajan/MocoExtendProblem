@@ -4,7 +4,8 @@
  * OpenSim: MocoOutputTrackingGoal.h                                          *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Aravind Sundararajan                                            *
+ * Author(s): Aravind Sundararajan, Varun Joshi                                            *
+ *                                                                            *
  * -------------------------------------------------------------------------- */
 
 #include <OpenSim/Moco/osimMoco.h>

@@ -1,10 +1,10 @@
 #ifndef OPENSIM_REGISTERTYPES_OSIMMOCOACTIVATION_H
 #define OPENSIM_REGISTERTYPES_OSIMMOCOACTIVATIONGOAL_H
 /* -------------------------------------------------------------------------- *
- * OpenSim: RegisterTypes_osimMocoActivationGoal.h                     *
+ * OpenSim: RegisterTypes_osimMocoActivationGoal.h                            *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Aravind Sundararajan                                                     *
+ * Author(s): Aravind Sundararajan, Varun Joshi                                            *
  *                                                                            *
  * -------------------------------------------------------------------------- */
 

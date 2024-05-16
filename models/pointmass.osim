@@ -12,7 +12,7 @@
 				<coordinates>
 					<Coordinate name="position">
 						<!--The minimum and maximum values that the coordinate can range between. Rotational coordinate range in radians and Translational in meters.-->
-						<range>0 10</range>
+						<range>-10 10</range>
 					</Coordinate>
 				</coordinates>
 			</SliderJoint>
