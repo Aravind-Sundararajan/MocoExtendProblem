@@ -21,7 +21,7 @@ w = 1.0;
 mesh_interval = 50;
 max_iterations = 15000;
 outputDir = './output/';
-p = createPointMass('./models/pointmass.osim');
+p = createPointMass('./models/pointmass.osim', opensimroot);
 model = Model(p);
 
 %% Place a marker on the model
