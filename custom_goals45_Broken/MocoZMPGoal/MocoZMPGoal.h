@@ -31,7 +31,11 @@ public:
     MocoZMPGoal(std::string name, double weight)
             : MocoGoal(std::move(name), weight) {
         constructProperties();
-            }
+    }
+
+    // Public members to set the exponent property
+    void setExponent(int ex) { set_exponent(ex); }
+    bool getExponent() const { return get_exponent();}
 
 protected:
     Mode getDefaultModeImpl() const override { return Mode::Cost; }
@@ -46,7 +50,14 @@ protected:
 
 
  private:
-
+    OpenSim_DECLARE_PROPERTY(exponent, int,
+            "The exponent applied to the output value in the integrand. "
+            "The output can take on negative values in the integrand when the "
+            "exponent is set to 1 (the default value). When the exponent is "
+            "set to a value greater than 1, the absolute value function is "
+            "applied to the output (before the exponent is applied), meaning "
+            "that odd numbered exponents (greater than 1) do not take on "
+            "negative values.");
     void constructProperties();
 	mutable std::vector<std::string> m_force_names;
 	mutable std::function<double(const double&)> m_power_function;

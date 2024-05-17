@@ -16,7 +16,7 @@ void MocoZMPGoal::constructProperties() {
 
 void MocoZMPGoal::initializeOnModelImpl(const Model& model) const {
     setRequirements(1, 1);
-    }
+    constructProperty_exponent(2);
 }
 
 void MocoZMPGoal::calcIntegrandImpl(

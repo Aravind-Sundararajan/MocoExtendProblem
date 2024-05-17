@@ -13,6 +13,7 @@ using namespace SimTK;
 #define tolerance std::numeric_limits<float>::epsilon()
 
 void MocoBOSGoal::constructProperties() {
+  	constructProperty_exponent(2);
     constructProperty_left_foot_frame("");
     constructProperty_right_foot_frame("");
 }

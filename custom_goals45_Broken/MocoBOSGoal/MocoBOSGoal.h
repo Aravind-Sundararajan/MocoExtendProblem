@@ -33,6 +33,11 @@ public:
         constructProperties();
             }
 	
+
+    // Public member to set the exponent
+    void setExponent(int ex) { set_exponent(ex); }
+    bool getExponent() const { return get_exponent(); }
+
 	/// Set the body frame associated with the left foot.
     void setLeftFootFrame(std::string left_foot) { set_left_foot_frame(std::move(left_foot)); }
     std::string getLeftFootFrame() const { 
@@ -58,7 +63,14 @@ protected:
 
 
  private:
-
+    OpenSim_DECLARE_PROPERTY(exponent, int,
+            "The exponent applied to the output value in the integrand. "
+            "The output can take on negative values in the integrand when the "
+            "exponent is set to 1 (the default value). When the exponent is "
+            "set to a value greater than 1, the absolute value function is "
+            "applied to the output (before the exponent is applied), meaning "
+            "that odd numbered exponents (greater than 1) do not take on "
+            "negative values.");
     OpenSim_DECLARE_PROPERTY(left_foot_frame, std::string,
             "The model frame associated with the left foot.");
     OpenSim_DECLARE_PROPERTY(right_foot_frame, std::string,
