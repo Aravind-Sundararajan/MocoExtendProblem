@@ -12,11 +12,25 @@ using namespace OpenSim;
 #define tolerance std::numeric_limits<float>::epsilon()
 
 void MocoZMPGoal::constructProperties() {
+	constructProperty_exponent(2);
 }
 
 void MocoZMPGoal::initializeOnModelImpl(const Model& model) const {
     setRequirements(1, 1);
-    constructProperty_exponent(2);
+
+	int exponent = get_exponent();
+
+	// The pow() function gives slightly different results than x * x. On Mac,
+    // using x * x requires fewer solver iterations.
+    if (exponent == 1) {
+        m_power_function = [](const double& x) { return x; };
+    } else if (exponent == 2) {
+        m_power_function = [](const double& x) { return x * x; };
+    } else {
+        m_power_function = [exponent](const double& x) {
+            return pow(std::abs(x), exponent);
+        };
+    }
 }
 
 void MocoZMPGoal::calcIntegrandImpl(
