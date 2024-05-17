@@ -2,7 +2,15 @@ cmake_minimum_required(VERSION 3.2)
 project(customGoals VERSION 1.0.2 DESCRIPTION "some custom goals")
 
 set(CMAKE_CXX_STANDARD 11)
-set(SRCDIR ${CMAKE_CURRENT_SOURCE_DIR}/custom_goals/)
+
+message("OSim_Version45=${OSim_Version45}")
+if( OSim_Version45) 
+    set(SRCDIR ${CMAKE_CURRENT_SOURCE_DIR}/custom_goals45/)    
+else()
+    set(SRCDIR ${CMAKE_CURRENT_SOURCE_DIR}/custom_goals/)
+endif()
+message("Source Directory=${SRCDIR}")
+
 set(BUILDDIR ${CMAKE_CURRENT_SOURCE_DIR}/build/)
 set(LIBDIR ${CMAKE_CURRENT_SOURCE_DIR}/lib/)
 set(INCLUDEDIR ${CMAKE_CURRENT_SOURCE_DIR}/include/)
