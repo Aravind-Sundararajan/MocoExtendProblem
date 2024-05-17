@@ -15,6 +15,12 @@ config = "RelWithDebInfo";
 %if this is failing, check to see if vs 2022 msbuild.exe and cmake are part of
 %the system PATH.
 system("cmake CmakeLists.txt -S . -B """+builddir+"""");
+if contains(opensim_install,"4.5")
+    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version45=1""");
+else
+    system("cmake CmakeLists.txt -S . -B """+builddir+""""" -DOSim_Version45=0""");
+    %system("cmake CmakeLists.txt -S . -B """+builddir+"""");
+end
 system("msbuild """+solutionPath+""" /p:configuration="+config); % 
 %% PROCEDURAL CPP CLASS CONSTRUCTION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -30,7 +36,7 @@ if contains(opensim_install, "4.5")
 else
     goaldir = 'custom_goals';
 end
-    goal_names = get_goal_names(goaldir);
+goal_names = get_goal_names(goaldir);
 goal_includes = "-I"""+pwd+"\" + goaldir+"\"+goal_names+"""  ";
 goal_libs = "-losim"+goal_names+" ";
 custom_goal_lib_l = string([goal_libs{:}]);
