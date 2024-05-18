@@ -4,7 +4,7 @@
  * OpenSim: osimMocoActivationSquaredGoalDLL.h                                     *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Varun Joshi                                                     *
+ * Author(s): Varun Joshi, Aravind Sundararajan                                                      *
  * -------------------------------------------------------------------------- */
 
 #ifndef _WIN32

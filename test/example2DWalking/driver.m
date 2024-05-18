@@ -1,0 +1,8 @@
+example2DWalkingEffortTrack;
+example2DWalkingMetabolics;
+example2DWalkingEffortPred;
+example2DWalkingMuscleVol;
+
+example2DWalkingMarkerAccel;
+example2DWalkingBOS;
+example2DWalkingZMP;

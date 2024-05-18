@@ -2,7 +2,7 @@
  * OpenSim Moco: MocoActivationSquaredGoal.cpp                                *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Varun Joshi                                                     *
+ * Author(s): Varun Joshi, Aravind Sundararajan                                                      *
  *                                                                            *
  * -------------------------------------------------------------------------- */
 

@@ -1,10 +1,10 @@
 #ifndef OPENSIM_REGISTERTYPES_OSIMMOCOOUTPUTTRACKING_H
 #define OPENSIM_REGISTERTYPES_OSIMMOCOOUTPUTTRACKINGGOAL_H
 /* -------------------------------------------------------------------------- *
- * OpenSim: RegisterTypes_osimMocoOutputTrackingGoal.h                     *
+ * OpenSim: RegisterTypes_osimMocoOutputTrackingGoal.h                        *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Varun Joshi                                                     *
+ * Author(s): Aravind Sundararajan, Varun Joshi                               *
  *                                                                            *
  * -------------------------------------------------------------------------- */
 

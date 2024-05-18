@@ -2,7 +2,7 @@
  * OpenSim Moco: RegisterTypes_osimMocoActivationGoal.cpp              *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Aravind Sundararajan                                            *
+ * Author(s): Aravind Sundararajan, Varun Joshi                                            *
  *                                                                            *
  * -------------------------------------------------------------------------- */
 #include "MocoActivationGoal.h"
