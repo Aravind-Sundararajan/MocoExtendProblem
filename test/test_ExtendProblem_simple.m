@@ -58,7 +58,7 @@ problem.setTimeBounds(MocoInitialBounds(0.0), MocoFinalBounds(1.0));
 
 % Position must be within [-5, 5] throughout the motion.
 % Initial position must be 0, final position must be 1.
-problem.setStateInfo('/slider/position/value', MocoBounds(0, 10), MocoInitialBounds(0), MocoFinalBounds(0));
+problem.setStateInfo('/slider/position/value', MocoBounds(0, 10), MocoInitialBounds(0), MocoFinalBounds(2));
 
 % Speed must be within [-50, 50] throughout the motion.
 % Initial and final speed must be 0. Use compact syntax.
@@ -73,7 +73,9 @@ ep = extend_problem(cptr);
 %ep.addMocoMarkerAccelerationGoal('marker_acceleration_goal',1.0,'/markerset/testMarker',true);
 %ep.addMocoCoordinateAccelerationGoal('coordinate_acceleration_goal',1.0,true,{'/slider/position'});
 %ep.addMocoActivationSquaredGoal('act_square',1.0, true, 0.)
-ep.addMocoMaxCoordinateGoal('max_coordinate_goal',1.0,2, true, 'position');
+ep.addMocoMaxCoordinateGoal('max_coordinate_goal',w, true, 'position');
+% ep.addMocoMarkerAccelerationGoal('marker_acceleration_goal',1.0,'/markerset/testMarker',false);
+
 
 solver = study.initCasADiSolver();
 guess = solver.createGuess();
@@ -111,9 +113,9 @@ end
 ep.delete();
 
 d = ReadOpenSimData('./output/sliding_mass_solution.sto');
-d2 = ReadOpenSimData('./output/sliding_mass_solution_NoMax.sto');
+% d2 = ReadOpenSimData('./output/sliding_mass_solution_NoMax.sto');
 plot(d.data(:,1),d.data(:,2), 'LineWidth',2); hold on;
-plot(d2.data(:,1),d2.data(:,2), 'LineWidth',2);
+% plot(d2.data(:,1),d2.data(:,2), 'LineWidth',2);
 
 title("Point Mass with MEP's Maximize Coordinate Goal",'FontName','Times New Roman');
 xlabel('Time (s)','FontName','Times New Roman');
