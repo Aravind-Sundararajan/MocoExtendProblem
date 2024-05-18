@@ -4,7 +4,8 @@
  * OpenSim: MocoActivationSquaredGoal.h                                       *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Varun Joshi                                                     *
+ * Author(s): Varun Joshi, Aravind Sundararajan                                                      *
+ *                                                                            *
  * -------------------------------------------------------------------------- */
 
 #include <OpenSim/Moco/osimMoco.h>

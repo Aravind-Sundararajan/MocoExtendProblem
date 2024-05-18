@@ -1,10 +1,11 @@
 #ifndef OPENSIM_MOCOACTIVATIONGOAL_H
 #define OPENSIM_MOCOACTIVATIONGOAL_H
 /* -------------------------------------------------------------------------- *
- * OpenSim: MocoActivationGoal.h                                       *
+ * OpenSim: MocoActivationGoal.h                                              *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Aravind Sundararajan                                            *
+ * Author(s): Aravind Sundararajan, Varun Joshi                                            *
+ *                                                                            * 
  * -------------------------------------------------------------------------- */
 
 #include <OpenSim/Moco/osimMoco.h>

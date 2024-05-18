@@ -2,7 +2,7 @@
  * OpenSim Moco: RegisterTypes_osimMocoActivationSquaredGoal.cpp              *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Varun Joshi                                                     *
+ * Author(s): Varun Joshi, Aravind Sundararajan                                                      *
  *                                                                            *
  * -------------------------------------------------------------------------- */
 #include "MocoActivationSquaredGoal.h"

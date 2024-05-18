@@ -1,0 +1,42 @@
+0	addmagMid_r	addmagMid_l	Adductor_magnus_pubofemoralis
+1	addbrev_r	addbrev_l	Adductor_brevis
+2	addlong_r	addlong_l	Adductor_longus
+3	bflh_r	bflh_l	Biceps_femoris_long_head
+4	bfsh_r	bfsh_l	Biceps_femoris_short_head
+5	edl_r	edl_l	Extensor_digitorum_longus
+6	ehl_r	ehl_l	Extensor_hallicus_longus
+7	fdl_r	fdl_l	Flexor_digitorum_fibularis
+8	fhl_r	fhl_l	Flexor_digitorum_tibialis
+9	glmed1_r	glmed1_l	
+10	glmed2_r	glmed2_l	Gluteus_medius
+11	glmed3_r	glmed3_l	
+12	glmin1_r	glmin1_l	Gluteus_minimus_anterior_fibers
+13	glmin2_r	glmin2_l	
+14	glmin3_r	glmin3_l	Gluteus_minimus_posterior_fibers
+15	glmax1_r	glmax1_l	Gluteus_superficialis_anterior_fibers
+16	glmax2_r	glmax2_l	
+17	glmax3_r	glmax3_l	Gluteus_superficialis_middle_fibers
+18	gaslat_r	gaslat_l	Gastrocnemius_lateralis
+19	gasmed_r	gasmed_l	Gastrocnemius_medialis
+20	grac_r	grac_l	Gracilis
+21	iliacus_r	iliacus_l	Iliopsoas
+22	psoas_r	psoas_l	Iliopsoas
+23	obtext_r	obtext_l	Obturator_externus
+24	perbrev_r	perbrev_l	Peroneus_brevis
+25	perlong_r	perlong_l	Peroneus_longus
+26	quadfem_r	quadfem_l	
+27	recfem_r	recfem_l	Rectus_femoris
+28	vasint_r	vasint_l	Vastus_intermedius
+29	vaslat_r	vaslat_l	Vastus_lateralis
+30	vasmed_r	vasmed_l	Vastus_medialis
+31	semimem_r	semimem_l	Semimembranosus
+32	semiten_r	semiten_l	Semitendinosus
+33	sart_r	sart_l	Sartorius
+34	soleus_r	soleus_l	Soleus
+35	tibant_r	tibant_l	Tibialis_anterior
+36	tibpost_r	tibpost_l	Tibialis_posterior
+37	piri_r	piri_l	
+38	pect_r	pect_l	
+39	pertert_r	pertert_l	
+40	tricox_r	tricox_l	
+41	tfl_r	tfl_l	

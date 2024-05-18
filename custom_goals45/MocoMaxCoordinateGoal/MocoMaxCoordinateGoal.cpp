@@ -2,9 +2,8 @@
  * OpenSim Moco: MocoMaxCoordinateGoal.cpp                                              *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Aravind Sundararajan                                            *
- * this uses the LSE                                                          *
- * (a smooth approx. of the maximum function that is C2 continuous)           *
+ * Author(s): Aravind Sundararajan, Varun Joshi                                            *
+ *                                                                            *
  * -------------------------------------------------------------------------- */
 
 #include "MocoMaxCoordinateGoal.h"
