@@ -22,6 +22,7 @@ mesh_interval = 50;
 max_iterations = 15000;
 outputDir = './test/';
 p = createPointMass('./models/pointmass.osim');
+
 model = Model(p);
 
 %% Place a marker on the model
@@ -58,7 +59,7 @@ problem.setTimeBounds(MocoInitialBounds(0.0), MocoFinalBounds(1.0));
 
 % Position must be within [-5, 5] throughout the motion.
 % Initial position must be 0, final position must be 1.
-problem.setStateInfo('/slider/position/value', MocoBounds(0, 10), MocoInitialBounds(0), MocoFinalBounds(0));
+problem.setStateInfo('/slider/position/value', MocoBounds(0, 10), MocoInitialBounds(0), MocoFinalBounds(2));
 
 % Speed must be within [-50, 50] throughout the motion.
 % Initial and final speed must be 0. Use compact syntax.
@@ -73,12 +74,14 @@ ep = extend_problem(cptr);
 %ep.addMocoMarkerAccelerationGoal('marker_acceleration_goal',1.0,'/markerset/testMarker',true);
 %ep.addMocoCoordinateAccelerationGoal('coordinate_acceleration_goal',1.0,true,{'/slider/position'});
 %ep.addMocoActivationSquaredGoal('act_square',1.0, true, 0.)
+
 for j = 1:2
 if j == 1
     %no custom goal
 else
     ep.addMocoMaxCoordinateGoal('max_coordinate_goal',1.0, false, 'position');
 end
+
 
 solver = study.initCasADiSolver();
 guess = solver.createGuess();
@@ -92,6 +95,7 @@ solver.setGuess(guess);
 % Solve the problem.
 % ==================
 solution = study.solve();
+
 if j == 1
     solution.write('./test/pointMass/sliding_mass_solution_NoMax.sto');
     ref = MocoTrajectory('./test/pointMass/outputReference/sliding_mass_solution_NoMax.sto');
@@ -113,8 +117,6 @@ else
     end
 end
 
-
-
 dur = seconds(solution.getSolverDuration());
 [h,m,s] = hms(dur);
 disp('   ')
@@ -135,6 +137,7 @@ catch
     end
 end
 
+
 end
 
 d = ReadOpenSimData('./test/pointMass/sliding_mass_solution.sto');
@@ -149,6 +152,5 @@ xlim([-0.25 1.25]);
 ylim([-1 12]);
 legend('MaxCoordinateGoal', 'position and speed constraints only', 'FontName', 'Times New Roman');
 
+
 ep.delete();
-
-
