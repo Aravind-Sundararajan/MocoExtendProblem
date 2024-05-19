@@ -1,10 +1,11 @@
 #ifndef OPENSIM_OSIMMOCOACTIVATIONGOALDLL_H
 #define OPENSIM_OSIMMOCOACTIVATIONGOALDLL_H
 /* -------------------------------------------------------------------------- *
- * OpenSim: osimMocoActivationGoalDLL.h                                     *
+ * OpenSim: osimMocoActivationGoalDLL.h                                       *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Varun Joshi                                                     *
+ * Author(s): Varun Joshi, Aravind Sundararajan                                                      *
+ *                                                                            *
  * -------------------------------------------------------------------------- */
 
 #ifndef _WIN32

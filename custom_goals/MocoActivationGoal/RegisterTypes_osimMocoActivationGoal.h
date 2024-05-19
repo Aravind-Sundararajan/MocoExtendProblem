@@ -4,7 +4,7 @@
  * OpenSim: RegisterTypes_osimMocoActivationGoal.h                     *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Aravind Sundararajan                                                     *
+ * Author(s): Aravind Sundararajan, Varun Joshi                                                     *
  *                                                                            *
  * -------------------------------------------------------------------------- */
 

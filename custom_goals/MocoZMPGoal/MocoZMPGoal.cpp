@@ -2,103 +2,108 @@
  * OpenSim Moco: MocoZMPGoal.cpp                                              *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Aravind Sundararajan                                            *
+ * Author(s): Aravind Sundararajan, Varun Joshi                                            *
  *                                                                            *
  * -------------------------------------------------------------------------- */
 
 #include "MocoZMPGoal.h"
 #include <OpenSim/Actuators/ModelOperators.h>
 using namespace OpenSim;
+#define tolerance std::numeric_limits<float>::epsilon()
 
 void MocoZMPGoal::constructProperties() {
     constructProperty_divide_by_displacement(false);
+	constructProperty_exponent(2);
 }
 
 void MocoZMPGoal::initializeOnModelImpl(const Model& model) const {
     setRequirements(1, 1);
-     ModelProcessor m_p(model);
-     m_p.append(ModOpRemoveMuscles());
-     m_model = m_p.process();
-     for (int f =0;f<m_model.updForceSet().getSize();f++) {
-        m_model.updForceSet().remove(f);
-     };
-     m_model.finalizeFromProperties();
-     m_model.finalizeConnections();
-     _stateCopy = m_model.initSystem();
+	
+    int exponent = get_exponent();
+
+    // The pow() function gives slightly different results than x * x. On Mac,
+    // using x * x requires fewer solver iterations.
+    if (exponent == 1) {
+        m_power_function = [](const double& x) { return x; };
+    } else if (exponent == 2) {
+        m_power_function = [](const double& x) { return x * x; };
+    } else {
+        m_power_function = [exponent](const double& x) {
+            return pow(std::abs(x), exponent);
+        };
+    }
 }
 
 void MocoZMPGoal::calcIntegrandImpl(
         const IntegrandInput& input, double& integrand) const {
- 	SimTK::Vec3 PelvisInGround(0.0, 0.0, 0.0);
-    SimTK::Vec3 COMinGround(0.0, 0.0, 0.0);
-	SimTK::Vec3 pelvis_moment(0.0, 0.0, 0.0);
-	SimTK::Vec3 pelvis_force(0.0, 0.0, 0.0);
-    SimTK::Vec3 PelvisCoM(0.0, 0.0, 0.0);
-	SimTK::Vec3 zmp_moment(0.0, 0.0, 0.0);
-    SimTK::Vec3 zmp_force(0.0, 0.0, 0.0);
-    SimTK::Vec3 zmpout(0.0, 0.0, 0.0);
-    SimTK::Vector residualMobilityForces;
-    SimTK::Vector knownUdot;
-    SimTK::State& state = _stateCopy;
-    state.updQ() = input.state.getQ();
-    state.updU() = input.state.getU();
-    state.updUDot() = input.state.getUDot();
-    m_model.realizeDynamics(state);
+	integrand = 0.0;
+	supportData out;
+    getModel().realizeAcceleration(input.state);
+	
+	SimTK::Vec3 base_of_support(0.0); 
+	auto mass_center = getModel().calcMassCenterPosition(input.state);
+	for (const auto& f : getModel().getComponentList<OpenSim::Force>()) {
+		if (f.getConcreteClassName() == "SmoothSphereHalfSpaceForce"){
+			auto& fc = dynamic_cast<const OpenSim::SmoothSphereHalfSpaceForce&>(f);
+			auto b = fc.getConnectee<ContactSphere>("sphere").getFrame().getMobilizedBodyIndex();
+			OpenSim::Array<double> f_ext = f.getRecordValues(input.state);
+			SimTK::Vec3 position = fc.getConnectee<OpenSim::ContactSphere>("sphere").get_location();
+			SimTK::Vec3 location = fc.getConnectee<OpenSim::ContactSphere>("sphere").getFrame().getPositionInGround(input.state);
+			auto position_in_ground = fc.getConnectee<OpenSim::ContactSphere>("sphere").getFrame().findStationLocationInGround(input.state, position);
+			if (out.cop.find(b) == out.cop.end()) { // init struct values to 0 at mat and compute frame jacobian
+				out.force[b] = SimTK::SpatialVec(2);
+				out.force[b][0] = 0;
+				out.force[b][1] = 0;
+				out.cop[b] = SimTK::Vec3(0.0);
+			}
 
+			//Forces
+			out.force[b][1][0] += f_ext[6]; 
+			out.force[b][1][1] += f_ext[7];
+			out.force[b][1][2] += f_ext[8];
 
-	COMinGround =m_model.calcMassCenterPosition(state);
-	COMinGround[1] = 0.0;
-    //std::cout << "project COM to Ground: " << COMinGround << std::endl;
-	// Calculate ZMP
-		
- 	SimTK::Vector_<SimTK::SpatialVec> appliedBodyForces = m_model.getMultibodySystem().getRigidBodyForces(state, SimTK::Stage::Dynamics);
-	//appliedBodyForces.dump("All Applied Body Forces");
-    
-    SimTK::Vector appliedMobilityForces(state.getU().size());
-	// Removing mobility forces
-    appliedMobilityForces *=0;
-    //std::cout << "instantiate applied mobility forces: " << appliedMobilityForces << std::endl;
-	
-	// Results of the inverse dynamics for the generalized forces to satisfy accelerations
-	
-	knownUdot = state.getUDot();
-    //std::cout << "known UDot: " << knownUdot << std::endl;
- 
-	// Perform inverse dynamics
-	m_model.getMultibodySystem().getMatterSubsystem().calcResidualForceIgnoringConstraints(state, appliedMobilityForces, appliedBodyForces, knownUdot, residualMobilityForces);
-	
-	/* Get model free floating joint (Pelvis Joint or the first joint conncted to the ground)*/
-	SimTK::SpatialVec equivalentBodyForcesAtPelvis = m_model.getJointSet()[0].calcEquivalentSpatialForce(state, residualMobilityForces);
-	
-	for(int n=0;n<3;n++){ 
-	pelvis_moment[n] = equivalentBodyForcesAtPelvis[0][n];
-	pelvis_force[n] = equivalentBodyForcesAtPelvis[1][n];
+			//Moments
+			out.force[b][0][0] += out.force[b][1][1] * position_in_ground[0]; // supposed to ignore the Y since the cop is on the floor
+			out.force[b][0][1] += 0;
+			out.force[b][0][2] += out.force[b][1][1] * position_in_ground[2]; // supposed to ignore the Y since the cop is on the floor
+		}
 	}
-	
-	
-	PelvisCoM = m_model.getBodySet().get(0).getMassCenter();
-	PelvisInGround = m_model.getBodySet().get(0).findStationLocationInGround(state, PelvisCoM);
-	//std::cout << "pelvis in ground: " << PelvisInGround << std::endl;
-
- 	zmp_moment = pelvis_moment + PelvisInGround % pelvis_force;
-	
-	zmp_force[0] = pelvis_force[0];
-	zmp_force[1] = pelvis_force[1];
-	zmp_force[2] = pelvis_force[2];
-	
-	zmpout[0] = zmp_moment[2]/zmp_force[1];
-	zmpout[1] = 0.0;
-	zmpout[2] = -1.0 * (zmp_moment[0]/zmp_force[1]);
-	
-    integrand = 0.0;
-    integrand += (SimTK::square((zmpout - COMinGround).norm()));  
+	int counter = 0;
+	for(auto it = out.cop.begin(); it != out.cop.end(); ++it) {//loop over keys i map and update center of pressure
+		auto k = it->first; // keys are MobilizedBodyIndex
+		if (FlattenSpatialVec(out.force[k]).norm() > tolerance){
+			counter= counter + 1;
+			out.cop[k][0] = out.force[k][0][0] / out.force[k][1][1]; // Mx / Fy
+			out.cop[k][1] = 0.0;
+			out.cop[k][2] = out.force[k][0][2] / out.force[k][1][1]; // Mz / Fy
+			base_of_support = base_of_support + out.cop[k]; //find bos by averaging COPs
+		} 
+	}
+	base_of_support = (1.0/ double(counter)) * base_of_support;
+	mass_center[1] = 0.0; //zero out mass center
+	base_of_support[1] = 0.0;//zero out bos
+	//whole body mass center should track the base_of_support
+    integrand += m_power_function((base_of_support - mass_center).norm());  
 }
 
 void MocoZMPGoal::calcGoalImpl(
         const GoalInput& input, SimTK::Vector& cost) const {
     cost[0] = input.integral;
+	// Divide by the displacement if divide_by_displacement property is true
     if (get_divide_by_displacement()) {
         cost[0] /=
             calcSystemDisplacement(input.initial_state, input.final_state);
     }
+}
+
+SimTK::Matrix MocoZMPGoal::FlattenSpatialVec(const SimTK::SpatialVec& S) const {
+    // turn a spatialvec into a 6x1 matrix.
+    SimTK::Matrix spatialVecFlat(6, 1, 0.0);
+    spatialVecFlat[0] = S[0][0];
+    spatialVecFlat[1] = S[0][1];
+    spatialVecFlat[2] = S[0][2];
+    spatialVecFlat[3] = S[1][0];
+    spatialVecFlat[4] = S[1][1];
+    spatialVecFlat[5] = S[1][2];
+    return spatialVecFlat;
 }

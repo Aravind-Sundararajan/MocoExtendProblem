@@ -4,7 +4,8 @@
  * OpenSim: MocoCoordinateAccelerationGoal.h                                       *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Aravind Sundararajan                                            *
+ * Author(s): Aravind Sundararajan, Varun Joshi                                            *
+ *                                                                            *
  * -------------------------------------------------------------------------- */
 
 
