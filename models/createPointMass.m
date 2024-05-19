@@ -1,4 +1,5 @@
-function name = createPointMass(name, opensimroot)
+function name = createPointMass(name)
+opensimroot = 'C:\opensim 4.3\'; %create a char array that has the opensim path toplevel directory
 addpath([opensimroot 'bin'], [opensimroot 'sdk\lib']); %add the opensim path to the
 javaaddpath([opensimroot 'bin'], [opensimroot 'sdk\lib']); %add opensimroot bin and the java path to MATLAB's dynamic path path
 setenv('PATH', [[opensimroot 'bin'] ';' [opensimroot 'sdk\lib'] ';' getenv('PATH')]);% Set Windows System path to include OpenSim libraries
