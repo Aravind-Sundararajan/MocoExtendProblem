@@ -1,10 +1,10 @@
 #ifndef OPENSIM_REGISTERTYPES_OSIMMOCOMAXCOORDINATE_H
 #define OPENSIM_REGISTERTYPES_OSIMMOCOMAXCOORDINATEGOAL_H
 /* -------------------------------------------------------------------------- *
- * OpenSim: RegisterTypes_osimMocoMaxCoordinateGoal.h                     *
+ * OpenSim: RegisterTypes_osimMocoMaxCoordinateGoal.h                         *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Varun Joshi                                                     *
+ * Author(s): Aravind Sundararajan, Varun Joshi                                            *
  *                                                                            *
  * -------------------------------------------------------------------------- */
 

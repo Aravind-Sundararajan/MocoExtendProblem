@@ -2,8 +2,8 @@
  * OpenSim Moco: MocoCoordinateAccelerationGoal.cpp                                              *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Aravind Sundararajan                                            *
- * This goal minimizes coordinate accelerations for explicit multibody dynamic*
+ * Author(s): Aravind Sundararajan, Varun Joshi                                            *
+ *                                                                            *
  * -------------------------------------------------------------------------- */
 
 #include "MocoCoordinateAccelerationGoal.h"

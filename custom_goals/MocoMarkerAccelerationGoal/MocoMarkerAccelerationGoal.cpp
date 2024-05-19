@@ -1,6 +1,9 @@
 /* -------------------------------------------------------------------------- *
- * OpenSim Moco: MocoMarkerAccelerationGoal.cpp                               *
- * Author(s): Varun Joshi                                                     *
+ * OpenSim Moco: RegisterTypes_osimMocoMarkerAccelerationGoal.cpp             *
+ * -------------------------------------------------------------------------- *
+ *                                                                            *
+ * Author(s): Varun Joshi, Aravind Sundararajan                                                      *
+ *                                                                            *
  * -------------------------------------------------------------------------- */
 
 #include "MocoMarkerAccelerationGoal.h"
