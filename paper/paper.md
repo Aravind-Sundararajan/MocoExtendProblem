@@ -47,7 +47,7 @@ This repository features:
 
 # Statement of need
 
-OpenSim is an open-source software platform for biomechanical modeling and simulation [@Seth2018]. The platform enables researchers and healthcare professionals to investigate how biological and non-biological structures respond to different loads, postures and activities. It has been used to study a wide range of biomechanical problems, such as the mechanics of walking and running @Falisse2019, the impact of injury or disease on movement [@Johnson2022], and the effectiveness of rehabilitation exercises [@Spomer2023]. 
+OpenSim is an open-source software platform for biomechanical modeling and simulation [@Seth2018]. The platform enables researchers and healthcare professionals to investigate how biological and non-biological structures respond to different loads, postures and activities. It has been used to study a wide range of biomechanical problems, such as the mechanics of walking and running [@Falisse2019], the impact of injury or disease on movement [@Johnson2022], and the effectiveness of rehabilitation exercises [@Spomer2023]. 
 
 
 Direct collocation is a numerical optimization method used in dynamic systems and control engineering. It involves representing the system dynamics as a set of algebraic equations, which are then discretized over time, and solved as a nonlinear optimization problem to obtain the optimal control inputs. The method aims to find a numerical solution that satisfies the system constraints and optimizes a performance measure. Optimization paradigms like direct collocation have begun to play a critical role in expanding our understanding of biological locomotion through the in-silico testing of novel therapies and predictive capabilities.  
@@ -64,10 +64,11 @@ To incorporate extend_problem goals into an existing script, a C-style pointer t
 ![MEP Framework organization. The end user runs the build.m script (orange) that subsequently calls methods in the utils folder (red) which are tasked with reading the custom_goals and custom_goals45 folder (green) and procedurally construct the mex and the interface class that calls the mex (blue). Each custom goal (green) is essentially handled as its own compiled plugin.\label{fig:files}](file_tree.png)
 
 To create a new goal with MEP: 
-1. copy one of the goals in the custom_goals folder.
-2. rename all files to that of your custom goal’s name.
-3. regex replace (or by hand) mentions of the original copied goal name to that of your goal’s name in each of the 5 files, being careful to also modify the include guards in the dll and register types header files.
-4. Reimplement initializeOnModelImpl, calcIntegrandImpl, calcGoalImpl such that they describe your custom goal.
+
+  1. copy one of the goals in the custom_goals folder.
+  2. rename all files to that of your custom goal’s name.
+  3. regex replace (or by hand) mentions of the original copied goal name to that of your goal’s name in each of the 5 files, being careful to also modify the include guards in the dll and register types header files.
+  4. Reimplement initializeOnModelImpl, calcIntegrandImpl, calcGoalImpl such that they describe your custom goal.
 
 In order to run a new custom goal, obtain the C-style pointer from OpenSim’s existing SWIG interface and pass this as a constructor argument to extend_problem.
 
@@ -111,7 +112,7 @@ The results of each multi-objective predictive simulation, in which the stabilit
 
 Table: Objective cost and term breakdown for three predictive simulations using MEP.
 
-MEP is being used in ongoing research (e.g. @Joshi2022;@Sundararajan2023) of locomotor performance in humans and other animals. For validating MEP’s results, after solving each optimal control problem, a test is done to verify if the output MocoSolution numerically equals an output reference of the same problem and weights to within a tolerance based on the model’s assembly error tolerance.
+MEP is being used in ongoing research (e.g. @Joshi2023; @Sundararajan2023) of locomotor performance in humans and other animals. For validating MEP’s results, after solving each optimal control problem, a test is done to verify if the output MocoSolution numerically equals an output reference of the same problem and weights to within a tolerance based on the model’s assembly error tolerance.
 
 #Funding
 
