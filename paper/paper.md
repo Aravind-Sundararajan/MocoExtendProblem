@@ -39,7 +39,7 @@ the MEX compiler and add them to existing MATLAB scripts.
 This repository features :
 
 - A set of C++ and MATLAB scripts and models for prototyping and testing custom goals
-- a build.m script that compiles goals in the custom_goals or custom_goals45 and procedurally constructs the c++/MATLAB and compiles the MEX interface.
+- a `build.m` script that compiles goals in the custom_goals or custom_goals45 and procedurally constructs the c++/MATLAB and compiles the MEX interface.
 - Compatibility with OpenSIm 4.2-4.4  and 4.5
 - The ability to include MEP as a submodule, build, and use valid custom goals
 - Custom goals previously developed in our labs are in the custom_goals directory
@@ -53,14 +53,14 @@ Direct collocation is a numerical optimization method used in dynamic systems an
 
 Within OpenSim is the software toolkit Moco (Dembia et al., 2020), which employs direct collocation with IPOPT (i.e. optimization software; Wächter and Biegler, 2006) in order to solve trajectory optimization problems that could range from tracking experimental motion capture data for solving generalized coordinates, actuator controls, and kinetics to fully predictive simulations. Moco employs CasADi (Andersson et al., 2019) to transform MocoProblem consisting of control goals and constraints into sets of matrices for nonlinear optimization. While direct collocation is powerful and OpenSim can be used to generate a broad range of dynamically-consistent simulations, it can be daunting for some users to modify and rebuild novel direct collocation goals. 
 
-We developed MEP so researchers, clinicians, and students without experience compiling C++ can still write and test custom goals. By contrast, OpenSim’s interfaces for MATLAB are developed using SWIG, as opposed to MEX, which can be daunting for even seasoned biomechanists. Running build.m will compile custom goals developed and placed in the `custom_goals` directory, or if using OpenSim 4.5, MEP will search the `custom_goals45`. This distinction for pre- and post- 4.5 MEP is to handle where scaling arguments are moved to the abstract MocoGoal.
+We developed MEP so researchers, clinicians, and students without experience compiling C++ can still write and test custom goals. By contrast, OpenSim’s interfaces for MATLAB are developed using SWIG, as opposed to MEX, which can be daunting for even seasoned biomechanists. Running `build.m` will compile custom goals developed and placed in the `custom_goals` directory, or if using OpenSim 4.5, MEP will search the `custom_goals45`. This distinction for pre- and post- 4.5 MEP is to handle where scaling arguments are moved to the abstract MocoGoal.
 
-No further modifications to CMakeLists.txt are required; however cmake and `msbuild.exe` from Visual Studio 2019 or higher needs to be added to the system PATH. build.m will procedurally construct both extend_problem.m and ExtendProblem.cpp by parsing the header files of the discovered goals within the custom_goals directory. Both ExtendProblem.cpp and extend_problem.m generate bindings to instantiate custom goals placed in the custom_goals directory. Custom Goals will be compiled with VS2019+ and then MATLAB’s MEX compiler is used to compile the MEX function. `ExtendProblem.cpp` leverages the C++ library mexplus (Yamaguchi, 2014) to gain access to MEX entry points entry and exit points through C++  macros.
+No further modifications to CMakeLists.txt are required; however cmake and `msbuild.exe` from Visual Studio 2019 or higher needs to be added to the system PATH. `build.m` will procedurally construct both extend_problem.m and ExtendProblem.cpp by parsing the header files of the discovered goals within the custom_goals directory. Both ExtendProblem.cpp and extend_problem.m generate bindings to instantiate custom goals placed in the custom_goals directory. Custom Goals will be compiled with VS2019+ and then MATLAB’s MEX compiler is used to compile the MEX function. `ExtendProblem.cpp` leverages the C++ library mexplus (Yamaguchi, 2014) to gain access to MEX entry points entry and exit points through C++  macros.
 
 
 To incorporate extend_problem goals into an existing script, a C-style pointer to the instantiated MocoProblem is passed as a constructor argument to the extend_problem.m class that wraps the MEP MEX. Class methods of extend_problem.m (\autoref{fig:files}; blue) are then used to add custom goals to the MocoProblem. 
 
-![MEP Framework organization. The end user runs the build.m script (orange) that subsequently calls methods in the utils folder (red) which are tasked with reading the custom_goals and custom_goals45 folder (green) and procedurally construct the mex and the interface class that calls the mex (blue). Each custom goal (green) is essentially handled as its own compiled plugin.\label{fig:files}](file_tree.png)
+![MEP Framework organization. The end user runs the `build.m` script (orange) that subsequently calls methods in the utils folder (red) which are tasked with reading the custom_goals and custom_goals45 folder (green) and procedurally construct the mex and the interface class that calls the mex (blue). Each custom goal (green) is essentially handled as its own compiled plugin.\label{fig:files}](file_tree.png)
 
 To create a new goal with MEP: 
 1. copy one of the goals in the custom_goals folder
@@ -84,7 +84,7 @@ To demonstrate the utility of this framework, we utilized a two-dimensional (2-D
 
 Since Moco lacks any built-in gait stability goals, we developed three custom stability goals using MEP to prototype and compile into a new extend_problem class that adds these to an existing MocoProblem. The first is a base of support (BOS) criterion in  which the center of mass is optimized to lay between the average of the two mass centers for the calcaneus projected to the ground reference frame, the second is a zero-moment-point goal (ZMP) criterion that assumes the model is an inverted pendulum and the center of mass tracks the computed zero-tilting moment location, and the third is a marker acceleration minimization goal (ACCmarker) that minimizes the explicit accelerations of the marker’s station location.
 
-MEP’s build.m was used to generate an extendproblem.cpp and extend_problem.m class which wraps the custom goal to create a new, multi-objective function based on the sum of squared control effort + stability criteria, such that: 
+MEP’s `build.m` was used to generate an extendproblem.cpp and extend_problem.m class which wraps the custom goal to create a new, multi-objective function based on the sum of squared control effort + stability criteria, such that: 
 
 \begin{equation}\label{eq:cost_bos}
 J_{BOS} = W_1 EFF^{2} + W_2 ACC_{smoothing} + W_3 BOS
@@ -102,13 +102,13 @@ The results of each multi-objective predictive simulation, in which the stabilit
 
 ![Sagittal plane hip, knee and ankle angles (a-c), vertical and A-P ground reaction forces (d-e), the 11 degree-of-freedom, 18 muscle sagittal plane human walking model used for tracking and predictive simulations (f).\label{fig:stability}](stability.png)
 
-\label{table_1}
 |             | Objective cost | Effort  cost | Smoothing cost | Stability  cost |
 |:-----------:|:--------------:|:------------:|:--------------:|:---------------:|
 |  $J_{BOS}$  |    3.048285    |   2.234377   |    0.008309    |     0.795659    |
 |  $J_{ZMP}$  |    3.384394    |   2.679968   |    0.008816    |     0.686290    |
 | $J_{accel}$ |    3.814449    |   3.680096   |    0.010208    |     0.114528    |
-[Objective cost and term breakdown for three predictive simulations using MEP.]{\ref{tablel_1}}
+
+Table: Objective cost and term breakdown for three predictive simulations using MEP.
 
 # Citations
 
