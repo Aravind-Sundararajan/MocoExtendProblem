@@ -4,6 +4,8 @@ on:
     paths:
       - paper/**
       - .github/workflows/draft-pdf.yml
+      - paper/file_tree.PNG
+      - paper/stability.png
 jobs:
   paper:
     runs-on: ubuntu-latest
