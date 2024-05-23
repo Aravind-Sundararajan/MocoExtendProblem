@@ -9,14 +9,11 @@ tags:
 authors:
   - name: Aravind Sundararajan
     orcid: 0009-0001-6775-6596
-	corresponding: true # (This is how to denote the corresponding author)
     affiliation: 1 # (Multiple affiliations must be quoted)
 	corresponding: true # (This is how to denote the corresponding author)
   - name: Varun Joshi
-    equal-contrib: true # (This is how you can denote equal contributions between multiple authors)
     affiliation: 2
   - name: Brian Umberger
-    corresponding: true # (This is how to denote the corresponding author)
     affiliation: 2
   - given-names: Matthew
     surname: O'Neill
@@ -111,7 +108,7 @@ The results of each multi-objective predictive simulation, in which the stabilit
 |  $J_{BOS}$  |    3.048285    |   2.234377   |    0.008309    |     0.795659    |
 |  $J_{ZMP}$  |    3.384394    |   2.679968   |    0.008816    |     0.686290    |
 | $J_{accel}$ |    3.814449    |   3.680096   |    0.010208    |     0.114528    |
-![Table 1: Objective cost and term breakdown for three predictive simulations using MEP.\label{resuts_table}]
+![Objective cost and term breakdown for three predictive simulations using MEP.]{\label{resuts_table}}
 
 # Citations
 
