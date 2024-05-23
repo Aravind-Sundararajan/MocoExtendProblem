@@ -9,25 +9,23 @@ tags:
 authors:
   - name: Aravind Sundararajan
     orcid: 0009-0001-6775-6596
-    equal-contrib: true
-    affiliation: "1, 2" # (Multiple affiliations must be quoted)
+	corresponding: true # (This is how to denote the corresponding author)
+    affiliation: 1 # (Multiple affiliations must be quoted)
 	corresponding: true # (This is how to denote the corresponding author)
   - name: Varun Joshi
     equal-contrib: true # (This is how you can denote equal contributions between multiple authors)
     affiliation: 2
   - name: Brian Umberger
     corresponding: true # (This is how to denote the corresponding author)
-    affiliation: 3
+    affiliation: 2
   - given-names: Matthew
     surname: O'Neill
-    affiliation: 3
+    affiliation: 1
 affiliations:
- - name: Lyman Spitzer, Jr. Fellow, Princeton University, USA
+ - name: Department of Anatomy, Midwestern University, Glendale Arizona, USA
    index: 1
- - name: Institution Name, Country
+ - name: School of Kinesiology, University of Michigan, Ann Arbor, Michigan, USA
    index: 2
- - name: Independent Researcher, Country
-   index: 3
 date: 13 August 2017
 bibliography: paper.bib
 ---
@@ -65,7 +63,7 @@ No further modifications to CMakeLists.txt are required; however cmake and `msbu
 
 To incorporate extend_problem goals into an existing script, a C-style pointer to the instantiated MocoProblem is passed as a constructor argument to the extend_problem.m class that wraps the MEP MEX. Class methods of extend_problem.m (Figure 1; blue) are then used to add custom goals to the MocoProblem. 
 
-![Caption for example figure.\label{fig:example}](stability.png)
+![MEP Framework organization. The end user runs the build.m script (orange) that subsequently calls methods in the utils folder (red) which are tasked with reading the custom_goals and custom_goals45 folder (green) and procedurally construct the mex and the interface class that calls the mex (blue). Each custom goal (green) is essentially handled as its own compiled plugin.\label{fig:example}](file_tree.png)
 
 To create a new goal with MEP: 
 1. copy one of the goals in the custom_goals folder
@@ -91,12 +89,21 @@ Since Moco lacks any built-in gait stability goals, we developed three custom st
 
 MEP’s build.m was used to generate an extendproblem.cpp and extend_problem.m class which wraps the custom goal to create a new, multi-objective function based on the sum of squared control effort + stability criteria, such that: 
 
-EQUATIONS HERE:
+\begin{equation}\label{eq:cost_bos}
+J_{BOS} = W_1 EFF^{2} + W_2 ACC_{smoothing} + W_3 BOS
+\end{equation}
+
+\begin{equation}\label{eq:cost_zmp}
+J_{zmp} = W_1 EFF^{2} + W_2 ACC_{smoothing} + W_3 ZMP
+\end{equation}
+
+\begin{equation}\label{eq:cost_acc}
+J_{acc} = W_1 EFF^{2} + W_2 ACC_{smoothing} + W_3 ACC_{marker}
+\end{equation}
 
 The results of each multi-objective predictive simulation, in which the stability criterion was compiled using MEP, is shown against the results from a tracking simulation (Figure 2). The tracking simulation objective cost was a weighted sum of the tracking error (i.e. squared sum of simulation from experimental kinematic and ground reaction force data) and sum of the squared control efforts. 
 
-![Sagittal plane hip, knee and ankle angles (a-c), vertical and A-P ground reaction forces (d-e), the 11 degree-of-freedom, 18 muscle sagittal plane human walking model used for tracking and predictive simulations (f). \label{fig:stability}](paper/dir_tree.png)
-
+![Sagittal plane hip, knee and ankle angles (a-c), vertical and A-P ground reaction forces (d-e), the 11 degree-of-freedom, 18 muscle sagittal plane human walking model used for tracking and predictive simulations (f).\label{fig:stability}](stability.png)
 
 
 |             | Objective cost | Effort  cost | Smoothing cost | Stability  cost |
