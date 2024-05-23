@@ -41,11 +41,11 @@ the MEX compiler and add them to existing MATLAB scripts.
 
 This repository features :
 
-* A set of C++ and MATLAB scripts and models for prototyping and testing custom goals
-* a build.m script that compiles goals in the custom_goals or custom_goals45 and procedurally constructs the c++/MATLAB and compiles the MEX interface.
-* Compatibility with OpenSIm 4.2-4.4  and 4.5
-* The ability to include MEP as a submodule, build, and use valid custom goals
-* Custom goals previously developed in our labs are in the custom_goals directory
+- A set of C++ and MATLAB scripts and models for prototyping and testing custom goals
+- a build.m script that compiles goals in the custom_goals or custom_goals45 and procedurally constructs the c++/MATLAB and compiles the MEX interface.
+- Compatibility with OpenSIm 4.2-4.4  and 4.5
+- The ability to include MEP as a submodule, build, and use valid custom goals
+- Custom goals previously developed in our labs are in the custom_goals directory
 
 # Statement of need
 
@@ -61,9 +61,9 @@ We developed MEP so researchers, clinicians, and students without experience com
 No further modifications to CMakeLists.txt are required; however cmake and `msbuild.exe` from Visual Studio 2019 or higher needs to be added to the system PATH. build.m will procedurally construct both extend_problem.m and ExtendProblem.cpp by parsing the header files of the discovered goals within the custom_goals directory. Both ExtendProblem.cpp and extend_problem.m generate bindings to instantiate custom goals placed in the custom_goals directory. Custom Goals will be compiled with VS2019+ and then MATLAB’s MEX compiler is used to compile the MEX function. `ExtendProblem.cpp` leverages the C++ library mexplus (Yamaguchi, 2014) to gain access to MEX entry points entry and exit points through C++  macros.
 
 
-To incorporate extend_problem goals into an existing script, a C-style pointer to the instantiated MocoProblem is passed as a constructor argument to the extend_problem.m class that wraps the MEP MEX. Class methods of extend_problem.m (Figure 1; blue) are then used to add custom goals to the MocoProblem. 
+To incorporate extend_problem goals into an existing script, a C-style pointer to the instantiated MocoProblem is passed as a constructor argument to the extend_problem.m class that wraps the MEP MEX. Class methods of extend_problem.m (\autoref{fig:files}; blue) are then used to add custom goals to the MocoProblem. 
 
-![MEP Framework organization. The end user runs the build.m script (orange) that subsequently calls methods in the utils folder (red) which are tasked with reading the custom_goals and custom_goals45 folder (green) and procedurally construct the mex and the interface class that calls the mex (blue). Each custom goal (green) is essentially handled as its own compiled plugin.\label{fig:example}](file_tree.png)
+![MEP Framework organization. The end user runs the build.m script (orange) that subsequently calls methods in the utils folder (red) which are tasked with reading the custom_goals and custom_goals45 folder (green) and procedurally construct the mex and the interface class that calls the mex (blue). Each custom goal (green) is essentially handled as its own compiled plugin.\label{fig:files}](file_tree.png)
 
 To create a new goal with MEP: 
 1. copy one of the goals in the custom_goals folder
@@ -101,7 +101,7 @@ J_{zmp} = W_1 EFF^{2} + W_2 ACC_{smoothing} + W_3 ZMP
 J_{acc} = W_1 EFF^{2} + W_2 ACC_{smoothing} + W_3 ACC_{marker}
 \end{equation}
 
-The results of each multi-objective predictive simulation, in which the stability criterion was compiled using MEP, is shown against the results from a tracking simulation (Figure 2). The tracking simulation objective cost was a weighted sum of the tracking error (i.e. squared sum of simulation from experimental kinematic and ground reaction force data) and sum of the squared control efforts. 
+The results of each multi-objective predictive simulation, in which the stability criterion was compiled using MEP, is shown against the results from a tracking simulation \autoref{fig:stability}. The tracking simulation objective cost was a weighted sum of the tracking error (i.e. squared sum of simulation from experimental kinematic and ground reaction force data) and sum of the squared control efforts. 
 
 ![Sagittal plane hip, knee and ankle angles (a-c), vertical and A-P ground reaction forces (d-e), the 11 degree-of-freedom, 18 muscle sagittal plane human walking model used for tracking and predictive simulations (f).\label{fig:stability}](stability.png)
 
