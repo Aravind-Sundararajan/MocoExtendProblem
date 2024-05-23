@@ -65,7 +65,7 @@ No further modifications to CMakeLists.txt are required; however cmake and `msbu
 
 To incorporate extend_problem goals into an existing script, a C-style pointer to the instantiated MocoProblem is passed as a constructor argument to the extend_problem.m class that wraps the MEP MEX. Class methods of extend_problem.m (Figure 1; blue) are then used to add custom goals to the MocoProblem. 
 
-![MEP Framework organization. The end user runs the build.m script (orange) that subsequently calls methods in the utils folder (red) which are tasked with reading the custom_goals and custom_goals45 folder (green) and procedurally construct the mex and the interface class that calls the mex (blue). Each custom goal (green) is essentially handled as its own compiled plugin.\label{fig:file_tree}](dir_tree.png)
+![MEP Framework organization. The end user runs the build.m script (orange) that subsequently calls methods in the utils folder (red) which are tasked with reading the custom_goals and custom_goals45 folder (green) and procedurally construct the mex and the interface class that calls the mex (blue). Each custom goal (green) is essentially handled as its own compiled plugin.\label{fig:file_tree}](paper/dir_tree.png)
 
 To create a new goal with MEP: 
 1. copy one of the goals in the custom_goals folder
@@ -95,7 +95,7 @@ EQUATIONS HERE:
 
 The results of each multi-objective predictive simulation, in which the stability criterion was compiled using MEP, is shown against the results from a tracking simulation (Figure 2). The tracking simulation objective cost was a weighted sum of the tracking error (i.e. squared sum of simulation from experimental kinematic and ground reaction force data) and sum of the squared control efforts. 
 
-![Sagittal plane hip, knee and ankle angles (a-c), vertical and A-P ground reaction forces (d-e), the 11 degree-of-freedom, 18 muscle sagittal plane human walking model used for tracking and predictive simulations (f). \label{fig:stability}](dir_tree.png)
+![Sagittal plane hip, knee and ankle angles (a-c), vertical and A-P ground reaction forces (d-e), the 11 degree-of-freedom, 18 muscle sagittal plane human walking model used for tracking and predictive simulations (f). \label{fig:stability}](paper/dir_tree.png)
 
 
 
