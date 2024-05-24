@@ -8,8 +8,8 @@ output_dirs = ["./output/effpred/",...
     "./output/meppredBOS/",...
     "./output/meppredZMP/",...    
     ];% 
-AccelerationWeights = [(1e-3)/11 (1e-3)/11 (1e-3)/11 (1e-3)/11]; %(1e-11)/4 (1e-11)/4 (1e-5)/2 (1e-11)/4 (1e-6)/4 ];
-for j = 1:4
+AccelerationWeights = [ (1e-3)/11 (1e-3)/11 (1e-3)/11 (1e-3)/11]; %(1e-11)/4 (1e-11)/4 (1e-5)/2 (1e-11)/4 (1e-6)/4 ];
+for j = 2:4
         output_dir =output_dirs(j); 
         acceleration_weight=AccelerationWeights(j);
 %------------------------------------------------------------------------
