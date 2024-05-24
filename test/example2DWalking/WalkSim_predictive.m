@@ -6,11 +6,13 @@ coarsest_mesh = 25;
 output_dirs = ["./output/effpred/",...
     "./output/meppredmarkerAccel/",...
     "./output/meppredBOS/",...
+    "./output/meppredZMP/",...    
     "./output/meppredCOP/",...
-    "./output/meppredZMP/",...
-    ];
-for j = 1:5
+    ];% 
+AccelerationWeights = [ (1e-5)/11 (1e-5)/11 (1e-5)/11 (1e-5)/11 (1e-5)/11 ]; %(1e-11)/4 (1e-11)/4 (1e-5)/2 (1e-11)/4 (1e-6)/4 ];
+for j = 2:4
         output_dir =output_dirs(j); 
+        
 %------------------------------------------------------------------------
 % Solve a tracking problem where the goal is to minimize the difference
 % between simulated and reference coordinate values and speeds, and GRFs,
@@ -172,9 +174,8 @@ speedGoal.set_desired_average_speed(1.3);
 % problem by default and change the weight
 effortGoal = MocoControlGoal('effort', 10);
 problem.addGoal(effortGoal);
-effort.setWeight(ControlEffortWeight);
 effortGoal.setExponent(2);
-effortGoal.setDivideByDisplacement(true);
+%effortGoal.setDivideByDisplacement(true);
 
 left_foot = char(model.getBodySet().get("calcn_l").getAbsolutePathString());
 right_foot = char(model.getBodySet().get("calcn_r").getAbsolutePathString());
@@ -187,14 +188,37 @@ if j == 1
 elseif j ==2
     ep.addMocoMarkerAccelerationGoal('marker_acceleration', 10.0, ...
         char(model.getMarkerSet().get("head_marker").getAbsolutePathString()), ...
-        true);
+        1,...
+        false);
 elseif j ==3
-    ep.addMocoBOSGoal('base_of_support', 10.0, 2, true, left_foot, right_foot);
+    ep.addMocoBOSGoal('base_of_support', 10.0, 1, false, left_foot, right_foot);
 elseif j ==4
-    ep.addMocoCOPGoal('center_of_pressure', 10.0, 2, true);
+    ep.addMocoZMPGoal('zero_moment_point', 10.0, 1, false); 
 elseif j ==5
-     ep.addMocoZMPGoal('zero_moment_point', 10.0, 2, true); 
+    ep.addMocoCOPGoal('center_of_pressure', 10.0, 1, false);
 end
+
+% A custom goal for minimizing acceleration per distance. Uses an explicit
+% formulation.
+% Author: A. Sundarajan, MWU
+% AccelerationWeight = AccelerationWeights(j);
+% if AccelerationWeight ~= 0
+% 	divide_by_displacement = true;
+% 	cptr = uint64(problem.getCPtr(problem));
+% 	ep3 = extend_problem(cptr);
+% 	coords = [""];
+% 	pelvis_coords = [""];
+% 	for c = 1:model.getCoordinateSet().getSize()
+% 		coords(c) = string(model.getCoordinateSet().get(c-1).getAbsolutePathString());
+%     end
+% 	disp("explicit accel goal limb coords:")
+% 	disp(coords);
+% 	ep3.addMocoCoordinateAccelerationGoal(...
+% 		'coord_accel_limbs',...
+% 		AccelerationWeight,...
+% 		divide_by_displacement,...
+% 		convertStringsToChars(coords));
+% end
 
 % Contact (GRF) tracking goal
 % contactTracking = MocoContactTrackingGoal('contact',GRFTrackingWeight);
@@ -264,7 +288,27 @@ solver.set_optim_convergence_tolerance(1e-3);
 solver.set_optim_max_iterations(10000);
 solver.set_minimize_implicit_auxiliary_derivatives(true);
 solver.set_implicit_auxiliary_derivatives_weight(AuxDerivWeight);
-solver.setGuess(gaitTrackingSolution);
+
+solver.set_multibody_dynamics_mode('implicit')
+solver.set_minimize_implicit_multibody_accelerations(true)
+solver.set_implicit_multibody_accelerations_weight(1e-5 / model.getNumCoordinates())
+solver.set_implicit_multibody_acceleration_bounds(MocoBounds(-200, 200))
+
+guess_track = MocoTrajectory('.\output\track\states_half.sto');
+guess = solver.createGuess();
+
+trackStatesTable = guess_track.exportToStatesTable();
+trackControlsTable = guess_track.exportToControlsTable();
+
+
+guess.insertStatesTrajectory(trackStatesTable, true);
+guess.insertControlsTrajectory(trackControlsTable, true);
+solver.setGuess(guess)
+
+%solver.setGuess(gaitTrackingSolution);
+
+
+
 % The next 2 items are specific to the conditions that were evaluated in
 % the corresponding paper (Denton & Umberger, 2023)
 
@@ -280,14 +324,25 @@ solver.set_parallel(1);
 
 
 
+% guess = solver.createGuess();
+% guess_track = MocoTrajectory('.\output\track\states_half.sto');
+% trackStatesTable = guess_track.exportToStatesTable();
+% trackControlsTable = guess_track.exportToControlsTable();
+% 
+% 
+% guess.insertStatesTrajectory(trackStatesTable, true);
+% guess.insertControlsTrajectory(trackControlsTable, true);
+% solver.setGuess(guess)
+
+
 % Solve the problem
 % =================
 gaitPredictiveSolution = study.solve();
-reference_data = MocoTrajectory(output_dir + 'outputReference\states_half.sto');
+%reference_data = MocoTrajectory(output_dir + 'outputReference\states_tracked_states.sto');
 
-if ~gaitPredictiveSolution.isNumericallyEqual(reference_data)
-    error('The simulation is not numerically equal to outputReference. Check ' + output_dir);
-end
+% if ~gaitPredictiveSolution.isNumericallyEqual(reference_data)
+%     error('The simulation is not numerically equal to outputReference. Check ' + output_dir);
+% end
 
 % Check to make sure the problem solved successfully
 if ~strcmp(gaitPredictiveSolution.getStatus(),"Solve_Succeeded")

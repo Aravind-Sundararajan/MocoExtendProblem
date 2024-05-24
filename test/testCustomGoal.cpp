@@ -63,7 +63,7 @@ int main()
 	
 	//activation squared goal
 	auto* g = problem.addGoal<MocoActivationGoal>(test,1.0);
-	g->setDivideByDisplacement(true);
+	//g->setDivideByDisplacement(true);
     
 	// Solve the problem.
 	// -----

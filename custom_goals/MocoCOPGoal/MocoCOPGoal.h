@@ -1,42 +1,39 @@
-#ifndef OPENSIM_MOCOMARKERACCELERATIONGOAL_H
-#define OPENSIM_MOCOMARKERACCELERATIONGOAL_H
+#ifndef OPENSIM_MOCOCOPGOAL_H
+#define OPENSIM_MOCOCOPGOAL_H
 /* -------------------------------------------------------------------------- *
- * OpenSim: MocoMarkerAccelerationGoal.h                                      *
+ * OpenSim: MocoCOPGoal.h                                                     *
  * -------------------------------------------------------------------------- *
-  *                                                                           *
- * Author(s): Varun Joshi, Aravind Sundararajan                                                      *
+ *                                                                            *
+ * Author(s): Aravind Sundararajan, Varun Joshi                                            *
  *                                                                            *
  * -------------------------------------------------------------------------- */
 
+
 #include <OpenSim/Moco/osimMoco.h>
-#include <OpenSim/Simulation/Model/Model.h>
-#include "osimMocoMarkerAccelerationGoalDLL.h"
+#include "osimMocoCOPGoalDLL.h"
 
 namespace OpenSim {
 
-/** 
-\section MocoMarkerAccelerationGoal
-The absolute acceleration of a model marker summed over the x, y and z
-integrated over the phase.
-The name of the marker can be provided as a string.
-*/
-class OSIMMOCOMARKERACCELERATIONGOAL_API MocoMarkerAccelerationGoal : public MocoGoal {
-OpenSim_DECLARE_CONCRETE_OBJECT(MocoMarkerAccelerationGoal, MocoGoal);
+struct supportData{
+  std::map<SimTK::MobilizedBodyIndex, SimTK::Matrix> Fs;  //!<@brief  support force (spatial (6x1))
+  std::map<SimTK::MobilizedBodyIndex, SimTK::Vec3> cop; //!<@brief  center of pressure (3x1)
+  std::map<SimTK::MobilizedBodyIndex, SimTK::SpatialVec> force; //!<@brief  linear summed cop force and resultant moment (3x2)
+};
+
+class OSIMMOCOCOPGOAL_API MocoCOPGoal : public MocoGoal {
+    OpenSim_DECLARE_CONCRETE_OBJECT(MocoCOPGoal, MocoGoal);
+
 public:
-    MocoMarkerAccelerationGoal() { constructProperties(); }
-    MocoMarkerAccelerationGoal(std::string name) : MocoGoal(std::move(name)) {
+    MocoCOPGoal() { constructProperties();}
+    MocoCOPGoal(std::string name) : MocoGoal(std::move(name)) {
         constructProperties();
     }
-    MocoMarkerAccelerationGoal(std::string name, double weight)
+    MocoCOPGoal(std::string name, double weight)
             : MocoGoal(std::move(name), weight) {
-        log_cout("Constructed class");
         constructProperties();
     }
-
-    // Public member to set the name of the marker
-    void setMarkerName(std::string name) { set_marker_name(std::move(name)); }
-    //std::string getMarkerName() const { return get_marker_name(); }
-
+	
+    // Public members to change the divide by displacement property
     void setExponent(int ex) { set_exponent(ex); }
     bool getExponent() const {
         return get_exponent();
@@ -50,14 +47,18 @@ public:
 
 protected:
     Mode getDefaultModeImpl() const override { return Mode::Cost; }
+    bool getSupportsEndpointConstraintImpl() const override { return false;}
     void initializeOnModelImpl(const Model&) const override;
     void calcIntegrandImpl(
-            const IntegrandInput& input, SimTK::Real& integrand) const override;
+            const IntegrandInput& input, double& integrand) const override;
     void calcGoalImpl(
-            const GoalInput& input, SimTK::Vector& cost) const override; 
+            const GoalInput& input, SimTK::Vector& cost) const override;
+    
+    SimTK::Matrix FlattenSpatialVec(const SimTK::SpatialVec& S) const;
 
-private:
-    // PROPERTIES
+
+ private:
+
     OpenSim_DECLARE_PROPERTY(divide_by_displacement, bool,
         "Divide by the model's displacement over the phase (default: "
         "false)");
@@ -69,14 +70,12 @@ private:
             "applied to the output (before the exponent is applied), meaning "
             "that odd numbered exponents (greater than 1) do not take on "
             "negative values.");
-    
-    OpenSim_DECLARE_PROPERTY(marker_name, std::string, "The name of the marker for this goal");
-
     void constructProperties();
-    mutable std::function<double(const double&)> m_power_function;
-    mutable SimTK::ReferencePtr<const Point> m_model_marker;
+	mutable std::vector<std::string> m_force_names;
+	mutable std::function<double(const double&)> m_power_function;
+   
 };
 
 } // namespace OpenSim
 
-#endif // OPENSIM_MOCOMARKERACCELERATIONGOAL_H
+#endif // OPENSIM_MOCOCOPGOAL_H

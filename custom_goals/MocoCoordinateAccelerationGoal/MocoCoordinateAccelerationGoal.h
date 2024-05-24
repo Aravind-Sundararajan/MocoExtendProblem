@@ -29,6 +29,11 @@ public:
             : MocoGoal(std::move(name), weight) {
         constructProperties();
     }
+      // Public members to change the divide by displacement property
+      void setExponent(int ex) { set_exponent(ex); }
+      bool getExponent() const { 
+          return get_exponent(); 
+      }
 
     // Public members to change the divide by displacement property
     void setDivideByDisplacement(bool tf) { set_divide_by_displacement(tf); }
@@ -55,13 +60,21 @@ protected:
     OpenSim_DECLARE_PROPERTY(divide_by_displacement, bool,
         "Divide by the model's displacement over the phase (default: "
         "false)");
+    OpenSim_DECLARE_PROPERTY(exponent, int,
+            "The exponent applied to the output value in the integrand. "
+            "The output can take on negative values in the integrand when the "
+            "exponent is set to 1 (the default value). When the exponent is "
+            "set to a value greater than 1, the absolute value function is "
+            "applied to the output (before the exponent is applied), meaning "
+            "that odd numbered exponents (greater than 1) do not take on "
+            "negative values.");
     void constructProperties();
-
     mutable std::vector<int> m_sysYIndices;
     mutable std::vector<int> m_state_indices;
     // State for which we want to minimize acceleration. Column labels 
     // should be state variable paths, e.g., '/jointset/knee_r/knee_angle_r'
     mutable std::vector<std::string> m_state_names;
+    mutable std::function<double(const double&)> m_power_function;
 };
 
 } // namespace OpenSim

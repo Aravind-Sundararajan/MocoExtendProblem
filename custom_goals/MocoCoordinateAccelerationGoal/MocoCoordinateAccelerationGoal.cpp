@@ -25,7 +25,7 @@ void MocoCoordinateAccelerationGoal::initializeOnModelImpl(const Model& model) c
             continue;                               // If not found, skip the current variable
         } else {
             m_state_indices.push_back(allSysYIndices[refName]); // If found, store index of state variable
-            std::cout << "Found " << refName << " = " << allSysYIndices[refName] << std::endl;
+            //std::cout << "Found " << refName << " = " << allSysYIndices[refName] << std::endl;
         }
     }
 
@@ -39,7 +39,7 @@ void MocoCoordinateAccelerationGoal::calcIntegrandImpl(
     auto udots = state.getUDot();
 	for (int i = 0; i < udots.size(); i++) {
         if ((std::find(m_state_indices.begin(), m_state_indices.end(), i) != m_state_indices.end())) {
-            integrand += SimTK::square(udots.get(i));
+            integrand += m_power_function(udots.get(i));
         }
 	} 
 }

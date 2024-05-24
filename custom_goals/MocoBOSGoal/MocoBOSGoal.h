@@ -88,8 +88,10 @@ protected:
     void constructProperties();
 	mutable std::vector<std::string> m_force_names;
 	mutable std::function<double(const double&)> m_power_function;
-	mutable SimTK::ReferencePtr<const Frame> m_left_foot_frame;
-    mutable SimTK::ReferencePtr<const Frame> m_right_foot_frame;
+// 	mutable SimTK::ReferencePtr<const Frame> m_left_foot_frame;
+//     mutable SimTK::ReferencePtr<const Frame> m_right_foot_frame;
+    mutable SimTK::ReferencePtr<const Body> m_left_foot_frame;
+    mutable SimTK::ReferencePtr<const Body> m_right_foot_frame;
 };
 
 } // namespace OpenSim

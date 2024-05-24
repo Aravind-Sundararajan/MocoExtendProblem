@@ -14,7 +14,7 @@ using namespace SimTK;
 
 void MocoBOSGoal::constructProperties() {
     constructProperty_divide_by_displacement(false);
-	constructProperty_exponent(2);
+	constructProperty_exponent(1);
     constructProperty_left_foot_frame("");
     constructProperty_right_foot_frame("");
 }
@@ -22,15 +22,16 @@ void MocoBOSGoal::constructProperties() {
 void MocoBOSGoal::initializeOnModelImpl(const Model& model) const {
     setRequirements(1, 1);
     
-	m_left_foot_frame = getModel().getComponent<PhysicalFrame>(get_left_foot_frame());
-    m_right_foot_frame = getModel().getComponent<PhysicalFrame>(get_right_foot_frame());
-
+// 	m_left_foot_frame = getModel().getComponent<PhysicalFrame>(get_left_foot_frame());
+//     m_right_foot_frame = getModel().getComponent<PhysicalFrame>(get_right_foot_frame());
+    m_left_foot_frame = getModel().getComponent<Body>(get_left_foot_frame());
+    m_right_foot_frame = getModel().getComponent<Body>(get_right_foot_frame());
     int exponent = get_exponent();
 
     // The pow() function gives slightly different results than x * x. On Mac,
     // using x * x requires fewer solver iterations.
     if (exponent == 1) {
-        m_power_function = [](const double& x) { return x; };
+        m_power_function = [](const double& x) { return std::abs(x); };
     } else if (exponent == 2) {
         m_power_function = [](const double& x) { return x * x; };
     } else {
@@ -48,8 +49,16 @@ void MocoBOSGoal::calcIntegrandImpl(
 	
 	SimTK::Vec3 base_of_support(0.0);
 
-    SimTK::Vec3 v_r = m_left_foot_frame->getPositionInGround(input.state);
-    SimTK::Vec3 v_l = m_right_foot_frame->getPositionInGround(input.state);
+//     SimTK::Vec3 v_r = m_left_foot_frame->getPositionInGround(input.state);
+//     SimTK::Vec3 v_l = m_right_foot_frame->getPositionInGround(input.state);
+
+    SimTK::Vec3 v_r = m_left_foot_frame->getMassCenter();
+    SimTK::Vec3 v_l = m_right_foot_frame->getMassCenter();
+
+    SimTK::Vec3 v_r_com_g = m_right_foot_frame->findStationLocationInGround(input.state, v_r);
+    SimTK::Vec3 v_l_com_g = m_left_foot_frame->findStationLocationInGround(input.state,  v_l);
+    
+
 	SimTK::Vec3 mass_center = getModel().calcMassCenterPosition(input.state);
 
     mass_center[1] = 0.0;
@@ -57,7 +66,7 @@ void MocoBOSGoal::calcIntegrandImpl(
     v_l[1] = 0.0;
     
 
-    base_of_support =  mass_center - avg(v_l, v_r);// avg the 2 feet
+    base_of_support =  mass_center - avg(v_l_com_g, v_r_com_g);// avg the 2 feet
 
     integrand += m_power_function(base_of_support.norm());
 }
