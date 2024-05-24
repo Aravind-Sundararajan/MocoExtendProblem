@@ -7,12 +7,11 @@ output_dirs = ["./output/effpred/",...
     "./output/meppredmarkerAccel/",...
     "./output/meppredBOS/",...
     "./output/meppredZMP/",...    
-    "./output/meppredCOP/",...
     ];% 
-AccelerationWeights = [ (1e-5)/11 (1e-5)/11 (1e-5)/11 (1e-5)/11 (1e-5)/11 ]; %(1e-11)/4 (1e-11)/4 (1e-5)/2 (1e-11)/4 (1e-6)/4 ];
-for j = 2:4
+AccelerationWeights = [(1e-3)/11 (1e-3)/11 (1e-3)/11 (1e-3)/11]; %(1e-11)/4 (1e-11)/4 (1e-5)/2 (1e-11)/4 (1e-6)/4 ];
+for j = 1:4
         output_dir =output_dirs(j); 
-        
+        acceleration_weight=AccelerationWeights(j);
 %------------------------------------------------------------------------
 % Solve a tracking problem where the goal is to minimize the difference
 % between simulated and reference coordinate values and speeds, and GRFs,
@@ -291,8 +290,8 @@ solver.set_implicit_auxiliary_derivatives_weight(AuxDerivWeight);
 
 solver.set_multibody_dynamics_mode('implicit')
 solver.set_minimize_implicit_multibody_accelerations(true)
-solver.set_implicit_multibody_accelerations_weight(1e-5 / model.getNumCoordinates())
-solver.set_implicit_multibody_acceleration_bounds(MocoBounds(-200, 200))
+solver.set_implicit_multibody_accelerations_weight(acceleration_weight)
+solver.set_implicit_multibody_acceleration_bounds(MocoBounds(-250, 250))
 
 guess_track = MocoTrajectory('.\output\track\states_half.sto');
 guess = solver.createGuess();
