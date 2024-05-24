@@ -3,11 +3,19 @@ project(customGoals VERSION 1.0.2 DESCRIPTION "some custom goals")
 
 set(CMAKE_CXX_STANDARD 11)
 
-message("OSim_Version45=${OSim_Version45}")
-if( OSim_Version45) 
+message("OSim_Version=${OSim_Version}")
+if( OSim_Version EQUAL 5) 
     set(SRCDIR ${CMAKE_CURRENT_SOURCE_DIR}/custom_goals45/)    
-else()
+    set(OSIMVersion "4.5")
+elseif(OSim_Version EQUAL 4)
     set(SRCDIR ${CMAKE_CURRENT_SOURCE_DIR}/custom_goals/)
+    set(OSIMVersion "4.4")
+elseif(OSim_Version EQUAL 3)
+    set(SRCDIR ${CMAKE_CURRENT_SOURCE_DIR}/custom_goals/)
+    set(OSIMVersion "4.3")
+elseif(OSim_Version EQUAL 2)
+    set(SRCDIR ${CMAKE_CURRENT_SOURCE_DIR}/custom_goals/)
+    set(OSIMVersion "4.2")
 endif()
 message("Source Directory=${SRCDIR}")
 
@@ -24,8 +32,9 @@ file(MAKE_DIRECTORY ${BINDIR})
 #file(MAKE_DIRECTORY ${LIBDIR})
 #file(MAKE_DIRECTORY ${INCLUDEDIR})
 
-find_package(OpenSim 4.3)
+find_package(OpenSim ${OSIMVersion})
 include("${OpenSim_USE_FILE}")
+
 
 MACRO(SUBDIRLIST result curdir)
   FILE(GLOB children RELATIVE ${curdir} ${curdir}/*)

@@ -15,9 +15,13 @@ config = "RelWithDebInfo";
 %if this is failing, check to see if vs 2022 msbuild.exe and cmake are part of
 %the system PATH.
 if contains(opensim_install,"4.5")
-    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version45=1""");
-else
-    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version45=0""");
+    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version=5""");
+elseif contains(opensim_install,"4.4")
+    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version=4""");
+elseif contains(opensim_install,"4.3")
+    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version=3""");
+elseif contains(opensim_install,"4.2")
+    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version=2""");
     %system("cmake CmakeLists.txt -S . -B """+builddir+"""");
 end
 system("msbuild """+solutionPath+""" /p:configuration="+config); % 
