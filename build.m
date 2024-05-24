@@ -17,7 +17,7 @@ config = "RelWithDebInfo";
 if contains(opensim_install,"4.5")
     system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version45=1""");
 else
-    system("cmake CmakeLists.txt -S . -B """+builddir+""""" -DOSim_Version45=0""");
+    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version45=0""");
     %system("cmake CmakeLists.txt -S . -B """+builddir+"""");
 end
 system("msbuild """+solutionPath+""" /p:configuration="+config); % 
