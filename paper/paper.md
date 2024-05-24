@@ -107,9 +107,9 @@ The results of each multi-objective predictive simulation, in which the stabilit
 
 |             | Objective cost | Effort  cost | Smoothing cost | Stability  cost |
 |:-----------:|:--------------:|:------------:|:--------------:|:---------------:|
-|  $J_{BOS}$  |    3.048285    |   2.234377   |    0.008309    |     0.795659    |
-|  $J_{ZMP}$  |    3.384394    |   2.679968   |    0.008816    |     0.686290    |
-| $J_{accel}$ |    3.814449    |   3.680096   |    0.010208    |     0.114528    |
+|  $J_{BOS}$  |    3.759046    |   2.270912   |    0.683608    |     0.794155    |
+| $J_{accel}$ |    4.184254    |   2.751212   |    0.725837    |     0.686290    |
+|  $J_{ZMP}$  |    4.774932    |   3.797785   |    0.793123    |     0.174308    |
 
 Table: Objective cost and term breakdown for three predictive simulations using `MEP`.
 
