@@ -56,19 +56,19 @@ void MocoCustomOutputGoal::initializeOnModelBase() const {
     }
     m_output.reset(abstractOutput);
 
-    int exponent = get_exponent();
+  int exponent = get_exponent();
 
-    // The pow() function gives slightly different results than x * x. On Mac,
-    // using x * x requires fewer solver iterations.
-    if (exponent == 1) {
-        m_power_function = [](const double& x) { return x; };
-    } else if (exponent == 2) {
-        m_power_function = [](const double& x) { return x * x; };
-    } else {
-        m_power_function = [exponent](const double& x) {
-            return pow(std::abs(x), exponent);
-        };
-    }
+  // The pow() function gives slightly different results than x * x. On Mac,
+  // using x * x requires fewer solver iterations.
+  if (exponent == 1) {
+    m_power_function = [](const double &x) { return std::abs(x); };
+  } else if (exponent == 2) {
+    m_power_function = [](const double &x) { return x * x; };
+  } else {
+    m_power_function = [exponent](const double &x) {
+      return pow(std::abs(x), exponent);
+    };
+  }
 
     // Set the "depends-on stage", the SimTK::Stage we must realize to
     // in order to calculate values from this output.

@@ -62,6 +62,7 @@ private:
   mutable std::vector<std::string> m_force_names;
   mutable std::function<double(const double &)> m_power_function;
   mutable OpenSim::Model m_model;
+mutable std::function<double(const double &)> m_power_function;
 };
 
 } // namespace OpenSim

@@ -54,13 +54,22 @@ protected:
     OpenSim_DECLARE_PROPERTY(divide_by_displacement, bool,
         "Divide by the model's displacement over the phase (default: "
         "false)");
+
+  OpenSim_DECLARE_PROPERTY(exponent, int,
+      "The exponent applied to the output value in the integrand. "
+      "The output can take on negative values in the integrand when the "
+      "exponent is set to 1 (the default value). When the exponent is "
+      "set to a value greater than 1, the absolute value function is "
+      "applied to the output (before the exponent is applied), meaning "
+      "that odd numbered exponents (greater than 1) do not take on "
+      "negative values.");
     // Make the end_point_goal property
     OpenSim_DECLARE_PROPERTY(end_point_goal, double,
         "Target value for end-point goal (default: 0)");
 
     // Make a function to set the default values of these properties
     void constructProperties();
-
+	mutable std::function<double(const double&)> m_power_function;
     // Make a private member that stores all the indices for muscle activations
     mutable std::vector<int> m_act_indices;
 };

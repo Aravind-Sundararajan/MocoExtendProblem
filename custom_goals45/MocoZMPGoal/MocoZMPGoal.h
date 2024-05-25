@@ -14,12 +14,6 @@
 
 namespace OpenSim {
 
-struct supportData{
-  std::map<SimTK::MobilizedBodyIndex, SimTK::Matrix> Fs;  //!<@brief  support force (spatial (6x1))
-  std::map<SimTK::MobilizedBodyIndex, SimTK::Vec3> cop; //!<@brief  center of pressure (3x1)
-  std::map<SimTK::MobilizedBodyIndex, SimTK::SpatialVec> force; //!<@brief  linear summed cop force and resultant moment (3x2)
-};
-
 class OSIMMOCOZMPGOAL_API MocoZMPGoal : public MocoGoal {
     OpenSim_DECLARE_CONCRETE_OBJECT(MocoZMPGoal, MocoGoal);
 
@@ -45,8 +39,6 @@ protected:
             const IntegrandInput& input, double& integrand) const override;
     void calcGoalImpl(
             const GoalInput& input, SimTK::Vector& cost) const override;
-    
-    SimTK::Matrix FlattenSpatialVec(const SimTK::SpatialVec& S) const;
 
 
  private:
@@ -61,7 +53,7 @@ protected:
     void constructProperties();
 	mutable std::vector<std::string> m_force_names;
 	mutable std::function<double(const double&)> m_power_function;
-   
+    mutable OpenSim::Model m_model;
 };
 
 } // namespace OpenSim

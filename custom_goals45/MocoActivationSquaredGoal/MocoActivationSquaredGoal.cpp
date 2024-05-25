@@ -13,6 +13,7 @@ using namespace OpenSim;
 // Set all the properties to their default values
 void MocoActivationSquaredGoal::constructProperties() {
     constructProperty_end_point_goal(0.0);
+    constructProperty_exponent(2);
 }
 
 void MocoActivationSquaredGoal::initializeOnModelImpl(const Model& model) const {
@@ -32,6 +33,21 @@ void MocoActivationSquaredGoal::initializeOnModelImpl(const Model& model) const 
             m_act_indices.push_back(activationIndex);
         }
     }
+    
+  int exponent = get_exponent();
+
+  // The pow() function gives slightly different results than x * x. On Mac,
+  // using x * x requires fewer solver iterations.
+  if (exponent == 1) {
+    m_power_function = [](const double &x) { return std::abs(x); };
+  } else if (exponent == 2) {
+    m_power_function = [](const double &x) { return x * x; };
+  } else {
+    m_power_function = [exponent](const double &x) {
+      return pow(std::abs(x), exponent);
+    };
+  }
+
 
     // Set the requirements for the integrator - 1 input, 1 output
     setRequirements(1, 1);

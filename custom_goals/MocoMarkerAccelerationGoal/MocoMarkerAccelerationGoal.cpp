@@ -25,19 +25,19 @@ void MocoMarkerAccelerationGoal::initializeOnModelImpl(
     // Get the marker
     m_model_marker.reset(&model.getComponent<Point>(get_marker_name()));
     setRequirements(1, 1);
-    int exponent = get_exponent();
+  int exponent = get_exponent();
 
-        // The pow() function gives slightly different results than x * x. On Mac,
-    // using x * x requires fewer solver iterations.
-    if (exponent == 1) {
-        m_power_function = [](const double& x) { return std::abs(x); };
-    } else if (exponent == 2) {
-        m_power_function = [](const double& x) { return x * x; };
-    } else {
-        m_power_function = [exponent](const double& x) {
-            return pow(std::abs(x), exponent);
-        };
-    }
+  // The pow() function gives slightly different results than x * x. On Mac,
+  // using x * x requires fewer solver iterations.
+  if (exponent == 1) {
+    m_power_function = [](const double &x) { return std::abs(x); };
+  } else if (exponent == 2) {
+    m_power_function = [](const double &x) { return x * x; };
+  } else {
+    m_power_function = [exponent](const double &x) {
+      return pow(std::abs(x), exponent);
+    };
+  }
 
 }
 

@@ -46,8 +46,16 @@ protected:
             const GoalInput& input, SimTK::Vector& cost) const override;
 
  private:
+    OpenSim_DECLARE_PROPERTY(exponent, int,
+        "The exponent applied to the output value in the integrand. "
+        "The output can take on negative values in the integrand when the "
+        "exponent is set to 1 (the default value). When the exponent is "
+        "set to a value greater than 1, the absolute value function is "
+        "applied to the output (before the exponent is applied), meaning "
+        "that odd numbered exponents (greater than 1) do not take on "
+        "negative values.");
     void constructProperties();
-
+	mutable std::function<double(const double&)> m_power_function;
     mutable std::vector<int> m_sysYIndices;
     mutable std::vector<int> m_state_indices;
     // State for which we want to minimize acceleration. Column labels 

@@ -70,10 +70,18 @@ problem.setControlInfo('/actuator', MocoBounds(-250, 250));
 cptr = uint64(problem.getCPtr(problem));
 ep = extend_problem(cptr);
 
-%ep.addMocoCoordinateAccelerationGoal('coordinate_acceleration_goal',1.0,true,{'/slider/position'});
-%ep.addMocoActivationSquaredGoal('act_square',1.0, true, 0.)
-%ep.addMocoMaxCoordinateGoal('max_coordinate_goal',w, false, false, false, 'position');
-ep.addMocoMarkerAccelerationGoal('marker_acceleration_goal',w,false,true,false,'/markerset/testMarker');
+for j = 1:2
+
+if j == 1
+    %no custom goal
+else
+    %ep.addMocoCoordinateAccelerationGoal('coordinate_acceleration_goal',1.0,true,{'/slider/position'});
+    %ep.addMocoActivationSquaredGoal('act_square',1.0, true, 0.)
+    ep.addMocoMaxCoordinateGoal('max_coordinate_goal',w, false, false, false, 'position');
+    %ep.addMocoMarkerAccelerationGoal('marker_acceleration_goal',w,false,true,false,'/markerset/testMarker');
+end
+
+
 
 solver = study.initCasADiSolver();
 guess = solver.createGuess();
@@ -87,7 +95,28 @@ solver.setGuess(guess);
 % Solve the problem.
 % ==================
 solution = study.solve();
-solution.write('./output/sliding_mass_solution.sto');
+
+if j == 1
+    solution.write('./test/pointMass/sliding_mass_solution_NoMax.sto');
+    ref = MocoTrajectory('./test/pointMass/outputReference/sliding_mass_solution_NoMax.sto');
+    
+    if solution.isNumericallyEqual(ref)
+        disp("1) output matches output reference for NoMax");
+    else
+        disp("failed to match reference output for goal");
+    end
+
+else
+    solution.write('./test/pointMass/sliding_mass_solution.sto');
+    ref = MocoTrajectory('./test/pointMass/outputReference/sliding_mass_solution.sto');
+
+    if solution.isNumericallyEqual(ref)
+        disp("2) output matches output reference for MaxGoal");
+    else
+        disp("max goal failed to match reference output for goal");
+    end
+end
+
 dur = seconds(solution.getSolverDuration());
 [h,m,s] = hms(dur);
 disp('   ')
@@ -108,12 +137,14 @@ catch
     end
 end
 
+end
+
 ep.delete();
 
-d = ReadOpenSimData('./output/sliding_mass_solution.sto');
-% d2 = ReadOpenSimData('./output/sliding_mass_solution_NoMax.sto');
+d = ReadOpenSimData('./test/pointMass/sliding_mass_solution.sto');
+d2 = ReadOpenSimData('./test/pointMass/outputReference/sliding_mass_solution_NoMax.sto');
 plot(d.data(:,1),d.data(:,2), 'LineWidth',2); hold on;
-% plot(d2.data(:,1),d2.data(:,2), 'LineWidth',2);
+plot(d2.data(:,1),d2.data(:,2), 'LineWidth',2);
 
 title("Point Mass with MEP's Maximize Coordinate Goal",'FontName','Times New Roman');
 xlabel('Time (s)','FontName','Times New Roman');

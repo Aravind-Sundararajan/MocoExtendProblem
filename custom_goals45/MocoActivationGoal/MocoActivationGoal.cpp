@@ -13,9 +13,13 @@ using namespace OpenSim;
 // Set all the properties to their default values
 void MocoActivationGoal::constructProperties() {
     constructProperty_end_point_goal(0.0);
+    constructProperty_exponent(2);
 }
 
 void MocoActivationGoal::initializeOnModelImpl(const Model& model) const {
+    // Set the requirements for the integrator - 1 input, 1 output
+    setRequirements(1, 1);
+    
     // Make a map to get indices corresponding to every state in the model
     auto allSysYIndices = createSystemYIndexMap(model);
     
@@ -32,9 +36,20 @@ void MocoActivationGoal::initializeOnModelImpl(const Model& model) const {
             m_act_indices.push_back(activationIndex);
         }
     }
-
-    // Set the requirements for the integrator - 1 input, 1 output
-    setRequirements(1, 1);
+      int exponent = get_exponent();
+    
+      // The pow() function gives slightly different results than x * x. On Mac,
+      // using x * x requires fewer solver iterations.
+      if (exponent == 1) {
+        m_power_function = [](const double &x) { return std::abs(x); };
+      } else if (exponent == 2) {
+        m_power_function = [](const double &x) { return x * x; };
+      } else {
+        m_power_function = [exponent](const double &x) {
+          return pow(std::abs(x), exponent);
+        };
+      }
+    
 }
 
 void MocoActivationGoal::calcIntegrandImpl(

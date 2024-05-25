@@ -47,10 +47,20 @@ protected:
 
 private:
     // PROPERTIES
+    OpenSim_DECLARE_PROPERTY(exponent, int,
+        "The exponent applied to the output value in the integrand. "
+        "The output can take on negative values in the integrand when the "
+        "exponent is set to 1 (the default value). When the exponent is "
+        "set to a value greater than 1, the absolute value function is "
+        "applied to the output (before the exponent is applied), meaning "
+        "that odd numbered exponents (greater than 1) do not take on "
+        "negative values.");
     OpenSim_DECLARE_PROPERTY(marker_name, std::string, "The name of the marker for this goal");
 
     void constructProperties();
+    mutable std::function<double(const double&)> m_power_function;
     mutable SimTK::ReferencePtr<const Point> m_model_marker;
+    
 };
 
 } // namespace OpenSim

@@ -29,6 +29,20 @@ void MocoMaxCoordinateGoal::initializeOnModelImpl(const Model& model) const {
     }
     coord_max = coord.getRangeMax();
     std::cout << "coord max of " << refName <<" is " << coord_max << "." << std::endl;
+  int exponent = get_exponent();
+
+  // The pow() function gives slightly different results than x * x. On Mac,
+  // using x * x requires fewer solver iterations.
+  if (exponent == 1) {
+    m_power_function = [](const double &x) { return std::abs(x); };
+  } else if (exponent == 2) {
+    m_power_function = [](const double &x) { return x * x; };
+  } else {
+    m_power_function = [exponent](const double &x) {
+      return pow(std::abs(x), exponent);
+    };
+  }
+
 }
 
 void MocoMaxCoordinateGoal::calcIntegrandImpl(

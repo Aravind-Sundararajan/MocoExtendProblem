@@ -4,7 +4,7 @@ clc
 fclose('all');
 addpath(genpath(fullfile(pwd,'utils'))); %utilities
 %% SETUP
-opensim_install = "C:\opensim 4.3";
+opensim_install = "C:\opensim 4.5";
 builddir = fullfile(pwd,"build");
 bindir = fullfile(pwd,"bin");
 solutionPath = fullfile(builddir, "customGoals.sln");
