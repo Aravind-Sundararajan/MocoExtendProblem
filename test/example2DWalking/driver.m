@@ -5,7 +5,7 @@ setenv('PATH', [[opensimroot 'bin'] ';' [opensimroot 'sdk\lib'] ';' getenv('PATH
 import org.opensim.modeling.* %import opensim api library'
 %% TRACKING
 warning("starting  sim:Tracking");
-WalkSim_Tracking()
+%WalkSim_Tracking();
 sims = enumeration(simulation.EFF);
 %% PREDICTIVE
 if contains(opensimroot, "4.5")
