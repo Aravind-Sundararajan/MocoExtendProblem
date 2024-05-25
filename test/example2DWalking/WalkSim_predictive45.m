@@ -200,7 +200,24 @@ elseif j ==5
     ep.addMocoCOPGoal('center_of_pressure', 10.0, 1, false);
 end
 
+div_disp =false;
+div_dur =false;
+div_mass =false;
 
+if j == 1
+    %eff pred
+elseif j ==2
+    ep.addMocoMarkerAccelerationGoal('addMocoMarkerAccelerationGoal',1.0,...
+        div_disp, div_dur, div_mass,...
+        char(model.getMarkerSet().get("head_marker").getAbsolutePathString()));
+elseif j ==3
+    ep.addMocoBOSGoal('base_of_support',1.0,...
+        div_disp, div_dur,div_mass, 1,...
+        left_foot, right_foot);
+elseif j ==4
+    ep.addMocoZMPGoal("zero_moment_point",1.0,...
+        div_disp, div_dur,div_mass, 1); 
+end
 
 % A custom goal for minimizing acceleration per distance. Uses an explicit
 % formulation.
