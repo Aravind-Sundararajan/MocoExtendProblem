@@ -20,8 +20,9 @@ addpath(genpath(fullfile(pwd,'bin','RelWithDebInfo'))); %Extend Problem (magic!)
 w = 1.0;
 mesh_interval = 50;
 max_iterations = 15000;
-outputDir = './output/';
+outputDir = './test/';
 p = createPointMass('./models/pointmass.osim', opensimroot);
+
 model = Model(p);
 
 %% Place a marker on the model
@@ -58,7 +59,7 @@ problem.setTimeBounds(MocoInitialBounds(0.0), MocoFinalBounds(1.0));
 
 % Position must be within [-5, 5] throughout the motion.
 % Initial position must be 0, final position must be 1.
-problem.setStateInfo('/slider/position/value', MocoBounds(0, 10), MocoInitialBounds(0), MocoFinalBounds(1));
+problem.setStateInfo('/slider/position/value', MocoBounds(0, 10), MocoInitialBounds(0), MocoFinalBounds(2));
 
 % Speed must be within [-50, 50] throughout the motion.
 % Initial and final speed must be 0. Use compact syntax.
@@ -71,14 +72,13 @@ cptr = uint64(problem.getCPtr(problem));
 ep = extend_problem(cptr);
 
 for j = 1:2
-
 if j == 1
     %no custom goal
 else
-    %ep.addMocoCoordinateAccelerationGoal('coordinate_acceleration_goal',1.0,true,{'/slider/position'});
-    %ep.addMocoActivationSquaredGoal('act_square',1.0, true, 0.)
+	%ep.addMocoCoordinateAccelerationGoal('coordinate_acceleration_goal',1.0,true,{'/slider/position'});
+	%ep.addMocoActivationSquaredGoal('act_square',1.0, true, 0.);
+	%ep.addMocoMarkerAccelerationGoal('marker_acceleration_goal',w,false,true,false,'/markerset/testMarker');
     ep.addMocoMaxCoordinateGoal('max_coordinate_goal',w, false, false, false, 'position');
-    %ep.addMocoMarkerAccelerationGoal('marker_acceleration_goal',w,false,true,false,'/markerset/testMarker');
 end
 
 
@@ -139,10 +139,8 @@ end
 
 end
 
-ep.delete();
-
 d = ReadOpenSimData('./test/pointMass/sliding_mass_solution.sto');
-d2 = ReadOpenSimData('./test/pointMass/outputReference/sliding_mass_solution_NoMax.sto');
+d2 = ReadOpenSimData('./test/pointMass/sliding_mass_solution_NoMax.sto');
 plot(d.data(:,1),d.data(:,2), 'LineWidth',2); hold on;
 plot(d2.data(:,1),d2.data(:,2), 'LineWidth',2);
 
@@ -154,3 +152,4 @@ ylim([-1 12]);
 legend('MaxCoordinateGoal', 'position and speed constraints only', 'FontName', 'Times New Roman');
 
 
+ep.delete();

@@ -1,17 +1,20 @@
+function out = WalkSim_predictive(sim_type)
+
 addpath(genpath(fullfile(pwd,'bin','RelWithDebInfo'))); % Extend Problem (magic!)
 mesh_int= 25;
 cores = 1;
 guess_strategy ='CG';
 coarsest_mesh = 25;
+
 output_dirs = ["./output/effpred/",...
     "./output/meppredmarkerAccel/",...
     "./output/meppredBOS/",...
     "./output/meppredZMP/",...    
     ];% 
 AccelerationWeights = [ (1e-3)/11 (1e-3)/11 (1e-3)/11 (1e-3)/11]; %(1e-11)/4 (1e-11)/4 (1e-5)/2 (1e-11)/4 (1e-6)/4 ];
-for j = 2:4
-        output_dir =output_dirs(j); 
-        acceleration_weight=AccelerationWeights(j);
+j = sim_type + 1;
+output_dir =output_dirs(j); 
+acceleration_weight=AccelerationWeights(j);
 %------------------------------------------------------------------------
 % Solve a tracking problem where the goal is to minimize the difference
 % between simulated and reference coordinate values and speeds, and GRFs,
@@ -358,7 +361,7 @@ output(3) = gaitPredictiveSolution.getNumIterations();
 
 % Also save this solution with a generic filename that can be used as the
 % initial guess on the next finest mesh density
-gaitPredictiveSolution.write(output_dir + 'states_tracked_states.sto');
+gaitPredictiveSolution.write(output_dir + 'states_half.sto');
 
 
 
@@ -394,6 +397,13 @@ externalForcesTableFlat = opensimMoco.createExternalLoadsTableForGait(model, ...
                              fullStride,contactSpheres_r,contactSpheres_l);
 STOFileAdapter.write(externalForcesTableFlat, ...
                              output_dir + 'GRF.sto');
+
+ref = MocoTrajectory(output_dir + '/outputReference/states_half.sto');
+
+if solution.isNumericallyEqual(ref)
+    warning("output matches output reference for Gait Tracking");
+else
+    warning("tracking failed to match reference output for goal");
 end
 
-
+end

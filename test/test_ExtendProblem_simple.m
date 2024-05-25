@@ -71,14 +71,13 @@ problem.setControlInfo('/actuator', MocoBounds(-250, 250));
 cptr = uint64(problem.getCPtr(problem));
 ep = extend_problem(cptr);
 
-%ep.addMocoMarkerAccelerationGoal('marker_acceleration_goal',1.0,'/markerset/testMarker',true);
-%ep.addMocoCoordinateAccelerationGoal('coordinate_acceleration_goal',1.0,true,{'/slider/position'});
-%ep.addMocoActivationSquaredGoal('act_square',1.0, true, 0.)
-
 for j = 1:2
 if j == 1
     %no custom goal
 else
+    %ep.addMocoCoordinateAccelerationGoal('coordinate_acceleration_goal',1.0,true,{'/slider/position'});
+    %ep.addMocoActivationSquaredGoal('act_square',1.0, true, 0.);
+    %ep.addMocoMarkerAccelerationGoal('marker_acceleration_goal',1.0,'/markerset/testMarker',true);
     ep.addMocoMaxCoordinateGoal('max_coordinate_goal',1.0, false, 'position');
 end
 
