@@ -12,9 +12,9 @@ output_dirs = ["./output/effpred/",...
     "./output/meppredZMP/",...    
     ];% 
 AccelerationWeights = [ (1e-3)/11 (1e-3)/11 (1e-3)/11 (1e-3)/11]; %(1e-11)/4 (1e-11)/4 (1e-5)/2 (1e-11)/4 (1e-6)/4 ];
-j = sim_type + 1;
-output_dir =output_dirs(j); 
-acceleration_weight=AccelerationWeights(j);
+goal_type = sim_type + 1;
+output_dir =output_dirs(goal_type); 
+acceleration_weight=AccelerationWeights(goal_type);
 %------------------------------------------------------------------------
 % Solve a tracking problem where the goal is to minimize the difference
 % between simulated and reference coordinate values and speeds, and GRFs,
@@ -190,19 +190,19 @@ div_disp =false;
 div_dur =false;
 div_mass =false;
 
-if j == 1
+if goal_type == 1
     %eff pred
-elseif j ==2
+elseif goal_type ==2
     ep.addMocoMarkerAccelerationGoal('addMocoMarkerAccelerationGoal',10.0,...
         div_disp, div_dur, div_mass,...
         char(model.getMarkerSet().get("head_marker").getAbsolutePathString()));
-elseif j ==3
+elseif goal_type ==3
     ep.addMocoBOSGoal('base_of_support',10.0,...
         div_disp, div_dur,div_mass, 1,...
         left_foot, right_foot);
-elseif j ==4
-    ep.addMocoZMPGoal("zero_moment_point",10.0,...
-        div_disp, div_dur,div_mass, 1); 
+elseif goal_type ==4
+    ep.addMocoZMPGoal('zero_moment_point',10.0,...
+        div_disp, div_dur, div_mass, 1); 
 end
 
 % A custom goal for minimizing acceleration per distance. Uses an explicit
@@ -406,9 +406,9 @@ STOFileAdapter.write(externalForcesTableFlat, ...
 ref = MocoTrajectory(output_dir + '/outputReference/states_half.sto');
 
 if gaitPredictiveSolution.isNumericallyEqual(ref)
-    warning("output matches output reference for Gait Tracking");
+    warning("output matches output reference for " + output_dir);
 else
-    warning("tracking failed to match reference output for goal");
+    warning("tracking failed to match reference output for goal " + output_dir);
 end
 
 end

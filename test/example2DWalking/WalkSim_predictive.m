@@ -12,9 +12,9 @@ output_dirs = ["./output/effpred/",...
     "./output/meppredZMP/",...    
     ];% 
 AccelerationWeights = [ (1e-3)/11 (1e-3)/11 (1e-3)/11 (1e-3)/11]; %(1e-11)/4 (1e-11)/4 (1e-5)/2 (1e-11)/4 (1e-6)/4 ];
-j = sim_type + 1;
-output_dir =output_dirs(j); 
-acceleration_weight=AccelerationWeights(j);
+goal_type = sim_type + 1;
+output_dir =output_dirs(goal_type); 
+acceleration_weight=AccelerationWeights(goal_type);
 %------------------------------------------------------------------------
 % Solve a tracking problem where the goal is to minimize the difference
 % between simulated and reference coordinate values and speeds, and GRFs,
@@ -185,16 +185,16 @@ right_foot = char(model.getBodySet().get("calcn_r").getAbsolutePathString());
 cptr = uint64(problem.getCPtr(problem));
 ep = extend_problem(cptr);
 
-if j == 1
+if goal_type == 1
     %eff pred
-elseif j ==2
+elseif goal_type ==2
     ep.addMocoMarkerAccelerationGoal('marker_acceleration', 10.0, ...
         char(model.getMarkerSet().get("head_marker").getAbsolutePathString()), ...
         1,...
         false);
-elseif j ==3
+elseif goal_type ==3
     ep.addMocoBOSGoal('base_of_support', 10.0, 1, false, left_foot, right_foot);
-elseif j ==4
+elseif goal_type ==4
     ep.addMocoZMPGoal('zero_moment_point', 10.0, 1, false); 
 end
 

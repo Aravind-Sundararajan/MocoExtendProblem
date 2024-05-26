@@ -5,20 +5,22 @@ setenv('PATH', [[opensimroot 'bin'] ';' [opensimroot 'sdk\lib'] ';' getenv('PATH
 import org.opensim.modeling.* %import opensim api library'
 %% TRACKING
 warning("starting  sim:Tracking");
-%WalkSim_Tracking();
-sims = enumeration(simulation.EFF);
-%% PREDICTIVE
-if contains(opensimroot, "4.5")
-    warning("Running tests for OpenSim 4.5");   
-    for s = sims'
-        warning("starting sim:" + string(s));
-        WalkSim_predictive45(s);
-    end
-else
-    warning("Running tests for pre- OpenSim 4.5");
-    for s = sims'
-        warning("starting sim:" + string(s));
-        WalkSim_predictive(s);  
-    end
-end
+WalkSim_Tracking();
 
+%% PREDICTIVE
+% sims = enumeration(simulation.EFF);
+% if contains(opensimroot, "4.5")
+%     warning("Running tests for OpenSim 4.5");   
+%     for s = sims'
+%         warning("starting sim:" + string(s));
+%         WalkSim_predictive45(s);
+%     end
+% else
+%     warning("Running tests for pre- OpenSim 4.5");
+%     for s = sims'
+%         warning("starting sim:" + string(s));
+%         WalkSim_predictive(s);  
+%     end
+% end
+%% 
+ WalkSim_predictive45(simulation.ZMP);

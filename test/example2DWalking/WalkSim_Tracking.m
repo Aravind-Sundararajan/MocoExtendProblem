@@ -1,4 +1,5 @@
-addpath(genpath(fullfile(pwd,'bin','RelWithDebInfo'))); % Extend Problem (magic!)
+function WalkSim_Tracking()
+
 mesh_int= 25;
 cores = 1;
 guess_strategy ='CG';
@@ -375,4 +376,6 @@ if gaitTrackingSolution.isNumericallyEqual(ref)
     warning("output matches output reference for Gait Tracking");
 else
     error("tracking failed to match reference output for goal");
+end
+
 end
