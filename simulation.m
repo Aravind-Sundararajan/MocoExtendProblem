@@ -6,10 +6,9 @@ classdef simulation < uint32
     end
     enumeration
         EFF (0)
-        COP (1)
+        ACC (1)
         BOS (2)
-        ACC (3)
-        ZMP (4)
+        ZMP (3)
     end
 end
 

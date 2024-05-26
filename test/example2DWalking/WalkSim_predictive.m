@@ -196,8 +196,6 @@ elseif j ==3
     ep.addMocoBOSGoal('base_of_support', 10.0, 1, false, left_foot, right_foot);
 elseif j ==4
     ep.addMocoZMPGoal('zero_moment_point', 10.0, 1, false); 
-elseif j ==5
-    ep.addMocoCOPGoal('center_of_pressure', 10.0, 1, false);
 end
 
 
