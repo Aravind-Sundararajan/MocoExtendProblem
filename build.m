@@ -4,7 +4,7 @@ clc
 fclose('all');
 addpath(genpath(fullfile(pwd,'utils'))); %utilities
 %% SETUP
-opensim_install = 'C:\opensim 4.3\'; % Path to the top-level OpenSim directory
+opensim_install = 'C:\opensim 4.5\'; % Path to the top-level OpenSim directory
 addpath([opensim_install 'bin'], [opensim_install 'sdk\lib']); % Add OpenSim paths to MATLAB
 javaaddpath([opensim_install 'bin'], [opensim_install 'sdk\lib']); % Add Java paths to MATLAB
 setenv('PATH', [[opensim_install 'bin'] ';' [opensim_install 'sdk\lib'] ';' getenv('PATH')]); % Set Windows System path to include OpenSim libraries

@@ -1,6 +1,6 @@
 function [cpp_out,mex_out,wrap_out] = generate_content_compat(goal_tree) 
 %% create mex functions
-disp("detected using opensim 4.3 or lower.");
+disp("detected using opensim 4.4 or lower.");
 mex_out = "";
 cpp_out = "";
 wrap_out = "";
