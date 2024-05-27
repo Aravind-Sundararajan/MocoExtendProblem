@@ -8,6 +8,7 @@ opensim_install = 'C:\opensim 4.3\'; % Path to the top-level OpenSim directory
 addpath([opensim_install 'bin'], [opensim_install 'sdk\lib']); % Add OpenSim paths to MATLAB
 javaaddpath([opensim_install 'bin'], [opensim_install 'sdk\lib']); % Add Java paths to MATLAB
 setenv('PATH', [[opensim_install 'bin'] ';' [opensim_install 'sdk\lib'] ';' getenv('PATH')]); % Set Windows System path to include OpenSim libraries
+import org.opensim.modeling.*;
 
 builddir = fullfile(pwd,"build");
 bindir = fullfile(pwd,"bin");
@@ -39,9 +40,9 @@ system("msbuild """+solutionPath+""" /p:configuration="+config); %
 build_extend_class(fullfile(bindir,config,cppName),fullfile(bindir,config,wrapName), opensim_install);
 %% BUILD MEX
 if contains(opensim_install, "4.5")
-    goaldir = 'custom_goals45';
-else
     goaldir = 'custom_goals';
+else
+    goaldir = 'custom_goals_compat';
 end
 goal_names = get_goal_names(goaldir);
 goal_includes = "-I"""+pwd+"\" + goaldir+"\"+goal_names+"""  ";
