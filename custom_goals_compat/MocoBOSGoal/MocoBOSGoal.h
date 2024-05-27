@@ -4,8 +4,7 @@
  * OpenSim: MocoBOSGoal.h                                                     *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Aravind Sundararajan, Varun Joshi                                            *
- *                                                                            *
+ * Author(s): Aravind Sundararajan, Varun Joshi                               *
  * -------------------------------------------------------------------------- */
 
 
@@ -31,13 +30,20 @@ public:
     MocoBOSGoal(std::string name, double weight)
             : MocoGoal(std::move(name), weight) {
         constructProperties();
-            }
+    }
 	
-
-    // Public member to set the exponent
+    // Public members to change the divide by displacement property
     void setExponent(int ex) { set_exponent(ex); }
-    bool getExponent() const { return get_exponent(); }
-
+    bool getExponent() const {
+        return get_exponent();
+    }
+	
+    // Public members to change the divide by displacement property
+    void setDivideByDisplacement(bool tf) { set_divide_by_displacement(tf); }
+    bool getDivideByDisplacement() const {
+        return get_divide_by_displacement();
+    }
+	
 	/// Set the body frame associated with the left foot.
     void setLeftFootFrame(std::string left_foot) { set_left_foot_frame(std::move(left_foot)); }
     std::string getLeftFootFrame() const { 
@@ -63,6 +69,10 @@ protected:
 
 
  private:
+
+    OpenSim_DECLARE_PROPERTY(divide_by_displacement, bool,
+        "Divide by the model's displacement over the phase (default: "
+        "false)");
     OpenSim_DECLARE_PROPERTY(exponent, int,
             "The exponent applied to the output value in the integrand. "
             "The output can take on negative values in the integrand when the "
@@ -77,9 +87,11 @@ protected:
             "The model frame associated with the right foot.");
     void constructProperties();
 	mutable std::vector<std::string> m_force_names;
+	mutable std::function<double(const double&)> m_power_function;
+// 	mutable SimTK::ReferencePtr<const Frame> m_left_foot_frame;
+//     mutable SimTK::ReferencePtr<const Frame> m_right_foot_frame;
     mutable SimTK::ReferencePtr<const Body> m_left_foot_frame;
     mutable SimTK::ReferencePtr<const Body> m_right_foot_frame;
-    mutable std::function<double(const double &)> m_power_function;
 };
 
 } // namespace OpenSim

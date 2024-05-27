@@ -4,7 +4,7 @@
  * OpenSim: RegisterTypes_osimMocoZMPGoal.h                                   *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Aravind Sundararajan, Varun Joshi                                            *
+ * Author(s): Aravind Sundararajan, Varun Joshi *
  *                                                                            *
  * -------------------------------------------------------------------------- */
 
@@ -13,14 +13,14 @@
 extern "C" {
 
 OSIMMOCOZMPGOAL_API void RegisterTypes_osimMocoZMPGoal();
-
 }
 
 class osimMocoZMPGoalInstantiator {
 public:
-    osimMocoZMPGoalInstantiator();
+  osimMocoZMPGoalInstantiator();
+
 private:
-    void registerDllClasses();
+  void registerDllClasses();
 };
 
 #endif // OPENSIM_REGISTERTYPES_OSIMMOCOZMPGOAL_H

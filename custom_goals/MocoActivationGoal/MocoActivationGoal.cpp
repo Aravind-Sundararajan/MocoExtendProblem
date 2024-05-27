@@ -1,8 +1,8 @@
 /* -------------------------------------------------------------------------- *
- * OpenSim Moco: MocoActivationGoal.cpp                                       *
+ * OpenSim Moco: MocoActivationGoal.cpp                                *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Aravind Sundararajan, Varun Joshi                                            *
+ * Author(s): Varun Joshi, Aravind Sundararajan                                                      *
  *                                                                            *
  * -------------------------------------------------------------------------- */
 
@@ -12,11 +12,14 @@ using namespace OpenSim;
 
 // Set all the properties to their default values
 void MocoActivationGoal::constructProperties() {
-    constructProperty_divide_by_displacement(false);
     constructProperty_end_point_goal(0.0);
+    constructProperty_exponent(2);
 }
 
 void MocoActivationGoal::initializeOnModelImpl(const Model& model) const {
+    // Set the requirements for the integrator - 1 input, 1 output
+    setRequirements(1, 1);
+    
     // Make a map to get indices corresponding to every state in the model
     auto allSysYIndices = createSystemYIndexMap(model);
     
@@ -46,8 +49,7 @@ void MocoActivationGoal::initializeOnModelImpl(const Model& model) const {
           return pow(std::abs(x), exponent);
         };
       }
-    // Set the requirements for the integrator - 1 input, 1 output
-    setRequirements(1, 1);
+    
 }
 
 void MocoActivationGoal::calcIntegrandImpl(
@@ -71,12 +73,6 @@ void MocoActivationGoal::calcGoalImpl(
 
     // Cost mode
     cost[0] = input.integral;
-
-    // Divide by the displacement if divide_by_displacement property is true
-    if (get_divide_by_displacement()) {
-        cost[0] /=
-            calcSystemDisplacement(input.initial_state, input.final_state);
-    }
 
     // End-point constraint mode
     if (!getModeIsCost()) {

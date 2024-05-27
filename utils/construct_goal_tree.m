@@ -1,8 +1,8 @@
 function goal_tree = construct_goal_tree(opensimInstallDir)
 %% Extract only those that are directories.
-    goalsdir = "custom_goals";
+    goalsdir = "custom_goals_compat";
     if contains(opensimInstallDir, "4.5")
-        goalsdir = "custom_goals45";
+        goalsdir = "custom_goals";
     end
     goals = get_goal_names(goalsdir);
 

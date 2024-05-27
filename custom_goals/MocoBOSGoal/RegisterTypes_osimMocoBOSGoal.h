@@ -1,7 +1,7 @@
 #ifndef OPENSIM_REGISTERTYPES_OSIMMOCOBOS_H
 #define OPENSIM_REGISTERTYPES_OSIMMOCOBOSGOAL_H
 /* -------------------------------------------------------------------------- *
- * OpenSim: RegisterTypes_osimMocoBOSGoal.h                     *
+ * OpenSim: RegisterTypes_osimMocoBOSGoal.h                                   *
  * -------------------------------------------------------------------------- *
  *                                                                            *
  * Author(s): Aravind Sundararajan, Varun Joshi                                            *

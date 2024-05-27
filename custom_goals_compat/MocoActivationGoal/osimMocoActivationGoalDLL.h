@@ -4,7 +4,7 @@
  * OpenSim: osimMocoActivationGoalDLL.h                                       *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Varun Joshi, Aravind Sundararajan                                                      *
+ * Author(s): Aravind Sundararajan, Varun Joshi                                            *
  *                                                                            *
  * -------------------------------------------------------------------------- */
 

@@ -1,5 +1,5 @@
 /* -------------------------------------------------------------------------- *
- * OpenSim Moco: RegisterTypes_osimMocoActivationGoal.cpp                     *
+ * OpenSim Moco: RegisterTypes_osimMocoActivationGoal.cpp              *
  * -------------------------------------------------------------------------- *
  *                                                                            *
  * Author(s): Aravind Sundararajan, Varun Joshi                                            *

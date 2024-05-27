@@ -2,9 +2,9 @@ function build_extend_class(cppName,wrapName, opensimInstallDir)
 %% SETUP
 goal_tree = construct_goal_tree(opensimInstallDir);
 if contains(opensimInstallDir, "4.5")
-    [c,m,w] = generate_content45(goal_tree);
-else    
     [c,m,w] = generate_content(goal_tree);
+else    
+    [c,m,w] = generate_content_compat(goal_tree);
 end
 %% CPP class construction
 % construct extendProblem.cpp

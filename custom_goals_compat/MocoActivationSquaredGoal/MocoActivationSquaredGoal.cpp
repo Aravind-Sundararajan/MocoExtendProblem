@@ -2,7 +2,7 @@
  * OpenSim Moco: MocoActivationSquaredGoal.cpp                                *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Varun Joshi, Aravind Sundararajan                                                      *
+ * Author(s): Varun Joshi, Aravind Sundararajan                               *
  *                                                                            *
  * -------------------------------------------------------------------------- */
 
@@ -12,8 +12,8 @@ using namespace OpenSim;
 
 // Set all the properties to their default values
 void MocoActivationSquaredGoal::constructProperties() {
+    constructProperty_divide_by_displacement(false);
     constructProperty_end_point_goal(0.0);
-    constructProperty_exponent(2);
 }
 
 void MocoActivationSquaredGoal::initializeOnModelImpl(const Model& model) const {
@@ -33,22 +33,19 @@ void MocoActivationSquaredGoal::initializeOnModelImpl(const Model& model) const 
             m_act_indices.push_back(activationIndex);
         }
     }
+      int exponent = get_exponent();
     
-  int exponent = get_exponent();
-
-  // The pow() function gives slightly different results than x * x. On Mac,
-  // using x * x requires fewer solver iterations.
-  if (exponent == 1) {
-    m_power_function = [](const double &x) { return std::abs(x); };
-  } else if (exponent == 2) {
-    m_power_function = [](const double &x) { return x * x; };
-  } else {
-    m_power_function = [exponent](const double &x) {
-      return pow(std::abs(x), exponent);
-    };
-  }
-
-
+      // The pow() function gives slightly different results than x * x. On Mac,
+      // using x * x requires fewer solver iterations.
+      if (exponent == 1) {
+        m_power_function = [](const double &x) { return std::abs(x); };
+      } else if (exponent == 2) {
+        m_power_function = [](const double &x) { return x * x; };
+      } else {
+        m_power_function = [exponent](const double &x) {
+          return pow(std::abs(x), exponent);
+        };
+      }
     // Set the requirements for the integrator - 1 input, 1 output
     setRequirements(1, 1);
 }
@@ -74,6 +71,12 @@ void MocoActivationSquaredGoal::calcGoalImpl(
 
     // Cost mode
     cost[0] = input.integral;
+
+    // Divide by the displacement if divide_by_displacement property is true
+    if (get_divide_by_displacement()) {
+        cost[0] /=
+            calcSystemDisplacement(input.initial_state, input.final_state);
+    }
 
     // End-point constraint mode
     if (!getModeIsCost()) {

@@ -2,7 +2,7 @@
  * OpenSim Moco: MocoBOSGoal.cpp                                              *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Aravind Sundararajan, Varun Joshi                               *
+ * Author(s): Aravind Sundararajan, Varun Joshi                                            *
  *                                                                            *
  * -------------------------------------------------------------------------- */
 
@@ -13,7 +13,8 @@ using namespace SimTK;
 #define tolerance std::numeric_limits<float>::epsilon()
 
 void MocoBOSGoal::constructProperties() {
-  	constructProperty_exponent(2);
+    constructProperty_divide_by_displacement(false);
+	constructProperty_exponent(1);
     constructProperty_left_foot_frame("");
     constructProperty_right_foot_frame("");
 }
@@ -21,9 +22,10 @@ void MocoBOSGoal::constructProperties() {
 void MocoBOSGoal::initializeOnModelImpl(const Model& model) const {
     setRequirements(1, 1);
     
-	m_left_foot_frame = getModel().getComponent<Body>(get_left_foot_frame());
+// 	m_left_foot_frame = getModel().getComponent<PhysicalFrame>(get_left_foot_frame());
+//     m_right_foot_frame = getModel().getComponent<PhysicalFrame>(get_right_foot_frame());
+    m_left_foot_frame = getModel().getComponent<Body>(get_left_foot_frame());
     m_right_foot_frame = getModel().getComponent<Body>(get_right_foot_frame());
-
   int exponent = get_exponent();
 
   // The pow() function gives slightly different results than x * x. On Mac,
@@ -47,6 +49,9 @@ void MocoBOSGoal::calcIntegrandImpl(
 	
 	SimTK::Vec3 base_of_support(0.0);
 
+//     SimTK::Vec3 v_r = m_left_foot_frame->getPositionInGround(input.state);
+//     SimTK::Vec3 v_l = m_right_foot_frame->getPositionInGround(input.state);
+
     SimTK::Vec3 v_r = m_left_foot_frame->getMassCenter();
     SimTK::Vec3 v_l = m_right_foot_frame->getMassCenter();
 
@@ -69,6 +74,12 @@ void MocoBOSGoal::calcIntegrandImpl(
 void MocoBOSGoal::calcGoalImpl(
         const GoalInput& input, SimTK::Vector& cost) const {
     cost[0] = input.integral;
+	
+	// Divide by the displacement if divide_by_displacement property is true
+    if (get_divide_by_displacement()) {
+        cost[0] /=
+            calcSystemDisplacement(input.initial_state, input.final_state);
+    }
 }
 
 SimTK::Matrix MocoBOSGoal::FlattenSpatialVec(const SimTK::SpatialVec& S) const {

@@ -1,26 +1,21 @@
-#ifndef OPENSIM_REGISTERTYPES_OSIMMOCOZMP_H
-#define OPENSIM_REGISTERTYPES_OSIMMOCOZMPGOAL_H
+#ifndef OPENSIM_OSIMMOCOZMPGOALDLL_H
+#define OPENSIM_OSIMMOCOZMPGOALDLL_H
 /* -------------------------------------------------------------------------- *
- * OpenSim: RegisterTypes_osimMocoZMPGoal.h                                   *
+ * OpenSim: osimMocoZMPGoalDLL.h                                *
  * -------------------------------------------------------------------------- *
  *                                                                            *
  * Author(s): Aravind Sundararajan, Varun Joshi                                            *
  *                                                                            *
  * -------------------------------------------------------------------------- */
 
-#include "osimMocoZMPGoalDLL.h"
+#ifndef _WIN32
+    #define OSIMMOCOZMPGOAL_API
+#else
+    #ifdef OSIMMOCOZMPGOAL_EXPORTS
+        #define OSIMMOCOZMPGOAL_API __declspec(dllexport)
+    #else
+        #define OSIMMOCOZMPGOAL_API __declspec(dllimport)
+    #endif
+#endif
 
-extern "C" {
-
-OSIMMOCOZMPGOAL_API void RegisterTypes_osimMocoZMPGoal();
-
-}
-
-class osimMocoZMPGoalInstantiator {
-public:
-    osimMocoZMPGoalInstantiator();
-private:
-    void registerDllClasses();
-};
-
-#endif // OPENSIM_REGISTERTYPES_OSIMMOCOZMPGOAL_H
+#endif // OPENSIM_OSIMMOCOZMPGOALDLL_H

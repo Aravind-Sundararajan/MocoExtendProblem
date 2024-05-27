@@ -4,8 +4,7 @@
  * OpenSim: MocoMaxCoordinateGoal.h                                           *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Aravind Sundararajan, Varun Joshi                                            *
- *                                                                            *
+ * Author(s): Aravind Sundararajan                                            *
  * -------------------------------------------------------------------------- */
 
 #include <OpenSim/Moco/osimMoco.h>
@@ -30,6 +29,12 @@ namespace OpenSim
             constructProperties();
         }
 
+        // Public members to change the divide by displacement property
+        void setDivideByDisplacement(bool tf) { set_divide_by_displacement(tf); }
+        bool getDivideByDisplacement() const
+        {
+            return get_divide_by_displacement();
+        }
         // Set the state names for coordinate acc minimization
         void setStateName(const std::string refCoordName) {
             std::cout << "Setting coordinate names from string " << std::endl;
@@ -46,14 +51,9 @@ namespace OpenSim
             const GoalInput &input, SimTK::Vector &cost) const override;
 
     private:
-        OpenSim_DECLARE_PROPERTY(exponent, int,
-            "The exponent applied to the output value in the integrand. "
-            "The output can take on negative values in the integrand when the "
-            "exponent is set to 1 (the default value). When the exponent is "
-            "set to a value greater than 1, the absolute value function is "
-            "applied to the output (before the exponent is applied), meaning "
-            "that odd numbered exponents (greater than 1) do not take on "
-            "negative values.");
+        OpenSim_DECLARE_PROPERTY(divide_by_displacement, bool,
+                                 "Divide by the model's displacement over the phase (default: "
+                                 "false)");
         void constructProperties();
         mutable StatesTrajectory st;
         mutable std::vector<double> inte;
@@ -63,7 +63,6 @@ namespace OpenSim
         // State for which we want to minimize acceleration. Column labels 
         // should be state variable paths, e.g., '/jointset/knee_r/knee_angle_r'
         mutable std::string m_state_name;
-    	mutable std::function<double(const double&)> m_power_function;
     };
 
 } // namespace OpenSim

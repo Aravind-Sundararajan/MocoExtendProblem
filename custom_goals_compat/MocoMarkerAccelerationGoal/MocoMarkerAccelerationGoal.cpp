@@ -1,7 +1,7 @@
 /* -------------------------------------------------------------------------- *
- * OpenSim: MocoMarkerAccelerationGoal.cpp                                    *
+ * OpenSim Moco: RegisterTypes_osimMocoMarkerAccelerationGoal.cpp             *
  * -------------------------------------------------------------------------- *
-  *                                                                           *
+ *                                                                            *
  * Author(s): Varun Joshi, Aravind Sundararajan                                                      *
  *                                                                            *
  * -------------------------------------------------------------------------- */
@@ -14,7 +14,10 @@ using SimTK::Vec3;
 
 void MocoMarkerAccelerationGoal::constructProperties() {
     constructProperty_marker_name("/markerSet/testMarker");
-    constructProperty_exponent(2);
+    constructProperty_exponent(1);
+    constructProperty_divide_by_displacement(false);
+    
+
 }
 
 void MocoMarkerAccelerationGoal::initializeOnModelImpl(
@@ -22,8 +25,7 @@ void MocoMarkerAccelerationGoal::initializeOnModelImpl(
     // Get the marker
     m_model_marker.reset(&model.getComponent<Point>(get_marker_name()));
     setRequirements(1, 1);
-
-      int exponent = get_exponent();
+  int exponent = get_exponent();
 
   // The pow() function gives slightly different results than x * x. On Mac,
   // using x * x requires fewer solver iterations.
@@ -36,6 +38,7 @@ void MocoMarkerAccelerationGoal::initializeOnModelImpl(
       return pow(std::abs(x), exponent);
     };
   }
+
 }
 
 void MocoMarkerAccelerationGoal::calcIntegrandImpl(
@@ -66,4 +69,9 @@ void MocoMarkerAccelerationGoal::calcIntegrandImpl(
 void MocoMarkerAccelerationGoal::calcGoalImpl(
             const GoalInput& input, SimTK::Vector& cost) const {
         cost[0] = input.integral;
+
+        // Divide the cost by displacement
+        if (get_divide_by_displacement()) {
+            cost[0] /= calcSystemDisplacement(input.initial_state, input.final_state);
+        }
 }

@@ -1,31 +1,32 @@
 /* -------------------------------------------------------------------------- *
- * OpenSim Moco: RegisterTypes_osimMocoActivationGoal.cpp                     *
+ * OpenSim Moco: RegisterTypes_osimMocoBOSGoal.cpp              *
  * -------------------------------------------------------------------------- *
  *                                                                            *
  * Author(s): Aravind Sundararajan, Varun Joshi                                            *
  *                                                                            *
  * -------------------------------------------------------------------------- */
-#include "MocoActivationGoal.h"
-#include "RegisterTypes_osimMocoActivationGoal.h"
+
+#include "MocoBOSGoal.h"
+#include "RegisterTypes_osimMocoBOSGoal.h"
 
 using namespace OpenSim;
 
-static osimMocoActivationGoalInstantiator instantiator;
+static osimMocoBOSGoalInstantiator instantiator;
 
-OSIMMOCOACTIVATIONGOAL_API void RegisterTypes_osimMocoActivationGoal() {
+OSIMMOCOBOSGOAL_API void RegisterTypes_osimMocoBOSGoal() {
     try {
-        Object::registerType(MocoActivationGoal());
+        Object::registerType(MocoBOSGoal());
     } catch (const std::exception& e) {
-        std::cerr << "ERROR during osimMocoActivationGoal "
+        std::cerr << "ERROR during osimMocoBOSGoal "
                      "Object registration:\n"
                   << e.what() << std::endl;
     }
 }
 
-osimMocoActivationGoalInstantiator::osimMocoActivationGoalInstantiator() {
+osimMocoBOSGoalInstantiator::osimMocoBOSGoalInstantiator() {
     registerDllClasses();
 }
 
-void osimMocoActivationGoalInstantiator::registerDllClasses() {
-    RegisterTypes_osimMocoActivationGoal();
+void osimMocoBOSGoalInstantiator::registerDllClasses() {
+    RegisterTypes_osimMocoBOSGoal();
 }

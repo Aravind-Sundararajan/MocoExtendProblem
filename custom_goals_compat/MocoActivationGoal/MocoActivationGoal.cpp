@@ -1,22 +1,22 @@
 /* -------------------------------------------------------------------------- *
- * OpenSim Moco: MocoActivationSquaredGoal.cpp                                *
+ * OpenSim Moco: MocoActivationGoal.cpp                                       *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Varun Joshi, Aravind Sundararajan                                                      *
+ * Author(s): Aravind Sundararajan, Varun Joshi                                            *
  *                                                                            *
  * -------------------------------------------------------------------------- */
 
-#include "MocoActivationSquaredGoal.h"
+#include "MocoActivationGoal.h"
 
 using namespace OpenSim;
 
 // Set all the properties to their default values
-void MocoActivationSquaredGoal::constructProperties() {
+void MocoActivationGoal::constructProperties() {
+    constructProperty_divide_by_displacement(false);
     constructProperty_end_point_goal(0.0);
-    constructProperty_exponent(2);
 }
 
-void MocoActivationSquaredGoal::initializeOnModelImpl(const Model& model) const {
+void MocoActivationGoal::initializeOnModelImpl(const Model& model) const {
     // Make a map to get indices corresponding to every state in the model
     auto allSysYIndices = createSystemYIndexMap(model);
     
@@ -33,27 +33,24 @@ void MocoActivationSquaredGoal::initializeOnModelImpl(const Model& model) const 
             m_act_indices.push_back(activationIndex);
         }
     }
+      int exponent = get_exponent();
     
-  int exponent = get_exponent();
-
-  // The pow() function gives slightly different results than x * x. On Mac,
-  // using x * x requires fewer solver iterations.
-  if (exponent == 1) {
-    m_power_function = [](const double &x) { return std::abs(x); };
-  } else if (exponent == 2) {
-    m_power_function = [](const double &x) { return x * x; };
-  } else {
-    m_power_function = [exponent](const double &x) {
-      return pow(std::abs(x), exponent);
-    };
-  }
-
-
+      // The pow() function gives slightly different results than x * x. On Mac,
+      // using x * x requires fewer solver iterations.
+      if (exponent == 1) {
+        m_power_function = [](const double &x) { return std::abs(x); };
+      } else if (exponent == 2) {
+        m_power_function = [](const double &x) { return x * x; };
+      } else {
+        m_power_function = [exponent](const double &x) {
+          return pow(std::abs(x), exponent);
+        };
+      }
     // Set the requirements for the integrator - 1 input, 1 output
     setRequirements(1, 1);
 }
 
-void MocoActivationSquaredGoal::calcIntegrandImpl(
+void MocoActivationGoal::calcIntegrandImpl(
         const IntegrandInput& input, double& integrand) const {
     // Initialize the integrand
     integrand = 0.0;
@@ -65,15 +62,21 @@ void MocoActivationSquaredGoal::calcIntegrandImpl(
     
     // For each muscle, find the square of the activation and add it to the integrand
     for (int i = 0; i < (int)m_act_indices.size(); ++i) {
-        integrand += SimTK::square(states[m_act_indices[i]]);
+        integrand += SimTK::abs(states[m_act_indices[i]]);
     }   
 }
 
-void MocoActivationSquaredGoal::calcGoalImpl(
+void MocoActivationGoal::calcGoalImpl(
     const GoalInput& input, SimTK::Vector& cost) const {
 
     // Cost mode
     cost[0] = input.integral;
+
+    // Divide by the displacement if divide_by_displacement property is true
+    if (get_divide_by_displacement()) {
+        cost[0] /=
+            calcSystemDisplacement(input.initial_state, input.final_state);
+    }
 
     // End-point constraint mode
     if (!getModeIsCost()) {

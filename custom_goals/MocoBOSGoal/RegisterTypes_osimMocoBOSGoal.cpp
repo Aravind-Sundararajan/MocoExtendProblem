@@ -1,11 +1,10 @@
 /* -------------------------------------------------------------------------- *
- * OpenSim Moco: RegisterTypes_osimMocoBOSGoal.cpp              *
+ * OpenSim Moco: RegisterTypes_osimMocoBOSGoal.cpp                            *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Aravind Sundararajan, Varun Joshi                                            *
+ * Author(s): Aravind Sundararajan, Varun Joshi                               *
  *                                                                            *
  * -------------------------------------------------------------------------- */
-
 #include "MocoBOSGoal.h"
 #include "RegisterTypes_osimMocoBOSGoal.h"
 

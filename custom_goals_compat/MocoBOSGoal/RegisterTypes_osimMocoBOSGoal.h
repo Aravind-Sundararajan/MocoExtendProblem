@@ -1,26 +1,26 @@
-#ifndef OPENSIM_REGISTERTYPES_OSIMMOCOACTIVATION_H
-#define OPENSIM_REGISTERTYPES_OSIMMOCOACTIVATIONGOAL_H
+#ifndef OPENSIM_REGISTERTYPES_OSIMMOCOBOS_H
+#define OPENSIM_REGISTERTYPES_OSIMMOCOBOSGOAL_H
 /* -------------------------------------------------------------------------- *
- * OpenSim: RegisterTypes_osimMocoActivationGoal.h                            *
+ * OpenSim: RegisterTypes_osimMocoBOSGoal.h                     *
  * -------------------------------------------------------------------------- *
  *                                                                            *
  * Author(s): Aravind Sundararajan, Varun Joshi                                            *
  *                                                                            *
  * -------------------------------------------------------------------------- */
 
-#include "osimMocoActivationGoalDLL.h"
+#include "osimMocoBOSGoalDLL.h"
 
 extern "C" {
 
-OSIMMOCOACTIVATIONGOAL_API void RegisterTypes_osimMocoActivationGoal();
+OSIMMOCOBOSGOAL_API void RegisterTypes_osimMocoBOSGoal();
 
 }
 
-class osimMocoActivationGoalInstantiator {
+class osimMocoBOSGoalInstantiator {
 public:
-    osimMocoActivationGoalInstantiator();
+    osimMocoBOSGoalInstantiator();
 private:
     void registerDllClasses();
 };
 
-#endif // OPENSIM_REGISTERTYPES_OSIMMOCOACTIVATIONGOAL_H
+#endif // OPENSIM_REGISTERTYPES_OSIMMOCOBOSGOAL_H

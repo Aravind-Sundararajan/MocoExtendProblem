@@ -4,7 +4,7 @@
  * OpenSim: osimMocoMarkerAccelerationGoalDLL.h                               *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Varun Joshi, Aravind Sundararajan                                                      *
+ * Author(s): Varun Joshi, Aravind Sundararajan                               *
  *                                                                            *
  * -------------------------------------------------------------------------- */
 
