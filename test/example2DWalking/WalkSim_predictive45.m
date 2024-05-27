@@ -345,11 +345,11 @@ solver.set_parallel(1);
 % Solve the problem
 % =================
 gaitPredictiveSolution = study.solve();
-%reference_data = MocoTrajectory(output_dir + 'outputReference\states_tracked_states.sto');
+reference_data = MocoTrajectory(output_dir + 'outputReference\states_tracked_states.sto');
 
-% if ~gaitPredictiveSolution.isNumericallyEqual(reference_data)
-%     error('The simulation is not numerically equal to outputReference. Check ' + output_dir);
-% end
+if ~gaitPredictiveSolution.isNumericallyEqual(reference_data)
+    warning('The simulation is not numerically equal to outputReference. Check ' + output_dir);
+end
 
 % Check to make sure the problem solved successfully
 if ~strcmp(gaitPredictiveSolution.getStatus(),"Solve_Succeeded")

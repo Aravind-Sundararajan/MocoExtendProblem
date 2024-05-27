@@ -7,12 +7,12 @@ num_parameters=0
 num_slacks=0
 num_states=2
 objective=0.000000
-solver_duration=4.600275
+solver_duration=4.984676
 status=Solve_Succeeded
 success=true
 DataType=double
 version=3
-OpenSimVersion=4.3-2021-08-27-4bc7ad9
+OpenSimVersion=4.5
 endheader
 time	/slider/position/value	/slider/position/speed	/actuator
 0	0	0	223.6373230176473
