@@ -15,6 +15,7 @@ void MocoMaxCoordinateGoal::constructProperties() {
     constructProperty_divide_by_displacement(false);
     StatesTrajectory st = StatesTrajectory();
     std::vector<double> inte;
+//     double v = std::numeric_limits<double>::max();
 }
 
 void MocoMaxCoordinateGoal::initializeOnModelImpl(const Model& model) const {
@@ -29,39 +30,39 @@ void MocoMaxCoordinateGoal::initializeOnModelImpl(const Model& model) const {
     }
     coord_max = coord.getRangeMax();
     std::cout << "coord max of " << refName <<" is " << coord_max << "." << std::endl;
-  int exponent = get_exponent();
-
-  // The pow() function gives slightly different results than x * x. On Mac,
-  // using x * x requires fewer solver iterations.
-  if (exponent == 1) {
-    m_power_function = [](const double &x) { return std::abs(x); };
-  } else if (exponent == 2) {
-    m_power_function = [](const double &x) { return x * x; };
-  } else {
-    m_power_function = [exponent](const double &x) {
-      return pow(std::abs(x), exponent);
-    };
-  }
-
 }
 
 void MocoMaxCoordinateGoal::calcIntegrandImpl(
         const IntegrandInput& input, double& integrand) const {
     const auto& state = input.state;
     getModel().realizeDynamics(input.state);
-
-    double d = SimTK::square(state.getQ().get(m_state_index) - coord_max);
-
+    //inte.push_back(getWeight()*double(SimTK::square(state.getQ().get(m_state_index)- coord_max)));
+    //double m = *min_element(std::begin(inte), std::end(inte));
+    double d = SimTK::square(state.getQ().get(m_state_index) - coord_max);//state.getQ().get(m_state_index);//
+//     if (d < v){
+//         v = d;
+//     }
     if ((integrand >= d) || (integrand <= 0.0)){
-        integrand = d;
+    integrand = d;
     }
 }
 
 void MocoMaxCoordinateGoal::calcGoalImpl(
         const GoalInput& input, SimTK::Vector& cost) const {
-    cost[0] = std::sqrt(input.integral);
+//     double integral = *min_element(std::begin(inte), std::end(inte));
+//     double N = inte.size();
+    cost[0] = input.integral;//N*integral/(input.final_time -input.initial_time);
     if (get_divide_by_displacement()) {
         cost[0] /=
             calcSystemDisplacement(input.initial_state, input.final_state);
     }
+//     double se = 0.0;
+//     double lse = 0.0;
+//     for (int i =0; i < inte.size(); i++){
+//         se += exp(inte[i] - m);
+//     }
+//     lse = log(se) + m;
+    //std::cout << lse << std::endl;
+   // cost[0] = getWeight()*(input.integral);//getWeight()*(coord_max - lse);//*log(exp(coord_max - m)); input.integral;//
+    //inte.clear();
 }

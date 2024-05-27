@@ -1,7 +1,7 @@
 #ifndef OPENSIM_OSIMMOCOMAXCOORDINATEGOALDLL_H
 #define OPENSIM_OSIMMOCOMAXCOORDINATEGOALDLL_H
 /* -------------------------------------------------------------------------- *
- * OpenSim: osimMocoMaxCoordinateGoalDLL.h                                    *
+ * OpenSim: osimMocoMaxCoordinateGoalDLL.h                                *
  * -------------------------------------------------------------------------- *
  *                                                                            *
  * Author(s): Aravind Sundararajan, Varun Joshi                                            *

@@ -4,7 +4,7 @@
  * OpenSim: RegisterTypes_osimMocoMaxCoordinateGoal.h                         *
  * -------------------------------------------------------------------------- *
  *                                                                            *
- * Author(s): Aravind Sundararajan, Varun Joshi                               *
+ * Author(s): Aravind Sundararajan, Varun Joshi                                            *
  *                                                                            *
  * -------------------------------------------------------------------------- */
 

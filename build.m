@@ -4,24 +4,28 @@ clc
 fclose('all');
 addpath(genpath(fullfile(pwd,'utils'))); %utilities
 %% SETUP
-opensim_install = "C:\opensim 4.5";
+opensim_install = 'C:\opensim 4.3\'; % Path to the top-level OpenSim directory
+addpath([opensim_install 'bin'], [opensim_install 'sdk\lib']); % Add OpenSim paths to MATLAB
+javaaddpath([opensim_install 'bin'], [opensim_install 'sdk\lib']); % Add Java paths to MATLAB
+setenv('PATH', [[opensim_install 'bin'] ';' [opensim_install 'sdk\lib'] ';' getenv('PATH')]); % Set Windows System path to include OpenSim libraries
+
 builddir = fullfile(pwd,"build");
 bindir = fullfile(pwd,"bin");
 solutionPath = fullfile(builddir, "customGoals.sln");
 cppName ="extendProblem.cpp";
 wrapName ="extend_problem.m";
-config = "RelWithDebInfo";
+config ="RelWithDebInfo";
 %% CMAKE
 %if this is failing, check to see if vs 2022 msbuild.exe and cmake are part of
 %the system PATH.
 if contains(opensim_install,"4.5")
-    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version=5""");
+    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version=5");
 elseif contains(opensim_install,"4.4")
-    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version=4""");
+    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version=4");
 elseif contains(opensim_install,"4.3")
-    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version=3""");
+    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version=3");
 elseif contains(opensim_install,"4.2")
-    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version=2""");
+    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version=2");
     %system("cmake CmakeLists.txt -S . -B """+builddir+"""");
 end
 system("msbuild """+solutionPath+""" /p:configuration="+config); % 
