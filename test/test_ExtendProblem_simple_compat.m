@@ -1,4 +1,4 @@
-opensimroot = 'C:\opensim 4.5\'; %create a char array that has the opensim path toplevel directory
+opensimroot = 'C:\opensim 4.3\'; %create a char array that has the opensim path toplevel directory
 addpath([opensimroot 'bin'], [opensimroot 'sdk\lib']); %add the opensim path to the
 javaaddpath([opensimroot 'bin'], [opensimroot 'sdk\lib']); %add opensimroot bin and the java path to MATLAB's dynamic path path
 setenv('PATH', [[opensimroot 'bin'] ';' [opensimroot 'sdk\lib'] ';' getenv('PATH')]);% Set Windows System path to include OpenSim libraries
@@ -75,12 +75,11 @@ for j = 1:2
 if j == 1
     %no custom goal
 else
-	%ep.addMocoCoordinateAccelerationGoal('coordinate_acceleration_goal',1.0,true,{'/slider/position'});
-	%ep.addMocoActivationSquaredGoal('act_square',1.0, true, 0.);
-	%ep.addMocoMarkerAccelerationGoal('marker_acceleration_goal',w,false,true,false,'/markerset/testMarker');
-    ep.addMocoMaxCoordinateGoal('max_coordinate_goal',w, false, false, false, 'position');
+    %ep.addMocoCoordinateAccelerationGoal('coordinate_acceleration_goal',1.0,true,{'/slider/position'});
+    %ep.addMocoActivationSquaredGoal('act_square',1.0, true, 0.);
+    %ep.addMocoMarkerAccelerationGoal('marker_acceleration_goal',1.0,'/markerset/testMarker',true);
+    ep.addMocoMaxCoordinateGoal('max_coordinate_goal',1.0, false, 'position');
 end
-
 
 
 solver = study.initCasADiSolver();
@@ -136,6 +135,7 @@ catch
         disp(['  ',termName,': ',num2str(solution.getObjectiveTermByIndex(i-1)) ])
     end
 end
+
 
 end
 

@@ -1,4 +1,4 @@
-function WalkSim_predictive45(sim_type)
+function WalkSim_predictive(sim_type)
 
 addpath(genpath(fullfile(pwd,'bin','RelWithDebInfo'))); % Extend Problem (magic!)
 mesh_int= 25;
@@ -185,25 +185,20 @@ right_foot = char(model.getBodySet().get("calcn_r").getAbsolutePathString());
 cptr = uint64(problem.getCPtr(problem));
 ep = extend_problem(cptr);
 
-
-div_disp =false;
-div_dur =false;
-div_mass =false;
-
 if goal_type == 1
     %eff pred
 elseif goal_type ==2
-    ep.addMocoMarkerAccelerationGoal('addMocoMarkerAccelerationGoal',10.0,...
-        div_disp, div_dur, div_mass,...
-        char(model.getMarkerSet().get("head_marker").getAbsolutePathString()));
+    ep.addMocoMarkerAccelerationGoal('marker_acceleration', 10.0, ...
+        char(model.getMarkerSet().get("head_marker").getAbsolutePathString()), ...
+        1,...
+        false);
 elseif goal_type ==3
-    ep.addMocoBOSGoal('base_of_support',10.0,...
-        div_disp, div_dur,div_mass, 1,...
-        left_foot, right_foot);
+    ep.addMocoBOSGoal('base_of_support', 10.0, 1, false, left_foot, right_foot);
 elseif goal_type ==4
-    ep.addMocoZMPGoal('zero_moment_point',10.0,...
-        div_disp, div_dur, div_mass, 1); 
+    ep.addMocoZMPGoal('zero_moment_point', 10.0, 1, false); 
 end
+
+
 
 % A custom goal for minimizing acceleration per distance. Uses an explicit
 % formulation.
@@ -406,9 +401,9 @@ STOFileAdapter.write(externalForcesTableFlat, ...
 ref = MocoTrajectory(output_dir + '/outputReference/states_half.sto');
 
 if gaitPredictiveSolution.isNumericallyEqual(ref)
-    warning("output matches output reference for " + output_dir);
+    warning("output matches output reference for Gait Tracking");
 else
-    warning("tracking failed to match reference output for goal " + output_dir);
+    warning("tracking failed to match reference output for goal");
 end
 
 end

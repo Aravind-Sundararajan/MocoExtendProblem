@@ -13,13 +13,13 @@ import org.opensim.modeling.* %import opensim api library'
 %     warning("Running tests for OpenSim 4.5");   
 %     for s = sims'
 %         warning("starting sim:" + string(s));
-%         WalkSim_predictive45(s);
+%         WalkSim_predictive(s);
 %     end
 % else
 %     warning("Running tests for pre- OpenSim 4.5");
 %     for s = sims'
 %         warning("starting sim:" + string(s));
-%         WalkSim_predictive(s);  
+%         WalkSim_predictive_compat(s);  
 %     end
 % end
 %% 
