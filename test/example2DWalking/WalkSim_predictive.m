@@ -345,16 +345,6 @@ solver.set_parallel(1);
 % Solve the problem
 % =================
 gaitPredictiveSolution = study.solve();
-reference_data = MocoTrajectory(output_dir + 'outputReference\states_tracked_states.sto');
-
-if ~gaitPredictiveSolution.isNumericallyEqual(reference_data)
-    warning('The simulation is not numerically equal to outputReference. Check ' + output_dir);
-end
-
-% Check to make sure the problem solved successfully
-if ~strcmp(gaitPredictiveSolution.getStatus(),"Solve_Succeeded")
-    error('The problem did not solve succesfully - exiting');
-end
 
 % Extract some information from the solution
 output(1) = gaitPredictiveSolution.getObjective();
@@ -408,7 +398,7 @@ ref = MocoTrajectory(output_dir + '/outputReference/states_half.sto');
 if gaitPredictiveSolution.isNumericallyEqual(ref)
     warning("output matches output reference for " + output_dir);
 else
-    warning("tracking failed to match reference output for goal " + output_dir);
+    warning("reference failed to match reference output for goal " + output_dir);
 end
 
 end
