@@ -104,11 +104,11 @@ The results of each multi-objective predictive simulation, in which the stabilit
 
 :Objective cost and term breakdown for three predictive simulations using `MEP`.\label{tab:costs}
 
-|             | Objective cost | Effort  cost | Smoothing cost | Auxilliary cost |  Stability cost |
-|:-----------:|:--------------:|:------------:|:--------------:|:---------------:|:---------------:|
-|  $J_{BOS}$  |    3.759046    |   2.270912   |    0.683608    |     0.010372    |     0.794155    |
-|  $J_{ZMP}$  |    4.184254    |   2.751212   |    0.725837    |     0.009115    |     0.686290    |
-| $J_{accel}$ |    4.774932    |   3.797785   |    0.793123    |     0.009715    |     0.174308    |
+|             | Objective cost | Effort  cost | Smoothing cost |  Stability cost | 
+|:-----------:|:--------------:|:------------:|:--------------:|:---------------:|
+|  $J_{BOS}$  |    3.759046    |   2.270912   |    0.683608    |     0.794155    |
+|  $J_{ZMP}$  |    4.184254    |   2.751212   |    0.725837    |     0.686290    |
+| $J_{accel}$ |    4.774932    |   3.797785   |    0.793123    |     0.174308    |
 
 
 While these examples used planar gait simulations, `MEP` is agnostic to model complexity or task, and is being used successfully in our ongoing research  [@Joshi2023; @Sundararajan2023] of locomotor performance in humans and other animals. GNU Octave support would require minimal syntactical modification. An additional benefit of sequestering novel goals into ExtendProblem is being able to back-port goals from a newer OpenSim version to an older version (i.e. taking a goal from OpenSim 4.4 and bringing that functionality to 4.2). Ultimately, `MEP` offers a modular framework to rapidly develop, test and compare novel MocoGoals for features beyond OpenSim Moco’s current scope.
