@@ -111,7 +111,7 @@ The results of each multi-objective predictive simulation, in which the stabilit
 
 ![Table: Objective cost and term breakdown for three predictive simulations using `MEP` \label:{table1}.]
 
-While these examples used planar gait simulations, MEP is agnostic to model complexity or task, and is being used successfully in our ongoing research  [@Joshi2022; @Sundararajan2023] of locomotor performance in humans and other animals. GNU Octave support would require minimal syntactical modification. An additional benefit of sequestering novel goals into ExtendProblem is being able to back-port goals from a newer OpenSim version to an older version (i.e. taking a goal from OpenSim 4.4 and bringing that functionality to 4.2). Ultimately, MEP offers a modular framework to rapidly develop, test and compare novel MocoGoals for features beyond OpenSim Moco’s current scope.
+While these examples used planar gait simulations, MEP is agnostic to model complexity or task, and is being used successfully in our ongoing research  [@Joshi2023; @Sundararajan2023] of locomotor performance in humans and other animals. GNU Octave support would require minimal syntactical modification. An additional benefit of sequestering novel goals into ExtendProblem is being able to back-port goals from a newer OpenSim version to an older version (i.e. taking a goal from OpenSim 4.4 and bringing that functionality to 4.2). Ultimately, MEP offers a modular framework to rapidly develop, test and compare novel MocoGoals for features beyond OpenSim Moco’s current scope.
 
 # Funding
 
