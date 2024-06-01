@@ -104,6 +104,7 @@ The results of each multi-objective predictive simulation, in which the stabilit
 ![Sagittal plane hip, knee and ankle angles (a-c), vertical and A-P ground reaction forces (d-e), the 11 degree-of-freedom, 18 muscle sagittal plane human walking model used for tracking and predictive simulations (f)\label{fig:stability}](stability.png)
 
 \label{tab_costs}
+
 |             | Objective cost | Effort  cost | Smoothing cost | Stability  cost |
 |:-----------:|:--------------:|:------------:|:--------------:|:---------------:|
 |  $J_{BOS}$  |    3.759046    |   2.270912   |    0.683608    |     0.794155    |
