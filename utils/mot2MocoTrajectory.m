@@ -1,10 +1,10 @@
 function mot2MocoTrajectory(fileName)
 data = ReadOpenSimData(fileName);
-%% 
-%use this _rel.mot file to pull headers. 
+%%
+%use this _rel.mot file to pull headers.
 %    B = importdata('./s01/S01_Rel_T09_rel.mot');
-    %get column headers
-    %labels = B.textdata(7:7:end);
+%get column headers
+%labels = B.textdata(7:7:end);
 labels =data.labels;
 %Print other headers:
 fid = fopen(fileName,'w');
@@ -28,7 +28,7 @@ for i = 1:length(labels)
     fprintf(fid, '%s\t',char(txt) );
 end
 fprintf(fid,'\n'); %print an additional empty line
-fclose(fid); 
+fclose(fid);
 
 dlmwrite(fileName, data.data,'-append','delimiter','\t','newline','pc')
 

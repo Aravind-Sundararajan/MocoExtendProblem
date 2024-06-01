@@ -10,7 +10,7 @@ WalkSim_Tracking();
 %% PREDICTIVE
 % sims = enumeration(simulation.EFF);
 % if contains(opensimroot, "4.5")
-%     warning("Running tests for OpenSim 4.5");   
+%     warning("Running tests for OpenSim 4.5");
 %     for s = sims'
 %         warning("starting sim:" + string(s));
 %         WalkSim_predictive(s);
@@ -19,8 +19,8 @@ WalkSim_Tracking();
 %     warning("Running tests for pre- OpenSim 4.5");
 %     for s = sims'
 %         warning("starting sim:" + string(s));
-%         WalkSim_predictive_compat(s);  
+%         WalkSim_predictive_compat(s);
 %     end
 % end
-%% 
- WalkSim_predictive(simulation.ZMP);
+%%
+WalkSim_predictive(simulation.ZMP);

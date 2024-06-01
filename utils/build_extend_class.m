@@ -3,7 +3,7 @@ function build_extend_class(cppName,wrapName, opensimInstallDir)
 goal_tree = construct_goal_tree(opensimInstallDir);
 if contains(opensimInstallDir, "4.5")
     [c,m,w] = generate_content(goal_tree);
-else    
+else
     [c,m,w] = generate_content_compat(goal_tree);
 end
 %% CPP class construction

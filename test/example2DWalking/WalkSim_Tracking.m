@@ -6,7 +6,7 @@ guess_strategy ='CG';
 coarsest_mesh = 25;
 output_dirs = ["./output/track/"];
 
-output_dir =output_dirs(1); 
+output_dir =output_dirs(1);
 %------------------------------------------------------------------------
 % Solve a tracking problem where the goal is to minimize the difference
 % between simulated and reference coordinate values and speeds, and GRFs,
@@ -92,72 +92,72 @@ model.initSystem();
 
 % Symmetric coordinate values (except for pelvis_tx) and speeds
 for i = 1:model.getNumStateVariables()
-   currentStateName = string(model.getStateVariableNames().getitem(i-1));
-   if startsWith(currentStateName , '/jointset')
-      if contains(currentStateName,'_r')
-          symmetryGoal.addStatePair(MocoPeriodicityGoalPair(currentStateName, ...
-                         regexprep(currentStateName,'_r','_l') ) );
-      end
-      if contains(currentStateName,'_l')
-          symmetryGoal.addStatePair(MocoPeriodicityGoalPair(currentStateName, ...
-                         regexprep(currentStateName,'_l','_r') ) );
-      end
-      if (~contains(currentStateName,'_r') && ~contains(currentStateName,'_l') && ...
-          ~contains(currentStateName,'pelvis_tx/value')  && ...
-          ~contains(currentStateName,'/activation'))
-         symmetryGoal.addStatePair(MocoPeriodicityGoalPair(currentStateName));
-      end
-   end
+    currentStateName = string(model.getStateVariableNames().getitem(i-1));
+    if startsWith(currentStateName , '/jointset')
+        if contains(currentStateName,'_r')
+            symmetryGoal.addStatePair(MocoPeriodicityGoalPair(currentStateName, ...
+                regexprep(currentStateName,'_r','_l') ) );
+        end
+        if contains(currentStateName,'_l')
+            symmetryGoal.addStatePair(MocoPeriodicityGoalPair(currentStateName, ...
+                regexprep(currentStateName,'_l','_r') ) );
+        end
+        if (~contains(currentStateName,'_r') && ~contains(currentStateName,'_l') && ...
+                ~contains(currentStateName,'pelvis_tx/value')  && ...
+                ~contains(currentStateName,'/activation'))
+            symmetryGoal.addStatePair(MocoPeriodicityGoalPair(currentStateName));
+        end
+    end
 end
 
 % Symmetric muscle activations
 for i = 1:model.getNumStateVariables()
-   currentStateName = string(model.getStateVariableNames().getitem(i-1));
-   if endsWith(currentStateName,'/activation')
-      if contains(currentStateName,'_r')
-          symmetryGoal.addStatePair(MocoPeriodicityGoalPair(currentStateName, ...
-                         regexprep(currentStateName,'_r','_l')));
-      end
-      if contains(currentStateName,'_l')
-          symmetryGoal.addStatePair(MocoPeriodicityGoalPair(currentStateName, ...
-                         regexprep(currentStateName,'_l','_r')));
-      end
+    currentStateName = string(model.getStateVariableNames().getitem(i-1));
+    if endsWith(currentStateName,'/activation')
+        if contains(currentStateName,'_r')
+            symmetryGoal.addStatePair(MocoPeriodicityGoalPair(currentStateName, ...
+                regexprep(currentStateName,'_r','_l')));
+        end
+        if contains(currentStateName,'_l')
+            symmetryGoal.addStatePair(MocoPeriodicityGoalPair(currentStateName, ...
+                regexprep(currentStateName,'_l','_r')));
+        end
 
-   end
+    end
 end
 
 % Symmetric tendon forces
 for i = 1:model.getNumStateVariables()
-   currentStateName = string(model.getStateVariableNames().getitem(i-1));
-   if endsWith(currentStateName,'/normalized_tendon_force')
-      if contains(currentStateName,'_r')
-          symmetryGoal.addStatePair(MocoPeriodicityGoalPair(currentStateName, ...
-                         regexprep(currentStateName,'_r','_l')));
-      end
-      if contains(currentStateName,'_l')
-          symmetryGoal.addStatePair(MocoPeriodicityGoalPair(currentStateName, ...
-                         regexprep(currentStateName,'_l','_r')));
-      end
+    currentStateName = string(model.getStateVariableNames().getitem(i-1));
+    if endsWith(currentStateName,'/normalized_tendon_force')
+        if contains(currentStateName,'_r')
+            symmetryGoal.addStatePair(MocoPeriodicityGoalPair(currentStateName, ...
+                regexprep(currentStateName,'_r','_l')));
+        end
+        if contains(currentStateName,'_l')
+            symmetryGoal.addStatePair(MocoPeriodicityGoalPair(currentStateName, ...
+                regexprep(currentStateName,'_l','_r')));
+        end
 
-   end
+    end
 end
 
 % Symmetric controls
 controlsNames = problem.createRep().createControlInfoNames();
 for i = 1:model.getNumControls()
-   currentControlName = string(controlsNames.get(i-1));
-   if (contains(currentControlName,'_r') || contains(currentControlName,'_l'))
-       
-      if contains(currentControlName,'_r')
-          symmetryGoal.addControlPair(MocoPeriodicityGoalPair(currentControlName , ...
-              regexprep(currentControlName,'_r','_l')));
-      end
-      if contains(currentControlName,'_l')
-          symmetryGoal.addControlPair(MocoPeriodicityGoalPair(currentControlName , ...
-              regexprep(currentControlName,'_l','_r')));
-      end
-       
-   end
+    currentControlName = string(controlsNames.get(i-1));
+    if (contains(currentControlName,'_r') || contains(currentControlName,'_l'))
+
+        if contains(currentControlName,'_r')
+            symmetryGoal.addControlPair(MocoPeriodicityGoalPair(currentControlName , ...
+                regexprep(currentControlName,'_r','_l')));
+        end
+        if contains(currentControlName,'_l')
+            symmetryGoal.addControlPair(MocoPeriodicityGoalPair(currentControlName , ...
+                regexprep(currentControlName,'_l','_r')));
+        end
+
+    end
 end
 
 % Prescribed average gait speed
@@ -175,7 +175,7 @@ effort.setWeight(ControlEffortWeight);
 
 % cptr = uint64(problem.getCPtr(problem));
 % ep = extend_problem(cptr);
-% 
+%
 % if j == 1
 %     %eff pred
 % elseif j ==2
@@ -365,9 +365,9 @@ contactSpheres_l.add("Contact_Foot_Ground_L7");
 contactSpheres_l.add("Contact_Foot_Ground_L8");
 
 externalForcesTableFlat = opensimMoco.createExternalLoadsTableForGait(model, ...
-                             fullStride,contactSpheres_r,contactSpheres_l);
+    fullStride,contactSpheres_r,contactSpheres_l);
 STOFileAdapter.write(externalForcesTableFlat, ...
-                             output_dir + 'GRF.sto');
+    output_dir + 'GRF.sto');
 
 gaitTrackingSolution.write(output_dir + 'states_half.sto');
 ref = MocoTrajectory(output_dir + '/outputReference/states_half.sto');

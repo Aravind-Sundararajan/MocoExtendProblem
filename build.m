@@ -29,13 +29,13 @@ elseif contains(opensim_install,"4.2")
     system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version=2");
     %system("cmake CmakeLists.txt -S . -B """+builddir+"""");
 end
-system("msbuild """+solutionPath+""" /p:configuration="+config); % 
+system("msbuild """+solutionPath+""" /p:configuration="+config); %
 %% PROCEDURAL CPP CLASS CONSTRUCTION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %This uses regex to parse the hpp of each custom goal                     %
 %and identifies any setter functions along with their arguments, and      %
-%automatically generates an extendProblem class.                          % 
-%this also procedurally constructs the mex before MEX_DISPATCH            % 
+%automatically generates an extendProblem class.                          %
+%this also procedurally constructs the mex before MEX_DISPATCH            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 build_extend_class(fullfile(bindir,config,cppName),fullfile(bindir,config,wrapName), opensim_install);
 %% BUILD MEX

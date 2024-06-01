@@ -72,70 +72,70 @@ cptr = uint64(problem.getCPtr(problem));
 ep = extend_problem(cptr);
 
 for j = 1:2
-if j == 1
-    %no custom goal
-else
-	%ep.addMocoCoordinateAccelerationGoal('coordinate_acceleration_goal',1.0,true,{'/slider/position'});
-	%ep.addMocoActivationSquaredGoal('act_square',1.0, true, 0.);
-	%ep.addMocoMarkerAccelerationGoal('marker_acceleration_goal',w,false,true,false,'/markerset/testMarker');
-    ep.addMocoMaxCoordinateGoal('max_coordinate_goal',w, false, false, false, 'position');
-end
-
-
-
-solver = study.initCasADiSolver();
-guess = solver.createGuess();
-numRows = guess.getNumTimes();
-guess.setState('/slider/position/value', linspace(0,0,numRows));
-guess.setState('/slider/position/speed', linspace(0,0,numRows));
-solver.setGuess(guess);
-%solver.set_num_mesh_intervals(50);
-%solver.set_optim_constraint_tolerance(1e-10);
-%solver.set_optim_convergence_tolerance(1e-10);
-% Solve the problem.
-% ==================
-solution = study.solve();
-
-if j == 1
-    solution.write('./test/pointMass/sliding_mass_solution_NoMax.sto');
-    ref = MocoTrajectory('./test/pointMass/outputReference/sliding_mass_solution_NoMax.sto');
-    
-    if solution.isNumericallyEqual(ref)
-        disp("1) output matches output reference for NoMax");
+    if j == 1
+        %no custom goal
     else
-        disp("failed to match reference output for goal");
+        %ep.addMocoCoordinateAccelerationGoal('coordinate_acceleration_goal',1.0,true,{'/slider/position'});
+        %ep.addMocoActivationSquaredGoal('act_square',1.0, true, 0.);
+        %ep.addMocoMarkerAccelerationGoal('marker_acceleration_goal',w,false,true,false,'/markerset/testMarker');
+        ep.addMocoMaxCoordinateGoal('max_coordinate_goal',w, false, false, false, 'position');
     end
 
-else
-    solution.write('./test/pointMass/sliding_mass_solution.sto');
-    ref = MocoTrajectory('./test/pointMass/outputReference/sliding_mass_solution.sto');
 
-    if solution.isNumericallyEqual(ref)
-        disp("2) output matches output reference for MaxGoal");
+
+    solver = study.initCasADiSolver();
+    guess = solver.createGuess();
+    numRows = guess.getNumTimes();
+    guess.setState('/slider/position/value', linspace(0,0,numRows));
+    guess.setState('/slider/position/speed', linspace(0,0,numRows));
+    solver.setGuess(guess);
+    %solver.set_num_mesh_intervals(50);
+    %solver.set_optim_constraint_tolerance(1e-10);
+    %solver.set_optim_convergence_tolerance(1e-10);
+    % Solve the problem.
+    % ==================
+    solution = study.solve();
+
+    if j == 1
+        solution.write('./test/pointMass/sliding_mass_solution_NoMax.sto');
+        ref = MocoTrajectory('./test/pointMass/outputReference/sliding_mass_solution_NoMax.sto');
+
+        if solution.isNumericallyEqual(ref)
+            disp("1) output matches output reference for NoMax");
+        else
+            disp("failed to match reference output for goal");
+        end
+
     else
-        disp("max goal failed to match reference output for goal");
-    end
-end
+        solution.write('./test/pointMass/sliding_mass_solution.sto');
+        ref = MocoTrajectory('./test/pointMass/outputReference/sliding_mass_solution.sto');
 
-dur = seconds(solution.getSolverDuration());
-[h,m,s] = hms(dur);
-disp('   ')
-disp(['Solver duration (h:m:s): ' num2str(h) ':' num2str(m) ':' num2str(round(s))])
-disp('   ')
-disp('Breakdown of objective (including weights):')
+        if solution.isNumericallyEqual(ref)
+            disp("2) output matches output reference for MaxGoal");
+        else
+            disp("max goal failed to match reference output for goal");
+        end
+    end
 
-try
-    for i = 1:solution.getNumObjectiveTerms()
-        termName = solution.getObjectiveTermNames().get(i-1);
-        termNamestr = termName.toCharArray';
-        disp(['  ',termNamestr,': ',num2str(solution.getObjectiveTermByIndex(i-1)) ])
+    dur = seconds(solution.getSolverDuration());
+    [h,m,s] = hms(dur);
+    disp('   ')
+    disp(['Solver duration (h:m:s): ' num2str(h) ':' num2str(m) ':' num2str(round(s))])
+    disp('   ')
+    disp('Breakdown of objective (including weights):')
+
+    try
+        for i = 1:solution.getNumObjectiveTerms()
+            termName = solution.getObjectiveTermNames().get(i-1);
+            termNamestr = termName.toCharArray';
+            disp(['  ',termNamestr,': ',num2str(solution.getObjectiveTermByIndex(i-1)) ])
+        end
+    catch
+        for i = 1:solution.getNumObjectiveTerms()
+            termName = solution.getObjectiveTermNames().get(i-1);
+            disp(['  ',termName,': ',num2str(solution.getObjectiveTermByIndex(i-1)) ])
+        end
     end
-catch
-    for i = 1:solution.getNumObjectiveTerms()
-        termName = solution.getObjectiveTermNames().get(i-1);
-        disp(['  ',termName,': ',num2str(solution.getObjectiveTermByIndex(i-1)) ])
-    end
-end
 
 end
 

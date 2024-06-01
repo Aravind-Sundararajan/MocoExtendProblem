@@ -38,7 +38,7 @@ modelProcessor = ModelProcessor('./models/model_31d84m_modified_contacts.osim');
 
 %weld some of the joints
 jointsToWeld = StdVectorString();
-% Weld shoulder and elbow joints for initial torque-driven sim. 
+% Weld shoulder and elbow joints for initial torque-driven sim.
 % jointsToWeld.add('shoulder_r');
 % jointsToWeld.add('shoulder_l');
 % jointsToWeld.add('elbow_r');
@@ -71,7 +71,7 @@ track.set_final_time(1.16);
 
 % Coordinate-specific tracking weights (value & speed) as SDs averaged over the
 % gait cycle from O'Neill et al. 2021)
-%                                                            
+%
 pq = StateTrackWeight; % Divided by 44 because there are 44 tracking targets: 32 DoF, 6 GRF components
 coordWeights = MocoWeightSet();
 coordWeights.cloneAndAppend(MocoWeight('/jointset/groundPelvis/pelvis_tx/value',          0));
@@ -139,7 +139,7 @@ model.initSystem();
 for i = 1:model.getNumStateVariables()
     currentStateName = string(model.getStateVariableNames().getitem(i-1));
     if (~contains(currentStateName,'pelvis_tx/value'))
-       symmetryGoal.addStatePair(MocoPeriodicityGoalPair(currentStateName));
+        symmetryGoal.addStatePair(MocoPeriodicityGoalPair(currentStateName));
     end
 end
 
@@ -163,10 +163,10 @@ effort.setDivideByDisplacement(false);
 if GRFTrackWeight ~= 0
     contactTracking = MocoContactTrackingGoal('contact', GRFTrackWeight);
     contactTracking.setExternalLoadsFile('./input/muscle/grf_humanwalk.xml');
-    
+
     contactSpheres_r = StdVectorString();
     contactSpheres_l = StdVectorString();
-    
+
     contactSpheres_r.add("contactHeel_r");
     contactSpheres_r.add("contactMedHeel_r");
     contactSpheres_r.add("contactLatHeel_r");
@@ -178,7 +178,7 @@ if GRFTrackWeight ~= 0
     contactSpheres_r.add("contactMH5_r");
     contactSpheres_r.add("contactHallux_r");
     contactSpheres_r.add("contactOtherToes_r");
-    
+
     contactSpheres_l.add("contactHeel_l");
     contactSpheres_l.add("contactMedHeel_l");
     contactSpheres_l.add("contactLatHeel_l");
@@ -190,16 +190,16 @@ if GRFTrackWeight ~= 0
     contactSpheres_l.add("contactMH5_l");
     contactSpheres_l.add("contactHallux_l");
     contactSpheres_l.add("contactOtherToes_l");
-    
+
     contactTracking.addContactGroup(contactSpheres_r,"Right_GRF");
     contactTracking.addContactGroup(contactSpheres_l,"Left_GRF");
-    
+
     % Example code if there is a two part foot
     % altFramesRightFoot = StdVectorString(); % for two-part foot
     % altFramesRightFoot.add('/bodyset/r_toes');
     % contactTracking.addContactGroup(MocoContactTrackingGoalGroup( ...
     %               forceNamesRightFoot,'Right_GRF',altFramesRightFoot));
-    
+
     problem.addGoal(contactTracking);
 end
 
@@ -280,7 +280,7 @@ guess = solver.createGuess();
 
 % Set the unknown activations all to a low value
 % numRows = guess.getNumTimes();
-% 
+%
 % StateNames = model.getStateVariableNames();
 % for i = 1:model.getNumStateVariables()
 %    currentStateName = string(StateNames.getitem(i-1));
@@ -318,14 +318,14 @@ disp('   ')
 disp('Breakdown of objective (including weights):')
 try
     for i = 1:humanTrackingSolution.getNumObjectiveTerms()
-       termName = humanTrackingSolution.getObjectiveTermNames().get(i-1);
-       termNamestr = termName.toCharArray';
-       disp(['  ',termNamestr,': ',num2str(humanTrackingSolution.getObjectiveTermByIndex(i-1)) ])
+        termName = humanTrackingSolution.getObjectiveTermNames().get(i-1);
+        termNamestr = termName.toCharArray';
+        disp(['  ',termNamestr,': ',num2str(humanTrackingSolution.getObjectiveTermByIndex(i-1)) ])
     end
 catch
     for i = 1:humanTrackingSolution.getNumObjectiveTerms()
-       termName = humanTrackingSolution.getObjectiveTermNames().get(i-1);
-       disp(['  ',termName,': ',num2str(humanTrackingSolution.getObjectiveTermByIndex(i-1)) ])
+        termName = humanTrackingSolution.getObjectiveTermNames().get(i-1);
+        disp(['  ',termName,': ',num2str(humanTrackingSolution.getObjectiveTermByIndex(i-1)) ])
     end
 end
 
@@ -345,7 +345,7 @@ if GRFTrackWeight == 0
     contactSpheres_r.add("contactMH5_r");
     contactSpheres_r.add("contactHallux_r");
     contactSpheres_r.add("contactOtherToes_r");
-    
+
     contactSpheres_l.add("contactHeel_l");
     contactSpheres_l.add("contactMedHeel_l");
     contactSpheres_l.add("contactLatHeel_l");
@@ -360,8 +360,8 @@ if GRFTrackWeight == 0
 end
 
 externalForcesTableFlat = org.opensim.modeling.opensimMoco.createExternalLoadsTableForGait(model, ...
-                          humanTrackingSolution,contactSpheres_r,contactSpheres_l);
-                      
+    humanTrackingSolution,contactSpheres_r,contactSpheres_l);
+
 org.opensim.modeling.STOFileAdapter.write(externalForcesTableFlat,grf_path);
 
 diary off
