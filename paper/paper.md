@@ -99,19 +99,17 @@ J_{zmp} = W_1 EFF^{2} + W_2 ACC_{smoothing} + W_3 ZMP
 J_{acc} = W_1 EFF^{2} + W_2 ACC_{smoothing} + W_3 ACC_{marker}
 \end{equation}
 
-The results of each multi-objective predictive simulation, in which the stability criterion was compiled using MEP, is shown against the results from a tracking simulation [\autoref{fig:stability}; \autoref{table1}] that closely-matched experimental data [@Denton2023]. As the purpose was to demonstrate the utility of MEP, we did not tune the stability term weights to match the tracking result as closely as possible. 
+The results of each multi-objective predictive simulation, in which the stability criterion was compiled using MEP, is shown against the results from a tracking simulation [\autoref{fig:stability}; \autoref{tab:costs}] that closely-matched experimental data [@Denton2023]. As the purpose was to demonstrate the utility of MEP, we did not tune the stability term weights to match the tracking result as closely as possible. 
 
 ![Sagittal plane hip, knee and ankle angles (a-c), vertical and A-P ground reaction forces (d-e), the 11 degree-of-freedom, 18 muscle sagittal plane human walking model used for tracking and predictive simulations (f)\label{fig:stability}](stability.png)
 
-\label{tab_costs}
+:Objective cost and term breakdown for three predictive simulations using MEP.\label{tab:costs}
 
 |             | Objective cost | Effort  cost | Smoothing cost | Stability  cost |
 |:-----------:|:--------------:|:------------:|:--------------:|:---------------:|
 |  $J_{BOS}$  |    3.759046    |   2.270912   |    0.683608    |     0.794155    |
 |  $J_{ZMP}$  |    4.184254    |   2.751212   |    0.725837    |     0.686290    |
 | $J_{accel}$ |    4.774932    |   3.797785   |    0.793123    |     0.174308    |
-
-![Objective cost and term breakdown for three predictive simulations using MEP.\label{tab:costs}]
 
 
 While these examples used planar gait simulations, MEP is agnostic to model complexity or task, and is being used successfully in our ongoing research  [@Joshi2023; @Sundararajan2023] of locomotor performance in humans and other animals. GNU Octave support would require minimal syntactical modification. An additional benefit of sequestering novel goals into ExtendProblem is being able to back-port goals from a newer OpenSim version to an older version (i.e. taking a goal from OpenSim 4.4 and bringing that functionality to 4.2). Ultimately, MEP offers a modular framework to rapidly develop, test and compare novel MocoGoals for features beyond OpenSim Moco’s current scope.
