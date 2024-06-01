@@ -57,11 +57,9 @@ CMake and msbuild from Visual Studio 2019 or higher must be added to the system 
 
 To create a new goal with MEP: 
 
- 1 OpenSim 4.5+ users should copy a goal in the custom_goals directory while 4.2-4.4 users  should copy a goal in custom_goals_compat.
-
- 2 Replace mentions of the original goal name to that of your new custom goal name in each of the 5 files and file names, being careful to also modify the include guards in the dll and register types header files. 
-
- 3 Reimplement constructProperties(), initializeOnModelImpl(), calcIntegrandImpl(), calcGoalImpl() such that they describe your custom goal.
+1. OpenSim 4.5+ users should copy a goal in the custom_goals directory while 4.2-4.4 users  should copy a goal in custom_goals_compat.
+2. Replace mentions of the original goal name to that of your new custom goal name in each of the 5 files and file names, being careful to also modify the include guards in the dll and register types header files. 
+3. Reimplement constructProperties(), initializeOnModelImpl(), calcIntegrandImpl(), calcGoalImpl() such that they describe your custom goal.
 
 To incorporate extend_problem goals into an existing MATLAB script, a C-style pointer to the instantiated MocoProblem is passed as a constructor argument to the extend_problem.m class that wraps the MEP MEX. Class methods of extend_problem.m (\autoref{fig:files}; blue) are then used to add custom goals to the MocoProblem.
 
