@@ -83,7 +83,7 @@ This paradigm has implications for OpenSim and MATLAB developers beyond the scop
 
 To demonstrate the utility of this framework, we generated a two-dimensional (2-D) walking simulation using the MATLAB-OpenSim API [@Denton2023]. The base code uses the built-in MocoControlEffortGoal and MocoAverageSpeedGoal to generate tracking and predictive simulations of minimum effort walking at an average speed of 1.3 m s-1. Additionally, each objective function includes implicit acceleration and auxiliary derivative terms that are minimized to ensure smooth trajectories. 
 
-Since Moco lacks built-in gait stability goals, we developed three stability goals using MEP build.m to create an ExtendProblem class that adds these to an existing MocoProblem (\autoref{fig:files}; blue). The first is a base of support (\autoref{eq:cost_bos}) criterion in which the whole-body center of mass (COM) is optimized to lay between the two hindfeet COMs projected to the ground reference frame, the second is a zero-moment-point goal [\autoref{eq:cost_zmp} where the center of mass tracks the computed zero-tilting moment location, and the third is a marker acceleration minimization goal [\autoref{eq:cost_acc] that minimizes the explicit accelerations of a marker placed on the head (marker location is arbitrary and can be set by the user).
+Since Moco lacks built-in gait stability goals, we developed three stability goals using MEP build.m to create an ExtendProblem class that adds these to an existing MocoProblem (\autoref{fig:files}; blue). The first is a base of support (\autoref{eq:cost_bos}) criterion in which the whole-body center of mass (COM) is optimized to lay between the two hindfeet COMs projected to the ground reference frame, the second is a zero-moment-point goal (\autoref{eq:cost_zmp}) where the center of mass tracks the computed zero-tilting moment location, and the third is a marker acceleration minimization goal (\autoref{eq:cost_acc}) that minimizes the explicit accelerations of a marker placed on the head (marker location is arbitrary and can be set by the user).
 
 MEP’s build.m was used to generate an ExtendProblem class that adds these new stability cost terms: 
 
@@ -99,7 +99,7 @@ J_{zmp} = W_1 EFF^{2} + W_2 ACC_{smoothing} + W_3 ZMP
 J_{acc} = W_1 EFF^{2} + W_2 ACC_{smoothing} + W_3 ACC_{marker}
 \end{equation}
 
-The results of each multi-objective predictive simulation, in which the stability criterion was compiled using MEP, is shown against the results from a tracking simulation [\autoref{fig:stability; \autoref{table1}] that closely-matched experimental data [@Denton2023]. As the purpose was to demonstrate the utility of MEP, we did not tune the stability term weights to match the tracking result as closely as possible. 
+The results of each multi-objective predictive simulation, in which the stability criterion was compiled using MEP, is shown against the results from a tracking simulation [\autoref{fig:stability}; \autoref{table1}] that closely-matched experimental data [@Denton2023]. As the purpose was to demonstrate the utility of MEP, we did not tune the stability term weights to match the tracking result as closely as possible. 
 
 ![Sagittal plane hip, knee and ankle angles (a-c), vertical and A-P ground reaction forces (d-e), the 11 degree-of-freedom, 18 muscle sagittal plane human walking model used for tracking and predictive simulations (f)\label{fig:stability}](stability.png)
 
@@ -111,7 +111,7 @@ The results of each multi-objective predictive simulation, in which the stabilit
 
 ![Table: Objective cost and term breakdown for three predictive simulations using `MEP` \label:{table1}.]
 
-While these examples used planar gait simulations, MEP is agnostic to model complexity or task, and is being used successfully in our ongoing research [ @Joshi2022, @Sundararajan2023] of locomotor performance in humans and other animals. GNU Octave support would require minimal syntactical modification. An additional benefit of sequestering novel goals into ExtendProblem is being able to back-port goals from a newer OpenSim version to an older version (i.e. taking a goal from OpenSim 4.4 and bringing that functionality to 4.2). Ultimately, MEP offers a modular framework to rapidly develop, test and compare novel MocoGoals for features beyond OpenSim Moco’s current scope.
+While these examples used planar gait simulations, MEP is agnostic to model complexity or task, and is being used successfully in our ongoing research  [@Joshi2022; @Sundararajan2023] of locomotor performance in humans and other animals. GNU Octave support would require minimal syntactical modification. An additional benefit of sequestering novel goals into ExtendProblem is being able to back-port goals from a newer OpenSim version to an older version (i.e. taking a goal from OpenSim 4.4 and bringing that functionality to 4.2). Ultimately, MEP offers a modular framework to rapidly develop, test and compare novel MocoGoals for features beyond OpenSim Moco’s current scope.
 
 # Funding
 
