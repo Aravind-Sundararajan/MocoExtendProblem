@@ -25,7 +25,7 @@
     year = {2021},
     month = {12},
     volume = {16},
-    url = {https://doi.org/10.1371/journal.pcbi.1008493},
+    url = {10.1371/journal.pcbi.1008493},
     pages = {1-21},
     abstract = {Musculoskeletal simulations are used in many different applications, ranging from the design of wearable robots that interact with humans to the analysis of patients with impaired movement. Here, we introduce OpenSim Moco, a software toolkit for optimizing the motion and control of musculoskeletal models built in the OpenSim modeling and simulation package. OpenSim Moco uses the direct collocation method, which is often faster and can handle more diverse problems than other methods for musculoskeletal simulation. Moco frees researchers from implementing direct collocation themselves—which typically requires extensive technical expertise—and allows them to focus on their scientific questions. The software can handle a wide range of problems that interest biomechanists, including motion tracking, motion prediction, parameter optimization, model fitting, electromyography-driven simulation, and device design. Moco is the first musculoskeletal direct collocation tool to handle kinematic constraints, which enable modeling of kinematic loops (e.g., cycling models) and complex anatomy (e.g., patellar motion). To show the abilities of Moco, we first solved for muscle activity that produced an observed walking motion while minimizing squared muscle excitations and knee joint loading. Next, we predicted how muscle weakness may cause deviations from a normal walking motion. Lastly, we predicted a squat-to-stand motion and optimized the stiffness of an assistive device placed at the knee. We designed Moco to be easy to use, customizable, and extensible, thereby accelerating the use of simulations to understand the movement of humans and other animals.},
     number = {12},
@@ -40,7 +40,7 @@
 	number = {12},
 	pages = {e3777},
 	keywords = {biomechanics, musculoskeletal model, optimal control, optimization},
-	doi = {https://doi.org/10.1002/cnm.3777},
+	doi = {10.1002/cnm.3777},
 	url = {https://onlinelibrary.wiley.com/doi/abs/10.1002/cnm.3777},
 	eprint = {https://onlinelibrary.wiley.com/doi/pdf/10.1002/cnm.3777},
 	abstract = {Abstract Optimal control musculoskeletal simulation is a valuable approach for studying fundamental and clinical aspects of human movement. However, the high computational demand has long presented a substantial challenge, creating a need to improve simulation performance. The OpenSim Moco software package permits musculoskeletal simulation problems to be solved in parallel on multicore processors using the CasADi optimal control library, potentially reducing the computational demand. However, the computational performance of this framework has not been thoroughly examined. Thus, we aimed to investigate the computational speed-up obtained via multicore parallel computing relative to solving problems serially (i.e., using a single core) in optimal control simulations of human movement in OpenSim Moco. Simulations were solved using up to 18 cores with a variety of temporal mesh interval densities and using two different initial guess strategies. We examined a range of musculoskeletal models and movements that included two- and three-dimensional models, tracking and predictive simulations, and walking and reaching tasks. The maximum overall parallel speed-up was problem specific and ranged from 1.7 to 7.7 times faster than serial, with most of the speed-up achieved by about 6 processor cores. Parallel speed-up was generally greater on finer temporal meshes, while the initial guess strategy had minimal impact on speed-up. Considerable speed-up can be achieved for some optimal control simulation problems in OpenSim Moco by leveraging the multicore processors often available in modern computers. However, since improvements are problem specific, achieving optimal computational performance will require some degree of exploration by the end user.},
@@ -55,7 +55,7 @@
 	number = {157},
 	pages = {20190402},
 	year = {2019},
-	doi = {https://doi.org/10.1098/rsif.2019.0402},
+	doi = {10.1098/rsif.2019.0402},
 	URL = {https://royalsocietypublishing.org/doi/abs/10.1098/rsif.2019.0402},
 	eprint = {https://royalsocietypublishing.org/doi/pdf/10.1098/rsif.2019.0402}
 	,
@@ -71,7 +71,7 @@
     year = {2022},
     month = {09},
     volume = {18},
-    url = {https://doi.org/10.1371/journal.pcbi.1010466},
+    doi = {10.1371/journal.pcbi.1010466},
     pages = {1-26},
     abstract = {Hemiparesis, defined as unilateral muscle weakness, often occurs in people post-stroke or people with cerebral palsy, however it is difficult to understand how this hemiparesis affects movement patterns as it often presents alongside a variety of other neuromuscular impairments. Predictive musculoskeletal modeling presents an opportunity to investigate how impairments affect gait performance assuming a particular cost function. Here, we use predictive simulation to quantify the spatiotemporal asymmetries and changes to metabolic cost that emerge when muscle strength is unilaterally reduced and how reducing spatiotemporal symmetry affects metabolic cost. We modified a 2-D musculoskeletal model by uniformly reducing the peak isometric muscle force unilaterally. We then solved optimal control simulations of walking across a range of speeds by minimizing the sum of the cubed muscle excitations. Lastly, we ran additional optimizations to test if reducing spatiotemporal asymmetry would result in an increase in metabolic cost. Our results showed that the magnitude and direction of effort-optimal spatiotemporal asymmetries depends on both the gait speed and level of weakness. Also, the optimal speed was 1.25 m/s for the symmetrical and 20% weakness models but slower (1.00 m/s) for the 40% and 60% weakness models, suggesting that hemiparesis can account for a portion of the slower gait speed seen in people with hemiparesis. Modifying the cost function to minimize spatiotemporal asymmetry resulted in small increases (~4%) in metabolic cost. Overall, our results indicate that spatiotemporal asymmetry may be optimal for people with hemiparesis. Additionally, the effect of speed and the level of weakness on spatiotemporal asymmetry may help explain the well-known heterogenous distribution of spatiotemporal asymmetries observed in the clinic. Future work could extend our results by testing the effects of other neuromuscular impairments on optimal gait strategies, and therefore build a more comprehensive understanding of the gait patterns observed in clinical populations.},
     number = {9},
@@ -83,7 +83,7 @@
   title = { Optimal control gait simulations of older adults predict foot placement trends not captured by reflex-based models},
   year = {2023},
   publisher = {North American Congress on Biomechanics},
-  journal = {North American Congress on Biomechanics},
+  journal = {In the Proceedings of the North American Congress on Biomechanics},
 }
 
 @article{Seth2018,
@@ -95,7 +95,7 @@
     year = {2018},
     month = {07},
     volume = {14},
-    url = {https://doi.org/10.1371/journal.pcbi.1006223},
+    doi = {10.1371/journal.pcbi.1006223},
     pages = {1-20},
     abstract = {Movement is fundamental to human and animal life, emerging through interaction of complex neural, muscular, and skeletal systems. Study of movement draws from and contributes to diverse fields, including biology, neuroscience, mechanics, and robotics. OpenSim unites methods from these fields to create fast and accurate simulations of movement, enabling two fundamental tasks. First, the software can calculate variables that are difficult to measure experimentally, such as the forces generated by muscles and the stretch and recoil of tendons during movement. Second, OpenSim can predict novel movements from models of motor control, such as kinematic adaptations of human gait during loaded or inclined walking. Changes in musculoskeletal dynamics following surgery or due to human–device interaction can also be simulated; these simulations have played a vital role in several applications, including the design of implantable mechanical devices to improve human grasping in individuals with paralysis. OpenSim is an extensible and user-friendly software package built on decades of knowledge about computational modeling and simulation of biomechanical systems. OpenSim’s design enables computational scientists to create new state-of-the-art software tools and empowers others to use these tools in research and clinical applications. OpenSim supports a large and growing community of biomechanics and rehabilitation researchers, facilitating exchange of models and simulations for reproducing and extending discoveries. Examples, tutorials, documentation, and an active user forum support this community. The OpenSim software is covered by the Apache License 2.0, which permits its use for any purpose including both nonprofit and commercial applications. The source code is freely and anonymously accessible on GitHub, where the community is welcomed to make contributions. Platform-specific installers of OpenSim include a GUI and are available on simtk.org.},
     number = {7},
@@ -110,14 +110,14 @@ pages = {},
 title = {Audiovisual biofeedback amplifies plantarflexor adaptation during walking among children with cerebral palsy},
 volume = {20},
 journal = {Journal of NeuroEngineering and Rehabilitation},
-doi = {https://doi.org/10.1186/s12984-023-01279-5}
+doi = {10.1186/s12984-023-01279-5}
 }
 
 @misc{Sundararajan2023,
   author = {Sundararajan, A., Larson, S. G., Umberger, B. R., O’Neill, M. C.},
   title = {Optimal Control Simulations of 3-D Walking in Humans and Bipedal Chimpanzee},
   year = {2023},
-  publisher = {Proceedings of The American Society of Biomechanics},
+  publisher = {American Society of Biomechanics},
   journal = {Proceedings of The American Society of Biomechanics},
 }
 
@@ -128,7 +128,7 @@ doi = {https://doi.org/10.1186/s12984-023-01279-5}
   year={2006},
   volume={106},
   pages={25-57},
-  url={https://api.semanticscholar.org/CorpusID:14183894}
+  doi={10.1007/s10107-004-0559-y}
 }
 
 @misc{Yamaguchi2018,
