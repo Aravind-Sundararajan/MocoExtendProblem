@@ -21,6 +21,7 @@ authors:
   - name: Brian R. Umberger
     affiliation: 2
   - name: Matthew C. O'Neill
+	orcid: 0000-0001-9614-7813
     affiliation: 1
 affiliations:
  - name: Department of Anatomy, Midwestern University, Glendale Arizona, USA
@@ -46,7 +47,7 @@ This repository features:
 
 # Statement of need
 
-OpenSim is an open-source software platform for modeling musculoskeletal structures and creating dynamic simulations of movement [@Seth2018]. OpenSim enables researchers and clinicians to investigate how biological and non-biological structures respond to different loads, postures and activities in both static and dynamic situations. OpenSimhas been used to study a wide range of biomechanical problems, such as the mechanics of walking and running [@Falisse2019], the impact of injury or disease on movement [@Johnson2022], and the effectiveness of rehabilitation exercises [@Spomer2023]. 
+OpenSim is an open-source software platform for modeling musculoskeletal structures and creating dynamic simulations of movement [@Seth2018]. OpenSim enables researchers and clinicians to investigate how biological and non-biological structures respond to different loads, postures and activities in both static and dynamic situations. OpenSimhas been used to study a wide range of biomechanical problems, such as the mechanics of walking and running [e.g. @Falisse2019], the impact of injury or disease on movement [e.g. @Johnson2022], and the effectiveness of rehabilitation exercises [e.g. @Spomer2023]. 
  
 OpenSim Moco [@Dembia2020] employs an optimization paradigm called direct collocation to solve trajectory optimization problems that range from solving for muscle forces, to tracking experimental data, and fully predictive simulations. Direct collocation is a numerical optimal control method [@Kelly2017] that is computationally efficient and is used extensively in computational approaches to understanding biological movement. While direct collocation is powerful, Moco only provides a fixed set of optimization goals. It can be daunting for many users to develop custom goals in C++. We developed `MEP` so Moco users without experience compiling C++ can still write and test custom goals. The OpenSim interfaces are created with SWIG, as opposed to MEX, which can be daunting for even experienced biomechanists. MocoExtendProblem was developed using MATLAB versions 2022a. Running `build.m` will compile MocoGoals in the `custom_goals` directory, or in the `custom_goals_compat` directory for OpenSim versions pre-4.5.
 
@@ -111,7 +112,7 @@ The results of each multi-objective predictive simulation, in which the stabilit
 | $J_{accel}$ |    4.774932    |   3.797785   |    0.793123    |     0.174308    |
 
 
-While these examples used planar gait simulations, `MEP` is agnostic to model complexity or task, and is being used successfully in our ongoing research  [@Joshi2023; @Sundararajan2023] of locomotor performance in humans and other animals. GNU Octave support would require minimal syntactical modification. An additional benefit of sequestering novel goals into ExtendProblem is being able to back-port goals from a newer OpenSim version to an older version (i.e. taking a goal from OpenSim 4.4 and bringing that functionality to 4.2). Ultimately, `MEP` offers a modular framework to rapidly develop, test and compare novel MocoGoals for features beyond OpenSim Moco’s current scope.
+While these examples used planar gait simulations, `MEP` is agnostic to model complexity or task, and is being used successfully in our ongoing research  [e.g. @Joshi2023; @Sundararajan2023] of locomotor performance in humans and other animals. GNU Octave support would require minimal syntactical modification. An additional benefit of sequestering novel goals into ExtendProblem is being able to back-port goals from a newer OpenSim version to an older version (i.e. taking a goal from OpenSim 4.4 and bringing that functionality to 4.2). Ultimately, `MEP` offers a modular framework to rapidly develop, test and compare novel MocoGoals for features beyond OpenSim Moco’s current scope.
 
 # Funding
 
