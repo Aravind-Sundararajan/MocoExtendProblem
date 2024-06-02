@@ -40,9 +40,9 @@ This repository features:
 
 - A `build.m` script that compiles goals in the `custom_goals` directory and procedurally constructs the C++/MATLAB class implementations and compiles the MEX interface.
 - Compatibility tested with OpenSim 4.2-4.5.
-- OpenSim versions lower than 4.5 require unique modifications to the build pipeline since booleans for division by duration, distance and mass were migrated to the abstract MocoGoal. 
+	- OpenSim versions lower than 4.5 require unique modifications to the build pipeline since booleans for division by duration, distance and mass were migrated to the abstract MocoGoal. 
 - The ability to include `MEP` as a submodule, build, and use valid custom goals.
-- Three example custom goals in the 'custom_goals' and `custom_goals_compat` directories.
+- Three example custom goals in the `custom_goals` and `custom_goals_compat` directories.
 
 
 # Statement of need
