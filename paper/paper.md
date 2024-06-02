@@ -18,9 +18,9 @@ authors:
 	corresponding: true # (This is how to denote the corresponding author)
   - name: Varun Joshi
     affiliation: 2
-  - name: Brian Umberger
+  - name: Brian R. Umberger
     affiliation: 2
-  - name: Matthew O'Neill
+  - name: Matthew C. O'Neill
     affiliation: 1
 affiliations:
  - name: Department of Anatomy, Midwestern University, Glendale Arizona, USA
