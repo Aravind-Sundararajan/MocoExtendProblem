@@ -17,8 +17,10 @@ authors:
     affiliation: 1 # (Multiple affiliations must be quoted)
 	corresponding: true # (This is how to denote the corresponding author)
   - name: Varun Joshi
+	orcid: 0000-0003-3737-2302
     affiliation: 2
   - name: Brian R. Umberger
+	orcid: 0000-0002-5780-2405
     affiliation: 2
   - name: Matthew C. O'Neill
 	orcid: 0000-0001-9614-7813
@@ -28,7 +30,7 @@ affiliations:
    index: 1
  - name: School of Kinesiology, University of Michigan, Ann Arbor, Michigan, USA
    index: 2
-date: 13 August 2017
+date: 2 June 2024
 bibliography: paper.bib
 ---
 
