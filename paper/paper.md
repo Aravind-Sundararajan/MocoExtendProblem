@@ -44,20 +44,19 @@ This repository features:
 - The ability to include `MEP` as a submodule, build, and use valid custom goals.
 - Three example custom goals in the `custom_goals` and `custom_goals_compat` directories.
 
-
 # Statement of need
 
-OpenSim is an open-source software platform for modeling musculoskeletal structures and creating dynamic simulations of movement [@Seth2018]. OpenSim enables researchers and clinicians to investigate how biological and non-biological structures respond to different loads, postures and activities in both static and dynamic situations. OpenSimhas been used to study a wide range of biomechanical problems, such as the mechanics of walking and running [e.g. @Falisse2019], the impact of injury or disease on movement [e.g. @Johnson2022], and the effectiveness of rehabilitation exercises [e.g. @Spomer2023]. 
+OpenSim is an open-source software platform for modeling musculoskeletal structures and creating dynamic simulations of movement [@Seth2018]. OpenSim enables researchers and clinicians to investigate how biological and non-biological structures respond to different loads, postures and activities in both static and dynamic situations. OpenSim has been used to study a wide range of biomechanical problems, such as the mechanics of walking and running [e.g. @Falisse2019], the impact of injury or disease on movement [e.g. @Johnson2022], and the effectiveness of rehabilitation exercises [e.g. @Spomer2023]. 
  
 OpenSim Moco [@Dembia2020] employs an optimization paradigm called direct collocation to solve trajectory optimization problems that range from solving for muscle forces, to tracking experimental data, and fully predictive simulations. Direct collocation is a numerical optimal control method [@Kelly2017] that is computationally efficient and is used extensively in computational approaches to understanding biological movement. While direct collocation is powerful, Moco only provides a fixed set of optimization goals. It can be daunting for many users to develop custom goals in C++. We developed `MEP` so Moco users without experience compiling C++ can still write and test custom goals. The OpenSim interfaces are created with SWIG, as opposed to MEX, which can be daunting for even experienced biomechanists. MocoExtendProblem was developed using MATLAB versions 2022a. Running `build.m` will compile MocoGoals in the `custom_goals` directory, or in the `custom_goals_compat` directory for OpenSim versions pre-4.5.
 
-CMake and msbuild from Visual Studio 2019 or higher must be added to the system PATH. `build.m` will procedurally construct both `extend_problem.m` and `ExtendProblem.cpp` by parsing the header files of the discovered goals within the `custom_goals` directory. Both `ExtendProblem.cpp` and `extend_problem.m` generate bindings to instantiate custom goals placed in the `custom_goals` directory. Custom goals can be compiled with  Visual Studio 2019 or higher and then MATLAB’s MEX compiler is used to compile ExtendProblem. `ExtendProblem.cpp` leverages the C++ library mexplus [@Yamaguchi2018] to gain access to MEX entry points through C++  macros.
+CMake and msbuild from Visual Studio 2019 or higher must be added to the system PATH. `build.m` will procedurally construct both `extend_problem.m` and `ExtendProblem.cpp` by parsing the header files of the discovered goals within the `custom_goals` directory. Both `ExtendProblem.cpp` and `extend_problem.m` generate bindings to instantiate custom goals placed in the `custom_goals` directory. Custom goals can be compiled with Visual Studio 2019 or higher and then MATLAB’s MEX compiler is used to compile ExtendProblem. `ExtendProblem.cpp` leverages the C++ library mexplus [@Yamaguchi2018] to gain access to MEX entry points through C++ macros.
 
 ![`MEP` Framework. The researcher runs the `build.m` script (orange) that subsequently calls methods in the utils folder (red) which are tasked with reading the `custom_goals` folder (green) and procedurally construct the mex and the interface class that calls the mex (blue). Each custom goal (green) is handled as its own compiled plugin.\label{fig:files}](file_tree.png){width="200pt"}
 
 To create a new goal with `MEP`: 
 
-1. OpenSim 4.5+ users should copy a goal in the `custom_goals` directory while 4.2-4.4 users  should copy a goal in `custom_goals_compat`.
+1. OpenSim 4.5+ users should copy a goal in the `custom_goals` directory while 4.2-4.4 users should copy a goal in `custom_goals_compat`.
 2. Replace mentions of the original goal name to that of your new custom goal name in each of the 5 files and file names, being careful to also modify the include guards in the dll and register types header files. 
 3. Reimplement constructProperties(), initializeOnModelImpl(), calcIntegrandImpl(), calcGoalImpl() such that they describe your custom goal.
 
@@ -71,13 +70,11 @@ ep.addMocoCustomGoal('custom_goal',weight,power,divide_by_distance);
 
 This paradigm has implications for OpenSim and MATLAB developers beyond the scope of just incorporating novel MocoGoals; these same tools can be used to extend other classes and easily incorporate them into existing MATLAB-OpenSim scripts. We have posted all tools, instructions and simulation results related to this project on [GitHub](https://github.com/Aravind-Sundararajan/MocoExtendProblem) and [SimTK.org](https://simtk.org/projects/moco-ep). 
 
-
 ## Requirements
 
 - Download and install OpenSim from [SimTK](https://simtk.org) and follow the documentation for setting up OpenSim’s MATLAB scripting environment.
 - Follow the instructions (OpenSim) to download necessary dependencies for both scripting in MATLAB and C++ development.
 - In MATLAB, configure MEX with mex -setup C++ to use the MS VisualStudio 2019+.
-
 
 # Showcases
 
@@ -112,7 +109,7 @@ The results of each multi-objective predictive simulation, in which the stabilit
 | $J_{accel}$ |    4.774932    |   3.797785   |    0.793123    |     0.174308    |
 
 
-While these examples used planar gait simulations, `MEP` is agnostic to model complexity or task, and is being used successfully in our ongoing research  [e.g. @Joshi2023; @Sundararajan2023] of locomotor performance in humans and other animals. GNU Octave support would require minimal syntactical modification. An additional benefit of sequestering novel goals into ExtendProblem is being able to back-port goals from a newer OpenSim version to an older version (i.e. taking a goal from OpenSim 4.4 and bringing that functionality to 4.2). Ultimately, `MEP` offers a modular framework to rapidly develop, test and compare novel MocoGoals for features beyond OpenSim Moco’s current scope.
+While these examples used planar gait simulations, `MEP` is agnostic to model complexity or task, and is being used successfully in our ongoing research [e.g. @Joshi2022; @Sundararajan2023] of locomotor performance in humans and other animals. GNU Octave support would require minimal syntactical modification. An additional benefit of sequestering novel goals into ExtendProblem is being able to back-port goals from a newer OpenSim version to an older version (i.e. taking a goal from OpenSim 4.4 and bringing that functionality to 4.2). Ultimately, `MEP` offers a modular framework to rapidly develop, test and compare novel MocoGoals for features beyond OpenSim Moco’s current scope.
 
 # Funding
 
