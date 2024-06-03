@@ -116,6 +116,6 @@ While these examples used planar gait simulations, `MEP` is agnostic to model co
 
 # Funding
 
-This work was supported by the National Science Foundation (BCS 2018436 and BCS 2018523)
+This work was supported by the National Science Foundation (BCS 2018436 and BCS 2018523).
 
 # References
