@@ -1,5 +1,17 @@
 function WalkSim_predictive(sim_type)
-
+%------------------------------------------------------------------------
+% Solve a tracking problem where the goal is to minimize the difference
+% between simulated and reference coordinate values and speeds, and GRFs,
+% as well as to minimize an effort cost (squared controls). The reference
+% data are from Nguyen et al. (2019, IEEE TNSRE) and represent half a gait
+% cycle. Symmetry of the gait cycle and a prescribed average walking speed
+% are enforced through endpoint constraints.
+% The number of temporal mesh intervals, the number of processor cores
+% and the approach to use for the initial guess are all passed in by the
+% calling script.
+%
+% Authors: Alex Denton & Brian Umberger
+% modifications for JOSS, Aravind Sundararajan
 addpath(genpath(fullfile(pwd,'bin','RelWithDebInfo'))); % Extend Problem (magic!)
 mesh_int= 25;
 cores = 1;
@@ -15,19 +27,7 @@ AccelerationWeights = [ (1e-3)/11 (1e-3)/11 (1e-3)/11 (1e-3)/11]; %(1e-11)/4 (1e
 goal_type = sim_type + 1;
 output_dir =output_dirs(goal_type);
 acceleration_weight=AccelerationWeights(goal_type);
-%------------------------------------------------------------------------
-% Solve a tracking problem where the goal is to minimize the difference
-% between simulated and reference coordinate values and speeds, and GRFs,
-% as well as to minimize an effort cost (squared controls). The reference
-% data are from Nguyen et al. (2019, IEEE TNSRE) and represent half a gait
-% cycle. Symmetry of the gait cycle and a prescribed average walking speed
-% are enforced through endpoint constraints.
-% The number of temporal mesh intervals, the number of processor cores
-% and the approach to use for the initial guess are all passed in by the
-% calling script.
-%
-% Authors: Alex Denton & Brian Umberger
-%
+
 
 
 % Load the Moco libraries

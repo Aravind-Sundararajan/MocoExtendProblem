@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<OpenSimDocument Version="40000">
+<OpenSimDocument Version="40500">
 	<Model name="model">
 		<!--List of components that this component owns and serializes.-->
 		<components>
