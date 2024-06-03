@@ -99,7 +99,7 @@ J_{zmp} = W_1 EFF^{2} + W_2 ACC_{smoothing} + W_3 ZMP
 J_{acc} = W_1 EFF^{2} + W_2 ACC_{smoothing} + W_3 ACC_{marker}
 \end{equation}
 
-The results of each multi-objective predictive simulation, in which the stability criterion was compiled using `MEP`, is shown against the results from a tracking simulation [\autoref{fig:stability}; \autoref{tab:costs}] that closely-matched experimental data [@Denton2023]. As the purpose was to demonstrate the utility of `MEP`, we did not tune the stability term weights to match the tracking result as closely as possible. 
+The results of each multi-objective predictive simulation, in which the stability criterion was compiled using `MEP`, is shown against the results from a tracking simulation (\autoref{fig:stability}; \autoref{tab:costs}) that closely-matched experimental data [@Denton2023]. As the purpose was to demonstrate the utility of `MEP`, we did not tune the stability term weights to match the tracking result as closely as possible. 
 
 ![Sagittal plane hip, knee and ankle angles (a-c), vertical and A-P ground reaction forces (d-e), the 11 degree-of-freedom, 18 muscle sagittal plane human walking model used for tracking and predictive simulations (f)\label{fig:stability}](stability.png)
 
