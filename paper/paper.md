@@ -91,11 +91,11 @@ J_{BOS} = W_1 EFF^{2} + W_2 ACC_{smoothing} + W_3 BOS
 \end{equation}
 
 \begin{equation}\label{eq:cost_zmp}
-J_{zmp} = W_1 EFF^{2} + W_2 ACC_{smoothing} + W_3 ZMP
+J_{ZMP} = W_1 EFF^{2} + W_2 ACC_{smoothing} + W_3 ZMP
 \end{equation}
 
 \begin{equation}\label{eq:cost_acc}
-J_{acc} = W_1 EFF^{2} + W_2 ACC_{smoothing} + W_3 ACC_{marker}
+J_{ACC} = W_1 EFF^{2} + W_2 ACC_{smoothing} + W_3 ACC_{marker}
 \end{equation}
 
 The results of each multi-objective predictive simulation, in which the stability criterion was compiled using `MEP`, is shown against the results from a tracking simulation (\autoref{fig:stability}; \autoref{tab:costs}) that closely-matched experimental data [@Denton2023]. As the purpose was to demonstrate the utility of `MEP`, we did not tune the stability term weights to match the tracking result as closely as possible. 
