@@ -50,9 +50,11 @@ OpenSim is an open-source software platform for modeling musculoskeletal structu
  
 OpenSim Moco [@Dembia2020] employs an optimization paradigm called direct collocation to solve trajectory optimization problems that range from solving for muscle forces, to tracking experimental data, and fully predictive simulations. Direct collocation is a numerical optimal control method [@Kelly2017] that is computationally efficient and is used extensively in computational approaches to understanding biological movement. While direct collocation is powerful, Moco only provides a fixed set of optimization goals. It can be daunting for many users to develop custom goals in C++. We developed `MEP` so Moco users without experience compiling C++ can still write and test custom goals. The OpenSim interfaces are created with SWIG, as opposed to MEX, which can be daunting for even experienced biomechanists. MocoExtendProblem was developed using MATLAB versions 2022a. Running `build.m` will compile MocoGoals in the `custom_goals` directory, or in the `custom_goals_compat` directory for OpenSim versions pre-4.5.
 
-CMake and msbuild from Visual Studio 2019 or higher must be added to the system PATH. `build.m` will procedurally construct both `extend_problem.m` and `ExtendProblem.cpp` by parsing the header files of the discovered goals within the `custom_goals` directory. Both `ExtendProblem.cpp` and `extend_problem.m` generate bindings to instantiate custom goals placed in the `custom_goals` directory. Custom goals can be compiled with Visual Studio 2019 or higher and then MATLAB’s MEX compiler is used to compile ExtendProblem. `ExtendProblem.cpp` leverages the C++ library mexplus [@Yamaguchi2018] to gain access to MEX entry points through C++ macros.
+Typically, OpenSim interfaces are generated with SWIG, as opposed to MEX, which can be challenging for even experienced biomechanists. MEP was developed using MATLAB (v. 2022a), which is a multimodal software platform that is commonly used by biomechanics researchers. MEP only requires that CMake and msbuild from Visual Studio 2019 or higher be added to the system PATH environment variable to use MATLAB’s MEX compiler with C++.
 
-![`MEP` Framework. The researcher runs the `build.m` script (orange) that subsequently calls methods in the utils folder (red) which are tasked with reading the `custom_goals` folder (green) and procedurally construct the mex and the interface class that calls the mex (blue). Each custom goal (green) is handled as its own compiled plugin.\label{fig:files}](file_tree.png){width="200pt"}
+With MEP, users can run build.m to compile MocoGoals in the `custom_goals` directory, or in the `custom_goals_compat` directory for OpenSim versions pre-4.5. build.m will procedurally construct both e`xtend_problem.m` and `ExtendProblem.cpp` by parsing the header files of the discovered goals within the `custom_goals` directory. Both `ExtendProblem.cpp` and `extend_problem.m` generate bindings to instantiate custom goals placed in the custom_goals directory. Custom goals can be compiled with  Visual Studio 2019 or higher and then MATLAB’s MEX compiler is used to compile the ExtendProblem class. ExtendProblem.cpp leverages the C++ library mexplus [@Yamaguchi2018] to gain access to MEX entry points through C++  macros.
+
+![`MEP` framework. The researcher runs the `build.m` script (orange) that subsequently calls methods in the utils folder (red) which are tasked with reading the `custom_goals` folder (green) and procedurally construct the mex and the interface class that calls the mex (blue). Each custom goal (green) is handled as its own compiled plugin.\label{fig:files}](file_tree.png){width="200pt"}
 
 To create a new goal with `MEP`: 
 
@@ -62,7 +64,7 @@ To create a new goal with `MEP`:
 
 To incorporate extend_problem goals into an existing MATLAB script, a C-style pointer to the instantiated MocoProblem is passed as a constructor argument to the `extend_problem.m` class that wraps the `MEP` MEX. Class methods of `extend_problem.m` (\autoref{fig:files}; blue) are then used to add custom goals to the MocoProblem.
 
-```C++
+```MATLAB
 cptr = uint64(problem.getCPtr(problem));
 ep = extend_problem(cptr);
 ep.addMocoCustomGoal('custom_goal',weight,power,divide_by_distance);
