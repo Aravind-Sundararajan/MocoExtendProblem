@@ -12,8 +12,8 @@ tags:
 authors:
   - name: Aravind Sundararajan
     orcid: 0009-0001-6775-6596
-    affiliation: 1 # (Multiple affiliations must be quoted)
-	corresponding: true # (This is how to denote the corresponding author)
+    affiliation: 1
+	corresponding: true
   - name: Varun Joshi
 	orcid: 0000-0003-3737-2302
     affiliation: 2
