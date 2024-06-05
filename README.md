@@ -1,3 +1,5 @@
+[![status](https://joss.theoj.org/papers/ab4ece70adece3811308955d52be6a2f/status.svg)](https://joss.theoj.org/papers/ab4ece70adece3811308955d52be6a2f)
+
 # MocoExtendProblem
 this is an example of how to add custom Moco goals to existing matlab scripts instead of constructing an omoco file or porting your existing matlab code to c++.
 
