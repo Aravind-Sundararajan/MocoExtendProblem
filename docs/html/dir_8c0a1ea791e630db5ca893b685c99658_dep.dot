@@ -1,0 +1,25 @@
+digraph "C:/dev/MocoExtendProblem/custom_goals_compat"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  compound=true
+  subgraph clusterdir_6935af7bd11e2863a718cd2f4e54513d {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", label="MocoExtendProblem", fontname=Helvetica,fontsize=10 style="filled,dashed", URL="dir_6935af7bd11e2863a718cd2f4e54513d.html",tooltip=""]
+  subgraph clusterdir_8c0a1ea791e630db5ca893b685c99658 {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", label="", fontname=Helvetica,fontsize=10 style="filled,bold", URL="dir_8c0a1ea791e630db5ca893b685c99658.html",tooltip=""]
+    dir_8c0a1ea791e630db5ca893b685c99658 [shape=plaintext, label="custom_goals_compat"];
+  dir_31917840bffb29a1974f5eda3a486144 [label="MocoActivationGoal", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_31917840bffb29a1974f5eda3a486144.html",tooltip=""];
+  dir_a8ae6306256caaba49dbe1669822a6cc [label="MocoActivationSquaredGoal", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_a8ae6306256caaba49dbe1669822a6cc.html",tooltip=""];
+  dir_a8140b7b604a73b0ab83fa562f1a5382 [label="MocoBOSGoal", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_a8140b7b604a73b0ab83fa562f1a5382.html",tooltip=""];
+  dir_0d4aa03c380f22f78238a79677898797 [label="MocoCoordinateAccelerationGoal", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_0d4aa03c380f22f78238a79677898797.html",tooltip=""];
+  dir_5854a24b2349696dfd674395f77f5bdf [label="MocoCOPGoal", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_5854a24b2349696dfd674395f77f5bdf.html",tooltip=""];
+  dir_903f88853d7c9900a9f89465d196f293 [label="MocoCustomOutputGoal", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_903f88853d7c9900a9f89465d196f293.html",tooltip=""];
+  dir_a7b0a60767f5e05b2cbd6e1985a4a9a0 [label="MocoMarkerAccelerationGoal", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_a7b0a60767f5e05b2cbd6e1985a4a9a0.html",tooltip=""];
+  dir_25d1e63435b0000aaa9d03febce53c44 [label="MocoMaxCoordinateGoal", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_25d1e63435b0000aaa9d03febce53c44.html",tooltip=""];
+  dir_03549f5125f817b5858a683a107f6468 [label="MocoMuscleStrainGoal", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_03549f5125f817b5858a683a107f6468.html",tooltip=""];
+  dir_b8248c4c52208bcb7b4a73f0308c6683 [label="MocoZMPGoal", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_b8248c4c52208bcb7b4a73f0308c6683.html",tooltip=""];
+  }
+  }
+}

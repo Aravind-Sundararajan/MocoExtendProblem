@@ -1,0 +1,13 @@
+digraph "getChars"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="getChars",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="className",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classmexplus_1_1_mx_array.html#a9cef6b8f6c12787f69e5259a335e2438",tooltip="Class name of mxArray."];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="isChar",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classmexplus_1_1_mx_array.html#abb97ba42abaa201e9dd70a25c0370efc",tooltip="Determine whether input is string array."];
+}
