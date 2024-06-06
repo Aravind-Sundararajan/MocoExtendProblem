@@ -2,14 +2,29 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 # MocoExtendProblem
-this is an example of how to add custom Moco goals to existing matlab scripts instead of constructing an omoco file or porting your existing matlab code to c++.
 
+![skelemen](paper/skelemens.png)
 
-## Requirements
+# Table of contents
+- [Project Summary](#Summary)  
+- [Setup](#Installation)  
+- [Getting started](#Start)
+- [Testing](#Test)
+- [License](#License)  
+- [Contributing](#Contributing)  
+- [Code of conduct](#CodeOfConduct)  
+
+# Summary <a name="Summary"></a>
+
+MocoExtendProblem (`MEP`) is a framework to rapidly develop novel goals for biomechanical optimal control problems using OpenSim Moco and MATLAB (The Mathworks, Inc., Natick, MA, USA). `MEP` features several templates for testing and prototyping novel MocoGoals in lieu of rebuilding OpenSim or generating an .omoco file from C++ to load the problem into MATLAB. Instead, users structure custom goals, build them, and call custom goals from MATLAB scripts.
+
+# Setup <a name="Installation"></a>
 
 - Download and install OpenSim from [SimTK](https://simtk.org) and follow the documentation for setting up OpenSim’s MATLAB scripting environment.
 - Follow the instructions (OpenSim) to download necessary dependencies for both scripting in MATLAB and C++ development.
 - In MATLAB, configure MEX with mex -setup C++ to use the MS VisualStudio 2019+.
+
+# Getting started <a name="Start"></a>
 
 To create a new goal with `MEP`: 
 
@@ -24,3 +39,15 @@ cptr = uint64(problem.getCPtr(problem));
 ep = extend_problem(cptr);
 ep.addMocoCustomGoal('custom_goal',weight,power,divide_by_distance);
 ```
+
+# Testing <a name="Test"></a>
+blah blah blah
+# License <a name="License"></a>
+MEP is provided under:
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0). The [license file](https://github.com/gibbonCode/GIBBON/blob/master/LICENSE) is found on the GitHub repository.
+
+# Contributing <a name="Contributing"></a>
+Please read our [contributing guidelines](CONTRIBUTING.md).
+
+# Code of conduct <a name="CodeOfConduct"></a>
+See [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md)
