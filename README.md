@@ -1,4 +1,5 @@
 [![status](https://joss.theoj.org/papers/ab4ece70adece3811308955d52be6a2f/status.svg)](https://joss.theoj.org/papers/ab4ece70adece3811308955d52be6a2f)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 # MocoExtendProblem
 this is an example of how to add custom Moco goals to existing matlab scripts instead of constructing an omoco file or porting your existing matlab code to c++.
