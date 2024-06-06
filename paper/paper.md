@@ -24,9 +24,9 @@ authors:
     orcid: 0000-0001-9614-7813
     affiliation: 1
 affiliations:
- - name: Department of Anatomy, Midwestern University, Glendale Arizona, USA
+ - name: Department of Anatomy, Midwestern University, Glendale Arizona, United States of America
    index: 1
- - name: School of Kinesiology, University of Michigan, Ann Arbor, Michigan, USA
+ - name: School of Kinesiology, University of Michigan, Ann Arbor, Michigan, United States of America
    index: 2
 date: 2 June 2024
 bibliography: paper.bib
