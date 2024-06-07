@@ -1,4 +1,10 @@
 function out = wrap_start()
+% wrap_start returns string with start of MATLAB class definition.
+%   out = wrap_start() 
+%
+%
+%   See also cpp_start, cpp_end, mex_start, mex_end, wrap_end
+
 out = "";
 mat_def_start = ...
     "classdef extend_problem < handle" + newline + ...

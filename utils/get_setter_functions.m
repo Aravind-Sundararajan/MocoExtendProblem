@@ -1,4 +1,12 @@
 function f = get_setter_functions(hppPath)
+% get_setter_functions   uses regex to find the setter methods based on the
+% hppPath
+%   
+%
+%   
+%   See also cpp_start, cpp_end, mex_start, wrap_start, wrap_end
+
+
 f = struct();
 libPath_data = readlines(hppPath);
 ids = intersect(...

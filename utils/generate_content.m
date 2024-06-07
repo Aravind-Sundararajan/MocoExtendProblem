@@ -1,4 +1,9 @@
 function [cpp_out,mex_out,wrap_out] = generate_content(goal_tree)
+% generate_content_compat  Procedurally constructs the matlab wrapper, the
+% mex interface and the cpp class.
+%   [cpp_out,mex_out,wrap_out] = generate_content_compat(goal_tree)
+%
+%   See also construct_goal_tree, generate_content_compat
 %% create mex functions
 disp("detected using opensim 4.5.");
 mex_out = "";

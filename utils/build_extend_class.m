@@ -1,4 +1,10 @@
-function build_extend_class(cppName,wrapName, opensimInstallDir)
+function build_extend_class(cppName, wrapName, opensimInstallDir)
+% build_extend_class  wrapper method that selects the appropriate generate content and calls methods to build cpp and matlab ExtendProblem classes.
+%   build_extend_class(cppName,wrapName, opensimInstallDir) 
+%
+%
+%   See also construct_goal_tree
+
 %% SETUP
 goal_tree = construct_goal_tree(opensimInstallDir);
 if contains(opensimInstallDir, "4.5")

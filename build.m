@@ -1,3 +1,7 @@
+% build  calls various methods to procedurally constructs the matlab wrapper, the
+% mex interface and the cpp class.
+
+
 %% CLEAN
 clear all
 clc

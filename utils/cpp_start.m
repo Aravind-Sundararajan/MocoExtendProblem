@@ -1,4 +1,10 @@
 function out = cpp_start(goals)
+% cpp_start returns returns list of includes for the cpp class definitions.
+%   out = cpp_start(goals) 
+%
+%
+%   See also cpp_end, mex_start, mex_end, wrap_start, wrap_end
+
 out = "";
 header = [...
     "#include <Simbody.h>"...

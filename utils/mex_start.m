@@ -1,4 +1,10 @@
 function out = mex_start()
+% mex_start returns returns list of includes for the mex interface definitions.
+%   out = mex_start() 
+%
+%
+%   See also cpp_start, cpp_end, mex_end, wrap_start, wrap_end
+
 out = "";
 mex_def_start = [...
     "",...

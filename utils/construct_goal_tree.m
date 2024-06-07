@@ -1,4 +1,11 @@
 function goal_tree = construct_goal_tree(opensimInstallDir)
+% construct_goal_tree  makes a struct of member functions found parsing
+% custom goal folders depending on the opensim version.
+%   goal_tree = construct_goal_tree(opensimInstallDir) 
+%
+%
+%   See also build_extend_class
+
 %% Extract only those that are directories.
 goalsdir = "custom_goals_compat";
 if contains(opensimInstallDir, "4.5")
