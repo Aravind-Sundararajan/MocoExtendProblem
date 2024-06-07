@@ -1,0 +1,6 @@
+var compat_2_moco_coordinate_acceleration_goal_2_register_types__osim_moco_coordinate_acceleration_goal_8h =
+[
+    [ "osimMocoCoordinateAccelerationGoalInstantiator", "classosim_moco_coordinate_acceleration_goal_instantiator.html", "classosim_moco_coordinate_acceleration_goal_instantiator" ],
+    [ "OPENSIM_REGISTERTYPES_OSIMMOCOCOORDINATEACCELERATIONGOAL_H", "compat_2_moco_coordinate_acceleration_goal_2_register_types__osim_moco_coordinate_acceleration_goal_8h.html#a5e62651444273a3e328d84e53abd9492", null ],
+    [ "RegisterTypes_osimMocoCoordinateAccelerationGoal", "compat_2_moco_coordinate_acceleration_goal_2_register_types__osim_moco_coordinate_acceleration_goal_8h.html#af47d7e0f562911459dd82dfc61ffbfe8", null ]
+];
