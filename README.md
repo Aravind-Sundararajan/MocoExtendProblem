@@ -18,7 +18,8 @@
 
 MocoExtendProblem (`MEP`) is a framework to rapidly develop novel goals for biomechanical optimal control problems using OpenSim Moco and MATLAB (The Mathworks, Inc., Natick, MA, USA). `MEP` features several templates for testing and prototyping novel MocoGoals in lieu of rebuilding OpenSim or generating an .omoco file from C++ to load the problem into MATLAB. Instead, users structure custom goals, build them, and call custom goals from MATLAB scripts.
 
-# Setup<a name="setup"></a>
+# Setup and Requirements<a name="setup"></a>
+- `MEP` was developed with Windows in mind, MacOS and linux are not supported at this time.
 - `MEP` runs on MATLAB (tested on 2022a and above) and requires [visual studio](https://visualstudio.microsoft.com) as well as [CMake](https://cmake.org/download/)
 - Download and install OpenSim from [SimTK](https://simtk.org) and follow the documentation for setting up OpenSim’s MATLAB scripting environment.
 - Follow the instructions (OpenSim) to download necessary dependencies for both scripting in MATLAB and C++ development.
