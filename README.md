@@ -21,8 +21,9 @@ MocoExtendProblem (`MEP`) is a framework to rapidly develop novel goals for biom
 # Setup and Requirements<a name="setup"></a>
 - `MEP` was developed with Windows in mind, MacOS and linux are not supported at this time.
 - `MEP` runs on MATLAB (tested on 2022a and above) and requires [visual studio](https://visualstudio.microsoft.com) as well as [CMake](https://cmake.org/download/)
-- Download and install OpenSim from [SimTK](https://simtk.org) and follow the documentation for setting up OpenSim’s MATLAB scripting environment.
-- Follow the instructions (OpenSim) to download necessary dependencies for both scripting in MATLAB and C++ development.
+- Download and install OpenSim from [SimTK](https://simtk.org) and follow the documentation for setting up OpenSim’s [MATLAB scripting environment](https://opensimconfluence.atlassian.net/wiki/spaces/OpenSim/pages/53089380/Scripting+with+Matlab).
+- Follow the instructions (OpenSim) to download necessary dependencies for both MATLAB Scripting and C++ development.
+- Be sure to add visual studio to your system PATH environment variable such that `cl.exe` can be run from command prompt or powershell.
 - In MATLAB, configure MEX with mex -setup C++ to use the MS VisualStudio 2019+.
 
 ![Max Coordinate Goal](paper/MEP_point_mass_max.png)
