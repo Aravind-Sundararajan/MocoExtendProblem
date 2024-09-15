@@ -39,9 +39,9 @@ The preferred method of including `MEP` to a new or existing project is to fork 
 
 1. OpenSim 4.5+ users should copy and paste a goal to serve as a template in the `custom_goals` directory such as MocoActivationGoal, while 4.2-4.4 users should copy and paste a goal in `custom_goals_compat`.
 2. Replace mentions of the original goal name to that of your new custom goal name in each of the 5 files and file names, being careful to also modify the include guards in the osimGoalNameDLL.h and RegisterTypes_osimGoalName.h header files. 
-3. Reimplement `constructProperties()`, `initializeOnModelImpl()`, `calcIntegrandImpl()`, `calcGoalImpl()` such that they describe your custom goal.
+3. In the MocoGoalNameGoal.cpp and MocoGoalNameGoal.h, reimplement `constructProperties()`, `initializeOnModelImpl()`, `calcIntegrandImpl()`, `calcGoalImpl()` such that they describe your custom goal.
 
-To incorporate extend_problem goals into an existing MATLAB script, a C-style pointer to the instantiated MocoProblem is passed as a constructor argument to the `extend_problem.m` class that wraps the `MEP` MEX. Class methods of `extend_problem.m` are then used to add custom goals to the MocoProblem.
+To incorporate extend_problem goals into an existing MATLAB script, a C-style pointer to the instantiated MocoProblem is passed as a constructor argument to the `extend_problem.m` class that wraps the `MEP` MEX. Class methods of `extend_problem.m` are then used to add custom goals to the MocoProblem. In your matlab script using moco, after instantiating a MocoProblem, add the following 3 lines to pass the c-style pointer to your MocoProblem to the ExtendProblem class constructor and call the addMocoGoalName method to inject your custom goal into your problem. For additional examples see the test subdirectory.
 
 ```C++
 cptr = uint64(problem.getCPtr(problem));
@@ -51,15 +51,15 @@ ep.addMocoCustomGoal('custom_goal',weight,power,divide_by_distance);
 
 # Testing<a name="testing"></a>
 
-In the test directory, we have provided some test scripts to be run with MATLAB desktop GUI:
-- `test_ExtendProblem_simple.m`
-- `example2DWalking/WalkSim_Tracking.m`
-- `example2DWalking/WalkSim_predictive.m`
-- `driver.m`
+In the test subdirectory, we have provided some test scripts to be run with MATLAB desktop GUI:
+- `test_ExtendProblem_simple.m` - runs a simulation with the Max Coordinate Goal with result depicted below.
+- `example2DWalking/WalkSim_Tracking.m` -runs a tracking simulation with MEP
+- `example2DWalking/WalkSim_predictive.m` - runs a predictive simulation with MEP
+- `driver.m` - a driver program for selecting the simulation type and if the simulation is tracking or predictive (for regenerating results from the Manuscript)
 
 ![Max Coordinate Goal](paper/MEP_point_mass_max.png)
 
-Additionally if using an opensim version that is lower than 4.5, there are compatibility versions of `WalkSim_predictive.m` and `test_extendProblem_simple.m` to handle OpenSim version 4.2-4.4. The output of these scripts are compared against an OutputReference within the `MocoExtendProble\output` directory. Note: you should stay on the top-level directory `MocoExtendProblem`.
+Additionally, if using an opensim version that is lower than 4.5, there are compatibility versions of `WalkSim_predictive.m` and `test_extendProblem_simple.m` to handle OpenSim version 4.2-4.4. The output of these scripts are compared against an OutputReference within the `MocoExtendProble\output` directory. Note: you should stay on the top-level directory `MocoExtendProblem`.
 
 # License<a name="license"></a>
 
