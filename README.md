@@ -16,30 +16,29 @@
 
 # Summary<a name="summary"></a>
 
-MocoExtendProblem (`MEP`) is a framework to rapidly develop novel goals for biomechanical optimal control problems using OpenSim Moco and MATLAB (The Mathworks, Inc., Natick, MA, USA). `MEP` features several templates for testing and prototyping novel MocoGoals in lieu of rebuilding OpenSim or generating an .omoco file from C++ to load the problem into MATLAB. Instead, users structure custom goals, build them, and call custom goals from MATLAB scripts.
+MocoExtendProblem (`MEP`) is a framework to rapidly develop novel goals for biomechanical optimal control problems using OpenSim Moco and MATLAB (The Mathworks, Inc., Natick, MA, USA). `MEP` features several templates for testing and prototyping novel MocoGoals. In lieu of rebuilding OpenSim or generating an .omoco file from C++ to load the problem into MATLAB, users structure custom goals, build them, and call custom goals from MATLAB scripts.
 
 # Setup and Requirements<a name="setup"></a>
 - `MEP` was developed with Windows in mind, MacOS and linux are not supported at this time.
-- `MEP` runs on MATLAB (tested on 2022a and above) and requires [visual studio](https://visualstudio.microsoft.com) as well as [CMake](https://cmake.org/download/)
-- Download and install OpenSim from [SimTK](https://simtk.org) and follow the documentation for setting up OpenSim’s [MATLAB scripting environment](https://opensimconfluence.atlassian.net/wiki/spaces/OpenSim/pages/53089380/Scripting+with+Matlab).
+- `MEP`supports OpenSim versions 4.5 and has compatability for OpenSim 4.2-4.4.
+- `MEP` runs on MATLAB (tested on 2022a and above) and was tested with [visual studio 2019+](https://visualstudio.microsoft.com) as well as [CMake 3.23.3+](https://cmake.org/download/)
+- Download and install an OpenSim version from 4.2-4.5 from [SimTK](https://simtk.org) and follow the documentation for setting up OpenSim’s [MATLAB scripting environment](https://opensimconfluence.atlassian.net/wiki/spaces/OpenSim/pages/53089380/Scripting+with+Matlab).
 - Follow the instructions (OpenSim) to download necessary dependencies for both MATLAB Scripting and C++ development.
 - Be sure to add visual studio to your system PATH environment variable such that `cl.exe` can be run from command prompt or powershell.
-- In MATLAB, configure MEX with mex -setup C++ to use the MS VisualStudio 2019+.
-
-![Max Coordinate Goal](paper/MEP_point_mass_max.png)
+- In MATLAB, configure MEX by running `mex -setup C++` in the MATLAB command window to use MS VisualStudio 2019+.
 
 # Getting Started<a name="getting-started"></a>
 
 ## Compile MEX interface
 
-From the top-level directory (`MocoExtendProblem`) there is a `build.m` script. Running this script will generate the `ExtendProblem` class and the MEX interface. NOTE: building and testing the class requires being in the top-level directory; however after the build is successful, you are free to add the `bin\relwithdebinfo` to your matlab path.
+From the top-level directory (`MocoExtendProblem`) there is a `build.m` script. Running this script will regenerate the `ExtendProblem` class and the MEX interface. Each time any goal implementations need to be changed/updated, build.m should be run. NOTE: building and testing the class requires being in the top-level directory (`MocoExtendProblem`); however, after the build is successful, you are free to add the `bin\relwithdebinfo` to your matlab path so you can access `MEP` .
 
-Forking and adding `MEP` as a submodule to your project and then building is the preferred method of including it to a new or existing project.
+The preferred method of including `MEP` to a new or existing project is to fork and add it as a submodule to your project. This way you can add your own custom goals with version control managed within your lab.
 
 ## Creating a new goal
 
-1. OpenSim 4.5+ users should copy a goal in the `custom_goals` directory while 4.2-4.4 users  should copy a goal in `custom_goals_compat`.
-2. Replace mentions of the original goal name to that of your new custom goal name in each of the 5 files and file names, being careful to also modify the include guards in the dll and register types header files. 
+1. OpenSim 4.5+ users should copy and paste a goal to serve as a template in the `custom_goals` directory such as MocoActivationGoal, while 4.2-4.4 users should copy and paste a goal in `custom_goals_compat`.
+2. Replace mentions of the original goal name to that of your new custom goal name in each of the 5 files and file names, being careful to also modify the include guards in the osimGoalNameDLL.h and RegisterTypes_osimGoalName.h header files. 
 3. Reimplement `constructProperties()`, `initializeOnModelImpl()`, `calcIntegrandImpl()`, `calcGoalImpl()` such that they describe your custom goal.
 
 To incorporate extend_problem goals into an existing MATLAB script, a C-style pointer to the instantiated MocoProblem is passed as a constructor argument to the `extend_problem.m` class that wraps the `MEP` MEX. Class methods of `extend_problem.m` are then used to add custom goals to the MocoProblem.
@@ -57,6 +56,8 @@ In the test directory, we have provided some test scripts to be run with MATLAB 
 - `example2DWalking/WalkSim_Tracking.m`
 - `example2DWalking/WalkSim_predictive.m`
 - `driver.m`
+
+![Max Coordinate Goal](paper/MEP_point_mass_max.png)
 
 Additionally if using an opensim version that is lower than 4.5, there are compatibility versions of `WalkSim_predictive.m` and `test_extendProblem_simple.m` to handle OpenSim version 4.2-4.4. The output of these scripts are compared against an OutputReference within the `MocoExtendProble\output` directory. Note: you should stay on the top-level directory `MocoExtendProblem`.
 
