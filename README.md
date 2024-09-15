@@ -20,7 +20,7 @@ MocoExtendProblem (`MEP`) is a framework to rapidly develop novel goals for biom
 
 # Setup and Requirements<a name="setup"></a>
 - `MEP` was developed with Windows in mind, MacOS and linux are not supported at this time.
-- `MEP`supports OpenSim versions 4.5 and has compatability for OpenSim 4.2-4.4.
+- `MEP`supports OpenSim versions 4.5 and has compatability for OpenSim 4.2-4.4, but does not support OpenSim versions below 4.2.
 - `MEP` runs on MATLAB (tested on 2022a and above) and was tested with [visual studio 2019+](https://visualstudio.microsoft.com) as well as [CMake 3.23.3+](https://cmake.org/download/)
 - Download and install an OpenSim version from 4.2-4.5 from [SimTK](https://simtk.org) and follow the documentation for setting up OpenSim’s [MATLAB scripting environment](https://opensimconfluence.atlassian.net/wiki/spaces/OpenSim/pages/53089380/Scripting+with+Matlab).
 - Follow the instructions (OpenSim) to download necessary dependencies for both MATLAB Scripting and C++ development.
