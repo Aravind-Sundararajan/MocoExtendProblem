@@ -24,13 +24,13 @@ config ="RelWithDebInfo";
 %if this is failing, check to see if vs 2022 msbuild.exe and cmake are part of
 %the system PATH.
 if contains(opensim_install,"4.5")
-    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version=5 -G ""Visual Studio 16 2019""");
+    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version=5 -G ""Visual Studio 17 2022""");
 elseif contains(opensim_install,"4.4")
-    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version=4 -G ""Visual Studio 16 2019""");
+    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version=4 -G ""Visual Studio 17 2022""");
 elseif contains(opensim_install,"4.3")
-    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version=3 -G ""Visual Studio 16 2019""");
+    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version=3 -G ""Visual Studio 17 2022""");
 elseif contains(opensim_install,"4.2")
-    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version=2 -G ""Visual Studio 16 2019""");
+    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version=2 -G ""Visual Studio 17 2022""");
     %system("cmake CmakeLists.txt -S . -B """+builddir+"""");
 end
 system("msbuild """+solutionPath+""" /p:configuration="+config); %
