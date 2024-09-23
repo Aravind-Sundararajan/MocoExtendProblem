@@ -37,7 +37,6 @@ MocoExtendProblem (`MEP`) is a framework to rapidly develop novel goals for biom
 
 - Download and install an OpenSim version from 4.2-4.5 from [SimTK](https://simtk.org) and follow the documentation for setting up OpenSim’s [MATLAB scripting environment](https://opensimconfluence.atlassian.net/wiki/spaces/OpenSim/pages/53089380/Scripting+with+Matlab).
 - Follow the instructions (OpenSim) to download necessary dependencies for both MATLAB Scripting and C++ development.
-- Be sure to add visual studio to your system PATH environment variable such that `cl.exe` can be run from command prompt or powershell.
 - In MATLAB, configure MEX by running `mex -setup C++` in the MATLAB command window to use MS VisualStudio 2019+.
 
 # Getting Started<a name="getting-started"></a>
