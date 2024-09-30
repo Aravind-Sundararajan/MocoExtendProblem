@@ -61,6 +61,130 @@ ep = extend_problem(cptr);
 ep.addMocoCustomGoal('custom_goal',weight,power,divide_by_distance);
 ```
 
+## Tutorial
+
+
+first clone MocoExtend Problem.
+```
+git clone git@github.com:Aravind-Sundararajan/MocoExtendProblem.git
+```
+Next, open MATLAB and run build.m to see that your setup is working.
+![image](https://github.com/user-attachments/assets/7ec8c957-8abd-45d4-a5cc-fc76f8eb5965)
+
+After building, you should see the following in the command window:
+![image](https://github.com/user-attachments/assets/2bc359da-b3f5-45a7-881b-bf6b8a8180f0)
+
+To build a new goal, we are going to copy a goal folder to serve as a template, I'll call this new goal MocoCustomGoal.
+
+![image](https://github.com/user-attachments/assets/a2182699-0632-49c8-9b7a-1d395ff15239)
+
+![image](https://github.com/user-attachments/assets/96c63e1b-160b-4175-b5cb-1f299228c5f6)
+
+We need to change the naming conventions of the 5 files (GoalName.cpp, GoalName.h, osimGoalNameDLL.h, RegisterTypes_osimGoalName.cpp, RegisterTypes_osimGoalName.h) from MocoActivationGoal to MocoCustomGoal
+You can do this by hand or using an ide/editor like vscode or notepad++.
+
+![image](https://github.com/user-attachments/assets/c9b46c1e-4f7a-4004-8230-c40b68cc20a7)
+
+We also need to change the  naming conventions within each of the files. This is relatively easy to regex replace or find&replace with vscode, but also not challenging by hand either. I am going to do this with vscode. You should have 45 replacements across the 5 files. (Note I am checking the box for Preserve Case so I can change the class names and includeguards in one go.)
+
+![image](https://github.com/user-attachments/assets/9f75691b-d203-47b9-991a-a3816ef68d0f)
+
+Now let's run build.m again and make sure our new MocoCustomGoal works.
+
+![image](https://github.com/user-attachments/assets/7ef1dc71-4a3b-4b58-8b10-7ebf3e9b1d34)
+
+If we look in the bin/RelWithDebInfo directory, we will see that our new custom goal has been created.
+
+![image](https://github.com/user-attachments/assets/31809208-2d24-4a49-a17c-2246cfa2f397)
+
+And if we check `bin/RelWithDebInfo/extend_problem.m` you will see we have a new method for adding the MocoCustomGoal to a MocoProblem.
+
+![image](https://github.com/user-attachments/assets/61de7002-44a4-4d43-bdc6-6988eaa57b48)
+
+Let's try adding MocoCustomGoal to a problem. Quickly we can edit `test\test_ExtendProblem_simple.m`
+
+Comment line 81, and add a new line `ep.addMocoCustomGoal('custom_goal',1.0, true, false, false, false);` To know what the boolean arguments do, see the interface that we just lookled at (`bin/RelWithDebInfo/extend_problem.m`)
+
+![image](https://github.com/user-attachments/assets/f074e409-72a2-47e4-9be9-470ae1c82af0)
+
+Now if we hit run, and Add to Path, we should see 
+
+```
+Adding MocoCustomGoal goal
+
+List of user-set options:
+
+                                    Name   Value                used
+                   hessian_approximation = limited-memory        yes
+                      print_user_options = yes                   yes
+This is Ipopt version 3.12.8, running with linear solver mumps.
+NOTE: Other linear solvers might be more efficient (see Ipopt documentation).
+
+Number of nonzeros in equality constraint Jacobian...:     2884
+Number of nonzeros in inequality constraint Jacobian.:        0
+Number of nonzeros in Lagrangian Hessian.............:        0
+
+Total number of variables............................:      599
+                     variables with only lower bounds:        0
+                variables with lower and upper bounds:      599
+                     variables with only upper bounds:        0
+Total number of equality constraints.................:      500
+Total number of inequality constraints...............:        0
+        inequality constraints with only lower bounds:        0
+   inequality constraints with lower and upper bounds:        0
+        inequality constraints with only upper bounds:        0
+
+Warning: intermediate_callback is disfunctional in your installation. You will only be able to use stats(). See https://github.com/casadi/casadi/wiki/enableIpoptCallback to enable it.
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+   0  0.0000000e+00 1.99e+00 0.00e+00   0.0 0.00e+00    -  0.00e+00 0.00e+00   0
+   1  0.0000000e+00 3.55e-15 9.58e+00   0.3 2.34e+01    -  9.13e-01 1.00e+00f  1
+   2  0.0000000e+00 3.55e-15 9.58e-02  -4.6 6.53e-06    -  9.90e-01 1.00e+00h  1
+   3  0.0000000e+00 1.29e-11 7.57e-02  -0.7 1.45e+03    -  2.10e-01 1.62e-01f  1
+   4  0.0000000e+00 1.50e-11 4.15e-03  -1.4 6.61e+01    -  9.45e-01 1.00e+00f  1
+   5  0.0000000e+00 6.00e-12 4.36e-04  -2.1 4.10e+01    -  8.95e-01 1.00e+00f  1
+   6  0.0000000e+00 3.24e-12 2.51e-05  -3.1 1.10e+01    -  9.42e-01 1.00e+00f  1
+   7  0.0000000e+00 7.11e-15 2.35e-06  -4.6 2.35e-06    -  1.00e+00 1.00e+00h  1
+   8  0.0000000e+00 2.84e-14 1.15e-08  -6.9 1.15e-08    -  1.00e+00 1.00e+00h  1
+   9  0.0000000e+00 3.55e-15 8.93e-11  -9.0 8.93e-11    -  1.00e+00 1.00e+00h  1
+
+Number of Iterations....: 9
+
+                                   (scaled)                 (unscaled)
+Objective...............:   0.0000000000000000e+00    0.0000000000000000e+00
+Dual infeasibility......:   8.9299948853747289e-11    8.9299948853747289e-11
+Constraint violation....:   3.5527136788005009e-15    3.5527136788005009e-15
+Complementarity.........:   9.0909090923115354e-10    9.0909090923115354e-10
+Overall NLP error.......:   9.0909090923115354e-10    9.0909090923115354e-10
+
+
+Number of objective function evaluations             = 10
+Number of objective gradient evaluations             = 10
+Number of equality constraint evaluations            = 10
+Number of inequality constraint evaluations          = 0
+Number of equality constraint Jacobian evaluations   = 10
+Number of inequality constraint Jacobian evaluations = 0
+Number of Lagrangian Hessian evaluations             = 0
+Total CPU secs in IPOPT (w/o function evaluations)   =      0.534
+Total CPU secs in NLP function evaluations           =      6.216
+
+EXIT: Optimal Solution Found.
+         nlp  :   t_proc      (avg)   t_wall      (avg)    n_eval
+callback_fun  |   1.00ms (100.00us)   1.63ms (163.21us)        10
+       nlp_f  | 556.00ms ( 55.60ms) 556.47ms ( 55.65ms)        10
+       nlp_g  |   1.15 s (114.80ms)   1.15 s (114.57ms)        10
+  nlp_grad_f  |   1.25 s (113.18ms)   1.25 s (113.21ms)        11
+   nlp_jac_g  |   3.73 s (339.18ms)   3.73 s (339.02ms)        11
+       total  |   6.75 s (  6.75 s)   6.75 s (  6.75 s)         1
+
+Breakdown of objective (including weights):
+  custom_goal: 0
+max goal failed to match reference output for goal
+   
+Solver duration (h:m:s): 0:0:7
+```
+
+Now feel free to modify MocoCustomGoal.cpp and MocoCustomGoal.h for new goals! For help reference the [OpenSim API reference documentation](https://simtk.org/api_docs/opensim/api_docs/index.html).
+
 # Testing<a name="testing"></a>
 
 In the test subdirectory, we have provided some test scripts to be run with MATLAB desktop GUI:
