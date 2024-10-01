@@ -185,6 +185,28 @@ Solver duration (h:m:s): 0:0:7
 
 Now feel free to modify MocoCustomGoal.cpp and MocoCustomGoal.h for new goals! For help reference the [OpenSim API reference documentation](https://simtk.org/api_docs/opensim/api_docs/index.html).
 
+# Included Goals
+- MocoActivationGoal
+  * A simple MocoGoal that allows you to minimize activations, note this is not activations squared and also is not the same as the MocoControlEffortGoal which minimizes all controls.
+- MocoActivationSquaredGoal
+  * a slight modification to the MocoActivationGoal that squares the activations, note this is still different from the MocoControlEffortGoal that is built into Moco
+- MocoBOSGoal
+  * "Base of Support" goal that has the model mass center track the centroid of the base of support between the two feet.
+- MocoCoordinateAccelerationGoal
+  * explicit coordinate acceleration minimization, this is different from the implicit coordinate acceleration minimization that is available with Moco.
+- MocoCOPGoal
+  * "center of pressure" goal that has the model center of mass track the center of pressure between the two feet.
+- MocoCustomOutputGoal
+  * back-port of the MocoOutputGoal from 4.5 to moco 4.2-4.4 that allows you to set different exponents
+- MocoMarkerAccelerationGoal
+  * minimizes the cartesian acceleration of a specified marker on the model
+- MocoMaxCoordinateGoal
+  * smoothed approximation for maximized coordinate value, allows you to maximize or minimize a coordinate while adhering to path and endpoint constraints
+- MocoMuscleStrainGoal
+  * minimizes the muscle strain using a proxy for muscle volume
+- MocoZMPGoal
+  * "Zero-tilting Moment Point" has the model center of mass track the point projected to the floor that produces zero tilting moments
+    
 # Testing<a name="testing"></a>
 
 In the test subdirectory, we have provided some test scripts to be run with MATLAB desktop GUI:
