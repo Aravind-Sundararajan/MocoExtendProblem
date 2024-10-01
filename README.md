@@ -212,8 +212,8 @@ Now feel free to modify MocoCustomGoal.cpp and MocoCustomGoal.h for new goals! F
 In the test subdirectory, we have provided some test scripts to be run with MATLAB desktop GUI:
 - `test_ExtendProblem_simple.m` - runs a simulation with the Max Coordinate Goal with result depicted below.
 - `example2DWalking/WalkSim_Tracking.m` -runs a tracking simulation with MEP
-- `example2DWalking/WalkSim_predictive.m` - runs a predictive simulation with MEP
-- `driver.m` - a driver program for selecting the simulation type and if the simulation is tracking or predictive (for regenerating results from the Manuscript)
+- `example2DWalking/WalkSim_predictive.m` - runs a predictive simulation with MEP (uses the MocoTrack class with tracking weights set to zero)
+- `driver.m` - a driver program for selecting the simulation type and if the simulation is tracking or predictive (for regenerating results from the Manuscript) The 3 goals investigated are the before-mentioned MocoMarkerAccelerationGoal, MocoBOSGoal, and MocoZMPGoal.
 
 ![Max Coordinate Goal](paper/MEP_point_mass_max.png)
 
