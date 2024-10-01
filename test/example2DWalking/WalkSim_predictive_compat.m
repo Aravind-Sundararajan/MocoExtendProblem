@@ -394,12 +394,12 @@ externalForcesTableFlat = opensimMoco.createExternalLoadsTableForGait(model, ...
 STOFileAdapter.write(externalForcesTableFlat, ...
     output_dir + 'GRF.sto');
 
-ref = MocoTrajectory(output_dir + '/outputReference/states_half.sto');
+ref = MocoTrajectory(output_dir + '/outputReference_compat/states_half.sto');
 
 if gaitPredictiveSolution.isNumericallyEqual(ref)
-    warning("output matches output reference for Gait Tracking");
+    warning("output matches output reference for "+output_dir);
 else
-    warning("tracking failed to match reference output for goal");
+    warning(output_dir+" failed to match reference output for goal");
 end
 
 end
