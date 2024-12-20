@@ -1,3 +1,37 @@
+% =========================================================================
+% Test Script: Point Mass Optimization using OpenSim Moco
+% =========================================================================
+% Description:
+% This script performs an optimal control simulation for a point mass model
+% using OpenSim's Moco framework. The test evaluates the influence of 
+% including or excluding a custom goal (MaxCoordinateGoal) on the 
+% optimization results. The main objectives include:
+% 1. Defining and solving an optimal control problem for a sliding mass.
+% 2. Comparing simulation results with and without the MaxCoordinateGoal.
+% 3. Validating numerical outputs against reference solutions.
+% 
+% Key Features:
+% - Dynamically configures the OpenSim environment within MATLAB.
+% - Sets up a point mass model with specified state and control bounds.
+% - Utilizes ExtendProblem to include custom optimization goals.
+% - Outputs solver duration and a breakdown of objective terms.
+% - Plots and compares simulation results for visualization.
+%
+% Required Setup:
+% - OpenSim 4.5 or compatible version installed and accessible.
+% - Path to OpenSim libraries correctly set in 'opensimroot'.
+% - Point mass model file ('pointmass.osim') located in './models/'.
+%
+% Outputs:
+% - Simulation result files written to './test/pointMass/'.
+% - Comparison plots of position vs. time for different test cases.
+%
+% Author: Aravind Sundararajan
+% Date: 12/20/2024
+% =========================================================================
+
+
+
 opensimroot = 'C:\opensim 4.5\'; %create a char array that has the opensim path toplevel directory
 addpath([opensimroot 'bin'], [opensimroot 'sdk\lib']); %add the opensim path to the
 javaaddpath([opensimroot 'bin'], [opensimroot 'sdk\lib']); %add opensimroot bin and the java path to MATLAB's dynamic path path

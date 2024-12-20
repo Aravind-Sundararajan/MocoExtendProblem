@@ -1,5 +1,44 @@
 function test_ExtendProblem(w,mesh_interval,max_iterations,outputDir)
 
+
+% =========================================================================
+% Test Script: test custom direct collocation goal using OpenSim Moco
+% =========================================================================
+% Description:
+% This function sets up and solves an optimal control problem using the 
+% OpenSim Moco library. It is designed to track human walking dynamics by 
+% defining a MocoTrack optimization problem with adjustable parameters for 
+% state tracking, ground reaction force (GRF) tracking, and control effort 
+% minimization. The function logs the optimization process, sets up model 
+% constraints, and computes solutions with symmetry constraints and custom bounds.
+% 
+% Key Features:
+% 1. Initializes the OpenSim Moco libraries and adds paths to MATLAB.
+% 2. Configures the MocoTrack problem, including:
+%    - State and GRF reference data from external files.
+%    - Weights for tracking objectives (state, GRF, and control effort).
+%    - Customized bounds for joint coordinates and speeds.
+% 3. Configures the model:
+%    - Replaces certain joints with welds for initial simulation.
+%    - Removes muscles and adds reserve actuators for torque-driven dynamics.
+% 4. Adds periodicity constraints to ensure symmetric walking.
+% 5. Optionally incorporates GRF tracking goals using external contact models.
+% 6. Logs the optimization results and stores the output files.
+%
+% Required Setup:
+% - OpenSim 4.5 or compatible version installed and accessible.
+% - Path to OpenSim libraries correctly set in 'opensimroot'.
+% - Point mass model file ('pointmass.osim') located in './models/'.
+%
+% Outputs:
+% No direct outputs. Results, including logging and state trajectories, 
+% are saved in the specified output directory.
+%
+% Author: Aravind Sundararajan
+% Date:12/20/2024
+% =========================================================================
+
+
 out_name = strrep(num2str(w,'%.2f'),'.','_');
 log_path = [outputDir,'logging_',out_name,'.txt'];
 sto_path = [outputDir,out_name,'.sto'];

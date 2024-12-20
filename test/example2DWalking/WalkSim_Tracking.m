@@ -1,5 +1,46 @@
 function WalkSim_Tracking()
 
+% WalkSim_Tracking - Solve a gait tracking optimal control problem
+%
+% This function sets up and solves an optimal control problem for tracking
+% human gait dynamics using OpenSim's Moco framework. The problem seeks to 
+% minimize the deviation between simulated and reference data for joint 
+% coordinates, speeds, and ground reaction forces (GRFs), while minimizing 
+% effort (squared controls). The reference data is taken from Nguyen et al. 
+% (2019, IEEE TNSRE) and represents half a gait cycle.
+%
+% Key Features:
+% 1. Symmetry Constraints: Enforces symmetry across state variables, 
+%    controls, and tendon forces, permitting simulation of only one step.
+% 2. GRF Tracking: Includes a contact tracking goal for ground reaction forces.
+% 3. Gait Speed Enforcement: Prescribes a desired average walking speed.
+% 4. Effort Optimization: Balances tracking accuracy and control effort using 
+%    user-defined weights.
+% 5. Mesh Refinement and Guess Strategies: Supports adjustable temporal 
+%    resolution and initial guess strategies.
+%
+% Inputs:
+% None (Parameters are hardcoded within the script for setup).
+%
+% Outputs:
+% 1. Saves the optimal control solution to a specified directory.
+% 2. Outputs key metrics including the objective value, solver duration, 
+%    and the number of iterations.
+%
+% References:
+% - Nguyen et al., 2019, IEEE TNSRE: Reference data source for joint states
+%   and GRFs.
+% - Denton & Umberger, 2023: Detailed methodology and parameter tuning.
+%
+% Notes:
+% - Requires OpenSim Moco libraries and relevant input files for the model 
+%   and reference data.
+% - The function is designed for 2D gait dynamics with a predefined model 
+%   and boundary conditions.
+%
+% Authors: Alex Denton & Brian Umberger
+% Contributor: A. Sundarajan, MWU (Custom Goals)
+
 mesh_int= 25;
 cores = 1;
 guess_strategy ='CG';
@@ -7,18 +48,6 @@ coarsest_mesh = 25;
 output_dirs = ["./output/track/"];
 
 output_dir =output_dirs(1);
-%------------------------------------------------------------------------
-% Solve a tracking problem where the goal is to minimize the difference
-% between simulated and reference coordinate values and speeds, and GRFs,
-% as well as to minimize an effort cost (squared controls). The reference
-% data are from Nguyen et al. (2019, IEEE TNSRE) and represent half a gait
-% cycle. Symmetry of the gait cycle and a prescribed average walking speed
-% are enforced through endpoint constraints.
-% The number of temporal mesh intervals, the number of processor cores
-% and the approach to use for the initial guess are all passed in by the
-% calling script.
-%
-% Authors: Alex Denton & Brian Umberger
 %
 
 

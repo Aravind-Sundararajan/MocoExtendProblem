@@ -1,17 +1,40 @@
 function WalkSim_predictive(sim_type)
+
 %------------------------------------------------------------------------
-% Solve a tracking problem where the goal is to minimize the difference
-% between simulated and reference coordinate values and speeds, and GRFs,
-% as well as to minimize an effort cost (squared controls). The reference
-% data are from Nguyen et al. (2019, IEEE TNSRE) and represent half a gait
-% cycle. Symmetry of the gait cycle and a prescribed average walking speed
-% are enforced through endpoint constraints.
-% The number of temporal mesh intervals, the number of processor cores
-% and the approach to use for the initial guess are all passed in by the
-% calling script.
+% WalkSim_predictive: Predictive Gait Simulation
+% 
+% This function solves a predictive walking optimization problem using
+% OpenSim's Moco framework. The simulation minimizes discrepancies between
+% simulated and reference ground reaction forces (GRFs), coordinate values,
+% and speeds, while minimizing control effort.
 %
-% Authors: Alex Denton & Brian Umberger
-% modifications for JOSS, Aravind Sundararajan
+% The optimization uses Nguyen et al. (2019) as reference data, simulating
+% half a gait cycle with symmetry enforced between left and right limbs.
+%
+% Key Features:
+% 1. **Effort Minimization**: Minimizes muscle control effort.
+% 2. **Symmetry Goal**: Enforces symmetry in joint kinematics and muscle
+%    activations to simulate half a step.
+% 3. **Adaptive Mesh**: Adjustable temporal mesh intervals, guess strategies, 
+%    and core usage for enhanced optimization efficiency.
+% 4. **Multiple Predictive Goals**: Offers options to predict gait outcomes 
+%    like marker accelerations, base of support (BOS), or zero-moment-point 
+%    (ZMP), based on user input.
+%
+% Simulation Parameters:
+% - sim_type: Defines the predictive goal type (Effort, Marker Acceleration, 
+%             BOS, or ZMP).
+% - mesh_int: Number of mesh intervals for time discretization.
+% - cores: Number of processor cores for parallel computation.
+% - guess_strategy: Method to generate initial guess (default 'CG').
+%
+% The code utilizes custom-defined goals through the extended problem
+% function and applies bounds on joint states and muscle activations.
+%
+% Author: Aravind Sundararajan
+% Date: 12/20/2024
+%------------------------------------------------------------------------
+
 addpath(genpath(fullfile(pwd,'bin','RelWithDebInfo'))); % Extend Problem (magic!)
 mesh_int= 25;
 cores = 1;
