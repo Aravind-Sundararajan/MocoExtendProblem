@@ -103,7 +103,7 @@ And if we check `bin/RelWithDebInfo/extend_problem.m` you will see we have a new
 
 Let's try adding MocoCustomGoal to a problem. Quickly we can edit `test\test_ExtendProblem_simple.m`
 
-Comment line 81, and add a new line `ep.addMocoCustomGoal('custom_goal',1.0, true, false, false, false);` To know what the boolean arguments do, see the interface that we just lookled at (`bin/RelWithDebInfo/extend_problem.m`)
+Comment line 102, and add a new line `ep.addMocoCustomGoal('custom_goal',1.0, true, false, false, false);` To know what the boolean arguments do, see the interface that we just lookled at (`bin/RelWithDebInfo/extend_problem.m`)
 
 ![image](https://github.com/user-attachments/assets/f074e409-72a2-47e4-9be9-470ae1c82af0)
 

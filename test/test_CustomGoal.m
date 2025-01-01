@@ -71,22 +71,8 @@ tableProcessor.append(TabOpLowPassFilter(6));
 
 modelProcessor = ModelProcessor('./models/model_31d84m_modified_contacts.osim');
 
-%modelProcessor.append(ModOpUseImplicitTendonComplianceDynamicsDGF())
-%modelProcessor.append(ModOpReplaceMusclesWithDeGrooteFregly2016());
-%modelProcessor.append(ModOpIgnoreTendonCompliance());
-
 %weld some of the joints
 jointsToWeld = StdVectorString();
-% Weld shoulder and elbow joints for initial torque-driven sim.
-% jointsToWeld.add('shoulder_r');
-% jointsToWeld.add('shoulder_l');
-% jointsToWeld.add('elbow_r');
-% jointsToWeld.add('elbow_l');
-% %Weld arm, hand and foot
-% jointsToWeld.add('radioulnar_r');
-% jointsToWeld.add('radioulnar_l');
-% jointsToWeld.add('wrist_r');
-% jointsToWeld.add('wrist_l');
 jointsToWeld.add('mtp_r');
 jointsToWeld.add('mtp_l');
 jointsToWeld.add('subtalar_r');
@@ -105,8 +91,6 @@ track.set_track_reference_position_derivatives(true);
 track.set_apply_tracked_states_to_guess(true);
 track.set_initial_time(0.0);
 track.set_final_time(1.16);
-
-%track.set_guess_file('./output/predictive_simulations/effort/1_00.sto');%'./output/best_so_far_qp.sto');
 
 % Coordinate-specific tracking weights (value & speed) as SDs averaged over the
 % gait cycle from O'Neill et al. 2021)
@@ -185,7 +169,6 @@ end
 % Symmetric controls
 for i = 1:model.getNumControls()
     currentControlName = string(problem.createRep().createControlInfoNames().get(i-1));
-    %disp(currentControlName);
     if (~contains(currentControlName,'_pelvis_pelvis_tx'))
         symmetryGoal.addControlPair(MocoPeriodicityGoalPair(currentControlName));
     end
@@ -233,29 +216,8 @@ if GRFTrackWeight ~= 0
     contactTracking.addContactGroup(contactSpheres_r,"Right_GRF");
     contactTracking.addContactGroup(contactSpheres_l,"Left_GRF");
 
-    % Example code if there is a two part foot
-    % altFramesRightFoot = StdVectorString(); % for two-part foot
-    % altFramesRightFoot.add('/bodyset/r_toes');
-    % contactTracking.addContactGroup(MocoContactTrackingGoalGroup( ...
-    %               forceNamesRightFoot,'Right_GRF',altFramesRightFoot));
-
     problem.addGoal(contactTracking);
 end
-
-%cptr = uint64(problem.getCPtr(problem));
-%ep = extend_problem(cptr);
-%ep.addAccelerationGoal(0.0001/model.getCoordinateSet().getSize());
-
-% Prevent body segment penetration (will be useful for predictive sims)
-% distanceConstraint = MocoFrameDistanceConstraint();
-% distanceConstraint.setName('distance_constraint');
-% distanceConstraint.addFramePair(MocoFrameDistanceConstraintPair('/bodyset/talus_l','/bodyset/talus_r',0.10,100));
-% distanceConstraint.addFramePair(MocoFrameDistanceConstraintPair('/bodyset/toes_l', '/bodyset/toes_r', 0.10,100));
-% distanceConstraint.addFramePair(MocoFrameDistanceConstraintPair('/bodyset/talus_l','/bodyset/toes_r', 0.10,100));
-% distanceConstraint.addFramePair(MocoFrameDistanceConstraintPair('/bodyset/toes_l', '/bodyset/talus_r',0.10,100));
-% distanceConstraint.addFramePair(MocoFrameDistanceConstraintPair('/bodyset/hand_l', '/bodyset/pelvis', 0.20,100));
-% distanceConstraint.addFramePair(MocoFrameDistanceConstraintPair('/bodyset/hand_r', '/bodyset/pelvis', 0.20,100));
-% problem.addPathConstraint(distanceConstraint);
 
 % Bounds
 % ======
@@ -263,7 +225,6 @@ problem.setStateInfo("/jointset/groundPelvis/pelvis_rotation/value", [-75*pi/180
 problem.setStateInfo("/jointset/groundPelvis/pelvis_list/value", [-20*pi/180, 20*pi/180]);
 problem.setStateInfo("/jointset/groundPelvis/pelvis_tilt/value", [-30*pi/180, 30*pi/180]);
 
-%problem.setStateInfo("/jointset/groundPelvis/pelvis_tx/value", [-2, 2], -0.6555, [0.25, 1.0]);
 problem.setStateInfo("/jointset/groundPelvis/pelvis_tx/value", [0, 1.5],0,[1.0,1.35]);
 
 problem.setStateInfo("/jointset/groundPelvis/pelvis_ty/value", [0.20, 1.5]);
@@ -278,8 +239,6 @@ problem.setStateInfo("/jointset/knee_r/knee_angle_r/value", [-125*pi/180, 0]);
 problem.setStateInfo("/jointset/knee_l/knee_angle_l/value", [-125*pi/180, 0]);
 problem.setStateInfo("/jointset/ankle_r/ankle_angle_r/value", [-30*pi/180, 40*pi/180]);
 problem.setStateInfo("/jointset/ankle_l/ankle_angle_l/value", [-30*pi/180, 40*pi/180]);
-% problem.setStateInfo("/jointset/r_mtp/r_mtp_angle/value", [-75*pi/180, 50*pi/180]);
-% problem.setStateInfo("/jointset/l_mtp/l_mtp_angle/value", [-75*pi/180, 50*pi/180]);
 problem.setStateInfo("/jointset/lumbar/lumbar_flex/value", [-10*pi/180, 10*pi/180]);
 problem.setStateInfo("/jointset/lumbar/lumbar_add/value", [-10*pi/180, 10*pi/180]);
 problem.setStateInfo("/jointset/lumbar/lumbar_rot/value", [-10*pi/180, 10*pi/180]);
@@ -305,28 +264,10 @@ solver.set_optim_convergence_tolerance(1e-2);
 solver.set_multibody_dynamics_mode('implicit');
 solver.set_minimize_implicit_multibody_accelerations(true);
 solver.set_implicit_multibody_accelerations_weight(0.001/model.getCoordinateSet().getSize())
-%solver.set_minimize_implicit_auxiliary_derivatives(true);
-%solver.set_implicit_auxiliary_derivatives_weight(0.001/model.getMuscles().getSize());
 
 % Insert the solution from a lower order model into the current guess
 solver.resetProblem(problem);
 guess = solver.createGuess();
-% lowerOrderSolution = MocoTrajectory('./output/investigations/tendon_compliance_5/1_00.sto');
-% lowerOrderStatesTable = lowerOrderSolution.exportToStatesTable();
-% lowerOrderControlsTable = lowerOrderSolution.exportToControlsTable();
-% guess.insertStatesTrajectory(lowerOrderStatesTable, true);
-% guess.insertControlsTrajectory(lowerOrderControlsTable, true);
-
-% Set the unknown activations all to a low value
-% numRows = guess.getNumTimes();
-%
-% StateNames = model.getStateVariableNames();
-% for i = 1:model.getNumStateVariables()
-%    currentStateName = string(StateNames.getitem(i-1));
-%    if contains(currentStateName,'activation')
-%       guess.setState(currentStateName, linspace(0.5,0.5,numRows));
-%    end
-% end
 
 solver.setGuess(guess);
 
@@ -398,11 +339,13 @@ if GRFTrackWeight == 0
     contactSpheres_l.add("contactOtherToes_l");
 end
 
+%cptr = uint64(problem.getCPtr(problem));
+%ep = extend_problem(cptr);
+%ep.addAccelerationGoal(0.0001/model.getCoordinateSet().getSize());
+
 externalForcesTableFlat = org.opensim.modeling.opensimMoco.createExternalLoadsTableForGait(model, ...
     humanTrackingSolution,contactSpheres_r,contactSpheres_l);
 
 org.opensim.modeling.STOFileAdapter.write(externalForcesTableFlat,grf_path);
 
 diary off
-
-%ep.delete();

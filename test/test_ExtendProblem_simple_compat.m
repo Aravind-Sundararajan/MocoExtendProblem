@@ -41,13 +41,6 @@ addpath(genpath(fullfile(pwd,'models'))); %utilities
 addpath(genpath(fullfile(pwd,'sandbox'))); %sandbox
 addpath(genpath(fullfile(pwd,'bin','RelWithDebInfo'))); %Extend Problem (magic!)
 
-%% loading dlls
-% goals = get_goal_names('custom_goals');
-% goals = pwd+"bin/RelWithDebInfo/osim" + goals + ".dll";
-% for g = goals
-%     opensimCommon.LoadOpenSimLibraryExact(g);
-% end
-%adding extendProblem class path
 %setup
 w = 1.0;
 mesh_interval = 50;
@@ -63,12 +56,6 @@ currBody = bodies.get('body1');
 testMarker = Marker("testMarker",currBody,Vec3(0,0,0));
 model.addMarker(testMarker);
 model.finalizeConnections();
-% C++ equivalent code for walksim models
-% const BodySet& bodySet = model.get_BodySet();
-% const PhysicalFrame& torsoBody = bodySet.get(11);
-% auto* marker1 = new Marker("headmarker",torsoBody, SimTK::Vec3(0,0.65,0));
-% model.addMarker(marker1);
-% model.finalizeConnections();
 
 % Create MocoStudy.
 % ================
@@ -120,9 +107,6 @@ for j = 1:2
     guess.setState('/slider/position/value', linspace(0,0,numRows));
     guess.setState('/slider/position/speed', linspace(0,0,numRows));
     solver.setGuess(guess);
-    %solver.set_num_mesh_intervals(50);
-    %solver.set_optim_constraint_tolerance(1e-10);
-    %solver.set_optim_convergence_tolerance(1e-10);
     % Solve the problem.
     % ==================
     solution = study.solve();

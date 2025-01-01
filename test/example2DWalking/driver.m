@@ -68,5 +68,3 @@ else
         WalkSim_predictive_compat(s);
     end
 end
-
-% WalkSim_predictive(simulation.ZMP);

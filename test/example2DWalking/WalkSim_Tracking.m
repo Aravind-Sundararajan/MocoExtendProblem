@@ -48,7 +48,7 @@ coarsest_mesh = 25;
 output_dirs = ["./output/track/"];
 
 output_dir =output_dirs(1);
-%
+
 
 
 % Load the Moco libraries
@@ -199,24 +199,6 @@ speedGoal.set_desired_average_speed(1.3);
 effort = MocoControlGoal.safeDownCast(problem.updGoal("control_effort"));
 effort.setWeight(ControlEffortWeight);
 
-%left_foot = char(model.getBodySet().get("calcn_l").getAbsolutePathString());
-%right_foot = char(model.getBodySet().get("calcn_r").getAbsolutePathString());
-
-% cptr = uint64(problem.getCPtr(problem));
-% ep = extend_problem(cptr);
-%
-% if j == 1
-%     %eff pred
-% elseif j ==2
-%     ep.addMocoBOSGoal('base_of_support', 1.0, 2, true, left_foot, right_foot);
-% elseif j ==3
-%     ep.addMocoZMPGoal('center_of_pressure', 10.0, 2, true);
-% elseif j ==4
-%     ep.addMocoMarkerAccelerationGoal('marker_acceleration', 1.0, ...
-%         char(model.getMarkerSet().get("head_marker").getAbsolutePathString()), ...
-%         true);
-% end
-
 % Contact (GRF) tracking goal
 contactTracking = MocoContactTrackingGoal('contact',GRFTrackingWeight);
 contactTracking.setExternalLoadsFile('.\test\example2DWalking\WalkSimReferenceGRF.xml');
@@ -286,44 +268,10 @@ solver.set_optim_max_iterations(5000);
 solver.set_minimize_implicit_auxiliary_derivatives(true);
 solver.set_implicit_auxiliary_derivatives_weight(AuxDerivWeight);
 
-% solver.set_multibody_dynamics_mode('implicit')
-% solver.set_minimize_implicit_multibody_accelerations(true)
-% solver.set_implicit_multibody_accelerations_weight(1e-5 / model.getNumCoordinates())
-% solver.set_implicit_multibody_acceleration_bounds(MocoBounds(-200, 200))
-
 guess = MocoTrajectory('.\test\example2DWalking\InitialGuessFileForTracking.sto');%solver.createGuess();
-%guess_track = MocoTrajectory('.\test\example2DWalking\InitialGuessFileForTracking.sto')
-%trackStatesTable = guess_track.exportToStatesTable();
-%trackControlsTable = guess_track.exportToControlsTable();
 
-
-%guess.insertStatesTrajectory(trackStatesTable, true);
-%guess.insertControlsTrajectory(trackControlsTable, true);
 solver.setGuess(guess)
 
-% % A custom goal for minimizing acceleration per distance. Uses an explicit
-% % formulation.
-% % Author: A. Sundarajan, MWU
-% AccelerationWeight = (1e-19)/4;
-% if AccelerationWeight ~= 0
-% 	divide_by_displacement = true;
-% 	cptr = uint64(problem.getCPtr(problem));
-% 	ep3 = extend_problem(cptr);
-% 	coords = [""];
-% 	pelvis_coords = [""];
-% 	for c = 1:model.getCoordinateSet().getSize()
-% 		coords(c) = string(model.getCoordinateSet().get(c-1).getAbsolutePathString());
-%     end
-% 	disp("explicit accel goal limb coords:")
-% 	disp(coords);
-% 	ep3.addMocoCoordinateAccelerationGoal(...
-% 		'coord_accel_limbs',...
-% 		AccelerationWeight,...
-% 		divide_by_displacement,...
-% 		convertStringsToChars(coords));
-% end
-% The next 2 items are specific to the conditions that were evaluated in
-% the corresponding paper (Denton & Umberger, 2023)
 
 % 1) Set the number of mesh intervals for this case
 solver.set_num_mesh_intervals(mesh_int);
@@ -342,9 +290,6 @@ solver.set_parallel(1);
 gaitTrackingSolution = study.solve();
 reference_data = MocoTrajectory('.\output\track\outputReference\states_half.sto');
 
-% if ~gaitTrackingSolution.isNumericallyEqual(reference_data)
-%     error('The simulation is not numerically equal to outputReference.');
-% end
 
 % Check to make sure the problem solved successfully
 if ~strcmp(gaitTrackingSolution.getStatus(),"Solve_Succeeded")
@@ -357,7 +302,6 @@ output(2) = gaitTrackingSolution.getSolverDuration();
 output(3) = gaitTrackingSolution.getNumIterations();
 
 % Save the solution with # of mesh intervals and processor cores in the filename
-%gaitTrackingSolution.write(output_dir + 'gaitTracking_solution_' + string(mesh_int) + 'i_' + string(cores) + 'c' + '.sto');
 
 % Also save this solution with a generic filename that can be used as the
 % initial guess on the next finest mesh density
