@@ -23,10 +23,9 @@ function WalkSim_predictive(sim_type)
 %
 % Simulation Parameters:
 % - sim_type: Defines the predictive goal type (Effort, Marker Acceleration, 
-%             BOS, or ZMP).
+%             BOS, or ZMP). This is an enumeration from the simulation.m in 
+%             the toplevel directory that is spectified like simulation.EFF.
 % - mesh_int: Number of mesh intervals for time discretization.
-% - cores: Number of processor cores for parallel computation.
-% - guess_strategy: Method to generate initial guess (default 'CG').
 %
 % The code utilizes custom-defined goals through the extended problem
 % function and applies bounds on joint states and muscle activations.
@@ -37,9 +36,6 @@ function WalkSim_predictive(sim_type)
 
 addpath(genpath(fullfile(pwd,'bin','RelWithDebInfo'))); % Extend Problem (magic!)
 mesh_int= 25;
-cores = 1;
-guess_strategy ='CG';
-coarsest_mesh = 25;
 
 output_dirs = ["./output/effpred/",...
     "./output/meppredmarkerAccel/",...
