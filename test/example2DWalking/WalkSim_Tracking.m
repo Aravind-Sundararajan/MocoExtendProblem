@@ -19,8 +19,8 @@ function WalkSim_Tracking()
 % 5. Mesh Refinement and Guess Strategies: Supports adjustable temporal 
 %    resolution and initial guess strategies.
 %
-% Inputs:
-% None (Parameters are hardcoded within the script for setup).
+% Simulation Parameters:
+% - mesh_int: Number of mesh intervals for time discretization.
 %
 % Outputs:
 % 1. Saves the optimal control solution to a specified directory.
@@ -42,9 +42,6 @@ function WalkSim_Tracking()
 % Contributor: A. Sundarajan, MWU (Custom Goals)
 
 mesh_int= 25;
-cores = 1;
-guess_strategy ='CG';
-coarsest_mesh = 25;
 output_dirs = ["./output/track/"];
 
 output_dir =output_dirs(1);
