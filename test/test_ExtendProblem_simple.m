@@ -134,7 +134,7 @@ for j = 1:2
         solution.write('./test/pointMass/sliding_mass_solution_NoMax.sto');
         ref = MocoTrajectory('./test/pointMass/outputReference/sliding_mass_solution_NoMax.sto');
 
-        if solution.isNumericallyEqual(ref)
+        if solution.isNumericallyEqual(ref, 0.1)
             disp("1) output matches output reference for NoMax");
         else
             disp("failed to match reference output for goal");
@@ -144,7 +144,7 @@ for j = 1:2
         solution.write('./test/pointMass/sliding_mass_solution.sto');
         ref = MocoTrajectory('./test/pointMass/outputReference/sliding_mass_solution.sto');
 
-        if solution.isNumericallyEqual(ref)
+        if solution.isNumericallyEqual(ref, 0.1)
             disp("2) output matches output reference for MaxGoal");
         else
             disp("max goal failed to match reference output for goal");

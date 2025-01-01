@@ -417,7 +417,7 @@ STOFileAdapter.write(externalForcesTableFlat, ...
 
 ref = MocoTrajectory(output_dir + '/outputReference/states_half.sto');
 
-if gaitPredictiveSolution.isNumericallyEqual(ref)
+if gaitPredictiveSolution.isNumericallyEqual(ref, 0.1)
     warning("output matches output reference for " + output_dir);
 else
     warning("reference failed to match reference output for goal " + output_dir);

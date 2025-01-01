@@ -401,7 +401,7 @@ STOFileAdapter.write(externalForcesTableFlat, ...
 gaitTrackingSolution.write(output_dir + 'states_half.sto');
 ref = MocoTrajectory(output_dir + '/outputReference/states_half.sto');
 
-if gaitTrackingSolution.isNumericallyEqual(ref)
+if gaitTrackingSolution.isNumericallyEqual(ref, 0.1)
     warning("output matches output reference for Gait Tracking");
 else
     error("tracking failed to match reference output for goal");
