@@ -8,7 +8,32 @@ clc
 fclose('all');
 addpath(genpath(fullfile(pwd,'utils'))); %utilities
 %% SETUP
-opensim_install = 'C:\opensim 4.5\'; % Path to the top-level OpenSim directory
+% Option 1: Try to get from environment variable
+opensim_install = getenv('OPENSIM_HOME');
+if isempty(opensim_install)
+    % Option 2: Look for a config file
+    if exist('opensim_config.mat', 'file')
+        load('opensim_config.mat', 'opensim_install');
+    else
+        % Option 3: Ask user to select the OpenSim directory
+        opensim_install = uigetdir('C:\', 'Select OpenSim Installation Directory');
+        if opensim_install == 0
+            error('OpenSim installation directory must be specified');
+        end
+        % Add trailing slash if missing
+        if ~endsWith(opensim_install, '\')
+            opensim_install = [opensim_install '\'];
+        end
+        % Optionally save for future use
+        save('opensim_config.mat', 'opensim_install');
+    end
+end
+
+% Validate the path
+if ~exist(fullfile(opensim_install, 'bin'), 'dir') || ~exist(fullfile(opensim_install, 'sdk'), 'dir')
+    error('Invalid OpenSim installation directory: %s', opensim_install);
+end
+
 addpath([opensim_install 'bin'], [opensim_install 'sdk\lib']); % Add OpenSim paths to MATLAB
 javaaddpath([opensim_install 'bin'], [opensim_install 'sdk\lib']); % Add Java paths to MATLAB
 setenv('PATH', [[opensim_install 'bin'] ';' [opensim_install 'sdk\lib'] ';' getenv('PATH')]); % Set Windows System path to include OpenSim libraries
