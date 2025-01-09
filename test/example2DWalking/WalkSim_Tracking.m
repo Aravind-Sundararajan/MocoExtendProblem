@@ -46,7 +46,11 @@ output_dirs = ["./output/track/"];
 
 output_dir =output_dirs(1);
 
-
+addpath(genpath(fullfile(pwd,'utils'))); %utilities
+addpath(genpath(fullfile(pwd,'test'))); %test
+addpath(genpath(fullfile(pwd,'models'))); %utilities
+addpath(genpath(fullfile(pwd,'sandbox'))); %sandbox
+addpath(genpath(fullfile(pwd,'bin','RelWithDebInfo'))); %Extend Problem (magic!)
 
 % Load the Moco libraries
 import org.opensim.modeling.*;

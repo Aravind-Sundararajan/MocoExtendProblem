@@ -6,7 +6,10 @@
 clear all
 clc
 fclose('all');
+
 addpath(genpath(fullfile(pwd,'utils'))); %utilities
+addpath(genpath(fullfile(pwd,'test'))); %test
+
 %% SETUP
 % Option 1: Try to get from environment variable
 opensim_install = getenv('OPENSIM_HOME');

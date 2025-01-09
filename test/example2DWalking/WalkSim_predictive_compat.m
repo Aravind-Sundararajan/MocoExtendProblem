@@ -34,7 +34,6 @@ function WalkSim_predictive(sim_type)
 % Date: 12/20/2024
 %------------------------------------------------------------------------
 
-addpath(genpath(fullfile(pwd,'bin','RelWithDebInfo'))); % Extend Problem (magic!)
 mesh_int= 25;
 
 output_dirs = ["./output/effpred/",...
@@ -47,7 +46,11 @@ goal_type = sim_type + 1;
 output_dir =output_dirs(goal_type);
 acceleration_weight=AccelerationWeights(goal_type);
 
-
+addpath(genpath(fullfile(pwd,'utils'))); %utilities
+addpath(genpath(fullfile(pwd,'test'))); %test
+addpath(genpath(fullfile(pwd,'models'))); %utilities
+addpath(genpath(fullfile(pwd,'sandbox'))); %sandbox
+addpath(genpath(fullfile(pwd,'bin','RelWithDebInfo'))); %Extend Problem (magic!)
 
 % Load the Moco libraries
 import org.opensim.modeling.*;

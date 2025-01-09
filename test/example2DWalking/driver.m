@@ -44,6 +44,12 @@
 % Contributors: Alex Denton & Brian Umberger
 % Date: 12/20/2024
 
+addpath(genpath(fullfile(pwd,'utils'))); %utilities
+addpath(genpath(fullfile(pwd,'test'))); %test
+addpath(genpath(fullfile(pwd,'models'))); %utilities
+addpath(genpath(fullfile(pwd,'sandbox'))); %sandbox
+addpath(genpath(fullfile(pwd,'bin','RelWithDebInfo'))); %Extend Problem (magic!)
+
 % Load the Moco libraries
 % Try to get OpenSim path from environment variable first
 opensimroot = getenv('OPENSIM_HOME');

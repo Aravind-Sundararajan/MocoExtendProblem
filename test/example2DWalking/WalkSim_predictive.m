@@ -34,7 +34,11 @@ function WalkSim_predictive(sim_type)
 % Date: 12/20/2024
 %------------------------------------------------------------------------
 
-addpath(genpath(fullfile(pwd,'bin','RelWithDebInfo'))); % Extend Problem (magic!)
+addpath(genpath(fullfile(pwd,'utils'))); %utilities
+addpath(genpath(fullfile(pwd,'test'))); %test
+addpath(genpath(fullfile(pwd,'models'))); %utilities
+addpath(genpath(fullfile(pwd,'sandbox'))); %sandbox
+addpath(genpath(fullfile(pwd,'bin','RelWithDebInfo'))); %Extend Problem (magic!)
 mesh_int= 25;
 
 output_dirs = ["./output/effpred/",...

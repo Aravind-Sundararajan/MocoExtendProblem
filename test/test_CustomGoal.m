@@ -48,11 +48,34 @@ diary(log_path);
 diary on
 
 % Load the Moco libraries
-opensimroot = 'C:\opensim 4.3\'; %create a char array that has the opensim path toplevel directory
-addpath([opensimroot 'bin'], [opensimroot 'sdk\lib']); %add the opensim path to the
-javaaddpath([opensimroot 'bin'], [opensimroot 'sdk\lib']); %add opensimroot bin and the java path to MATLAB's dynamic path path
-setenv('PATH', [[opensimroot 'bin'] ';' [opensimroot 'sdk\lib'] ';' getenv('PATH')]);% Set Windows System path to include OpenSim libraries
-import org.opensim.modeling.* %import opensim api library
+% Try to get OpenSim path from environment variable first
+opensimroot = getenv('OPENSIM_HOME');
+if isempty(opensimroot)
+    % Try to load from config file if it exists
+    if exist('opensim_config.mat', 'file')
+        load('opensim_config.mat', 'opensim_install');
+        opensimroot = opensim_install;
+    else
+        error('OpenSim installation path not found. Set OPENSIM_HOME environment variable or create opensim_config.mat');
+    end
+end
+
+% Add trailing slash if missing
+if ~endsWith(opensimroot, '\')
+    opensimroot = [opensimroot '\'];
+end
+
+addpath([opensimroot 'bin'], [opensimroot 'sdk\lib']); 
+javaaddpath([opensimroot 'bin'], [opensimroot 'sdk\lib']); 
+setenv('PATH', [[opensimroot 'bin'] ';' [opensimroot 'sdk\lib'] ';' getenv('PATH')]);
+import org.opensim.modeling.*
+
+addpath(genpath(fullfile(pwd,'utils'))); %utilities
+addpath(genpath(fullfile(pwd,'test'))); %test
+addpath(genpath(fullfile(pwd,'models'))); %utilities
+addpath(genpath(fullfile(pwd,'sandbox'))); %sandbox
+addpath(genpath(fullfile(pwd,'bin','RelWithDebInfo'))); %Extend Problem (magic!)
+
 
 % Define the optimal control problem
 % ==================================
