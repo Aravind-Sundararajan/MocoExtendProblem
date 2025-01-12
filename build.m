@@ -51,16 +51,21 @@ config ="RelWithDebInfo";
 %% CMAKE
 %if this is failing, check to see if vs 2022 msbuild.exe and cmake are part of
 %the system PATH.
-if contains(opensim_install,"4.5")
-    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version=5 -G ""Visual Studio 17 2022""");
-elseif contains(opensim_install,"4.4")
-    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version=4 -G ""Visual Studio 17 2022""");
-elseif contains(opensim_install,"4.3")
-    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version=3 -G ""Visual Studio 17 2022""");
-elseif contains(opensim_install,"4.2")
-    system("cmake CmakeLists.txt -S . -B """+builddir+""" -DOSim_Version=2 -G ""Visual Studio 17 2022""");
-    %system("cmake CmakeLists.txt -S . -B """+builddir+"""");
+% Extract version number using regex
+version_match = regexp(opensim_install, '4\.(\d+)', 'tokens');
+if isempty(version_match)
+    error('Could not determine OpenSim version from installation path');
 end
+
+% Map OpenSim version to OSim_Version value
+osim_version = str2double(version_match{1});
+
+% Build cmake command
+cmake_cmd = sprintf('cmake CmakeLists.txt -S . -B "%s" -DOSim_Version=%d -G "Visual Studio 17 2022"', ...
+    builddir, osim_version);
+
+% Execute cmake
+system(cmake_cmd);
 system("msbuild """+solutionPath+""" /p:configuration="+config); %
 %% PROCEDURAL CPP CLASS CONSTRUCTION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -71,7 +76,7 @@ system("msbuild """+solutionPath+""" /p:configuration="+config); %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 build_extend_class(fullfile(bindir,config,cppName),fullfile(bindir,config,wrapName), opensim_install);
 %% BUILD MEX
-if contains(opensim_install, "4.5")
+if osim_version == 5
     goaldir = 'custom_goals';
 else
     goaldir = 'custom_goals_compat';
