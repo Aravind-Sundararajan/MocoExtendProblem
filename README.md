@@ -219,6 +219,8 @@ In the test subdirectory, we have provided some test scripts to be run with MATL
 
 Additionally, if using an opensim version that is lower than 4.5, there are compatibility versions of `WalkSim_predictive.m` and `test_extendProblem_simple.m` to handle OpenSim version 4.2-4.4. The output of these scripts are compared against an OutputReference within the `MocoExtendProble\output` directory. Note: you should stay on the top-level directory `MocoExtendProblem`.
 
+Please refer to the [API documentation](https://aravind-sundararajan.github.io/MocoExtendProblem) for more detailed information.
+
 # License<a name="license"></a>
 
 MEP is provided under:
