@@ -115,10 +115,10 @@ for j = 1:2
     if j == 1
         %no custom goal
     else
-        %ep.addMocoCoordinateAccelerationGoal('coordinate_acceleration_goal',1.0,true,{'/slider/position'});
-        %ep.addMocoActivationSquaredGoal('act_square',1.0, true, 0.);
+        ep.addMocoCoordinateAccelerationGoal('coordinate_acceleration_goal',1.0,true, false, false,{'/slider/position'});
+        %ep.addMocoActivationSquaredGoal('act_square',1.0, false, false, false, false);
         %ep.addMocoMarkerAccelerationGoal('marker_acceleration_goal',w,false,true,false,'/markerset/testMarker');
-        ep.addMocoMaxCoordinateGoal('max_coordinate_goal',w, false, false, false, 'position');
+        %ep.addMocoMaxCoordinateGoal('max_coordinate_goal',w, false, false, false, 'position');
     end
 
 
