@@ -113,10 +113,17 @@ for j = 1:2
     if j == 1
         %no custom goal
     else
-        %ep.addMocoCoordinateAccelerationGoal('coordinate_acceleration_goal',1.0,true,{'/slider/position'});
-        %ep.addMocoActivationSquaredGoal('act_square',1.0, true, 0.);
-        %ep.addMocoMarkerAccelerationGoal('marker_acceleration_goal',1.0,'/markerset/testMarker',true);
-        ep.addMocoMaxCoordinateGoal('max_coordinate_goal',1.0, false, 'position');
+        %custom_goal_name = 'coordinate_acceleration_goal';
+        %ep.addMocoCoordinateAccelerationGoal(custom_goal_name, 1.0,true,{'/slider/position'});
+        
+        %custom_goal_name = 'act_square';
+        %ep.addMocoActivationSquaredGoal(custom_goal_name, 1.0, true, 0.);
+        
+        %custom_goal_name = 'marker_acceleration_goal';
+        %ep.addMocoMarkerAccelerationGoal(custom_goal_name, 1.0,'/markerset/testMarker',true);
+        
+        custom_goal_name = 'max_coordinate_goal';
+        ep.addMocoMaxCoordinateGoal(custom_goal_name, 1.0, false, 'position');
     end
 
 
@@ -179,12 +186,12 @@ d2 = ReadOpenSimData('./test/pointMass/sliding_mass_solution_NoMax.sto');
 plot(d.data(:,1),d.data(:,2), 'LineWidth',2); hold on;
 plot(d2.data(:,1),d2.data(:,2), 'LineWidth',2);
 
-title("Point Mass with MEP's Maximize Coordinate Goal",'FontName','Times New Roman');
+title("Point Mass with MEP's " + string(custom_goal_name),'FontName','Times New Roman', 'Interpreter','none');
 xlabel('Time (s)','FontName','Times New Roman');
 ylabel('Position (m)','FontName','Times New Roman');
 xlim([-0.25 1.25]);
 ylim([-1 12]);
-legend('MaxCoordinateGoal', 'position and speed constraints only', 'FontName', 'Times New Roman');
+legend(string(custom_goal_name), 'position and speed constraints only', 'FontName', 'Times New Roman');
 
 
 ep.delete();
