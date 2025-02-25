@@ -13,6 +13,7 @@ using namespace OpenSim;
 // Set all the properties to their default values
 void MocoActivationGoal::constructProperties() {
     constructProperty_divide_by_displacement(false);
+	constructProperty_exponent(2);
     constructProperty_end_point_goal(0.0);
 }
 
