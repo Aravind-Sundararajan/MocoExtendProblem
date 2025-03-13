@@ -32,6 +32,10 @@ public:
     double getEndPointGoal() const { return get_end_point_goal(); }
 
 
+    // Public member to set the exponent
+    void setExponent(int ex) { set_exponent(ex); }
+    bool getExponent() const { return get_exponent(); }
+
 protected:
     Mode getDefaultModeImpl() const override { return Mode::Cost; }
     bool getSupportsEndpointConstraintImpl() const override { return true;}
