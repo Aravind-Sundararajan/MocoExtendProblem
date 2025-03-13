@@ -64,7 +64,7 @@ void MocoActivationGoal::calcIntegrandImpl(
     
     // For each muscle, find the square of the activation and add it to the integrand
     for (int i = 0; i < (int)m_act_indices.size(); ++i) {
-        integrand += SimTK::abs(states[m_act_indices[i]]);
+        integrand += m_power_function(states[m_act_indices[i]]);
     }   
 }
 
