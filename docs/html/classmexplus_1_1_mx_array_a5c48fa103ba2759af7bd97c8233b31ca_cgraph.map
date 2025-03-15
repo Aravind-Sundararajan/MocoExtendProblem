@@ -1,0 +1,21 @@
+<map id="set" name="set">
+<area shape="rect" id="Node000001" title="Template for element write accessor." alt="" coords="5,81,45,108"/>
+<area shape="rect" id="Node000002" href="$classmexplus_1_1_mx_array.html#af56d42186b8fa6738c51e1ace3fb5302" title="mxArray* element writer methods." alt="" coords="126,56,166,83"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="45,88,110,74,111,79,46,93"/>
+<area shape="rect" id="Node000008" href="$classmexplus_1_1_mx_array.html#a29a822fd7ea3936f2eafe08e5d9cbb3d" title="Offset from first element to desired element." alt="" coords="93,107,199,133"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="46,96,78,103,77,108,45,101"/>
+<area shape="rect" id="Node000003" href="$classmexplus_1_1_mx_array.html#a533e51c0de3188411746937e37820190" title="Templated mxArray element setters" alt="" coords="247,56,329,83"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="166,67,232,67,232,72,166,72"/>
+<area shape="rect" id="Node000004" href="$classmexplus_1_1_mx_array.html#ad0a396e26da3158eedd4054bab667fb9" title=" " alt="" coords="377,5,495,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="329,53,380,35,381,40,330,58"/>
+<area shape="rect" id="Node000005" href="$classmexplus_1_1_mx_array.html#ae66ee3292f977178e789a37a297694c2" title="Assignment helpers (for MxArray.set&lt;type&gt;(i, value))" alt="" coords="391,56,481,83"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="330,67,376,67,376,72,330,72"/>
+<area shape="rect" id="Node000006" href="$classmexplus_1_1_mx_array.html#a322dc1e6ed44ef0551d7de1cc13f9970" title="mxArray* importer methods." alt="" coords="412,107,460,133"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="330,81,399,105,397,110,329,86"/>
+<area shape="rect" id="Node000007" href="$classmexplus_1_1_mx_array.html#ab502ca8bc39d21cb3f945f10dce189fa" title="Templated mxArray importers" alt="" coords="543,107,633,133"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="460,117,527,117,527,123,460,123"/>
+<area shape="rect" id="Node000009" href="$classmexplus_1_1_mx_array.html#a5da3df333fe19ef3e5f9febbe0e4942a" title="Number of columns in an array." alt="" coords="266,107,311,133"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="200,117,250,117,250,123,200,123"/>
+<area shape="rect" id="Node000010" href="$classmexplus_1_1_mx_array.html#ad590f9e81aa4a64229513b94864d774d" title="Number of rows in an array." alt="" coords="264,157,313,184"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="187,131,250,154,248,159,185,136"/>
+</map>

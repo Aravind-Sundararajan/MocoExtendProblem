@@ -1,0 +1,7 @@
+<map id="getChars" name="getChars">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,80,57"/>
+<area shape="rect" id="Node000002" href="$classmexplus_1_1_mx_array.html#a9cef6b8f6c12787f69e5259a335e2438" title="Class name of mxArray." alt="" coords="128,5,215,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,34,112,28,113,33,81,39"/>
+<area shape="rect" id="Node000003" href="$classmexplus_1_1_mx_array.html#abb97ba42abaa201e9dd70a25c0370efc" title="Determine whether input is string array." alt="" coords="142,56,201,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="81,49,127,58,126,63,80,54"/>
+</map>

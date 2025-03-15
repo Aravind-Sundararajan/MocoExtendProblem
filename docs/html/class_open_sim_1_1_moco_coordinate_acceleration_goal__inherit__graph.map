@@ -1,0 +1,6 @@
+<map id="MocoCoordinateAccelerationGoal" name="MocoCoordinateAccelerationGoal">
+<area shape="rect" id="Node000001" title="This goal minimizes the acceleration of specified coordinates in the model." alt="" coords="5,80,221,107"/>
+<area shape="rect" id="Node000002" href="$class_moco_goal.html" title=" " alt="" coords="73,5,153,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,47,109,79,103,80,102,48"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="124,48,123,80,117,79,119,47"/>
+</map>

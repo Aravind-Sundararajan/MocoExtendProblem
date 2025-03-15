@@ -1,0 +1,16 @@
+<map id="toInternal" name="toInternal">
+<area shape="rect" id="Node000001" title="Nested types (leads into recursive deduction)." alt="" coords="5,31,81,57"/>
+<area shape="rect" id="Node000002" href="$classmexplus_1_1_mx_array.html#a43429c5a12dbbadf7ed4f91ad75ea7f7" title="Convert MxArray to a specified type." alt="" coords="129,31,167,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,41,113,41,113,47,81,47"/>
+<area shape="rect" id="Node000003" href="$classmexplus_1_1_mx_array.html#a3e4abfd8efe8b2285741c5163bacdded" title="Templated mxArray exporters" alt="" coords="215,31,290,57"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="167,41,200,41,200,47,167,47"/>
+<area shape="rect" id="Node000004" href="$classmexplus_1_1_mx_array.html#a3999c1f1ba6d93093b173309fffaff2b" title="Templated mxArray getters" alt="" coords="338,56,414,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="291,49,324,56,323,61,290,54"/>
+<area shape="rect" id="Node000005" href="$classmexplus_1_1_mx_array.html#a49040f092fc1f61875eb27596578be7f" title="Explicit cell element assignment." alt="" coords="464,5,561,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="413,53,459,35,461,40,415,58"/>
+<area shape="rect" id="Node000006" href="$classmexplus_1_1_mx_array.html#a35e4f2ffdb31ede3bc22a21a533a5d1d" title="Explicit char (signed) element assignment." alt="" coords="462,56,563,83"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="414,67,446,67,446,72,414,72"/>
+<area shape="rect" id="Node000007" href="$classmexplus_1_1_mx_array.html#a8288de53f4ebbe6cbb90c515b48e1404" title="Assignment helpers (for MxArray.to&lt;type&gt;(value))" alt="" coords="476,107,549,133"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="415,81,462,98,460,103,413,86"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="464,26,306,42,305,36,464,21"/>
+</map>

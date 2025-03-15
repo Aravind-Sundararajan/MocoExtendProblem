@@ -1,0 +1,5 @@
+<map id="CreateOperation" name="CreateOperation">
+<area shape="rect" id="Node000001" title="Register a new creator in OperationFactory." alt="" coords="231,13,347,40"/>
+<area shape="rect" id="Node000002" href="$classmexplus_1_1_operation_creator.html#a6fc39316a9489ffe5ef5e578305f85db" title="Register an operation in the constructor." alt="" coords="5,5,183,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="215,29,183,29,183,24,215,24"/>
+</map>

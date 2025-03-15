@@ -1,0 +1,30 @@
+<map id="MocoGoal" name="MocoGoal">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,208,86,235"/>
+<area shape="rect" id="Node000002" href="$class_open_sim_1_1_moco_activation_goal.html" title="This goal minimizes the sum of muscle activations to a specified power, optionally allowing custom we..." alt="" coords="172,5,310,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="52,192,63,160,79,123,102,86,132,54,160,39,189,30,191,35,162,44,135,58,106,89,84,125,68,162,57,194"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="48,192,58,155,74,111,98,67,132,30,151,19,171,11,173,16,153,23,135,34,103,70,79,113,63,156,54,194"/>
+<area shape="rect" id="Node000003" href="$class_open_sim_1_1_moco_activation_squared_goal.html" title="Goal that minimizes the squared sum of muscle activations." alt="" coords="148,56,334,83"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="61,193,89,147,109,124,132,104,163,89,196,81,197,86,165,94,135,109,113,128,94,150,65,196"/>
+<area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="53,192,82,134,105,105,132,81,146,72,149,77,135,85,109,109,87,137,57,194"/>
+<area shape="rect" id="Node000004" href="$class_open_sim_1_1_moco_b_o_s_goal.html" title="This goal minimizes the distance between the body&#39;s center of mass projection and the center of the b..." alt="" coords="187,107,296,133"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="77,195,103,174,132,155,170,141,206,131,207,137,171,146,135,160,106,178,81,199"/>
+<area shape="poly" id="edge6_Node000001_Node000004" title=" " alt="" coords="60,194,91,160,132,131,159,120,186,113,187,119,161,125,135,136,95,164,64,197"/>
+<area shape="rect" id="Node000005" href="$class_open_sim_1_1_moco_c_o_p_goal.html" title="Goal that minimizes the deviation of the center of pressure (COP) from a target." alt="" coords="187,157,296,184"/>
+<area shape="poly" id="edge7_Node000001_Node000005" title=" " alt="" coords="100,203,133,193,186,180,187,185,134,199,101,208"/>
+<area shape="rect" id="Node000006" href="$class_open_sim_1_1_moco_coordinate_acceleration_goal.html" title="This goal minimizes the acceleration of specified coordinates in the model." alt="" coords="134,208,349,235"/>
+<area shape="poly" id="edge8_Node000001_Node000006" title=" " alt="" coords="101,227,133,228,133,233,101,232"/>
+<area shape="poly" id="edge9_Node000001_Node000006" title=" " alt="" coords="101,210,133,210,133,215,101,216"/>
+<area shape="rect" id="Node000007" href="$class_open_sim_1_1_moco_custom_output_goal.html" title="Goal that minimizes a custom model output." alt="" coords="159,259,324,285"/>
+<area shape="poly" id="edge10_Node000001_Node000007" title=" " alt="" coords="101,235,134,244,180,255,178,261,133,249,100,240"/>
+<area shape="rect" id="Node000008" href="$class_open_sim_1_1_moco_marker_acceleration_goal.html" title="Goal that minimizes marker acceleration in a Moco optimization problem." alt="" coords="145,309,338,336"/>
+<area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="64,245,95,278,135,307,146,312,144,317,132,312,91,282,60,249"/>
+<area shape="poly" id="edge12_Node000001_Node000008" title=" " alt="" coords="81,243,106,264,135,283,171,297,207,306,206,311,170,302,132,288,103,269,77,247"/>
+<area shape="rect" id="Node000009" href="$class_open_sim_1_1_moco_max_coordinate_goal.html" title="Goal that finds the maximum value of a coordinate over the motion." alt="" coords="157,360,326,387"/>
+<area shape="poly" id="edge13_Node000001_Node000009" title=" " alt="" coords="57,248,87,305,109,334,135,358,158,369,155,374,132,362,105,338,82,308,53,251"/>
+<area shape="poly" id="edge14_Node000001_Node000009" title=" " alt="" coords="65,247,94,292,113,315,135,334,165,348,197,357,196,362,163,353,132,338,109,319,89,295,61,250"/>
+<area shape="rect" id="Node000010" href="$class_open_sim_1_1_moco_muscle_strain_goal.html" title="Goal that minimizes muscle strain during motion." alt="" coords="163,411,320,437"/>
+<area shape="poly" id="edge15_Node000001_Node000010" title=" " alt="" coords="55,249,65,283,81,324,104,363,135,397,164,412,162,417,132,401,100,366,77,326,60,285,50,250"/>
+<area shape="rect" id="Node000011" href="$class_open_sim_1_1_moco_z_m_p_goal.html" title="Goal that minimizes deviation of the Zero Moment Point (ZMP) from a desired location." alt="" coords="187,461,296,488"/>
+<area shape="poly" id="edge16_Node000001_Node000011" title=" " alt="" coords="51,250,58,296,72,353,97,411,114,437,135,459,160,474,187,481,186,486,158,479,132,463,110,440,92,414,67,355,52,297,46,250"/>
+<area shape="poly" id="edge17_Node000001_Node000011" title=" " alt="" coords="53,250,61,291,76,342,100,392,116,415,135,435,160,450,187,458,186,463,158,455,132,439,112,419,95,395,71,343,56,293,48,251"/>
+</map>

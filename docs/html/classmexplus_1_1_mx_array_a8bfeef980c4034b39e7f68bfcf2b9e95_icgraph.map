@@ -1,0 +1,11 @@
+<map id="fieldSize" name="fieldSize">
+<area shape="rect" id="Node000001" title="Number of fields in a struct array." alt="" coords="660,35,732,61"/>
+<area shape="rect" id="Node000002" href="$classmexplus_1_1_mx_array.html#a002fd9b4ffcbfee424464415770c980d" title="Get field names of a struct array." alt="" coords="484,5,571,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="644,42,570,29,571,24,645,37"/>
+<area shape="rect" id="Node000003" href="$classmexplus_1_1_input_arguments.html#aaa37a0a52f6f28789c65d62bd0f7ee41" title="Try to parse one definition or return false on failure." alt="" coords="442,56,612,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="645,59,613,65,612,60,644,54"/>
+<area shape="rect" id="Node000004" href="$classmexplus_1_1_input_arguments.html#a181ce1071d1d5470b732ac162163f5f8" title="Parse arguments from mexFunction input." alt="" coords="224,56,394,99"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="427,80,395,80,395,75,427,75"/>
+<area shape="rect" id="Node000005" href="$classmexplus_1_1_input_arguments.html#a365d95d41eaa4b15c0de9b39e51dd5cf" title="Shorthand constructor for a single argument definition." alt="" coords="5,56,176,99"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="208,80,176,80,176,75,208,75"/>
+</map>

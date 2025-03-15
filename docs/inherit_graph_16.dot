@@ -1,9 +1,0 @@
-digraph "Graphical Class Hierarchy"
-{
- // LATEX_PDF_SIZE
-  bgcolor="transparent";
-  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
-  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
-  rankdir="LR";
-  Node0 [id="Node000000",label="MxTypes\< T, typename\l std::enable_if\< std\l::is_floating_point\< T\l \>::value &&sizeof(T)=\l=8, T \>::type \>",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structmexplus_1_1_mx_types_3_01_t_00_01typename_01std_1_1enable__if_3_01std_1_1is__floating__poif2d5b4901280042a62f419338af4078d.html",tooltip=" "];
-}

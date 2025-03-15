@@ -1,0 +1,13 @@
+<map id="set" name="set">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,45,83"/>
+<area shape="rect" id="Node000002" href="$classmexplus_1_1_mx_array.html#a533e51c0de3188411746937e37820190" title="Templated mxArray element setters" alt="" coords="93,56,175,83"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="45,67,77,67,77,72,45,72"/>
+<area shape="rect" id="Node000003" href="$classmexplus_1_1_mx_array.html#ad0a396e26da3158eedd4054bab667fb9" title=" " alt="" coords="223,5,340,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="174,53,225,35,227,40,176,58"/>
+<area shape="rect" id="Node000004" href="$classmexplus_1_1_mx_array.html#ae66ee3292f977178e789a37a297694c2" title="Assignment helpers (for MxArray.set&lt;type&gt;(i, value))" alt="" coords="237,56,326,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="176,67,222,67,222,72,176,72"/>
+<area shape="rect" id="Node000005" href="$classmexplus_1_1_mx_array.html#a322dc1e6ed44ef0551d7de1cc13f9970" title="mxArray* importer methods." alt="" coords="258,107,305,133"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="176,81,244,105,243,110,174,86"/>
+<area shape="rect" id="Node000006" href="$classmexplus_1_1_mx_array.html#ab502ca8bc39d21cb3f945f10dce189fa" title="Templated mxArray importers" alt="" coords="388,107,479,133"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="306,117,373,117,373,123,306,123"/>
+</map>

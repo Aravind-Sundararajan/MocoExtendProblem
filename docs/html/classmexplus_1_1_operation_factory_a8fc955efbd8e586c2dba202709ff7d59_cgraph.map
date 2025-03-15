@@ -1,0 +1,8 @@
+<map id="create" name="create">
+<area shape="rect" id="Node000001" title="Create a new instance of the registered operation." alt="" coords="5,31,63,57"/>
+<area shape="rect" id="Node000002" href="$classmexplus_1_1_operation_factory.html#a33fbe59ee42c7aac10db4c68e99256ca" title=" " alt="" coords="111,5,153,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="62,34,95,25,96,31,64,39"/>
+<area shape="rect" id="Node000003" href="$classmexplus_1_1_operation_factory.html#af11bbec7ede0344ea15c18a2ad96108a" title="Obtain a pointer to the registration table." alt="" coords="201,31,265,57"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="63,41,185,41,185,47,63,47"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="154,21,187,30,185,35,153,26"/>
+</map>

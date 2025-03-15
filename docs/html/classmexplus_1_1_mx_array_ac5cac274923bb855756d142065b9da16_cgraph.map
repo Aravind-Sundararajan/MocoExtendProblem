@@ -1,0 +1,5 @@
+<map id="Cell" name="Cell">
+<area shape="rect" id="Node000001" title="Create a new cell matrix." alt="" coords="5,5,50,32"/>
+<area shape="rect" id="Node000002" href="$classmexplus_1_1_mx_array.html#ad590f9e81aa4a64229513b94864d774d" title="Number of rows in an array." alt="" coords="98,5,147,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="50,16,82,16,82,21,50,21"/>
+</map>

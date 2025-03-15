@@ -1,0 +1,9 @@
+<map id="exist" name="exist">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,55,57"/>
+<area shape="rect" id="Node000002" href="$classmexplus_1_1_session.html#a6d6a7baeed44de90066b72fed973c223" title="Check if the given id exists." alt="" coords="126,5,175,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="55,36,110,24,111,30,56,41"/>
+<area shape="rect" id="Node000004" href="$classmexplus_1_1_session.html#a17c97f66a11026df57c698da7392b922" title="Convert mxArray to intptr_t." alt="" coords="103,56,198,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="56,47,88,53,87,59,55,52"/>
+<area shape="rect" id="Node000003" href="$classmexplus_1_1_session.html#a953e21c04b205c6bb106eac5a268a1da" title="Get static instance storage." alt="" coords="246,5,342,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="176,16,231,16,231,21,176,21"/>
+</map>

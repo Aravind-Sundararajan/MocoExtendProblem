@@ -1,0 +1,5 @@
+<map id="calcOutputValue" name="calcOutputValue">
+<area shape="rect" id="Node000001" title="Calculate the output value for the current state." alt="" coords="178,5,294,32"/>
+<area shape="rect" id="Node000002" href="$class_open_sim_1_1_moco_custom_output_goal.html#a9876b8945fd67635ac8e7f58a7f020c5" title="Calculate the integrand value for the cost function." alt="" coords="5,5,130,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="162,21,130,21,130,16,162,16"/>
+</map>

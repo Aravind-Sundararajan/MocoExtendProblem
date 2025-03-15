@@ -1,7 +1,0 @@
-var structmexplus_1_1_mx_types_3_01_t_00_01typename_01std_1_1enable__if_3_01_mx_logical_ty_3_01_t_010636f93ea3b7eb34d571472f621aada7 =
-[
-    [ "array_type", "structmexplus_1_1_mx_types_3_01_t_00_01typename_01std_1_1enable__if_3_01_mx_logical_ty_3_01_t_010636f93ea3b7eb34d571472f621aada7.html#af99b9b5a36d75dd7df71f4700af3d6a3", null ],
-    [ "type", "structmexplus_1_1_mx_types_3_01_t_00_01typename_01std_1_1enable__if_3_01_mx_logical_ty_3_01_t_010636f93ea3b7eb34d571472f621aada7.html#a565429e62c1d4fd084335146ba778e17", null ],
-    [ "class_id", "structmexplus_1_1_mx_types_3_01_t_00_01typename_01std_1_1enable__if_3_01_mx_logical_ty_3_01_t_010636f93ea3b7eb34d571472f621aada7.html#af7fd8605fbb62af5cbfed7c063f87ddf", null ],
-    [ "complexity", "structmexplus_1_1_mx_types_3_01_t_00_01typename_01std_1_1enable__if_3_01_mx_logical_ty_3_01_t_010636f93ea3b7eb34d571472f621aada7.html#a6c943d6af3ca7eaff48c7635a5eae582", null ]
-];

@@ -1,0 +1,5 @@
+<map id="get" name="get">
+<area shape="rect" id="Node000001" title="Retrieve an instance or throw if no instance is found." alt="" coords="5,5,45,32"/>
+<area shape="rect" id="Node000002" href="$classmexplus_1_1_session.html#a953e21c04b205c6bb106eac5a268a1da" title="Get static instance storage." alt="" coords="93,5,189,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="45,16,77,16,77,21,45,21"/>
+</map>

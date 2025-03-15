@@ -1,0 +1,17 @@
+<map id="cols" name="cols">
+<area shape="rect" id="Node000001" title="Number of columns in an array." alt="" coords="247,132,292,159"/>
+<area shape="rect" id="Node000002" href="$classmexplus_1_1_mx_array.html#a29a822fd7ea3936f2eafe08e5d9cbb3d" title="Offset from first element to desired element." alt="" coords="93,132,199,159"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="231,148,199,148,199,143,231,143"/>
+<area shape="rect" id="Node000003" href="$classmexplus_1_1_mx_array.html#a742ff926dcde091982fa0e491e3531d5" title="Template for element accessor." alt="" coords="6,5,44,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="120,123,37,34,41,31,124,119"/>
+<area shape="rect" id="Node000004" href="$classmexplus_1_1_mx_array.html#a725bbbbea483b453bc97a39eb99e26b3" title="Template for element accessor." alt="" coords="6,56,44,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="109,126,43,83,46,79,112,121"/>
+<area shape="rect" id="Node000005" href="$classmexplus_1_1_mx_array.html#a5c48fa103ba2759af7bd97c8233b31ca" title="Template for element write accessor." alt="" coords="5,107,45,133"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="77,134,45,127,46,121,78,128"/>
+<area shape="rect" id="Node000006" href="$classmexplus_1_1_mx_array.html#a7abc7f7cc748ab6bbfbe6230d316bbb3" title="Cell element write accessor." alt="" coords="5,157,45,184"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="78,162,46,169,45,164,77,157"/>
+<area shape="rect" id="Node000007" href="$classmexplus_1_1_mx_array.html#acbff5d4fe0f3636143147b8216dd40b4" title="Template for element write accessor." alt="" coords="5,208,45,235"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="112,169,47,211,44,207,109,165"/>
+<area shape="rect" id="Node000008" href="$classmexplus_1_1_mx_array.html#a9a6ae3a7487c8d8ceb0a49bd3c446c89" title="Cell element write accessor." alt="" coords="5,259,45,285"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="124,172,41,260,37,256,120,168"/>
+</map>

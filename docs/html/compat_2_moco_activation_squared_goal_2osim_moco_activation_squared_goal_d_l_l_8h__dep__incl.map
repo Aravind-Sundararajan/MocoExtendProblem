@@ -1,0 +1,12 @@
+<map id="F:/dev/projects/MocoExtendProblem/custom_goals_compat/MocoActivationSquaredGoal/osimMocoActivationSquaredGoalDLL.h" name="F:/dev/projects/MocoExtendProblem/custom_goals_compat/MocoActivationSquaredGoal/osimMocoActivationSquaredGoalDLL.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="129,5,382,80"/>
+<area shape="rect" id="Node000002" href="$compat_2_moco_activation_squared_goal_2_moco_activation_squared_goal_8h.html" title=" " alt="" coords="11,128,215,203"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="202,92,158,130,155,126,199,88"/>
+<area shape="rect" id="Node000005" href="$compat_2_moco_activation_squared_goal_2_register_types__osim_moco_activation_squared_goal_8h.html" title=" " alt="" coords="240,128,560,203"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="313,88,358,126,354,130,310,92"/>
+<area shape="rect" id="Node000003" href="$compat_2_moco_activation_squared_goal_2_moco_activation_squared_goal_8cpp.html" title=" " alt="" coords="5,259,221,333"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="116,218,116,258,110,258,110,218"/>
+<area shape="rect" id="Node000004" href="$compat_2_moco_activation_squared_goal_2_register_types__osim_moco_activation_squared_goal_8cpp.html" title=" " alt="" coords="252,251,534,341"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="208,207,297,248,295,253,206,212"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="400,218,398,250,393,250,394,218"/>
+</map>

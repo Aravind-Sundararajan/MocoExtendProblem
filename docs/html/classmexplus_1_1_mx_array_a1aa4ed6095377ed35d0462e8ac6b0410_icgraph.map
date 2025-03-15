@@ -1,0 +1,5 @@
+<map id="clone" name="clone">
+<area shape="rect" id="Node000001" title="Clone mxArray." alt="" coords="117,5,169,32"/>
+<area shape="rect" id="Node000002" href="$classmexplus_1_1_mx_array.html#aaafa3b90275eec14a56e7dbf40c4631d" title="Release managed mxArray* pointer, or clone if not owner." alt="" coords="5,5,69,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,21,69,21,69,16,101,16"/>
+</map>

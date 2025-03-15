@@ -1,0 +1,7 @@
+<map id="initializeOnModelImpl" name="initializeOnModelImpl">
+<area shape="rect" id="Node000001" title="Initialize the goal with the model." alt="" coords="5,31,151,57"/>
+<area shape="rect" id="Node000002" href="$class_open_sim_1_1_moco_custom_output_goal.html#a69c6f28797dadb4370ff12f6922094c7" title="Get the stage that this goal depends on." alt="" coords="203,5,345,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="151,32,187,27,188,32,152,37"/>
+<area shape="rect" id="Node000003" href="$class_open_sim_1_1_moco_custom_output_goal.html#acfdf28e7306f0217ecc06aeeb3631389" title="Initialize the goal on the base model." alt="" coords="199,56,349,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="152,51,184,55,183,60,151,56"/>
+</map>

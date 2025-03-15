@@ -1,0 +1,7 @@
+<map id="getConst" name="getConst">
+<area shape="rect" id="Node000001" title="Retrieve a const instance or throw if no instance is found." alt="" coords="5,5,80,32"/>
+<area shape="rect" id="Node000002" href="$classmexplus_1_1_session.html#a90f330a82ec9b6c2c86a34893e32a94e" title="Retrieve an instance or throw if no instance is found." alt="" coords="128,5,167,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,16,112,16,112,21,80,21"/>
+<area shape="rect" id="Node000003" href="$classmexplus_1_1_session.html#a953e21c04b205c6bb106eac5a268a1da" title="Get static instance storage." alt="" coords="215,5,311,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="167,16,200,16,200,21,167,21"/>
+</map>

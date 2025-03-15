@@ -1,0 +1,31 @@
+\_form#0=56x28:\[
+\sum_i w_i |a_i|^p
+\]
+\_form#1=10x9:$ a_i $
+\_form#2=14x9:$ w_i $
+\_form#3=8x9:$ p $
+\_form#4=41x28:\[
+\sum_i |\ddot{q}_i|^p
+\]
+\_form#5=9x11:$ \ddot{q}_i $
+\_form#6=138x14:\[
+|\ddot{p}|^p = (|\ddot{p}_x| + |\ddot{p}_y| + |\ddot{p}_z|)^p
+\]
+\_form#7=8x11:$ \ddot{p} $
+\_form#8=71x21:\[
+\max_{t \in [t_i, t_f]} |q(t)|^p
+\]
+\_form#9=19x14:$ q(t) $
+\_form#10=9x11:$ t_i $
+\_form#11=11x13:$ t_f $
+\_form#12=88x14:\[
+|p_{zmp} - p_{target}|^p
+\]
+\_form#13=26x10:$ p_{zmp} $
+\_form#14=35x10:$ p_{target} $
+\_form#15=44x28:\[
+\sum_i |a_i|^p
+\]
+\_form#16=31x28:\[
+\sum_i a_i^2
+\]

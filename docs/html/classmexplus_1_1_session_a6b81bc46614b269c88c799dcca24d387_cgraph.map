@@ -1,0 +1,9 @@
+<map id="destroy" name="destroy">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,70,57"/>
+<area shape="rect" id="Node000002" href="$classmexplus_1_1_session.html#ad69deb4256fa97e0da873f4f0564ee96" title="Destroy an instance." alt="" coords="133,5,198,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="69,35,117,25,118,31,70,40"/>
+<area shape="rect" id="Node000004" href="$classmexplus_1_1_session.html#a17c97f66a11026df57c698da7392b922" title="Convert mxArray to intptr_t." alt="" coords="118,56,213,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="70,48,103,54,102,60,69,53"/>
+<area shape="rect" id="Node000003" href="$classmexplus_1_1_session.html#a953e21c04b205c6bb106eac5a268a1da" title="Get static instance storage." alt="" coords="261,5,357,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="198,16,246,16,246,21,198,21"/>
+</map>

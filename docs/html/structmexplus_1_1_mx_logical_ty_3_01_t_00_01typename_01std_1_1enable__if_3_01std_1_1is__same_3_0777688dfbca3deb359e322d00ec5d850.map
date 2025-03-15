@@ -1,0 +1,5 @@
+<map id="MxLogicalTy&lt; T, typename std::enable_if&lt; std::is_same&lt; typename std::remove_cv&lt; T &gt;::type, bool &gt;::value||std::is_same&lt; typename std::remove_cv&lt; T &gt;::type, mxLogical &gt;::value, T &gt;::type &gt;" name="MxLogicalTy&lt; T, typename std::enable_if&lt; std::is_same&lt; typename std::remove_cv&lt; T &gt;::type, bool &gt;::value||std::is_same&lt; typename std::remove_cv&lt; T &gt;::type, mxLogical &gt;::value, T &gt;::type &gt;">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,222,203"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="76,5,151,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,48,116,79,111,79,111,48"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="getDependsOnStage" name="getDependsOnStage">
+<area shape="rect" id="Node000001" title="Get the stage that this goal depends on." alt="" coords="199,5,341,32"/>
+<area shape="rect" id="Node000002" href="$class_open_sim_1_1_moco_custom_output_goal.html#a0960ce7eaa9c955ce75d24aadf1d915b" title="Initialize the goal with the model." alt="" coords="5,5,151,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,21,151,21,151,16,183,16"/>
+</map>

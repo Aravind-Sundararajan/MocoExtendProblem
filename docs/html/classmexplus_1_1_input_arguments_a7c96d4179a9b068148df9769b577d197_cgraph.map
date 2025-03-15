@@ -1,0 +1,18 @@
+<map id="get" name="get">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,45,57"/>
+<area shape="rect" id="Node000002" href="$classmexplus_1_1_input_arguments.html#a6cc40475db2c674d2ad83dd102540a5a" title="Get a parsed mandatory argument." alt="" coords="146,5,186,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="44,38,130,22,131,27,45,43"/>
+<area shape="rect" id="Node000003" href="$classmexplus_1_1_mx_array.html#a15d15ab25eea3cdcfa5ad1e00a08e7e9" title="mxArray* exporter methods." alt="" coords="93,56,239,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="45,45,78,51,77,56,44,50"/>
+<area shape="rect" id="Node000004" href="$classmexplus_1_1_mx_array.html#a3e4abfd8efe8b2285741c5163bacdded" title="Templated mxArray exporters" alt="" coords="287,56,476,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="239,67,271,67,271,72,239,72"/>
+<area shape="rect" id="Node000005" href="$classmexplus_1_1_mx_array.html#a3999c1f1ba6d93093b173309fffaff2b" title="Templated mxArray getters" alt="" coords="524,85,714,112"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="477,78,509,82,508,88,476,84"/>
+<area shape="rect" id="Node000006" href="$classmexplus_1_1_mx_array.html#a49040f092fc1f61875eb27596578be7f" title="Explicit cell element assignment." alt="" coords="769,15,942,57"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="672,82,757,59,758,64,673,87"/>
+<area shape="rect" id="Node000007" href="$classmexplus_1_1_mx_array.html#a35e4f2ffdb31ede3bc22a21a533a5d1d" title="Explicit char (signed) element assignment." alt="" coords="769,81,942,124"/>
+<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="714,98,753,98,753,104,714,103"/>
+<area shape="rect" id="Node000008" href="$classmexplus_1_1_mx_array.html#a8288de53f4ebbe6cbb90c515b48e1404" title="Assignment helpers (for MxArray.to&lt;type&gt;(value))" alt="" coords="762,148,949,175"/>
+<area shape="poly" id="edge8_Node000005_Node000008" title=" " alt="" coords="673,110,788,141,787,146,672,115"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="768,45,492,64,491,59,768,39"/>
+</map>

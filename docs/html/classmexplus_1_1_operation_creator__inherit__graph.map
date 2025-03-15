@@ -1,0 +1,5 @@
+<map id="OperationCreator" name="OperationCreator">
+<area shape="rect" id="Node000001" title="Base class for operation creators." alt="" coords="18,5,138,32"/>
+<area shape="rect" id="Node000002" href="$classmexplus_1_1_operation_creator_impl.html" title="Implementation of the operation creator to be used as composition in an Operator class." alt="" coords="5,80,151,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,48,81,80,75,80,75,48"/>
+</map>

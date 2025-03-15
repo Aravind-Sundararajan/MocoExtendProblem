@@ -1,0 +1,35 @@
+<map id="fromInternal" name="fromInternal">
+<area shape="rect" id="Node000001" title="Templated mxArray importers" alt="" coords="530,107,620,133"/>
+<area shape="rect" id="Node000002" href="$classmexplus_1_1_mx_array.html#a322dc1e6ed44ef0551d7de1cc13f9970" title="mxArray* importer methods." alt="" coords="434,107,482,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="514,123,482,123,482,117,514,117"/>
+<area shape="rect" id="Node000003" href="$classmexplus_1_1_mx_array.html#a6d3f7f50298e32ea8d63f48dcd816101" title="Container with cell type content." alt="" coords="238,5,328,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="437,96,414,69,385,46,357,34,328,27,329,21,359,29,388,42,418,66,441,92"/>
+<area shape="rect" id="Node000004" href="$classmexplus_1_1_output_arguments.html#a7db8aae7aa28defa1ecaa2747abfb930" title="Safely assign T to the output." alt="" coords="180,56,386,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="419,108,386,97,344,86,346,81,387,92,421,103"/>
+<area shape="rect" id="Node000005" href="$classmexplus_1_1_mx_array.html#a1435dd24ea8ba64c9d3a4702a728baa0" title="Structure access." alt="" coords="242,107,324,133"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="419,123,325,123,325,117,419,117"/>
+<area shape="rect" id="Node000006" href="$classmexplus_1_1_mx_array.html#a533e51c0de3188411746937e37820190" title="Templated mxArray element setters" alt="" coords="242,157,324,184"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="421,137,387,148,326,164,324,159,386,143,419,132"/>
+<area shape="rect" id="Node000017" href="$classmexplus_1_1_mx_array.html#a83ca9cd682865a425d02dda1964e8be5" title="Container types." alt="" coords="242,208,324,235"/>
+<area shape="poly" id="edge16_Node000002_Node000017" title=" " alt="" coords="441,148,418,174,388,198,357,212,325,219,324,214,355,207,385,194,414,171,437,144"/>
+<area shape="rect" id="Node000007" href="$classmexplus_1_1_mx_array.html#a52264ce82021cc683ee8efac9ac5eed6" title="Struct element write accessor." alt="" coords="93,81,132,108"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="226,164,179,148,150,130,126,110,129,106,153,125,181,143,228,159"/>
+<area shape="rect" id="Node000008" href="$classmexplus_1_1_mx_array.html#aaa6567b10655002ec922cd00ee0cf24a" title="Template for element write accessor." alt="" coords="93,132,132,159"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="226,165,132,151,133,146,227,160"/>
+<area shape="rect" id="Node000009" href="$classmexplus_1_1_mx_array.html#a41994ffbfab48f6e9ada2f096c3b30f0" title=" " alt="" coords="93,183,132,209"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="227,182,133,196,132,191,226,176"/>
+<area shape="rect" id="Node000010" href="$classmexplus_1_1_mx_array.html#af56d42186b8fa6738c51e1ace3fb5302" title="mxArray* element writer methods." alt="" coords="93,233,132,260"/>
+<area shape="poly" id="edge9_Node000006_Node000010" title=" " alt="" coords="228,183,181,198,153,216,129,235,126,231,150,212,179,194,226,177"/>
+<area shape="rect" id="Node000011" href="$classmexplus_1_1_mx_array.html#a0d75837f8c1dfbd860c9e4da397f5234" title="Struct element write accessor." alt="" coords="5,107,45,133"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="90,222,42,147,34,135,39,132,47,144,95,219"/>
+<area shape="rect" id="Node000012" href="$classmexplus_1_1_mx_array.html#a5c48fa103ba2759af7bd97c8233b31ca" title="Template for element write accessor." alt="" coords="5,157,45,184"/>
+<area shape="poly" id="edge11_Node000010_Node000012" title=" " alt="" coords="82,224,40,187,44,183,86,220"/>
+<area shape="rect" id="Node000013" href="$classmexplus_1_1_mx_array.html#a7abc7f7cc748ab6bbfbe6230d316bbb3" title="Cell element write accessor." alt="" coords="5,208,45,235"/>
+<area shape="poly" id="edge12_Node000010_Node000013" title=" " alt="" coords="77,239,44,229,46,224,78,234"/>
+<area shape="rect" id="Node000014" href="$classmexplus_1_1_mx_array.html#aafb0e7be0c2a725ea7db198b41735922" title="Cell element write accessor." alt="" coords="5,259,45,285"/>
+<area shape="poly" id="edge13_Node000010_Node000014" title=" " alt="" coords="78,259,46,269,44,264,77,254"/>
+<area shape="rect" id="Node000015" href="$classmexplus_1_1_mx_array.html#acbff5d4fe0f3636143147b8216dd40b4" title="Template for element write accessor." alt="" coords="5,309,45,336"/>
+<area shape="poly" id="edge14_Node000010_Node000015" title=" " alt="" coords="86,273,44,311,40,307,82,269"/>
+<area shape="rect" id="Node000016" href="$classmexplus_1_1_mx_array.html#a9a6ae3a7487c8d8ceb0a49bd3c446c89" title="Cell element write accessor." alt="" coords="5,360,45,387"/>
+<area shape="poly" id="edge15_Node000010_Node000016" title=" " alt="" coords="96,275,47,350,39,361,34,358,42,346,92,272"/>
+</map>

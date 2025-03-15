@@ -1,0 +1,5 @@
+<map id="MocoCustomOutputGoal" name="MocoCustomOutputGoal">
+<area shape="rect" id="Node000001" title="Goal that minimizes a custom model output." alt="" coords="5,80,171,107"/>
+<area shape="rect" id="Node000002" href="$class_moco_goal.html" title=" " alt="" coords="48,5,128,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,48,91,80,85,80,85,48"/>
+</map>

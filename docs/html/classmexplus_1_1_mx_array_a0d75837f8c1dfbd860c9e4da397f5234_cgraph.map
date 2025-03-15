@@ -1,0 +1,17 @@
+<map id="set" name="set">
+<area shape="rect" id="Node000001" title="Struct element write accessor." alt="" coords="5,31,45,57"/>
+<area shape="rect" id="Node000002" href="$classmexplus_1_1_mx_array.html#a06497d24a7be077e2c9f261f09a1eb3a" title="Return true if owner." alt="" coords="93,5,162,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="44,37,77,28,78,34,46,42"/>
+<area shape="rect" id="Node000003" href="$classmexplus_1_1_mx_array.html#af56d42186b8fa6738c51e1ace3fb5302" title="mxArray* element writer methods." alt="" coords="108,56,147,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="46,46,93,58,92,63,44,51"/>
+<area shape="rect" id="Node000004" href="$classmexplus_1_1_mx_array.html#a533e51c0de3188411746937e37820190" title="Templated mxArray element setters" alt="" coords="210,56,292,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="148,67,194,67,194,72,148,72"/>
+<area shape="rect" id="Node000005" href="$classmexplus_1_1_mx_array.html#ad0a396e26da3158eedd4054bab667fb9" title=" " alt="" coords="340,5,458,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="292,53,343,35,344,40,293,58"/>
+<area shape="rect" id="Node000006" href="$classmexplus_1_1_mx_array.html#ae66ee3292f977178e789a37a297694c2" title="Assignment helpers (for MxArray.set&lt;type&gt;(i, value))" alt="" coords="354,56,444,83"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="293,67,339,67,339,72,293,72"/>
+<area shape="rect" id="Node000007" href="$classmexplus_1_1_mx_array.html#a322dc1e6ed44ef0551d7de1cc13f9970" title="mxArray* importer methods." alt="" coords="375,107,423,133"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="293,81,362,105,360,110,292,86"/>
+<area shape="rect" id="Node000008" href="$classmexplus_1_1_mx_array.html#ab502ca8bc39d21cb3f945f10dce189fa" title="Templated mxArray importers" alt="" coords="506,107,596,133"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="423,117,490,117,490,123,423,123"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="get" name="get">
+<area shape="rect" id="Node000001" title="Retrieve an instance or throw if no instance is found." alt="" coords="250,31,289,57"/>
+<area shape="rect" id="Node000002" href="$classmexplus_1_1_session.html#aaba178c1fad6ad22dbe0628b3e1b4158" title=" " alt="" coords="145,5,184,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="234,38,184,26,186,21,236,33"/>
+<area shape="rect" id="Node000003" href="$classmexplus_1_1_session.html#af0d1eb8b1ac95165f9e23f6916c17838" title="Retrieve a const instance or throw if no instance is found." alt="" coords="128,56,202,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="236,55,203,63,202,58,234,50"/>
+<area shape="rect" id="Node000004" href="$classmexplus_1_1_session.html#a5cf5ea57ebee5c76f566527b093050ad" title=" " alt="" coords="5,56,80,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="113,72,80,72,80,67,113,67"/>
+</map>

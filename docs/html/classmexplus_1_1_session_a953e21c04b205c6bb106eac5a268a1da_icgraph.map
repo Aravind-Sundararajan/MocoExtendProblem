@@ -1,0 +1,25 @@
+<map id="getInstances" name="getInstances">
+<area shape="rect" id="Node000001" title="Get static instance storage." alt="" coords="412,132,509,159"/>
+<area shape="rect" id="Node000002" href="$classmexplus_1_1_session.html#a14dabca7589b28dc6adca2c5367546e1" title="Clear all session instances." alt="" coords="282,5,332,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="438,121,405,83,363,46,331,29,334,25,366,42,409,80,442,118"/>
+<area shape="rect" id="Node000003" href="$classmexplus_1_1_session.html#ae60989d1f15680d9c5a3557aa98f4da1" title="Create an instance." alt="" coords="278,56,336,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="419,126,363,97,335,84,338,79,366,92,422,122"/>
+<area shape="rect" id="Node000004" href="$classmexplus_1_1_session.html#ad69deb4256fa97e0da873f4f0564ee96" title="Destroy an instance." alt="" coords="275,107,339,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="397,138,339,128,340,123,398,132"/>
+<area shape="rect" id="Node000006" href="$classmexplus_1_1_session.html#a6d6a7baeed44de90066b72fed973c223" title="Check if the given id exists." alt="" coords="282,157,332,184"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="398,158,333,169,332,164,397,153"/>
+<area shape="rect" id="Node000008" href="$classmexplus_1_1_session.html#a90f330a82ec9b6c2c86a34893e32a94e" title="Retrieve an instance or throw if no instance is found." alt="" coords="288,208,327,235"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="422,169,366,198,328,216,326,211,363,194,419,164"/>
+<area shape="rect" id="Node000012" href="$classmexplus_1_1_session.html#a6dda647f54aefd4316fc5e6ef9fdd2ef" title="Get instance map." alt="" coords="250,259,364,285"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="442,173,409,211,366,249,346,260,343,256,363,245,405,207,438,169"/>
+<area shape="rect" id="Node000005" href="$classmexplus_1_1_session.html#a6b81bc46614b269c88c799dcca24d387" title=" " alt="" coords="133,107,197,133"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="260,123,197,123,197,117,260,117"/>
+<area shape="rect" id="Node000007" href="$classmexplus_1_1_session.html#a79e2abb7d3fdfd5bf209327165950624" title=" " alt="" coords="140,157,190,184"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="267,173,190,173,190,168,267,168"/>
+<area shape="rect" id="Node000009" href="$classmexplus_1_1_session.html#aaba178c1fad6ad22dbe0628b3e1b4158" title=" " alt="" coords="145,208,184,235"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="272,224,185,224,185,219,272,219"/>
+<area shape="rect" id="Node000010" href="$classmexplus_1_1_session.html#af0d1eb8b1ac95165f9e23f6916c17838" title="Retrieve a const instance or throw if no instance is found." alt="" coords="128,259,202,285"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="274,236,203,261,202,256,272,231"/>
+<area shape="rect" id="Node000011" href="$classmexplus_1_1_session.html#a5cf5ea57ebee5c76f566527b093050ad" title=" " alt="" coords="5,259,80,285"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="113,275,80,275,80,269,113,269"/>
+</map>

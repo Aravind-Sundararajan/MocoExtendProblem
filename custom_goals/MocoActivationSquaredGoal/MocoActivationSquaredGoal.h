@@ -13,39 +13,83 @@
 
 namespace OpenSim {
 
+/** @brief Goal that minimizes the squared sum of muscle activations
+ *
+ * This goal minimizes the sum of squared muscle activations, integrated over
+ * the phase. It is equivalent to using MocoActivationGoal with exponent=2.
+ * The squared activation cost is commonly used as a proxy for metabolic cost
+ * and effort minimization.
+ *
+ * This goal can be useful for:
+ * - Minimizing muscle effort
+ * - Finding metabolically efficient motions
+ * - Generating coordinated movement patterns
+ * - Reducing co-contraction
+ *
+ * The goal can optionally be configured as an endpoint goal, where the
+ * squared activations are evaluated only at the final time point instead
+ * of being integrated over the phase.
+ */
 class OSIMMOCOACTIVATIONSQUAREDGOAL_API MocoActivationSquaredGoal : public MocoGoal {
     OpenSim_DECLARE_CONCRETE_OBJECT(MocoActivationSquaredGoal, MocoGoal);
 
 public:
-    // Make the constructors for this class
+    /** @name Constructors */
+    /// @{
+    /** Default constructor */
     MocoActivationSquaredGoal() { constructProperties();}
+
+    /** Constructor with name
+     * @param name The name of the goal */
     MocoActivationSquaredGoal(std::string name) : MocoGoal(std::move(name)) {
         constructProperties();
     }
+
+    /** Constructor with name and weight
+     * @param name The name of the goal
+     * @param weight Weight for this goal term in the optimization */
     MocoActivationSquaredGoal(std::string name, double weight)
             : MocoGoal(std::move(name), weight) {
         constructProperties();
     }
+    /// @}
 
-    // Public methods to change and get the end-point goal value
+    /** Set the target value for endpoint goal evaluation
+     * @param end_point_goal Target value when used as endpoint goal */
     void setEndPointGoal(double end_point_goal) { set_end_point_goal(end_point_goal); }
+    
+    /** Get the endpoint goal target value
+     * @return The target value for endpoint goal evaluation */
     double getEndPointGoal() const { return get_end_point_goal(); }
 
-
 protected:
+    /** @name Required implementations of virtual methods */
+    /// @{
+    /** Get the default mode for this goal */
     Mode getDefaultModeImpl() const override { return Mode::Cost; }
+    
+    /** Whether this goal supports endpoint constraint mode */
     bool getSupportsEndpointConstraintImpl() const override { return true;}
 
-    // Initialization function
+    /** Initialize the goal with the model */
     void initializeOnModelImpl(const Model&) const override;
     
-    // Integration functions
+    /** Calculate the integrand value for the cost function
+     * @param input Input data for the current state
+     * @param integrand Reference to store the calculated integrand value */
     void calcIntegrandImpl(
             const IntegrandInput& input, double& integrand) const override;
+    
+    /** Calculate the goal value 
+     * @param input Input data containing the integral
+     * @param cost Vector to store the calculated cost */
     void calcGoalImpl(
             const GoalInput& input, SimTK::Vector& cost) const override;
+    /// @}
 
- private:
+private:
+    /** @name Properties */
+    /// @{
     OpenSim_DECLARE_PROPERTY(exponent, int,
         "The exponent applied to the output value in the integrand. "
         "The output can take on negative values in the integrand when the "
@@ -54,17 +98,21 @@ protected:
         "applied to the output (before the exponent is applied), meaning "
         "that odd numbered exponents (greater than 1) do not take on "
         "negative values.");
-    // Make the end_point_goal property
+
     OpenSim_DECLARE_PROPERTY(end_point_goal, double,
         "Target value for end-point goal (default: 0)");
+    /// @}
 
-    // Make a function to set the default values of these properties
+    /** Initialize the goal's properties */
     void constructProperties();
 
-    // Make a private member that stores all the indices for muscle activations
+    /** @name Internal working variables */
+    /// @{
+    /// Indices of muscle activation states
     mutable std::vector<int> m_act_indices;
-    
+    /// Function to compute power of activation values
     mutable std::function<double(const double &)> m_power_function;
+    /// @}
 };
 
 } // namespace OpenSim

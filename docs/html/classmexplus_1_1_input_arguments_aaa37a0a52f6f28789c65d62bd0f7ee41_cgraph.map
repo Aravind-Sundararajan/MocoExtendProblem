@@ -1,0 +1,27 @@
+<map id="parseDefinition" name="parseDefinition">
+<area shape="rect" id="Node000001" title="Try to parse one definition or return false on failure." alt="" coords="5,195,114,221"/>
+<area shape="rect" id="Node000002" href="$classmexplus_1_1_mx_array.html#a29ea41f83bd1e8bd336df07498492dab" title="mxArray* element reader methods." alt="" coords="189,68,336,95"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="69,192,105,149,131,125,160,104,173,98,176,103,163,109,135,129,109,153,73,196"/>
+<area shape="rect" id="Node000008" href="$classmexplus_1_1_mx_array.html#a9cef6b8f6c12787f69e5259a335e2438" title="Class name of mxArray." alt="" coords="162,119,363,145"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="83,192,161,155,183,147,184,153,163,160,86,197"/>
+<area shape="rect" id="Node000009" href="$classmexplus_1_1_mx_array.html#a63ca552c4210bb65f89217983da5ff79" title="Get field name of a struct array." alt="" coords="165,169,360,196"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="114,199,149,194,150,199,114,204"/>
+<area shape="rect" id="Node000010" href="$classmexplus_1_1_mx_array.html#a8bfeef980c4034b39e7f68bfcf2b9e95" title="Number of fields in a struct array." alt="" coords="170,220,355,247"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="114,212,154,217,154,222,114,217"/>
+<area shape="rect" id="Node000011" href="$classmexplus_1_1_mx_array.html#abb97ba42abaa201e9dd70a25c0370efc" title="Determine whether input is string array." alt="" coords="176,271,349,297"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="86,219,163,256,184,263,183,269,161,261,83,224"/>
+<area shape="rect" id="Node000012" href="$classmexplus_1_1_mx_array.html#a15d15ab25eea3cdcfa5ad1e00a08e7e9" title="mxArray* exporter methods." alt="" coords="432,275,579,301"/>
+<area shape="poly" id="edge12_Node000001_Node000012" title=" " alt="" coords="71,220,107,266,133,289,163,307,199,319,237,326,314,327,387,318,448,304,449,309,388,323,314,332,236,331,198,324,161,312,130,294,103,269,67,224"/>
+<area shape="rect" id="Node000003" href="$classmexplus_1_1_mx_array.html#a3999c1f1ba6d93093b173309fffaff2b" title="Templated mxArray getters" alt="" coords="411,80,600,107"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="336,82,396,85,395,91,336,88"/>
+<area shape="rect" id="Node000004" href="$classmexplus_1_1_mx_array.html#a49040f092fc1f61875eb27596578be7f" title="Explicit cell element assignment." alt="" coords="655,5,829,48"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="555,77,649,50,650,55,557,82"/>
+<area shape="rect" id="Node000006" href="$classmexplus_1_1_mx_array.html#a35e4f2ffdb31ede3bc22a21a533a5d1d" title="Explicit char (signed) element assignment." alt="" coords="655,72,829,115"/>
+<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="601,91,640,91,640,96,601,96"/>
+<area shape="rect" id="Node000007" href="$classmexplus_1_1_mx_array.html#a8288de53f4ebbe6cbb90c515b48e1404" title="Assignment helpers (for MxArray.to&lt;type&gt;(value))" alt="" coords="648,139,836,165"/>
+<area shape="poly" id="edge7_Node000003_Node000007" title=" " alt="" coords="563,105,671,132,670,137,562,110"/>
+<area shape="rect" id="Node000005" href="$classmexplus_1_1_mx_array.html#a3e4abfd8efe8b2285741c5163bacdded" title="Templated mxArray exporters" alt="" coords="884,189,1073,216"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="816,46,837,58,874,85,908,117,959,175,955,179,904,121,871,89,834,62,813,51"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="883,209,769,204,707,195,647,180,585,152,535,118,538,114,588,147,649,175,708,190,770,198,883,204"/>
+<area shape="poly" id="edge13_Node000012_Node000005" title=" " alt="" coords="579,272,885,217,886,222,580,277"/>
+</map>

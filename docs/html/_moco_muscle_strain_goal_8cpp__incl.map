@@ -1,0 +1,11 @@
+<map id="F:/dev/projects/MocoExtendProblem/custom_goals_compat/MocoMuscleStrainGoal/MocoMuscleStrainGoal.cpp" name="F:/dev/projects/MocoExtendProblem/custom_goals_compat/MocoMuscleStrainGoal/MocoMuscleStrainGoal.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="180,5,452,80"/>
+<area shape="rect" id="Node000002" href="$_moco_muscle_strain_goal_8h.html" title=" " alt="" coords="118,128,285,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="275,82,230,120,226,116,271,78"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="310,128,552,155"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="361,78,406,116,402,120,358,82"/>
+<area shape="rect" id="Node000003" href="$osim_moco_muscle_strain_goal_d_l_l_8h.html" title=" " alt="" coords="5,203,190,245"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="187,157,138,195,134,191,184,153"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="214,211,400,237"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="220,153,280,199,277,203,216,157"/>
+</map>

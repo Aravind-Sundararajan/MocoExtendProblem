@@ -1,5 +1,0 @@
-var compat_2_moco_coordinate_acceleration_goal_2_register_types__osim_moco_coordinate_acceleration_goal_8cpp =
-[
-    [ "RegisterTypes_osimMocoCoordinateAccelerationGoal", "compat_2_moco_coordinate_acceleration_goal_2_register_types__osim_moco_coordinate_acceleration_goal_8cpp.html#af47d7e0f562911459dd82dfc61ffbfe8", null ],
-    [ "instantiator", "compat_2_moco_coordinate_acceleration_goal_2_register_types__osim_moco_coordinate_acceleration_goal_8cpp.html#abd202b284452995357e021dc3b7833ed", null ]
-];

@@ -1,0 +1,7 @@
+<map id="isStruct" name="isStruct">
+<area shape="rect" id="Node000001" title="Determine whether input is structure array." alt="" coords="141,31,207,57"/>
+<area shape="rect" id="Node000002" href="$classmexplus_1_1_mx_array.html#a002fd9b4ffcbfee424464415770c980d" title="Get field names of a struct array." alt="" coords="5,5,93,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="125,37,93,30,94,25,126,32"/>
+<area shape="rect" id="Node000003" href="$classmexplus_1_1_mx_array.html#a4b2c61bf8f4dc81449768450d4706a99" title="Determine whether a struct array has a specified field." alt="" coords="14,56,84,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="126,56,85,65,84,60,125,51"/>
+</map>

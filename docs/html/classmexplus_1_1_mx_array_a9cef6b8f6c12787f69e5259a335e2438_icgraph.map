@@ -1,0 +1,13 @@
+<map id="className" name="className">
+<area shape="rect" id="Node000001" title="Class name of mxArray." alt="" coords="660,56,748,83"/>
+<area shape="rect" id="Node000002" href="$classmexplus_1_1_mx_array.html#a1ef6133d10fb4ea86939f9b81c798ede" title=" " alt="" coords="490,5,564,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="645,55,564,32,566,27,646,50"/>
+<area shape="rect" id="Node000003" href="$classmexplus_1_1_mx_array.html#a70ab17accdf27fb77506982a0c6c265e" title=" " alt="" coords="484,56,571,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="645,72,571,72,571,67,645,67"/>
+<area shape="rect" id="Node000004" href="$classmexplus_1_1_input_arguments.html#aaa37a0a52f6f28789c65d62bd0f7ee41" title="Try to parse one definition or return false on failure." alt="" coords="442,107,612,149"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="648,91,595,109,593,104,646,86"/>
+<area shape="rect" id="Node000005" href="$classmexplus_1_1_input_arguments.html#a181ce1071d1d5470b732ac162163f5f8" title="Parse arguments from mexFunction input." alt="" coords="224,107,394,149"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="427,131,395,131,395,125,427,125"/>
+<area shape="rect" id="Node000006" href="$classmexplus_1_1_input_arguments.html#a365d95d41eaa4b15c0de9b39e51dd5cf" title="Shorthand constructor for a single argument definition." alt="" coords="5,107,176,149"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="208,131,176,131,176,125,208,125"/>
+</map>

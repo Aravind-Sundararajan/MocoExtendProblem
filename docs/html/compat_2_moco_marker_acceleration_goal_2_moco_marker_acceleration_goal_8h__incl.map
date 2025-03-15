@@ -1,0 +1,9 @@
+<map id="F:/dev/projects/MocoExtendProblem/custom_goals_compat/MocoMarkerAccelerationGoal/MocoMarkerAccelerationGoal.h" name="F:/dev/projects/MocoExtendProblem/custom_goals_compat/MocoMarkerAccelerationGoal/MocoMarkerAccelerationGoal.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="183,5,390,80"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,136,192,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="222,83,136,130,133,126,219,78"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="216,128,357,171"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="289,80,289,113,284,113,284,80"/>
+<area shape="rect" id="Node000004" href="$compat_2_moco_marker_acceleration_goal_2osim_moco_marker_acceleration_goal_d_l_l_8h.html" title=" " alt="" coords="380,128,574,171"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="355,78,427,118,425,122,352,83"/>
+</map>

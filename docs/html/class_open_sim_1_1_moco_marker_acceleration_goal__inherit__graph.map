@@ -1,0 +1,6 @@
+<map id="MocoMarkerAccelerationGoal" name="MocoMarkerAccelerationGoal">
+<area shape="rect" id="Node000001" title="Goal that minimizes marker acceleration in a Moco optimization problem." alt="" coords="5,80,198,107"/>
+<area shape="rect" id="Node000002" href="$class_moco_goal.html" title=" " alt="" coords="61,5,142,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,47,97,79,92,80,90,48"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="113,48,111,80,106,79,108,47"/>
+</map>

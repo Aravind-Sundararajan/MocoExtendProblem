@@ -1,0 +1,8 @@
+<map id="fromInternal" name="fromInternal">
+<area shape="rect" id="Node000001" title="Container with unsigned char." alt="" coords="5,29,96,56"/>
+<area shape="rect" id="Node000002" href="$classmexplus_1_1_mx_array.html#a52e5d7c49cbd55e6b53fc282e8fb60b0" title="Array of each dimension." alt="" coords="144,29,231,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,40,128,40,128,45,96,45"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="163,30,159,21,162,11,172,5,187,3,204,5,213,12,210,16,202,10,187,8,174,10,166,14,164,20,168,28"/>
+<area shape="rect" id="Node000003" href="$classmexplus_1_1_mx_array.html#a43c218ed4d4ddbe240f807fd1a5d9a8b" title="Number of dimensions." alt="" coords="279,29,385,56"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="231,40,263,40,263,45,231,45"/>
+</map>

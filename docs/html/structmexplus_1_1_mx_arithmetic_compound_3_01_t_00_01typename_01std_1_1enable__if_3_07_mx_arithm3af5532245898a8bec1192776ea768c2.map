@@ -1,0 +1,5 @@
+<map id="MxArithmeticCompound&lt; T, typename std::enable_if&lt;(MxArithmeticType&lt; typename T::value_type &gt;::value) &amp;&amp;!(MxComplexType&lt; T &gt;::value), T &gt;::type &gt;" name="MxArithmeticCompound&lt; T, typename std::enable_if&lt;(MxArithmeticType&lt; typename T::value_type &gt;::value) &amp;&amp;!(MxComplexType&lt; T &gt;::value), T &gt;::type &gt;">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,227,187"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="78,5,154,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,48,119,79,113,79,113,48"/>
+</map>

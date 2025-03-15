@@ -1,0 +1,5 @@
+<map id="setDivideByDisplacement" name="setDivideByDisplacement">
+<area shape="rect" id="Node000001" title="Set whether to divide the sum of squared activations by displacement." alt="" coords="281,13,453,40"/>
+<area shape="rect" id="Node000002" href="$classextend_problem.html#a24f8efbee2f9f68357cfc7967c0a472f" title=" " alt="" coords="5,5,233,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="265,29,233,29,233,24,265,24"/>
+</map>

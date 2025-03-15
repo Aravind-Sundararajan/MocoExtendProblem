@@ -1,0 +1,5 @@
+<map id="MxIntTy&lt; T, typename std::enable_if&lt; std::is_integral&lt; T &gt;::value &amp;&amp;!MxLogicalTy&lt; T &gt;::value &amp;&amp;!MxCharTy&lt; T &gt;::value, T &gt;::type &gt;" name="MxIntTy&lt; T, typename std::enable_if&lt; std::is_integral&lt; T &gt;::value &amp;&amp;!MxLogicalTy&lt; T &gt;::value &amp;&amp;!MxCharTy&lt; T &gt;::value, T &gt;::type &gt;">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,198,187"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="64,5,139,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,48,104,79,99,79,99,48"/>
+</map>

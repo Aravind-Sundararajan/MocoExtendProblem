@@ -1,0 +1,17 @@
+<map id="F:/dev/projects/MocoExtendProblem/test/testCustomGoal.cpp" name="F:/dev/projects/MocoExtendProblem/test/testCustomGoal.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="501,5,720,48"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,104,70,131"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="501,35,410,42,304,54,192,73,82,99,77,100,75,95,81,93,191,67,303,49,409,37,501,30"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="93,96,286,139"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="513,51,302,95,301,90,512,46"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="310,96,512,139"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="565,51,473,92,471,87,563,46"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="536,104,686,131"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="614,48,614,88,608,88,608,48"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="709,104,950,131"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="663,46,785,95,783,100,661,51"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="974,104,1160,131"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="718,46,987,98,986,103,717,51"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="1184,96,1358,139"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="721,36,925,59,1169,93,1168,98,925,64,721,41"/>
+</map>

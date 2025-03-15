@@ -1,0 +1,59 @@
+<map id="atInternal" name="atInternal">
+<area shape="rect" id="Node000001" title="Templated mxArray getters" alt="" coords="954,360,1029,387"/>
+<area shape="rect" id="Node000002" href="$classmexplus_1_1_mx_array.html#a2b641882f8f0eac96f13f4d5cf6c1f32" title=" " alt="" coords="849,107,888,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="983,345,973,304,958,252,935,197,904,147,886,132,890,128,908,144,940,195,963,250,979,302,988,344"/>
+<area shape="rect" id="Node000003" href="$classmexplus_1_1_mx_array.html#a29ea41f83bd1e8bd336df07498492dab" title="mxArray* element reader methods." alt="" coords="849,157,888,184"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="972,348,875,186,880,183,976,345"/>
+<area shape="rect" id="Node000011" href="$classmexplus_1_1_mx_array.html#a930e65d241647cfa1995ab037e5e8c75" title=" " alt="" coords="849,360,888,387"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="938,376,888,376,888,371,938,371"/>
+<area shape="rect" id="Node000012" href="$classmexplus_1_1_mx_array.html#a8b8d01d785ddd94e111f5854641f6564" title="Struct element accessor." alt="" coords="849,411,888,437"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="945,395,889,419,887,414,943,390"/>
+<area shape="rect" id="Node000013" href="$classmexplus_1_1_mx_array.html#abe94c921201a1579f762718b6cc2ad0a" title=" " alt="" coords="849,461,888,488"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="967,399,908,451,890,465,887,460,904,447,964,395"/>
+<area shape="rect" id="Node000014" href="$classmexplus_1_1_mx_array.html#a2729337606158406787d5380596b1e14" title="Template for element accessor." alt="" coords="849,512,888,539"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="978,402,949,451,908,502,890,517,886,512,904,498,944,448,974,399"/>
+<area shape="rect" id="Node000015" href="$classmexplus_1_1_mx_array.html#afe1a3631fa7090b510639cb02290fedf" title=" " alt="" coords="849,563,888,589"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="984,403,956,474,935,515,908,552,890,568,886,564,904,549,930,512,951,472,979,401"/>
+<area shape="rect" id="Node000016" href="$classmexplus_1_1_mx_array.html#a3e4abfd8efe8b2285741c5163bacdded" title="Templated mxArray exporters" alt="" coords="831,309,906,336"/>
+<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="943,356,902,339,904,334,945,351"/>
+<area shape="rect" id="Node000004" href="$classmexplus_1_1_mx_array.html#a6d89b4206163ff846dbd5fd51b0f8e71" title=" " alt="" coords="715,5,754,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="835,153,829,147,812,120,805,95,798,71,781,46,753,28,756,23,785,42,803,69,810,93,817,117,833,144,839,150"/>
+<area shape="rect" id="Node000005" href="$classmexplus_1_1_mx_array.html#a742ff926dcde091982fa0e491e3531d5" title="Template for element accessor." alt="" coords="715,56,754,83"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="835,152,829,147,805,121,781,97,753,80,755,75,784,93,809,118,832,143,838,148"/>
+<area shape="rect" id="Node000006" href="$classmexplus_1_1_mx_array.html#a2d78e1ef347cab57773efe6017914891" title=" " alt="" coords="715,107,754,133"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="834,161,753,130,755,125,836,156"/>
+<area shape="rect" id="Node000007" href="$classmexplus_1_1_mx_array.html#a725bbbbea483b453bc97a39eb99e26b3" title="Template for element accessor." alt="" coords="715,157,754,184"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="834,173,754,173,754,168,834,168"/>
+<area shape="rect" id="Node000008" href="$classmexplus_1_1_input_arguments.html#aaa37a0a52f6f28789c65d62bd0f7ee41" title="Try to parse one definition or return false on failure." alt="" coords="455,293,625,336"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="836,184,766,211,688,249,664,266,640,284,614,295,612,290,637,279,661,262,685,244,764,206,834,179"/>
+<area shape="rect" id="Node000009" href="$classmexplus_1_1_input_arguments.html#a181ce1071d1d5470b732ac162163f5f8" title="Parse arguments from mexFunction input." alt="" coords="224,293,394,336"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="439,317,394,317,394,312,439,312"/>
+<area shape="rect" id="Node000010" href="$classmexplus_1_1_input_arguments.html#a365d95d41eaa4b15c0de9b39e51dd5cf" title="Shorthand constructor for a single argument definition." alt="" coords="5,293,176,336"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="208,317,176,317,176,312,208,312"/>
+<area shape="rect" id="Node000017" href="$classmexplus_1_1_mx_array.html#a49040f092fc1f61875eb27596578be7f" title="Explicit cell element assignment." alt="" coords="686,259,783,285"/>
+<area shape="poly" id="edge16_Node000016_Node000017" title=" " alt="" coords="816,306,771,288,773,283,818,301"/>
+<area shape="rect" id="Node000019" href="$classmexplus_1_1_mx_array.html#a43429c5a12dbbadf7ed4f91ad75ea7f7" title="Convert MxArray to a specified type." alt="" coords="715,487,754,513"/>
+<area shape="poly" id="edge19_Node000016_Node000019" title=" " alt="" coords="834,348,833,350,816,375,808,398,800,422,785,451,753,488,749,485,780,448,795,420,803,397,811,373,829,346,830,345"/>
+<area shape="rect" id="Node000025" href="$classmexplus_1_1_mx_array.html#a53a5edad0d65a9cb9b64f8d77c20161f" title=" " alt="" coords="715,309,754,336"/>
+<area shape="poly" id="edge25_Node000016_Node000025" title=" " alt="" coords="815,325,754,325,754,320,815,320"/>
+<area shape="rect" id="Node000026" href="$classmexplus_1_1_mx_array.html#a15d15ab25eea3cdcfa5ad1e00a08e7e9" title="mxArray* exporter methods." alt="" coords="715,360,754,387"/>
+<area shape="poly" id="edge26_Node000016_Node000026" title=" " alt="" coords="818,345,755,369,753,364,816,340"/>
+<area shape="rect" id="Node000028" href="$classmexplus_1_1_mx_array.html#a952dc17d7f8b0ab5be4637c1baf8993d" title=" " alt="" coords="715,411,754,437"/>
+<area shape="poly" id="edge29_Node000016_Node000028" title=" " alt="" coords="836,347,833,350,809,376,784,401,755,418,753,414,781,397,805,372,829,346,832,343"/>
+<area shape="poly" id="edge17_Node000017_Node000001" title=" " alt="" coords="799,270,853,277,907,295,930,309,951,325,981,358,978,361,947,329,927,313,905,300,851,283,798,275"/>
+<area shape="rect" id="Node000018" href="$classmexplus_1_1_mx_array.html#ab32b9a554cd630e5b0946f9c38a10142" title="Vector types." alt="" coords="502,243,578,269"/>
+<area shape="poly" id="edge18_Node000017_Node000018" title=" " alt="" coords="671,269,578,262,578,256,671,264"/>
+<area shape="rect" id="Node000020" href="$classmexplus_1_1_mx_array.html#a5307eea773ce5bedbf5dea75381121f2" title="Explicit cell array assignment." alt="" coords="492,512,588,539"/>
+<area shape="poly" id="edge20_Node000019_Node000020" title=" " alt="" coords="700,507,589,522,588,516,700,502"/>
+<area shape="rect" id="Node000021" href="$classmexplus_1_1_mx_array.html#a58cca997a67e945dcffb53eb4272095b" title="Structure access." alt="" coords="502,563,578,589"/>
+<area shape="poly" id="edge21_Node000019_Node000021" title=" " alt="" coords="703,522,639,553,579,571,578,566,637,548,701,517"/>
+<area shape="rect" id="Node000022" href="$classmexplus_1_1_mx_array.html#a634e58d0cd8aa2606514dcea94d06de6" title="Converter for nested types." alt="" coords="502,411,578,437"/>
+<area shape="poly" id="edge22_Node000019_Node000022" title=" " alt="" coords="701,483,637,452,578,434,579,429,639,447,703,478"/>
+<area shape="rect" id="Node000023" href="$classmexplus_1_1_input_arguments.html#a718ad7bef356570d0680846d0df60227" title=" " alt="" coords="442,613,638,640"/>
+<area shape="poly" id="edge23_Node000019_Node000023" title=" " alt="" coords="717,528,684,567,663,587,640,604,615,615,613,610,637,599,660,583,681,563,713,524"/>
+<area shape="rect" id="Node000024" href="$classmexplus_1_1_mx_array.html#a5c1a68fee71eb5815b642c2b2ffc1ee0" title="Nested types (leads into recursive deduction)." alt="" coords="502,461,578,488"/>
+<area shape="poly" id="edge24_Node000019_Node000024" title=" " alt="" coords="699,498,578,482,579,477,700,493"/>
+<area shape="poly" id="edge28_Node000026_Node000008" title=" " alt="" coords="699,366,612,339,614,334,701,361"/>
+<area shape="rect" id="Node000027" href="$classmexplus_1_1_input_arguments.html#a7c96d4179a9b068148df9769b577d197" title=" " alt="" coords="442,360,638,387"/>
+<area shape="poly" id="edge27_Node000026_Node000027" title=" " alt="" coords="700,376,639,376,639,371,700,371"/>
+</map>
