@@ -36,6 +36,14 @@ public:
     void setExponent(int ex) { set_exponent(ex); }
     bool getExponent() const { return get_exponent(); }
 
+    // Set the state names for coordinate acc minimization
+    void setCustomWeightNames(const std::vector<std::string> refCoordNames) {
+        m_custom_state_names = refCoordNames;
+    }
+
+    void setCustomWeightValues(const std::vector<double> refWeights) {
+        m_custom_weights_input = refWeights;
+    }
 protected:
     Mode getDefaultModeImpl() const override { return Mode::Cost; }
     bool getSupportsEndpointConstraintImpl() const override { return true;}
@@ -68,6 +76,11 @@ protected:
     // Make a private member that stores all the indices for muscle activations
     mutable std::vector<int> m_act_indices;
     mutable std::function<double(const double &)> m_power_function;
+    mutable std::vector<std::string> m_state_names;
+    mutable std::vector<double> m_custom_weights;
+    mutable std::vector<double> m_custom_weights_input;
+    mutable std::vector<std::string> m_custom_state_names;
+    mutable std::vector<int> m_custom_act_indices;
 };
 
 } // namespace OpenSim

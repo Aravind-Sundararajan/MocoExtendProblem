@@ -189,6 +189,12 @@ div_mass =false;
 
 if goal_type == 1
     %eff pred
+    disp("ACT")
+    custom_goal_name = 'act';
+    musc_names = {char(model.getMuscles().get(0).getAbsolutePath().toString()),...
+                  char(model.getMuscles().get(1).getAbsolutePath().toString())};
+    musc_weights = [2000.0,2000.0];
+    ep.addMocoActivationGoal(custom_goal_name, 1.0, false, false, false, false, 2,musc_names,musc_weights);
 elseif goal_type ==2
     ep.addMocoMarkerAccelerationGoal('addMocoMarkerAccelerationGoal',10.0,...
         div_disp, div_dur, div_mass,...
@@ -288,7 +294,7 @@ gaitPredictiveSolution.write(output_dir + 'states_half.sto');
 
 % Create a full stride from the periodic single step solution
 fullStride = opensimMoco.createPeriodicTrajectory(gaitPredictiveSolution);
-fullStride.write(output_dir + 'states.sto');
+fullStride.write(output_dir + 'states2.sto');
 
 % Extract ground reaction forces
 % ==============================
@@ -316,7 +322,7 @@ externalForcesTableFlat = opensimMoco.createExternalLoadsTableForGait(model, ...
 STOFileAdapter.write(externalForcesTableFlat, ...
     output_dir + 'GRF.sto');
 
-ref = MocoTrajectory(output_dir + '/outputReference/states_half.sto');
+ref = MocoTrajectory(output_dir + '/outputReference/states_half2.sto');
 
 if gaitPredictiveSolution.isNumericallyEqual(ref, 0.1)
     warning("output matches output reference for " + output_dir);

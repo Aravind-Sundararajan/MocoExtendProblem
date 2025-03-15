@@ -23,17 +23,31 @@ void MocoActivationGoal::initializeOnModelImpl(const Model& model) const {
     // Make a map to get indices corresponding to every state in the model
     auto allSysYIndices = createSystemYIndexMap(model);
     
-    // Loop through all the muscles
-    for (const auto& muscle : model.getComponentList<Muscle>()) {
-        // Make sure activation dynamics aren't being ignored for the current muscle
-        if (!muscle.get_ignore_activation_dynamics()) {
+    const std::string suffix = "/activation";
 
-            // Find the path to the activation for this muscle and get the correspoding state index
-            const std::string path = muscle.getAbsolutePathString();
-            int activationIndex = allSysYIndices[path + "/activation"];
+    for (const auto& pair : allSysYIndices) {
+        const std::string& path = pair.first;
+        const int index = pair.second;
+        if (path.length() >= suffix.length() && 
+            path.compare(path.length() - suffix.length(), suffix.length(), suffix) == 0) {
+            m_act_indices.push_back(index);
+        }
+    }
 
-            // Store the index of the activation state
-            m_act_indices.push_back(activationIndex);
+    for (int i = 0; i < (int)m_custom_state_names.size(); ++i) {
+      //std::cout << "Custom state name: " << m_custom_state_names[i] << std::endl;
+        auto& refName = m_custom_state_names[i];
+        auto& refWeight = m_custom_weights_input[i];
+        refName = refName + "/activation";
+        if (allSysYIndices.count(refName) == 0) {
+            //std::cout << "Custom state name not found: " << refName << std::endl;
+            continue;
+        } else {
+            //std::cout << "Custom state name found: " << refName << std::endl;
+            m_custom_act_indices.push_back(allSysYIndices[refName]);
+            //std::cout << "Custom act index: " << allSysYIndices[refName] << std::endl;
+            m_custom_weights.push_back(refWeight);
+            //std::cout << "Custom weight: " << refWeight << std::endl;
         }
     }
       int exponent = get_exponent();
@@ -64,8 +78,17 @@ void MocoActivationGoal::calcIntegrandImpl(
     
     // For each muscle, find the square of the activation and add it to the integrand
     for (int i = 0; i < (int)m_act_indices.size(); ++i) {
-        integrand += m_power_function(states[m_act_indices[i]]);
-    }   
+        auto it = std::find(m_custom_act_indices.begin(), m_custom_act_indices.end(), m_act_indices[i]);
+        if (it != m_custom_act_indices.end()) {
+            // Get the index position in m_custom_act_indices
+            size_t custom_idx = std::distance(m_custom_act_indices.begin(), it);
+            integrand += m_custom_weights[custom_idx] * m_power_function(states[m_act_indices[i]]);
+            //std::cout << "Custom weight found: " << m_custom_weights[custom_idx] << std::endl;
+        } else {
+            //std::cout << "Custom weight not found: " << m_act_indices[i] << std::endl;
+            integrand += m_power_function(states[m_act_indices[i]]);
+        }
+    } 
 }
 
 void MocoActivationGoal::calcGoalImpl(
