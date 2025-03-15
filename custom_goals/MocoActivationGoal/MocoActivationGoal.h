@@ -59,15 +59,15 @@ public:
     bool getExponent() const { return get_exponent(); }
 
     /** Set the names of states to apply custom weights to
-     * @param refCoordNames Vector of state names */
-    void setCustomWeightNames(const std::vector<std::string> refCoordNames) {
-        m_custom_state_names = refCoordNames;
+     * @param custom_weight_component_paths Vector of state names */
+    void setCustomWeightNames(const std::vector<std::string> custom_weight_component_paths) {
+        m_custom_state_names = custom_weight_component_paths;
     }
 
     /** Set the custom weight values corresponding to the custom state names
-     * @param refWeights Vector of weights matching the order of custom state names */
-    void setCustomWeightValues(const std::vector<double> refWeights) {
-        m_custom_weights_input = refWeights;
+     * @param custom_weights Vector of weights matching the order of custom state names */
+    void setCustomWeightValues(const std::vector<double> custom_weights) {
+        m_custom_weights_input = custom_weights;
     }
 
 protected:
