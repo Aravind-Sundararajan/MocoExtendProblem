@@ -192,7 +192,7 @@ if goal_type == 1
     disp("ACT")
     custom_goal_name = 'act';
     musc_names = {char(model.getMuscles().get(0).getAbsolutePath().toString()),...
-                  char(model.getMuscles().get(1).getAbsolutePath().toString())};
+                  char(model.getMuscles().get(9).getAbsolutePath().toString())};
     musc_weights = [2000.0,2000.0];
     ep.addMocoActivationGoal(custom_goal_name, 1.0, false, false, false, false, 2,musc_names,musc_weights);
 elseif goal_type ==2
