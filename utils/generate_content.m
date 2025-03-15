@@ -44,21 +44,46 @@ for goal = string(fields(goal_tree))'
     f_wrap = f_wrap + ")";
     wrapfun = wrapfun + ");";
     
+    % Create a map of parameter types from setters
+    param_types = struct();
+    for s = string(fields(setters))'
+        param_types.(setters.(s){2}) = setters.(s){1};
+    end
+    
+    % Get all parameter names from the function signature
+    param_list = strsplit(f_wrap, ',');
+    param_list = param_list(2:end);  % Skip 'function addGoalName(this'
+    param_list = strtrim(param_list);
+    param_list = regexprep(param_list, '[)]$', ''); % Remove closing parenthesis if present
+    
     % Generate function documentation
     doc_string = newline + sprintf("        %% add%s Add a %s goal to the problem", goal, goal) + newline;
     doc_string = doc_string + sprintf("        %%   Adds a %s goal with specified parameters", goal) + newline;
     doc_string = doc_string + "        %" + newline;
     doc_string = doc_string + "        %   Parameters:" + newline;
-    doc_string = doc_string + "        %      goalName  - Name of the goal (string)" + newline;
-    doc_string = doc_string + "        %      weight    - Weight of the goal (scalar)" + newline;
-    doc_string = doc_string + "        %      div_disp  - Divide by displacement flag (logical)" + newline;
-    doc_string = doc_string + "        %      div_dur   - Divide by duration flag (logical)" + newline;
-    doc_string = doc_string + "        %      div_mass  - Divide by mass flag (logical)" + newline;
     
-    % Add documentation for setter parameters
-    for s = string(fields(setters))'
-        doc_string = doc_string + sprintf("        %      %s - %s parameter", ...
-            setters.(s){2}, s) + newline;
+    % Document all parameters
+    for i = 1:length(param_list)
+        param = param_list{i};
+        switch param
+            case 'goalName'
+                desc = 'Name of the goal (string)';
+            case 'weight'
+                desc = 'Weight of the goal (scalar)';
+            case 'div_disp'
+                desc = 'Divide by displacement flag (logical)';
+            case 'div_dur'
+                desc = 'Divide by duration flag (logical)';
+            case 'div_mass'
+                desc = 'Divide by mass flag (logical)';
+            otherwise
+                if isfield(param_types, param)
+                    desc = sprintf('(%s)', param_types.(param));
+                else
+                    desc = '(unknown type)';
+                end
+        end
+        doc_string = doc_string + sprintf("        %%      %s - %s", param, desc) + newline;
     end
     
     wrap_out = wrap_out + f_wrap;
