@@ -38,7 +38,24 @@ for goal = string(fields(goal_tree))'
     %MATLAB class def
     f_wrap = f_wrap + ")" + newline + "           assert(isscalar(weight))";
     wrapfun = wrapfun + ");";
-    wrap_out = wrap_out + f_wrap + newline;
+    
+    % Generate function documentation
+    doc_string = newline + sprintf("        %% add%s Add a %s goal to the problem", goal, goal) + newline;
+    doc_string = doc_string + sprintf("        %%   Adds a %s goal with specified parameters", goal) + newline;
+    doc_string = doc_string + "        %" + newline;
+    doc_string = doc_string + "        %   Parameters:" + newline;
+    doc_string = doc_string + "        %      goalName  - Name of the goal (string)" + newline;
+    doc_string = doc_string + "        %      weight    - Weight of the goal (scalar)" + newline;
+    
+    % Add documentation for setter parameters
+    for s = string(fields(setters))'
+        doc_string = doc_string + sprintf("        %      %s - %s parameter", ...
+            setters.(s){2}, s) + newline;
+    end
+    
+    wrap_out = wrap_out + f_wrap;
+    wrap_out = wrap_out + doc_string;
+    wrap_out = wrap_out + newline + "           assert(isscalar(weight))" + newline;
     wrap_out = wrap_out + wrapfun + newline;
     wrap_out = wrap_out + "        end" + newline;
 
