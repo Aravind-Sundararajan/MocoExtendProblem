@@ -51,19 +51,12 @@ config ="RelWithDebInfo";
 %% CMAKE
 %if this is failing, check to see if vs 2022 msbuild.exe and cmake are part of
 %the system PATH.
-% Extract version number using regex
-version_match = regexp(opensim_install, '4\.(\d+)', 'tokens');
-if isempty(version_match)
-    error('Could not determine OpenSim version from installation path');
-end
-
-% Map OpenSim version to OSim_Version value
-osim_version = str2double(version_match{1});
+osim_version = org.opensim.modeling.opensimCommon.GetVersion();
 
 % Build cmake command
-cmake_cmd = sprintf('cmake CmakeLists.txt -S . -B "%s" -DOSim_Version=%d -G "Visual Studio 17 2022"', ...
+cmake_cmd = sprintf('cmake CmakeLists.txt -S . -B "%s" -DOSimVersion="%s" -G "Visual Studio 17 2022"', ...
     builddir, osim_version);
-
+disp(cmake_cmd)
 % Execute cmake
 system(cmake_cmd);
 system("msbuild """+solutionPath+""" /p:configuration="+config); %
@@ -76,7 +69,8 @@ system("msbuild """+solutionPath+""" /p:configuration="+config); %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 build_extend_class(fullfile(bindir,config,cppName),fullfile(bindir,config,wrapName), opensim_install);
 %% BUILD MEX
-if osim_version == 5
+osim_version_num = str2double(osim_version);
+if osim_version_num >= 4.5
     goaldir = 'custom_goals';
 else
     goaldir = 'custom_goals_compat';
