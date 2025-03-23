@@ -35,19 +35,14 @@ void MocoActivationGoal::initializeOnModelImpl(const Model& model) const {
     }
 
     for (int i = 0; i < (int)m_custom_state_names.size(); ++i) {
-      //std::cout << "Custom state name: " << m_custom_state_names[i] << std::endl;
         auto& refName = m_custom_state_names[i];
         auto& refWeight = m_custom_weights_input[i];
         refName = refName + "/activation";
         if (allSysYIndices.count(refName) == 0) {
-            //std::cout << "Custom state name not found: " << refName << std::endl;
             continue;
         } else {
-            //std::cout << "Custom state name found: " << refName << std::endl;
             m_custom_act_indices.push_back(allSysYIndices[refName]);
-            //std::cout << "Custom act index: " << allSysYIndices[refName] << std::endl;
             m_custom_weights.push_back(refWeight);
-            //std::cout << "Custom weight: " << refWeight << std::endl;
         }
     }
       int exponent = get_exponent();
@@ -83,9 +78,7 @@ void MocoActivationGoal::calcIntegrandImpl(
             // Get the index position in m_custom_act_indices
             size_t custom_idx = std::distance(m_custom_act_indices.begin(), it);
             integrand += m_custom_weights[custom_idx] * m_power_function(states[m_act_indices[i]]);
-            //std::cout << "Custom weight found: " << m_custom_weights[custom_idx] << std::endl;
         } else {
-            //std::cout << "Custom weight not found: " << m_act_indices[i] << std::endl;
             integrand += m_power_function(states[m_act_indices[i]]);
         }
     } 
