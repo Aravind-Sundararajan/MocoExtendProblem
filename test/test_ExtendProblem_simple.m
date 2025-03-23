@@ -116,7 +116,7 @@ for j = 1:2
         %no custom goal
     else
         %custom_goal_name = 'coordinate_acceleration_goal';
-        %ep.addMocoCoordinateAccelerationGoal(custom_goal_name,1.0,true, false, false,{'/slider/position'});
+        %ep.addMocoCoordinateAccelerationGoal(custom_goal_name,1.0,true, false, false,2,{'/slider/position'},[1.0]);
         
         %custom_goal_name = 'act_square';
         %ep.addMocoActivationSquaredGoal(custom_goal_name, 1.0, false, false, false, false);

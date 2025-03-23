@@ -45,14 +45,26 @@ public:
         constructProperties();
     }
 
-    /** Set the names of coordinates whose accelerations should be minimized
-     * @param refCoordNames Vector of coordinate names. Each name should be a state 
-     * variable path (e.g., '/jointset/knee_r/knee_angle_r') */
-    void setStateNames(const std::vector<std::string> refCoordNames) {
-        std::cout << "Setting coordinate names from string " << std::endl;
-        m_state_names = refCoordNames;
+    /** Set the exponent applied to activation values
+     * @param ex The exponent value. For ex > 1, absolute value is applied first */
+    void setExponent(int ex) { set_exponent(ex); }
+    
+    /** Get the current exponent value
+     * @return The exponent applied to activation values */
+    bool getExponent() const { return get_exponent(); }
+
+    /** Set the names of states to apply custom weights to
+     * @param custom_weight_coordinate_paths Vector of state names */
+    void setCustomWeightNames(const std::vector<std::string> custom_weight_coordinate_paths) {
+        m_custom_state_names = custom_weight_coordinate_paths;
     }
 
+    /** Set the custom weight values corresponding to the custom state names
+     * @param custom_weights Vector of weights matching the order of custom state names */
+    void setCustomWeightValues(const std::vector<double> custom_weights) {
+        m_custom_weights_input = custom_weights;
+    }
+     
 protected:
     /** @name Required implementations of virtual methods */
     /// @{
@@ -87,6 +99,14 @@ private:
     mutable std::vector<int> m_state_indices;
     /// Names of states for which we want to minimize acceleration
     mutable std::vector<std::string> m_state_names;
+    /// Custom weights for each state
+    mutable std::vector<double> m_custom_weights;
+    /// Custom weights for each state
+    mutable std::vector<double> m_custom_weights_input;
+    /// Custom state names
+    mutable std::vector<std::string> m_custom_state_names;
+    /// Indices of custom states for which we want to minimize acceleration
+    mutable std::vector<int> m_custom_acc_indices;
     /// @}
 };
 
